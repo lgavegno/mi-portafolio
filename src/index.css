@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Estilos del Blog */
+.blog-container {
+  font-family: 'Poppins', sans-serif;
+}
+
+#sidebar nav ul li a.active {
+  color: #3b82f6;
+  font-weight: 600;
+  border-left: 3px solid #3b82f6;
+  padding-left: 12px;
+  margin-left: -15px;
+}
+
+/* Modo oscuro */
+.dark #sidebar { background-color: #1f2937; }
+.dark #sidebar h3 { color: #f3f4f6; }
+.dark #content { background-color: #1f2937; }
+.dark h2, .dark h3 { color: #f9fafb; }
+.dark .flow-item { background-color: #1e40af; color: #f3f4f6; }

@@ -3,12 +3,14 @@ import { FaGithub, FaLinkedin, FaCode } from 'react-icons/fa';
 import { FiMail, FiArrowRight } from 'react-icons/fi';
 import './Home.css';
 
-// Usando una imagen de placeholder
-const heroImage = 'https://images.unsplash.com/photo-1571171637578-41d255934689?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80';
-
 const Home = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
+     <div className="relative min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
+      {/* Particle effect - moved to be the first child */}
+      <div className="absolute inset-0 overflow-hidden opacity-20 z-0">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iNjAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iLjA1IiBkPSJNLTUwLTUwSDEyNTB2MTI1MEgtNTB6Ii8+PC9zdmc+')]"></div>
+      </div>
+      
       {/* Efectos de fondo */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 -left-10 w-72 h-72 bg-[#d3fd01]/5 rounded-full filter blur-3xl"></div>
@@ -80,29 +82,23 @@ const Home = () => {
             </div>
             
             <div className="mt-8 flex flex-wrap justify-center lg:justify-start gap-4">
-              <span className="px-3 py-1 bg-gray-800/50 text-gray-300 text-sm rounded-full border border-gray-700">
-                React
-              </span>
-              <span className="px-3 py-1 bg-gray-800/50 text-gray-300 text-sm rounded-full border border-gray-700">
-                Node.js
-              </span>
-              <span className="px-3 py-1 bg-gray-800/50 text-gray-300 text-sm rounded-full border border-gray-700">
-                Tailwind CSS
-              </span>
+              <span className="px-3 py-1 bg-gray-800/50 text-gray-300 text-sm rounded-full border border-gray-700">React</span>
+              <span className="px-3 py-1 bg-gray-800/50 text-gray-300 text-sm rounded-full border border-gray-700">Node.js</span>
+              <span className="px-3 py-1 bg-gray-800/50 text-gray-300 text-sm rounded-full border border-gray-700">JavaScript</span>
+              <span className="px-3 py-1 bg-gray-800/50 text-gray-300 text-sm rounded-full border border-gray-700">HTML/CSS</span>
+              <span className="px-3 py-1 bg-gray-800/50 text-gray-300 text-sm rounded-full border border-gray-700">Tailwind CSS</span>
             </div>
           </div>
           
-          {/* Imagen del héroe */}
+          {/* Columna derecha - Contenedor para la imagen o video */}
           <div className="relative">
             <div className="relative z-10 w-full max-w-lg mx-auto">
-              <div className="relative">
-                <div className="absolute -inset-2 bg-gradient-to-r from-[#d3fd01] to-cyan-400 rounded-2xl opacity-70 blur-lg animate-pulse"></div>
-                <img 
-                  src={heroImage} 
-                  alt="Leandro - Desarrollador Full Stack" 
-                  className="relative z-10 w-full h-auto rounded-2xl border-2 border-gray-700 shadow-2xl"
-                />
-              </div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#d3fd01] to-cyan-400 rounded-2xl opacity-70 blur-lg animate-pulse"></div>
+              <img 
+                src="https://images.unsplash.com/photo-1571171637578-41d255934689?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                alt="Leandro - Desarrollador Full Stack"
+                className="relative z-10 w-full h-auto rounded-2xl border-2 border-gray-700 shadow-2xl"
+              />
               
               {/* Elementos decorativos */}
               <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-[#d3fd01] rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>

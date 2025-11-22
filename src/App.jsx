@@ -1,4 +1,5 @@
 import React from 'react'
+import Blog from './components/Blog';
 import MainLayout from './layouts/MainLayout'
 import Home from './components/Home'
 import Works from './components/Works'
@@ -16,6 +17,9 @@ function App() {
       </section>
       <section id="services">
         <Services />
+      </section>
+      <section id="blog">
+        <Blog />
       </section>
       <section id="contact">
         <Contact />
