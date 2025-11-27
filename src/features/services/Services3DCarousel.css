@@ -36,7 +36,6 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: linear-gradient(145deg, #1e293b, #0f172a);
   border: 1px solid rgba(255, 255, 255, 0.1);
   transform-origin: center center -400px;
   transform-style: preserve-3d;
@@ -93,17 +92,7 @@
   right: 20px;
 }
 
-/* Gradient Backgrounds */
-.from-cyan-400 { background: linear-gradient(145deg, #06b6d4, #3b82f6) !important; }
-.to-blue-500 { background: linear-gradient(145deg, #3b82f6, #2563eb) !important; }
-.from-purple-400 { background: linear-gradient(145deg, #a78bfa, #7c3aed) !important; }
-.to-indigo-500 { background: linear-gradient(145deg, #7c3aed, #5b21b6) !important; }
-.from-emerald-400 { background: linear-gradient(145deg, #34d399, #10b981) !important; }
-.to-teal-500 { background: linear-gradient(145deg, #10b981, #0d9488) !important; }
-.from-rose-400 { background: linear-gradient(145deg, #fb7185, #f43f5e) !important; }
-.to-pink-500 { background: linear-gradient(145deg, #f43f5e, #db2777) !important; }
-.from-amber-400 { background: linear-gradient(145deg, #fbbf24, #f59e0b) !important; }
-.to-orange-500 { background: linear-gradient(145deg, #f59e0b, #ea580c) !important; }
+/* Gradient backgrounds now provided by Tailwind in JSX (e.g., bg-gradient-to-br from-cyan-400 to-blue-500) */
 
 /* Responsive Design */
 @media (max-width: 1024px) {

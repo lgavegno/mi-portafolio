@@ -98,7 +98,7 @@ const Services = () => {
             {services.map((service, index) => (
               <div 
                 key={index}
-                className={`carousel-card ${service.color}`}
+                className={`carousel-card bg-gradient-to-br ${service.color}`}
                 style={getCardStyle(index)}
               >
                 <div className="card-content">

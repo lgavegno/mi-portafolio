@@ -1,10 +1,9 @@
 import React from 'react';
 import { FaGithub, FaLinkedin, FaCode } from 'react-icons/fa';
 import { FiMail, FiArrowRight } from 'react-icons/fi';
-import './Home.css';
+import heroImage from '../../assets/images/IMG-lg-blanca.png';
 
-// Usando una imagen de placeholder
-const heroImage = 'https://images.unsplash.com/photo-1571171637578-41d255934689?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80';
+// Usando una imagen importada desde assets
 
 const Home = () => {
   return (
@@ -96,11 +95,15 @@ const Home = () => {
           <div className="relative">
             <div className="relative z-10 w-full max-w-lg mx-auto">
               <div className="relative">
-                <div className="absolute -inset-2 bg-gradient-to-r from-[#d3fd01] to-cyan-400 rounded-2xl opacity-70 blur-lg animate-pulse"></div>
+                <div className="absolute -inset-2 bg-gradient-to-r from-gray-900 via-gray-800 to-black rounded-2xl opacity-70 blur-lg animate-pulse"></div>
                 <img 
                   src={heroImage} 
                   alt="Leandro - Desarrollador Full Stack" 
-                  className="relative z-10 w-full h-auto rounded-2xl border-2 border-gray-700 shadow-2xl"
+                  className="relative z-10 w-full h-auto rounded-2xl"
+                  style={{
+                    WebkitMaskImage: 'radial-gradient(ellipse at center, black 72%, transparent 100%)',
+                    maskImage: 'radial-gradient(ellipse at center, black 72%, transparent 100%)'
+                  }}
                 />
               </div>
               

@@ -1,9 +1,9 @@
 import React from 'react'
 import MainLayout from './layouts/MainLayout'
-import Home from './components/Home'
-import Works from './components/Works'
-import Services from './components/Services'
-import Contact from './components/Contact'
+import Home from './features/home/Home'
+import Works from './features/works/Works'
+import Services from './features/services/Services'
+import Contact from './features/contact/Contact'
 
 function App() {
   return (
