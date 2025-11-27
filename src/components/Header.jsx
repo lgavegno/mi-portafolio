@@ -1,84 +1,98 @@
 // src/components/Header.jsx
-import React, { useState, useEffect } from 'react'
-import { FaBars, FaTimes } from 'react-icons/fa'
+import React, { useState, useEffect } from 'react';
+import { FaGithub, FaLinkedin, FaBars, FaTimes } from 'react-icons/fa';
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 10)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+      const isScrolled = window.scrollY > 10;
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled);
+      }
+    };
 
-  const navItems = [
-    { name: 'Inicio', href: '#inicio' },
-    { name: 'Servicios', href: '#servicios' },
-    { name: 'Proyectos', href: '#proyectos' },
-    { name: 'Contacto', href: '#contacto' },
-  ]
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [scrolled]);
 
   return (
-    <header className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/90 backdrop-blur-md py-2' : 'bg-transparent py-4'}`}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <a href="#" className="text-2xl font-bold text-[#d3fd01]">
-            Portafolio
-          </a>
-          
+    <header className="bg-black fixed top-0 left-0 right-0 z-50 shadow-lg">
+      <div className="container mx-auto px-6">
+        <nav className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <div className="font-bold text-xl text-white">
+            Mi Portafolio
+          </div>
+
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-gray-300 hover:text-[#d3fd01] px-3 py-2 rounded-md text-sm font-medium transition-colors"
-              >
-                {item.name}
-              </a>
-            ))}
-          </nav>
+          <div className="hidden md:flex items-center space-x-8">
+            <a href="#home" className="text-white hover:text-yellow-400 transition-colors duration-300 px-4 py-2">
+              Inicio
+            </a>
+            <a href="#works" className="text-white hover:text-yellow-400 transition-colors duration-300 px-4 py-2">
+              Proyectos
+            </a>
+            <a href="#services" className="text-white hover:text-yellow-400 transition-colors duration-300 px-4 py-2">
+              Servicios
+            </a>
+            <a href="#contact" className="text-white hover:text-yellow-400 transition-colors duration-300 px-4 py-2">
+              Contacto
+            </a>
+          </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white focus:outline-none"
-              aria-expanded="false"
+              className="text-white hover:text-yellow-400 focus:outline-none"
+              aria-label="Toggle menu"
             >
-              <span className="sr-only">Open main menu</span>
-              {isOpen ? (
-                <FaTimes className="block h-6 w-6" aria-hidden="true" />
-              ) : (
-                <FaBars className="block h-6 w-6" aria-hidden="true" />
-              )}
+              {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
             </button>
           </div>
-        </div>
-      </div>
+        </nav>
 
-      {/* Mobile menu */}
-      {isOpen && (
-        <div className="md:hidden bg-gray-900/95 backdrop-blur-sm">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {navItems.map((item) => (
+        {/* Mobile menu */}
+        {isOpen && (
+          <div className="md:hidden bg-gray-900">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <a
-                key={item.name}
-                href={item.href}
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-800 hover:text-white"
+                href="#home"
+                className="block px-3 py-2 text-white hover:bg-gray-800 rounded-md"
                 onClick={() => setIsOpen(false)}
               >
-                {item.name}
+                Inicio
               </a>
-            ))}
+              <a
+                href="#works"
+                className="block px-3 py-2 text-white hover:bg-gray-800 rounded-md"
+                onClick={() => setIsOpen(false)}
+              >
+                Proyectos
+              </a>
+              <a
+                href="#services"
+                className="block px-3 py-2 text-white hover:bg-gray-800 rounded-md"
+                onClick={() => setIsOpen(false)}
+              >
+                Servicios
+              </a>
+              <a
+                href="#contact"
+                className="block px-3 py-2 text-white hover:bg-gray-800 rounded-md"
+                onClick={() => setIsOpen(false)}
+              >
+                Contacto
+              </a>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
