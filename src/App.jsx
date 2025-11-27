@@ -1,26 +1,22 @@
+// src/App.jsx
 import React from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
 import MainLayout from './layouts/MainLayout'
 import Home from './features/home/Home'
-import Works from './features/works/Works'
 import Services from './features/services/Services'
+import Works from './features/works/Works'
 import Contact from './features/contact/Contact'
 
 function App() {
   return (
-    <MainLayout>
-      <section id="home">
+    <Router>
+      <MainLayout>
         <Home />
-      </section>
-      <section id="works">
-        <Works />
-      </section>
-      <section id="services">
         <Services />
-      </section>
-      <section id="contact">
+        <Works />
         <Contact />
-      </section>
-    </MainLayout>
+      </MainLayout>
+    </Router>
   )
 }
 

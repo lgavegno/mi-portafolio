@@ -1,86 +1,84 @@
+// src/components/Header.jsx
 import React, { useState, useEffect } from 'react'
+import { FaBars, FaTimes } from 'react-icons/fa'
 
 const Header = () => {
-  const [isDarkMode, setIsDarkMode] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10)
     }
-  }, [isDarkMode])
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode)
-  }
+  const navItems = [
+    { name: 'Inicio', href: '#inicio' },
+    { name: 'Servicios', href: '#servicios' },
+    { name: 'Proyectos', href: '#proyectos' },
+    { name: 'Contacto', href: '#contacto' },
+  ]
 
   return (
-    <header className="bg-black fixed top-0 left-0 right-0 z-50 shadow-lg">
-      <div className="container mx-auto px-6">
-        <nav className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <div className="font-bold text-xl text-white">
-            Mi Portafolio
-          </div>
+    <header className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/90 backdrop-blur-md py-2' : 'bg-transparent py-4'}`}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <a href="#" className="text-2xl font-bold text-[#d3fd01]">
+            Portafolio
+          </a>
+          
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex space-x-8">
+            {navItems.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-gray-300 hover:text-[#d3fd01] px-3 py-2 rounded-md text-sm font-medium transition-colors"
+              >
+                {item.name}
+              </a>
+            ))}
+          </nav>
 
-          {/* Menú de navegación - Desktop */}
-          <div className="hidden md:flex items-center space-x-8">
-            <a href="#home" className="text-white hover:text-yellow-400 transition-colors duration-300 px-4 py-2">
-              Inicio
-            </a>
-            <a href="#works" className="text-white hover:text-yellow-400 transition-colors duration-300 px-4 py-2">
-              Proyectos
-            </a>
-            <a href="#services" className="text-white hover:text-yellow-400 transition-colors duration-300 px-4 py-2">
-              Servicios
-            </a>
-            <a href="#contact" className="text-white hover:text-yellow-400 transition-colors duration-300 px-4 py-2">
-              Contacto
-            </a>
+          {/* Mobile menu button */}
+          <div className="md:hidden flex items-center">
             <button
-              onClick={toggleDarkMode}
-              className="ml-4 p-2 rounded-full hover:bg-gray-800 transition-colors text-white hover:text-yellow-400"
-              title={isDarkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+              onClick={() => setIsOpen(!isOpen)}
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white focus:outline-none"
+              aria-expanded="false"
             >
-              {isDarkMode ? (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
+              <span className="sr-only">Open main menu</span>
+              {isOpen ? (
+                <FaTimes className="block h-6 w-6" aria-hidden="true" />
               ) : (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                </svg>
+                <FaBars className="block h-6 w-6" aria-hidden="true" />
               )}
             </button>
           </div>
-
-          {/* Menú móvil */}
-          <div className="md:hidden flex items-center space-x-4">
-            <button
-              onClick={toggleDarkMode}
-              className="p-2 rounded-full hover:bg-gray-800 transition-colors text-white hover:text-yellow-400"
-            >
-              {isDarkMode ? (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-              ) : (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                </svg>
-              )}
-            </button>
-            <button className="text-white hover:text-yellow-400">
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-          </div>
-        </nav>
+        </div>
       </div>
+
+      {/* Mobile menu */}
+      {isOpen && (
+        <div className="md:hidden bg-gray-900/95 backdrop-blur-sm">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            {navItems.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-800 hover:text-white"
+                onClick={() => setIsOpen(false)}
+              >
+                {item.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
     </header>
   )
 }
 
-export default Header 
+export default Header

@@ -12,31 +12,31 @@ const Services = () => {
       title: "Diseño Web",
       description: "Creación de sitios web modernos y responsivos con las últimas tecnologías.",
       icon: "💻",
-      color: "from-cyan-400 to-blue-500"
+      color: "from-gray-200 to-gray-700"
     },
     {
       title: "Desarrollo Frontend",
       description: "Interfaces de usuario dinámicas y atractivas con React y frameworks modernos.",
       icon: "🎨",
-      color: "from-purple-400 to-indigo-500"
+      color: "from-gray-200 to-gray-700"
     },
     {
       title: "Mantenimiento",
       description: "Servicios de mantenimiento y actualización de aplicaciones existentes.",
       icon: "🔧",
-      color: "from-emerald-400 to-teal-500"
+      color: "from-gray-200 to-gray-700"
     },
     {
       title: "Automatización",
       description: "Automatización de tareas y procesos con Python y otras herramientas.",
       icon: "🤖",
-      color: "from-rose-400 to-pink-500"
+      color: "from-gray-200 to-gray-700"
     },
     {
       title: "UI/UX",
       description: "Diseño de interfaces centradas en el usuario y experiencias memorables.",
       icon: "🎯",
-      color: "from-amber-400 to-orange-500"
+      color: "from-gray-200 to-gray-700"
     }
   ];
 
@@ -68,11 +68,14 @@ const Services = () => {
     const total = services.length;
     const angle = 360 / total;
     const rotateY = (index - currentIndex) * angle;
-    const radius = 400; // Distance from center
+    const radius = Math.min(window.innerWidth, 1200) * 0.4; // Responsive radius based on viewport width
     
+    // Convert degrees to radians
     const radian = (rotateY * Math.PI) / 180;
+    
+    // Calculate x and z positions
     const x = Math.sin(radian) * radius;
-    const z = Math.cos(radian) * radius - radius;
+    const z = (Math.cos(radian) * radius) - radius; // Subtract radius to position cards in a circle
     
     return {
       transform: `rotateY(${rotateY}deg) translateZ(${z}px) translateX(${x}px)`,
@@ -98,12 +101,12 @@ const Services = () => {
             {services.map((service, index) => (
               <div 
                 key={index}
-                className={`carousel-card bg-gradient-to-br ${service.color}`}
+                className={`carousel-card bg-gradient-to-br ${service.color} border-2 border-gray-700 hover:border-[#d3fd01]/30 hover:shadow-[0_0_15px] hover:shadow-[#d3fd01]/20 transition-all duration-300`}
                 style={getCardStyle(index)}
               >
                 <div className="card-content">
                   <div className="text-6xl mb-6">{service.icon}</div>
-                  <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
+                  <h3 className="text-2xl font-bold mb-3 text-white">{service.title}</h3>
                   <p className="text-gray-200 mb-6">{service.description}</p>
                   <button className="px-6 py-2 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all">
                     Ver más

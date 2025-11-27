@@ -6,6 +6,11 @@
   perspective: 2000px;
   margin: 0 auto;
   overflow: visible;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 /* Track that holds all cards */
@@ -18,15 +23,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: translateZ(-400px);
 }
 
 /* Individual Card Styling */
 .carousel-card {
   position: absolute;
-  width: 300px;
+  width: 280px;
   height: 400px;
+  left: 50%;
+  top:50%;
+  margin-left: -140px;
+  margin-top: -200px;
   border-radius: 20px;
-  padding: 2rem;
+  padding: 1.5rem;
   box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   backface-visibility: hidden;
@@ -36,9 +46,27 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transform-origin: center center -400px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
   transform-style: preserve-3d;
+}
+
+/* Card hover effects */
+.carousel-card:hover {
+  transform: translateZ(30px) scale(1.02);
+  box-shadow: 0 0 30px 5px rgba(211, 253, 1, 0.3);
+  border-color: rgba(211, 253, 1, 0.5);
+  transition: all 0.3s ease-out;
+}
+
+/* Card title styling */
+.carousel-card h3 {
+  color: rgb(98, 43, 43);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.carousel-card:hover h3 {
+  text-shadow: 0 0 15px rgba(211, 253, 1, 0.5);
 }
 
 /* Card Content */
@@ -52,12 +80,13 @@
   align-items: center;
 }
 
-/* Card Hover Effect */
+/* Card Content Hover Effect */
 .carousel-card:hover .card-content {
   transform: translateZ(60px) scale(1.05);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Navigation Buttons */
+/* Navigation Buttons - Flechas */
 .carousel-nav {
   position: absolute;
   top: 50%;
@@ -67,7 +96,7 @@
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: white;
   font-size: 1.5rem;
   cursor: pointer;
@@ -80,8 +109,11 @@
 }
 
 .carousel-nav:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(211, 253, 1, 0.2);
   transform: translateY(-50%) scale(1.1);
+  border-color: rgba(211, 253, 1, 0.5);
+  color: #d3fd01;
+  box-shadow: 0 0 15px rgba(211, 253, 1, 0.3);
 }
 
 .carousel-nav.prev {
@@ -101,7 +133,7 @@
   }
   
   .carousel-card {
-    width: 280px;
+    width: 260px;
     height: 380px;
   }
 }
@@ -113,15 +145,54 @@
   }
   
   .carousel-card {
-    width: 250px;
-    height: 350px;
-    padding: 1.5rem;
+    width: 240px;
+    height: 360px;
+    padding: 1.25rem;
   }
   
   .carousel-nav {
     width: 40px;
     height: 40px;
     font-size: 1.2rem;
+    height: 36px;
+    font-size: 1.1rem;
+  }
+  
+  .carousel-nav.prev {
+    left: 5px;
+  }
+  
+  .carousel-nav.next {
+    right: 5px;
+  }
+  
+  .carousel-track {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  .carousel-card {
+    width: 95%;
+    height: 320px;
+    padding: 1rem;
+  }
+  
+  .card-content h3 {
+    font-size: 1.5rem;
+  }
+  
+  .card-content p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  
+  .carousel-nav {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
   }
 }
 
