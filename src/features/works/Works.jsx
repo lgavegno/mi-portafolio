@@ -35,7 +35,7 @@ const Works = () => {
 
   return (
     <ParallaxProvider>
-    <div className="min-h-screen py-20 relative overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800">
+    <div className="w-full relative overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800 py-20">
       <div className="container mx-auto px-4 relative z-10">
         <h2 className="text-5xl font-bold text-center mb-12 text-[#d3fd01]">Mis Proyectos</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

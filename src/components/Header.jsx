@@ -1,19 +1,22 @@
-import React, { useState, useEffect } from 'react'
+// src/components/Header.jsx
+import React, { useState, useEffect } from 'react';
+import { FaGithub, FaLinkedin, FaBars, FaTimes } from 'react-icons/fa';
 
 const Header = () => {
-  const [isDarkMode, setIsDarkMode] = useState(true)
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
-  }, [isDarkMode])
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 10;
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled);
+      }
+    };
 
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode)
-  }
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [scrolled]);
 
   return (
     <header className="bg-black fixed top-0 left-0 right-0 z-50 shadow-lg">
@@ -24,7 +27,7 @@ const Header = () => {
             Mi Portafolio
           </div>
 
-          {/* Menú de navegación - Desktop */}
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <a href="#home" className="text-white hover:text-yellow-400 transition-colors duration-300 px-4 py-2">
               Inicio
@@ -35,55 +38,61 @@ const Header = () => {
             <a href="#services" className="text-white hover:text-yellow-400 transition-colors duration-300 px-4 py-2">
               Servicios
             </a>
-            <a href="#blog" className="text-white hover:text-yellow-400 transition-colors duration-300 px-4 py-2">
-              Blog
-            </a>
             <a href="#contact" className="text-white hover:text-yellow-400 transition-colors duration-300 px-4 py-2">
               Contacto
             </a>
-            <button
-              onClick={toggleDarkMode}
-              className="ml-4 p-2 rounded-full hover:bg-gray-800 transition-colors text-white hover:text-yellow-400"
-              title={isDarkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
-            >
-              {isDarkMode ? (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-              ) : (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                </svg>
-              )}
-            </button>
           </div>
 
-          {/* Menú móvil */}
-          <div className="md:hidden flex items-center space-x-4">
+          {/* Mobile menu button */}
+          <div className="md:hidden">
             <button
-              onClick={toggleDarkMode}
-              className="p-2 rounded-full hover:bg-gray-800 transition-colors text-white hover:text-yellow-400"
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-white hover:text-yellow-400 focus:outline-none"
+              aria-label="Toggle menu"
             >
-              {isDarkMode ? (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-              ) : (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                </svg>
-              )}
-            </button>
-            <button className="text-white hover:text-yellow-400">
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+              {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
             </button>
           </div>
         </nav>
+
+        {/* Mobile menu */}
+        {isOpen && (
+          <div className="md:hidden bg-gray-900">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+              <a
+                href="#home"
+                className="block px-3 py-2 text-white hover:bg-gray-800 rounded-md"
+                onClick={() => setIsOpen(false)}
+              >
+                Inicio
+              </a>
+              <a
+                href="#works"
+                className="block px-3 py-2 text-white hover:bg-gray-800 rounded-md"
+                onClick={() => setIsOpen(false)}
+              >
+                Proyectos
+              </a>
+              <a
+                href="#services"
+                className="block px-3 py-2 text-white hover:bg-gray-800 rounded-md"
+                onClick={() => setIsOpen(false)}
+              >
+                Servicios
+              </a>
+              <a
+                href="#contact"
+                className="block px-3 py-2 text-white hover:bg-gray-800 rounded-md"
+                onClick={() => setIsOpen(false)}
+              >
+                Contacto
+              </a>
+            </div>
+          </div>
+        )}
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header 
+export default Header;

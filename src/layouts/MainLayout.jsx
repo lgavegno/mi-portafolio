@@ -1,12 +1,12 @@
+// src/layouts/MainLayout.jsx
 import React from 'react'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import { Header, Footer } from '../components'
 
 const MainLayout = ({ children }) => {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black text-white overflow-x-hidden">
       <Header />
-      <main className="pt-20">
+      <main className="pt-16 md:pt-20 w-full max-w-[100vw] overflow-x-hidden">
         {children}
       </main>
       <Footer />
@@ -14,4 +14,5 @@ const MainLayout = ({ children }) => {
   )
 }
 
-export default MainLayout 
+// Fix this line - remove the 's' from MainLayouts
+export default MainLayout
