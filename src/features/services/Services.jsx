@@ -63,32 +63,22 @@ const Services = () => {
     setCurrentIndex(prev => (prev + 1) % services.length);
   };
 
-  // Calculate rotation for each card
+  // Calculate rotation for each card with fixed depth (radius) to keep desktop curvature stable
   const getCardStyle = (index) => {
-    const total = services.length;
-    const angle = 360 / total;
-    const rotateY = (index - currentIndex) * angle;
-    const radius = Math.min(window.innerWidth, 1200) * 0.4; // Responsive radius based on viewport width
-    
-    // Convert degrees to radians
-    const radian = (rotateY * Math.PI) / 180;
-    
-    // Calculate x and z positions
-    const x = Math.sin(radian) * radius;
-    const z = (Math.cos(radian) * radius) - radius; // Subtract radius to position cards in a circle
-    
+    const angle = (360 / services.length) * index;
+    const rotate = angle - (currentIndex * (360 / services.length));
+    const depth = window.innerWidth > 1024 ? 500 : 250; // ajuste móvil para mejor perspectiva
+
     return {
-      transform: `rotateY(${rotateY}deg) translateZ(${z}px) translateX(${x}px)`,
-      opacity: index === currentIndex ? 1 : 0.6,
-      zIndex: index === currentIndex ? 10 : 1,
-      transition: 'transform 1s ease, opacity 0.5s ease',
+      transform: `rotateY(${rotate}deg) translateZ(${depth}px)`,
+      transition: 'transform 0.5s ease-out',
     };
   };
 
   return (
-    <div className="min-h-screen py-20 relative overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800">
+    <div className="w-full relative overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800 text-white py-20">
       <div className="container mx-auto px-4 relative z-10">
-        <h2 className="text-5xl font-bold text-center mb-20 text-[#d3fd01]">
+        <h2 className="text-4xl sm:text-5xl font-bold text-center mb-10 md:mb-16 text-[#d3fd01]">
           Mis Servicios
         </h2>
         
@@ -101,16 +91,26 @@ const Services = () => {
             {services.map((service, index) => (
               <div 
                 key={index}
-                className={`carousel-card bg-gradient-to-br ${service.color} border-2 border-gray-700 hover:border-[#d3fd01]/30 hover:shadow-[0_0_15px] hover:shadow-[#d3fd01]/20 transition-all duration-300`}
+                className="carousel-card"
                 style={getCardStyle(index)}
               >
-                <div className="card-content">
-                  <div className="text-6xl mb-6">{service.icon}</div>
-                  <h3 className="text-2xl font-bold mb-3 text-white">{service.title}</h3>
-                  <p className="text-gray-200 mb-6">{service.description}</p>
-                  <button className="px-6 py-2 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all">
-                    Ver más
-                  </button>
+                <div className="carousel-card-inner">
+                  {/* CARA FRONTAL (Contenido actual) */}
+                  <div className="carousel-card-front bg-gradient-to-br from-gray-200 to-gray-700 border-2 border-gray-700">
+                    <div className="card-content">
+                      <div className="text-6xl md:text-7xl mb-6">{service.icon}</div>
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 text-[#d3fd01]">{service.title}</h3>
+                      <p className="text-gray-200 md:text-lg mb-6">{service.description}</p>
+                      <button className="px-6 py-2 bg-[#d3fd01] text-gray-900 font-bold rounded-full hover:bg-[#b8e000] transition-colors">
+                        Ver más
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* CARA TRASERA (Sólida y oscura) */}
+                  <div className="carousel-card-back bg-gray-900 border-2 border-gray-800">
+                    {/* Puedes dejarla vacía o con un logo sutil */}
+                  </div>
                 </div>
               </div>
             ))}
