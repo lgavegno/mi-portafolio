@@ -24,8 +24,8 @@ const Contact = () => {
   }
 
   return (
-    <section id="contacto" className="py-20">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+    <section id="contacto" className="w-full relative overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800 py-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10">
         <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 text-[#d3fd01]">
           Contáctame
         </h2>
