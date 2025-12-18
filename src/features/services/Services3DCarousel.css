@@ -1,16 +1,39 @@
+/* Section Wrapper */
+.services-section-wrapper {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
 /* 3D Carousel Container */
 .carousel-container {
   position: relative;
   width: 100%;
-  height: 500px;
+  max-width: 100%;
+  height: 640px;
   perspective: 2000px;
-  margin: 0 auto;
   overflow: visible;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 20px;
-  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Base halo under carousel to simulate stage */
+.carousel-container::after {
+  content: "";
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  width: 70%;
+  height: 120px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(211,253,1,0.12) 0%, rgba(211,253,1,0.06) 35%, rgba(0,0,0,0) 70%);
+  filter: blur(18px);
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* Track that holds all cards */
@@ -23,18 +46,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translateZ(-400px);
+  transform: translateZ(-320px);
+}
+
+/* Floating suspension effect */
+@keyframes float {
+  0%, 100% { transform: translateZ(-250px) translateY(0px); }
+  50% { transform: translateZ(-250px) translateY(-20px); }
+}
+.carousel-track {
+  animation: float 6s ease-in-out infinite;
 }
 
 /* Individual Card Styling */
 .carousel-card {
   position: absolute;
-  width: 280px;
-  height: 400px;
+  width: 360px;
+  height: 520px;
   left: 50%;
   top:50%;
-  margin-left: -140px;
-  margin-top: -200px;
+  margin-left: -180px;
+  margin-top: -260px;
   border-radius: 20px;
   padding: 1.5rem;
   box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
@@ -50,40 +82,124 @@
   transform-style: preserve-3d;
 }
 
+/* Card container setup */
+.carousel-card {
+  background: transparent !important; /* color ahora en las caras */
+  border: none !important;
+  transform-style: preserve-3d;
+}
+
+.carousel-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+/* Card front and back faces */
+.carousel-card-front,
+.carousel-card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+/* Hide back card since we're not using flip anymore */
+.carousel-card-back {
+  display: none;
+}
+
+/* Focus styles for accessibility */
+.carousel-card:focus-visible {
+  outline: 2px solid #d3fd01;
+  outline-offset: 4px;
+  border-radius: 22px;
+  z-index: 10;
+}
+
+/* Card front panel styling */
+.carousel-card-front {
+  background: rgba(17, 24, 39, 0.9); /* Slightly more opaque for better text contrast */
+  border: 2px solid #d3fd01;
+  box-shadow: 0 0 0 1px rgba(211,253,1,0.15) inset,
+              0 8px 24px rgba(0,0,0,0.45),
+              0 0 28px rgba(211,253,1,0.18);
+  transition: all 0.3s ease-out;
+}
+
+.carousel-card:hover .carousel-card-front {
+  box-shadow: 0 0 0 1px rgba(211,253,1,0.25) inset,
+              0 10px 30px rgba(0,0,0,0.5),
+              0 0 40px rgba(211,253,1,0.28);
+  transform: translateZ(20px);
+}
+
+/* Typography and icon accent inside card */
+.carousel-card-front .card-content {
+  color: #e5e7eb; /* text-gray-200 */
+}
+.carousel-card-front .card-content > div:first-child {
+  color: #d3fd01; /* icon color */
+  filter: drop-shadow(0 0 8px rgba(211,253,1,0.35));
+}
+.carousel-card-front h3 {
+  color: #d3fd01;
+}
+.carousel-card-front p {
+  color: #cbd5e1; /* text-slate-300 */
+}
+.carousel-card-front .card-content button {
+  background: #d3fd01;
+  color: #111827;
+  border-radius: 9999px;
+  box-shadow: 0 6px 18px rgba(211,253,1,0.35);
+}
+.carousel-card-front .card-content button:hover {
+  box-shadow: 0 10px 28px rgba(211,253,1,0.45);
+}
+
 /* Card hover effects */
 .carousel-card:hover {
-  transform: translateZ(30px) scale(1.02);
   box-shadow: 0 0 30px 5px rgba(211, 253, 1, 0.3);
-  border-color: rgba(211, 253, 1, 0.5);
   transition: all 0.3s ease-out;
 }
 
 /* Card title styling */
 .carousel-card h3 {
-  color: rgb(98, 43, 43);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  color: #d3fd01;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 .carousel-card:hover h3 {
-  text-shadow: 0 0 15px rgba(211, 253, 1, 0.5);
+  text-shadow: 0 0 15px rgba(211, 253, 1, 0.7);
 }
 
 /* Card Content */
 .card-content {
-  transform: translateZ(50px);
-  transition: transform 0.5s ease;
+  transform: translateZ(30px);
+  transition: all 0.5s ease;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 1.5rem;
+  box-sizing: border-box;
 }
 
 /* Card Content Hover Effect */
 .carousel-card:hover .card-content {
-  transform: translateZ(60px) scale(1.05);
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(40px) scale(1.03);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Navigation Buttons - Flechas */
@@ -129,24 +245,34 @@
 /* Responsive Design */
 @media (max-width: 1024px) {
   .carousel-container {
-    height: 450px;
+    height: 520px;
   }
   
   .carousel-card {
-    width: 260px;
-    height: 380px;
+    width: 300px;
+    height: 420px;
   }
 }
 
 @media (max-width: 768px) {
   .carousel-container {
-    height: 400px;
-    perspective: 1000px;
+    height: 520px;
+    perspective: 2000px;
+    /* Reset to normal flow on mobile */
+    width: 100%;
+    left: 0;
+    right: 0;
+    margin-left: 0;
+    margin-right: 0;
+    overflow: visible;
+    position: relative;
   }
   
   .carousel-card {
-    width: 240px;
-    height: 360px;
+    width: 280px; /* Reducir ancho en móvil */
+    height: 400px; /* Reducir alto en móvil */
+    margin-left: -140px; /* Mitad del nuevo ancho */
+    margin-top: -200px;  /* Mitad del nuevo alto */
     padding: 1.25rem;
   }
   
@@ -169,14 +295,17 @@
   .carousel-track {
     width: 100%;
     margin: 0 auto;
+    transform: translateZ(-250px) !important;
   }
 }
 
 /* Extra small devices */
 @media (max-width: 480px) {
   .carousel-card {
-    width: 95%;
-    height: 320px;
+    width: 90vw;        /* full-bleed relative to viewport */
+    height: 360px;
+    margin-left: -45vw; /* center horizontally */
+    margin-top: -180px; /* center vertically for 360px */
     padding: 1rem;
   }
   
@@ -193,6 +322,10 @@
     width: 32px;
     height: 32px;
     font-size: 1rem;
+  }
+
+  .carousel-track {
+    transform: translateZ(-180px) !important;
   }
 }
 
