@@ -5,8 +5,8 @@ import { FiMail, FiArrowRight } from 'react-icons/fi'
 
 const Home = () => {
   return (
-    <section id="inicio" className="min-h-screen flex items-center justify-center py-20 md:py-0">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="inicio" className="w-full relative overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800 min-h-screen flex items-center justify-center py-20 md:py-0">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center">
           <div className="inline-block bg-[#d3fd01]/10 px-4 py-2 rounded-full mb-6">
             <span className="text-[#d3fd01] text-sm font-semibold flex items-center justify-center gap-2">
