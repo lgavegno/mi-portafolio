@@ -15,6 +15,7 @@ import {
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 import Button from '../../components/ui/Button';
 import ProjectCard from '../../components/ui/ProjectCard';
+import NeuralNetworkBackground from '../../components/NeuralNetworkBackground';
 import { BlogPreview } from '../blog';
 import { featuredProjects } from '../../data/projects';
 
@@ -104,8 +105,14 @@ const HeroBanner = () => {
       id="inicio"
       className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-800"
     >
+      {/* Neural Network Animation - Solo en la parte superior */}
+      <div className="absolute top-0 left-0 right-0 h-[70vh] overflow-hidden pointer-events-none" style={{ zIndex: 1 }}>
+        <NeuralNetworkBackground />
+      </div>
+
       {/* Background effects */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 2 }}>
+        
         {/* Gradient orbs */}
         <div className="absolute top-1/4 -left-32 w-96 h-96 bg-cobalt-500/20 rounded-full filter blur-[128px] animate-blob" />
         <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-mint-400/10 rounded-full filter blur-[128px] animate-blob animation-delay-2000" />
@@ -123,7 +130,7 @@ const HeroBanner = () => {
       </div>
 
       {/* Main content */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20 py-20">
         <motion.div
           variants={staggerContainer}
           initial="hidden"

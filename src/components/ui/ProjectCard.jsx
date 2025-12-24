@@ -65,6 +65,7 @@ const ProjectCard = ({
         border border-white/10
         hover:border-cobalt-400/30
         transition-colors duration-300
+        z-30
         ${className}
       `}
     >
