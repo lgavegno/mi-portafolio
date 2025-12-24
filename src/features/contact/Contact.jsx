@@ -1,6 +1,9 @@
 // src/features/contact/Contact.jsx
 import React, { useState } from 'react'
-import { FaPaperPlane } from 'react-icons/fa'
+import { motion } from 'framer-motion'
+import { FiSend, FiMail, FiUser, FiMessageSquare } from 'react-icons/fi'
+import { fadeInUp, staggerContainer } from '../../config/motionConfig'
+import Button from '../../components/ui/Button'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +11,7 @@ const Contact = () => {
     email: '',
     message: ''
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -17,80 +21,139 @@ const Contact = () => {
     }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Handle form submission
+    setIsSubmitting(true)
+    
+    // Simular envío
+    await new Promise(resolve => setTimeout(resolve, 1500))
     console.log('Form submitted:', formData)
+    
+    setIsSubmitting(false)
+    setFormData({ name: '', email: '', message: '' })
   }
 
+  const inputClasses = `
+    w-full px-4 py-3 pl-12
+    bg-white/5 backdrop-blur-sm
+    border border-white/10 rounded-xl
+    text-white placeholder-gray-500
+    focus:outline-none focus:ring-2 focus:ring-cobalt-400/50 focus:border-cobalt-400/50
+    transition-all duration-200
+  `
+
   return (
-    <section id="contacto" className="w-full relative overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800 py-20">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10">
-        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 text-[#d3fd01]">
-          Contáctame
-        </h2>
-        
-        <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 sm:p-8 shadow-xl">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
-                Nombre
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-[#d3fd01] focus:border-transparent text-white placeholder-gray-400"
-                placeholder="Tu nombre"
-                required
-              />
-            </div>
-            
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-[#d3fd01] focus:border-transparent text-white placeholder-gray-400"
-                placeholder="tu@email.com"
-                required
-              />
-            </div>
-            
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
-                Mensaje
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows="5"
-                value={formData.message}
-                onChange={handleChange}
-                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-[#d3fd01] focus:border-transparent text-white placeholder-gray-400"
-                placeholder="Tu mensaje..."
-                required
-              ></textarea>
-            </div>
-            
-            <div className="text-center">
-              <button
-                type="submit"
-                className="inline-flex items-center justify-center px-8 py-3 bg-[#d3fd01] text-gray-900 font-bold rounded-lg hover:bg-[#b8e000] transition-colors"
-              >
-                <FaPaperPlane className="mr-2" />
-                Enviar Mensaje
-              </button>
-            </div>
-          </form>
-        </div>
+    <section className="w-full relative overflow-hidden bg-gradient-to-b from-slate-900 to-slate-950 py-24">
+      {/* Background effects */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 -right-32 w-96 h-96 bg-cobalt-500/10 rounded-full filter blur-[128px]" />
+        <div className="absolute bottom-1/4 -left-32 w-96 h-96 bg-mint-400/5 rounded-full filter blur-[128px]" />
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-2xl relative z-10">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          {/* Header */}
+          <motion.div variants={fadeInUp} className="text-center mb-12">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cobalt-500/10 border border-cobalt-400/20 text-cobalt-300 text-sm font-medium mb-6">
+              <FiMail className="w-4 h-4" />
+              Contacto
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+              ¿Tienes un proyecto en mente?
+            </h2>
+            <p className="text-gray-400 text-lg max-w-md mx-auto">
+              Cuéntame sobre tu idea y trabajemos juntos para hacerla realidad.
+            </p>
+          </motion.div>
+          
+          {/* Form */}
+          <motion.div 
+            variants={fadeInUp}
+            className="glass-card p-8"
+          >
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Name field */}
+              <div className="relative">
+                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                  Nombre
+                </label>
+                <div className="relative">
+                  <FiUser className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5" />
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className={inputClasses}
+                    placeholder="Tu nombre"
+                    required
+                  />
+                </div>
+              </div>
+              
+              {/* Email field */}
+              <div className="relative">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                  Email
+                </label>
+                <div className="relative">
+                  <FiMail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5" />
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className={inputClasses}
+                    placeholder="tu@email.com"
+                    required
+                  />
+                </div>
+              </div>
+              
+              {/* Message field */}
+              <div className="relative">
+                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                  Mensaje
+                </label>
+                <div className="relative">
+                  <FiMessageSquare className="absolute left-4 top-4 text-gray-500 w-5 h-5" />
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="5"
+                    value={formData.message}
+                    onChange={handleChange}
+                    className={`${inputClasses} resize-none`}
+                    placeholder="Cuéntame sobre tu proyecto..."
+                    required
+                  />
+                </div>
+              </div>
+              
+              {/* Submit button */}
+              <div className="pt-4">
+                <Button
+                  type="submit"
+                  variant="accent"
+                  size="lg"
+                  loading={isSubmitting}
+                  icon={<FiSend />}
+                  iconPosition="right"
+                  className="w-full"
+                >
+                  {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
+                </Button>
+              </div>
+            </form>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   )
