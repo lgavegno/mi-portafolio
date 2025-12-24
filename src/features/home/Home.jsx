@@ -11,12 +11,12 @@ const Home = () => {
           <div className="inline-block bg-[#d3fd01]/10 px-4 py-2 rounded-full mb-6">
             <span className="text-[#d3fd01] text-sm font-semibold flex items-center justify-center gap-2">
               <FaCode className="text-lg" />
-              Desarrollador Full Stack
+              Software developer & Data Analyst Trainee
             </span>
           </div>
           
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
-            Hola, soy <span className="text-[#d3fd01]">Leandro</span>
+            Hola, soy <span className="text-[#d3fd01]">Ongevag Studio</span>
           </h1>
           
           <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">

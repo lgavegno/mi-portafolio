@@ -1,7 +1,6 @@
 // src/features/hero/HeroBanner.jsx
 // Hero Banner 2025 con micro-interacciones de dopamina
-
-import React from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiArrowRight, FiMail } from 'react-icons/fi';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
@@ -48,22 +47,59 @@ const AnimatedText = ({ text, className = '' }) => {
 };
 
 // Componente de badge animado
-const Badge = ({ children, className = '' }) => (
-  <motion.div
-    initial={{ opacity: 0, scale: 0.8, y: -10 }}
-    animate={{ opacity: 1, scale: 1, y: 0 }}
-    transition={springConfig.bouncy}
-    className={`
-      inline-flex items-center gap-2
-      px-4 py-2 rounded-full
-      bg-cobalt-500/10 border border-cobalt-400/20
-      backdrop-blur-sm
-      ${className}
-    `}
-  >
-    {children}
-  </motion.div>
-);
+const Badge = ({ children, className = '' }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.3, y: -10 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      whileHover={{ 
+        scale: 1.05,
+        boxShadow: "0 0 30px rgba(59, 130, 246, 0.6)"
+      }}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      transition={springConfig.bouncy}
+      className={`
+        inline-flex items-center gap-2
+        px-4 py-2 rounded-full
+        bg-gradient-to-r from-cobalt-500/15 to-blue-500/10
+        border border-cobalt-400/30
+        backdrop-blur-sm
+        relative overflow-hidden
+        ${className}
+      `}
+    >
+      {children}
+      
+      {/* Efecto de partículas de luz */}
+      {isHovered && (
+        <>
+          <motion.div 
+            className="absolute w-2 h-2 bg-white rounded-full"
+            initial={{ x: -10, y: "50%", opacity: 0.8 }}
+            animate={{ 
+              x: "100%",
+              transition: { duration: 0.5, repeat: Infinity }
+            }}
+          />
+          <motion.div 
+            className="absolute w-1 h-1 bg-blue-300 rounded-full"
+            initial={{ x: -5, y: "30%", opacity: 0.6 }}
+            animate={{ 
+              x: "100%",
+              transition: { duration: 0.7, repeat: Infinity, delay: 0.2 }
+            }}
+          />
+        </>
+      )}
+      
+      {/* Brillo base sutil */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-50" />
+    </motion.div>
+  );
+};
 
 // Iconos sociales con animación
 const SocialLink = ({ href, icon: Icon, label, delay = 0 }) => (
@@ -141,7 +177,7 @@ const HeroBanner = () => {
           <Badge className="mb-8">
             <span className="w-2 h-2 rounded-full bg-mint-400 animate-pulse" />
             <span className="text-cobalt-300 text-sm font-medium tracking-wide">
-              Desarrollador Full Stack
+              Software Developer & Data Analyst Trainee
             </span>
           </Badge>
 
@@ -152,12 +188,12 @@ const HeroBanner = () => {
           >
             <span className="text-white">Transformo </span>
             <span className="bg-gradient-to-r from-cobalt-400 via-cobalt-300 to-mint-400 bg-clip-text text-transparent">
-              datos en decisiones
+              ideas
             </span>
             <br />
-            <span className="text-white">automáticas para </span>
+            <span className="text-white">en soluciones para </span>
             <span className="bg-gradient-to-r from-mint-400 to-mint-300 bg-clip-text text-transparent">
-              negocios escalables
+              negocios 
             </span>
           </motion.h1>
 
