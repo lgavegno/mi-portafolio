@@ -177,7 +177,7 @@ const HeroBanner = () => {
           <Badge className="mb-8">
             <span className="w-2 h-2 rounded-full bg-mint-400 animate-pulse" />
             <span className="text-cobalt-300 text-sm font-medium tracking-wide">
-              Software Developer & Data Analyst Trainee
+              Perfil técnico en formación
             </span>
           </Badge>
 
@@ -186,14 +186,10 @@ const HeroBanner = () => {
             variants={fadeInUp}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight"
           >
-            <span className="text-white">Transformo </span>
-            <span className="bg-gradient-to-r from-cobalt-400 via-cobalt-300 to-mint-400 bg-clip-text text-transparent">
-              ideas
-            </span>
+            <span className="text-white">Aprendiendo a resolver problemas reales</span>
             <br />
-            <span className="text-white">en soluciones para </span>
-            <span className="bg-gradient-to-r from-mint-400 to-mint-300 bg-clip-text text-transparent">
-              negocios 
+            <span className="bg-gradient-to-r from-cobalt-400 via-cobalt-300 to-mint-400 bg-clip-text text-transparent">
+              con software y datos
             </span>
           </motion.h1>
 
@@ -202,8 +198,9 @@ const HeroBanner = () => {
             variants={fadeInUp}
             className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed"
           >
-            Creo experiencias digitales excepcionales con arquitecturas modernas, 
-            código limpio y un enfoque obsesivo en el rendimiento.
+            Desarrollo proyectos como parte de mi aprendizaje en programación y análisis,
+            explorando cómo los sistemas y los datos pueden apoyar decisiones
+            y mejorar procesos reales.
           </motion.p>
 
           {/* CTAs */}

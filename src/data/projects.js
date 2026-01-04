@@ -3,25 +3,25 @@
 
 export const featuredProjects = [
   {
-    id: 'smart-booking',
-    title: 'Smart-Booking Engine & Revenue Optimizer',
-    description: 'Sistema de optimización de ingresos para negocios de estética con reservas inteligentes y analítica predictiva.',
-    stack: ['React', 'Node.js', 'PostgreSQL', 'TensorFlow'],
+    id: 'sistema-reservas',
+    title: 'Sistema de Gestión de Citas',
+    description: 'Plataforma para gestión de citas con funcionalidades básicas de programación y seguimiento de clientes.',
+    stack: ['React', 'Node.js', 'PostgreSQL'],
     progress: 75,
-    progressLabel: 'Fase de integración: Pasarela + Analítica predictiva',
+    progressLabel: 'En desarrollo: Integración de notificaciones',
     status: 'in-progress',
-    image: null, // Añadir imagen cuando esté disponible
+    image: null,
     link: '#',
     featured: true,
     category: 'fullstack'
   },
   {
-    id: 'enterprise-erp',
-    title: 'Enterprise Resource Architect: Java Ecosystem',
-    description: 'ERP robusto con Spring Boot para escalabilidad empresarial, gestión de recursos y reportes en tiempo real.',
+    id: 'sistema-gestion',
+    title: 'Sistema de Gestión Empresarial (ERP) – Proyecto de Aprendizaje',
+    description: 'Sistema de gestión básico desarrollado con Java y Spring Boot para aprender sobre arquitectura de software. Incluye módulos para gestión de inventario, ventas y reportes simples.',
     stack: ['Java', 'Spring Boot', 'JavaFX', 'MySQL'],
     progress: 60,
-    progressLabel: 'Refactorización: Módulos core + Queries concurrentes',
+    progressLabel: 'En desarrollo: Mejora de reportes',
     status: 'in-progress',
     image: null,
     link: '#',
@@ -29,12 +29,12 @@ export const featuredProjects = [
     category: 'backend'
   },
   {
-    id: 'financial-ocr',
-    title: 'Automated Financial Data Extraction (OCR & NLP)',
-    description: 'Extractor de datos financieros que elimina error humano mediante visión por computadora y procesamiento de lenguaje natural.',
-    stack: ['Python', 'OpenCV', 'Tesseract', 'spaCy'],
+    id: 'procesamiento-documentos',
+    title: 'Procesamiento de Documentos con OCR',
+    description: 'Herramienta para extraer información de documentos financieros usando reconocimiento óptico de caracteres.',
+    stack: ['Python', 'OpenCV', 'Tesseract'],
     progress: 50,
-    progressLabel: 'Entrenamiento del modelo + Normalización CSV/JSON',
+    progressLabel: 'En desarrollo: Mejora de precisión',
     status: 'in-progress',
     image: null,
     link: '#',

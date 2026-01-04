@@ -11,22 +11,13 @@ const Works = () => {
     {
       id: 'portfolio-2025',
       title: "Portafolio Personal 2025",
-      description: "Este mismo sitio web, construido con React 19, Vite, Tailwind CSS y Framer Motion.",
-      stack: ["React", "Vite", "Tailwind", "Framer Motion"],
+      description: "Este sitio web desarrollado con tecnologías modernas para mostrar mis proyectos y aprendizaje en análisis de datos y desarrollo.",
+      stack: ["React", "Vite", "Tailwind"],
       progress: 90,
-      progressLabel: "Puliendo detalles finales",
+      progressLabel: "En desarrollo",
       status: "in-progress",
-      link: "#"
-    },
-    {
-      id: 'api-gateway',
-      title: "API Gateway Microservices",
-      description: "Gateway centralizado para gestión de microservicios con rate limiting y autenticación JWT.",
-      stack: ["Node.js", "Express", "Redis", "Docker"],
-      progress: 40,
-      progressLabel: "Diseño de arquitectura",
-      status: "planning",
-      link: "#"
+      link: "#",
+      category: "frontend"
     }
   ];
 
@@ -54,11 +45,10 @@ const Works = () => {
               Portafolio
             </span>
             <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-              Proyectos destacados
+              Proyectos de aprendizaje
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              Una selección de proyectos en los que estoy trabajando actualmente, 
-              mostrando mi enfoque en código limpio y experiencias de usuario excepcionales.
+              Una selección de proyectos que reflejan mi aprendizaje y exploración en el análisis de datos y desarrollo de soluciones técnicas.
             </p>
           </motion.div>
 

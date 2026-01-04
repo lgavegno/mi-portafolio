@@ -59,15 +59,15 @@ const Contact = () => {
         >
           {/* Header */}
           <motion.div variants={fadeInUp} className="text-center mb-12">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cobalt-500/10 border border-cobalt-400/20 text-cobalt-300 text-sm font-medium mb-6">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cobalt-500/10 border border-cobalt-500/20 text-cobalt-400 text-sm font-medium mb-6">
               <FiMail className="w-4 h-4" />
               Contacto
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-              ¿Tienes un proyecto en mente?
+            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+              ¿Trabajamos juntos?
             </h2>
-            <p className="text-gray-400 text-lg max-w-md mx-auto">
-              Cuéntame sobre tu idea y trabajemos juntos para hacerla realidad.
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              Si necesitas ayuda con análisis de datos o automatización de procesos, estaré encantado de conversar contigo.
             </p>
           </motion.div>
           

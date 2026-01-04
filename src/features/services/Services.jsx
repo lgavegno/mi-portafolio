@@ -12,34 +12,28 @@ const Services = () => {
 
   const services = [
     {
-      title: "Desarrollo Web",
-      description: "Creación de aplicaciones web modernas, rápidas y escalables con React, Next.js y Node.js.",
+      title: "Procesamiento de Datos",
+      description: "Transformación y limpieza de datos para su análisis. Extraigo información relevante de fuentes diversas y la preparo para su interpretación mediante Python y SQL.",
       icon: FiCode,
       gradient: "from-cobalt-500 to-cobalt-600"
     },
     {
-      title: "Frontend Avanzado",
-      description: "Interfaces de usuario dinámicas con animaciones fluidas, micro-interacciones y UX premium.",
-      icon: FiLayout,
+      title: "Automatización de Procesos",
+      description: "Identificación y automatización de tareas repetitivas. Desarrollo scripts en Python que optimizan flujos de trabajo, reduciendo tiempos de ejecución y minimizando errores humanos.",
+      icon: FiCpu,
       gradient: "from-mint-400 to-mint-500"
     },
     {
-      title: "Mantenimiento",
-      description: "Optimización, refactorización y actualización de aplicaciones existentes para mejor rendimiento.",
-      icon: FiTool,
+      title: "Análisis de Negocios",
+      description: "Interpretación de métricas e indicadores clave. Analizo datos operacionales para identificar tendencias, oportunidades de mejora y respaldar decisiones estratégicas.",
+      icon: FiTarget,
       gradient: "from-amber-400 to-orange-500"
     },
     {
-      title: "Automatización",
-      description: "Scripts y pipelines automatizados con Python para eliminar tareas repetitivas y reducir errores.",
-      icon: FiCpu,
+      title: "Validación de Hipótesis",
+      description: "Desarrollo de pruebas conceptuales para evaluar la viabilidad de iniciativas. Implemento análisis rápidos que permiten tomar decisiones basadas en evidencia con mínima inversión de recursos.",
+      icon: FiTool,
       gradient: "from-purple-400 to-purple-600"
-    },
-    {
-      title: "Consultoría UX",
-      description: "Auditorías de experiencia de usuario y recomendaciones para mejorar conversión y retención.",
-      icon: FiTarget,
-      gradient: "from-pink-400 to-rose-500"
     }
   ];
 

@@ -11,16 +11,18 @@ const Home = () => {
           <div className="inline-block bg-[#d3fd01]/10 px-4 py-2 rounded-full mb-6">
             <span className="text-[#d3fd01] text-sm font-semibold flex items-center justify-center gap-2">
               <FaCode className="text-lg" />
-              Software developer & Data Analyst Trainee
+              Perfil técnico en formación
             </span>
           </div>
           
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
-            Hola, soy <span className="text-[#d3fd01]">Ongevag Studio</span>
+            Hola, soy <span className="text-[#d3fd01]">Leandro Gavegno</span>
           </h1>
           
           <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Creo experiencias digitales excepcionales con tecnologías modernas y diseño atractivo.
+            Aprendiendo a resolver problemas reales con software y datos.
+            Desarrollo proyectos como parte de mi aprendizaje en programación y análisis,
+            explorando cómo los sistemas y los datos pueden apoyar decisiones y mejorar procesos.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

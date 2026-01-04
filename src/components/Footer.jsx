@@ -19,17 +19,17 @@ const Footer = () => {
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-col items-center gap-8">
-          {/* Logo */}
+          {/* Sobre mí */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex items-center gap-2"
+            className="text-center max-w-2xl"
           >
-            <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-cobalt-500 to-mint-400 flex items-center justify-center text-lg font-bold text-white">
-              LG
-            </span>
-            <span className="text-xl font-bold text-white">Leandro Gavegno</span>
+            <h3 className="text-xl font-bold text-white mb-4">Sobre mí</h3>
+            <p className="text-gray-400">
+              Perfil técnico-analítico en formación, enfocado en el análisis de datos y el desarrollo de soluciones prácticas mediante la programación.
+            </p>
           </motion.div>
 
           {/* Social links */}
@@ -73,18 +73,8 @@ const Footer = () => {
             transition={{ delay: 0.2 }}
             className="text-center"
           >
-            <p className="text-gray-500 text-sm flex items-center gap-1 justify-center">
-              © {currentYear} Hecho con 
-              <motion.span
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 1, repeat: Infinity, repeatDelay: 2 }}
-              >
-                <FaHeart className="text-red-500 w-3 h-3" />
-              </motion.span>
-              por Leandro Gavegno
-            </p>
-            <p className="text-gray-600 text-xs mt-1">
-              React + Vite + Tailwind + Framer Motion
+            <p className="text-gray-500 text-sm">
+              © {currentYear} Leandro Gavegno — Aprendizaje continuo en tecnología y análisis
             </p>
           </motion.div>
         </div>
