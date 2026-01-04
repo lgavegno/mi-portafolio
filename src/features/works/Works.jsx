@@ -1,94 +1,107 @@
 import React from 'react';
-import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
+import { motion } from 'framer-motion';
+import { FiExternalLink, FiGithub, FiFolder } from 'react-icons/fi';
+import { fadeInUp, staggerContainer, glassCard } from '../../config/motionConfig';
+import { allProjects } from '../../data/projects';
+import ProjectCard from '../../components/ui/ProjectCard';
 
 const Works = () => {
-  const projects = [
+  // Proyectos adicionales para mostrar en grid
+  const additionalProjects = [
     {
-      title: "Proyecto 1",
-      description: "Descripción del proyecto 1",
-      image: "https://via.placeholder.com/400x300",
-      technologies: ["React", "Node.js", "MongoDB"],
-      link: "#"
-    },
-    {
-      title: "Proyecto 2",
-      description: "Descripción del proyecto 2",
-      image: "https://via.placeholder.com/400x300",
-      technologies: ["Vue.js", "Express", "PostgreSQL"],
-      link: "#"
-    },
-    {
-      title: "Proyecto 3",
-      description: "Descripción del proyecto 3",
-      image: "https://via.placeholder.com/400x300",
-      technologies: ["React", "Django", "MySQL"],
-      link: "#"
-    },
-    {
-      title: "Proyecto 4",
-      description: "Descripción del proyecto 4",
-      image: "https://via.placeholder.com/400x300",
-      technologies: ["React", "Django", "MySQL"],
-      link: "#"
+      id: 'portfolio-2025',
+      title: "Portafolio Personal 2025",
+      description: "Este sitio web desarrollado con tecnologías modernas para mostrar mis proyectos y aprendizaje en análisis de datos y desarrollo.",
+      stack: ["React", "Vite", "Tailwind"],
+      progress: 90,
+      progressLabel: "En desarrollo",
+      status: "in-progress",
+      link: "#",
+      category: "frontend"
     }
-  ]
+  ];
+
+  const displayProjects = [...allProjects, ...additionalProjects];
 
   return (
-    <ParallaxProvider>
-    <div className="w-full relative overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800 py-20">
-      <div className="container mx-auto px-4 relative z-10">
-        <h2 className="text-5xl font-bold text-center mb-12 text-[#d3fd01]">Mis Proyectos</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {projects.map((project, index) => (
-            <Parallax 
-              key={index}
-              scale={[0.9, 1.1]}
-              rotate={[-1, 1]}
-              translateY={[5, -5]}
-              className="relative rounded-xl backdrop-blur-md bg-gradient-to-br from-gray-800/30 to-gray-900/50 
-                border border-gray-700 hover:border-[#d3fd01]/30
-                shadow-lg shadow-gray-900/10 overflow-hidden
-                transform transition-all duration-300 ease-in-out
-                hover:shadow-[#d3fd01]/20 hover:-translate-y-1
-                flex flex-col h-full"
+    <section className="w-full relative overflow-hidden bg-gradient-to-b from-slate-900 to-slate-800 py-24">
+      {/* Background effects */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/3 -left-32 w-96 h-96 bg-mint-400/5 rounded-full filter blur-[128px]" />
+        <div className="absolute bottom-1/3 -right-32 w-96 h-96 bg-cobalt-500/10 rounded-full filter blur-[128px]" />
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          {/* Header */}
+          <motion.div variants={fadeInUp} className="text-center mb-16">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-mint-400/10 border border-mint-400/20 text-mint-400 text-sm font-medium mb-6">
+              <FiFolder className="w-4 h-4" />
+              Portafolio
+            </span>
+            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+              Proyectos de aprendizaje
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              Una selección de proyectos que reflejan mi aprendizaje y exploración en el análisis de datos y desarrollo de soluciones técnicas.
+            </p>
+          </motion.div>
+
+          {/* Projects Grid */}
+          <motion.div 
+            variants={fadeInUp}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {displayProjects.map((project, index) => (
+              <ProjectCard
+                key={project.id}
+                title={project.title}
+                description={project.description}
+                stack={project.stack}
+                progress={project.progress}
+                progressLabel={project.progressLabel}
+                status={project.status}
+                image={project.image}
+                link={project.link}
+                index={index}
+              />
+            ))}
+          </motion.div>
+
+          {/* CTA */}
+          <motion.div 
+            variants={fadeInUp}
+            className="text-center mt-16"
+          >
+            <motion.a
+              href="https://github.com/lgavegno"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="
+                inline-flex items-center gap-3
+                px-8 py-4 rounded-xl
+                bg-white/5 border border-white/10
+                text-gray-300 hover:text-white
+                hover:border-cobalt-400/30 hover:bg-cobalt-500/5
+                transition-all duration-300
+                font-medium
+              "
             >
-              <Parallax
-                scale={[0.9, 1.2]}
-                translateY={[0, 5]}
-                className="overflow-hidden rounded-lg w-full"
-              >
-                <img 
-                  src={`https://picsum.photos/400/300?random=${index}`}
-                  alt={project.title}
-                  className="w-full h-48 object-cover rounded-lg"
-                />
-              </Parallax>
-              <div className="p-4">
-                <h3 className="text-xl font-semibold mb-2 text-[#d3fd01]">{project.title}</h3>
-                <p className="text-gray-300 mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-3">
-                  {project.technologies.map((tech, i) => (
-                    <span key={i} className="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <button className="w-full bg-[#d3fd01] hover:bg-[#b8e000] text-gray-900 font-bold py-2 px-4 rounded transition-colors">
-                  Ver Proyecto
-                </button>
-              </div>
-            </Parallax>
-          ))}
-        </div>
+              <FiGithub className="w-5 h-5" />
+              Ver más proyectos en GitHub
+              <FiExternalLink className="w-4 h-4" />
+            </motion.a>
+          </motion.div>
+        </motion.div>
       </div>
-      
-      {/* Efectos de iluminación */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-10 w-72 h-72 bg-[#d3fd01]/5 rounded-full filter blur-3xl"></div>
-        <div className="absolute bottom-1/3 -right-10 w-72 h-72 bg-[#d3fd01]/5 rounded-full filter blur-3xl"></div>
-      </div>
-    </div>
-    </ParallaxProvider>
+    </section>
   )
 }
 
