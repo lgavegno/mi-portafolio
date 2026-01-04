@@ -1,47 +1,82 @@
 // src/components/Footer.jsx
 import React from 'react'
-import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
+import { motion } from 'framer-motion'
+import { FaGithub, FaLinkedin, FaEnvelope, FaHeart } from 'react-icons/fa'
+
+const socialLinks = [
+  { href: 'https://github.com/lgavegno', icon: FaGithub, label: 'GitHub' },
+  { href: 'https://linkedin.com/in/lgavegno', icon: FaLinkedin, label: 'LinkedIn' },
+  { href: 'mailto:contacto@lgavegno.dev', icon: FaEnvelope, label: 'Email' },
+]
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-gray-900/50 backdrop-blur-md py-8">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="text-center md:text-left mb-6 md:mb-0">
-            <p className="text-gray-400 text-sm">
-              © {currentYear} Mi Portafolio. Todos los derechos reservados.
+    <footer className="relative bg-slate-950 border-t border-white/5">
+      {/* Gradient line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cobalt-500/50 to-transparent" />
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="flex flex-col items-center gap-8">
+          {/* Sobre mí */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center max-w-2xl"
+          >
+            <h3 className="text-xl font-bold text-white mb-4">Sobre mí</h3>
+            <p className="text-gray-400">
+              Perfil técnico-analítico en formación, enfocado en el análisis de datos y el desarrollo de soluciones prácticas mediante la programación.
             </p>
-          </div>
-          
-          <div className="flex space-x-6">
-            <a
-              href="https://github.com/tu-usuario"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-[#d3fd01] transition-colors"
-              aria-label="GitHub"
-            >
-              <FaGithub className="h-5 w-5" />
-            </a>
-            <a
-              href="https://linkedin.com/in/tu-perfil"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-[#d3fd01] transition-colors"
-              aria-label="LinkedIn"
-            >
-              <FaLinkedin className="h-5 w-5" />
-            </a>
-            <a
-              href="mailto:tu@email.com"
-              className="text-gray-400 hover:text-[#d3fd01] transition-colors"
-              aria-label="Email"
-            >
-              <FaEnvelope className="h-5 w-5" />
-            </a>
-          </div>
+          </motion.div>
+
+          {/* Social links */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="flex gap-4"
+          >
+            {socialLinks.map((link) => (
+              <motion.a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={link.label}
+                whileHover={{ y: -3, scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                className="
+                  p-3 rounded-xl
+                  bg-white/5 border border-white/10
+                  text-gray-400 hover:text-mint-400
+                  hover:border-mint-400/30 hover:bg-mint-400/5
+                  transition-colors duration-300
+                "
+              >
+                <link.icon className="w-5 h-5" />
+              </motion.a>
+            ))}
+          </motion.div>
+
+          {/* Divider */}
+          <div className="w-full max-w-xs h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+          {/* Copyright */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-center"
+          >
+            <p className="text-gray-500 text-sm">
+              © {currentYear} Leandro Gavegno — Aprendizaje continuo en tecnología y análisis
+            </p>
+          </motion.div>
         </div>
       </div>
     </footer>

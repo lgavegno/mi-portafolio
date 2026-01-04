@@ -1,97 +1,186 @@
 // src/components/Header.jsx
 import React, { useState, useEffect } from 'react';
-import { FaGithub, FaLinkedin, FaBars, FaTimes } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaBars, FaTimes } from 'react-icons/fa';
+import { useVibrate } from '../hooks/useVibrate';
+
+const navLinks = [
+  { href: '#inicio', label: 'Inicio' },
+  { href: '#proyectos', label: 'Proyectos' },
+  { href: '#servicios', label: 'Servicios' },
+  { href: '#contacto', label: 'Contacto' },
+];
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const vibrate = useVibrate(10);
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 10;
-      if (isScrolled !== scrolled) {
-        setScrolled(isScrolled);
-      }
+      setScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [scrolled]);
+  }, []);
+
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    vibrate();
+    setIsOpen(false);
+    
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
-    <header className="bg-black fixed top-0 left-0 right-0 z-50 shadow-lg">
+    <motion.header
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+      className={`
+        fixed top-0 left-0 right-0 z-50
+        transition-all duration-300
+        ${scrolled 
+          ? 'bg-slate-950/80 backdrop-blur-xl border-b border-white/5 shadow-lg shadow-black/10' 
+          : 'bg-transparent'
+        }
+      `}
+    >
       <div className="container mx-auto px-6">
-        <nav className="flex justify-between items-center h-16">
+        <nav className="flex justify-between items-center h-16 md:h-20">
           {/* Logo */}
-          <div className="font-bold text-xl text-white">
-            Mi Portafolio
-          </div>
+          <motion.a
+            href="#inicio"
+            onClick={(e) => handleNavClick(e, '#inicio')}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="font-bold text-xl text-white flex items-center gap-2"
+          >
+            <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-cobalt-500 to-mint-400 flex items-center justify-center text-sm font-bold">
+              LG
+            </span>
+            <span className="hidden sm:inline">Leandro</span>
+          </motion.a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <a href="#home" className="text-white hover:text-yellow-400 transition-colors duration-300 px-4 py-2">
-              Inicio
-            </a>
-            <a href="#works" className="text-white hover:text-yellow-400 transition-colors duration-300 px-4 py-2">
-              Proyectos
-            </a>
-            <a href="#services" className="text-white hover:text-yellow-400 transition-colors duration-300 px-4 py-2">
-              Servicios
-            </a>
-            <a href="#contact" className="text-white hover:text-yellow-400 transition-colors duration-300 px-4 py-2">
-              Contacto
-            </a>
+          <div className="hidden md:flex items-center gap-1">
+            {navLinks.map((link, index) => (
+              <motion.a
+                key={link.href}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -2 }}
+                className="
+                  relative px-4 py-2 text-sm font-medium
+                  text-gray-300 hover:text-white
+                  transition-colors duration-200
+                  group
+                "
+              >
+                {link.label}
+                <span className="
+                  absolute bottom-0 left-1/2 -translate-x-1/2
+                  w-0 h-0.5 bg-gradient-to-r from-cobalt-400 to-mint-400
+                  group-hover:w-full transition-all duration-300
+                " />
+              </motion.a>
+            ))}
+            
+            {/* CTA Button */}
+            <motion.a
+              href="#contacto"
+              onClick={(e) => handleNavClick(e, '#contacto')}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="
+                ml-4 px-5 py-2.5 rounded-xl
+                bg-gradient-to-r from-cobalt-500 to-cobalt-600
+                text-white text-sm font-semibold
+                shadow-lg shadow-cobalt-500/20
+                hover:shadow-xl hover:shadow-cobalt-500/30
+                transition-shadow duration-300
+              "
+            >
+              Hablemos
+            </motion.a>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-white hover:text-yellow-400 focus:outline-none"
-              aria-label="Toggle menu"
-            >
-              {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-            </button>
-          </div>
+          <motion.button
+            whileTap={{ scale: 0.9 }}
+            onClick={() => {
+              vibrate();
+              setIsOpen(!isOpen);
+            }}
+            className="
+              md:hidden p-2 rounded-lg
+              text-gray-300 hover:text-white
+              hover:bg-white/5
+              transition-colors
+            "
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+          </motion.button>
         </nav>
 
         {/* Mobile menu */}
-        {isOpen && (
-          <div className="md:hidden bg-gray-900">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <a
-                href="#home"
-                className="block px-3 py-2 text-white hover:bg-gray-800 rounded-md"
-                onClick={() => setIsOpen(false)}
-              >
-                Inicio
-              </a>
-              <a
-                href="#works"
-                className="block px-3 py-2 text-white hover:bg-gray-800 rounded-md"
-                onClick={() => setIsOpen(false)}
-              >
-                Proyectos
-              </a>
-              <a
-                href="#services"
-                className="block px-3 py-2 text-white hover:bg-gray-800 rounded-md"
-                onClick={() => setIsOpen(false)}
-              >
-                Servicios
-              </a>
-              <a
-                href="#contact"
-                className="block px-3 py-2 text-white hover:bg-gray-800 rounded-md"
-                onClick={() => setIsOpen(false)}
-              >
-                Contacto
-              </a>
-            </div>
-          </div>
-        )}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden overflow-hidden"
+            >
+              <div className="py-4 space-y-1 border-t border-white/5">
+                {navLinks.map((link, index) => (
+                  <motion.a
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    className="
+                      block px-4 py-3 rounded-xl
+                      text-gray-300 hover:text-white
+                      hover:bg-white/5
+                      transition-colors
+                    "
+                  >
+                    {link.label}
+                  </motion.a>
+                ))}
+                
+                <motion.a
+                  href="#contacto"
+                  onClick={(e) => handleNavClick(e, '#contacto')}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: navLinks.length * 0.05 }}
+                  className="
+                    block mt-4 px-4 py-3 rounded-xl text-center
+                    bg-gradient-to-r from-cobalt-500 to-cobalt-600
+                    text-white font-semibold
+                  "
+                >
+                  Hablemos
+                </motion.a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-    </header>
+    </motion.header>
   );
 };
 

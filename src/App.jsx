@@ -1,18 +1,51 @@
 // src/App.jsx
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import MainLayout from './layouts/MainLayout'
-import Home from './features/home/Home'
-import Services from './features/services/Services'
-import Works from './features/works/Works'
-import Contact from './features/contact/Contact'
+import { SkeletonPage } from './components/ui/Skeleton'
+import { pageTransition } from './config/motionConfig'
+
+// Lazy loading de secciones para code splitting
+const HeroBanner = lazy(() => import('./features/hero/HeroBanner'))
+const Services = lazy(() => import('./features/services/Services'))
+const Works = lazy(() => import('./features/works/Works'))
+const Contact = lazy(() => import('./features/contact/Contact'))
+
+// Wrapper con animación para cada sección
+const AnimatedSection = ({ children, id }) => (
+  <motion.div
+    id={id}
+    initial="initial"
+    whileInView="animate"
+    viewport={{ once: true, margin: "-100px" }}
+    variants={pageTransition}
+  >
+    {children}
+  </motion.div>
+)
 
 function App() {
   return (
     <MainLayout>
-      <Home />
-      <Services />
-      <Works />
-      <Contact />
+      <AnimatePresence mode="wait">
+        <Suspense fallback={<SkeletonPage />}>
+          <AnimatedSection id="hero">
+            <HeroBanner />
+          </AnimatedSection>
+          
+          <AnimatedSection id="servicios">
+            <Services />
+          </AnimatedSection>
+          
+          <AnimatedSection id="proyectos">
+            <Works />
+          </AnimatedSection>
+          
+          <AnimatedSection id="contacto">
+            <Contact />
+          </AnimatedSection>
+        </Suspense>
+      </AnimatePresence>
     </MainLayout>
   )
 }
