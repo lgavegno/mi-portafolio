@@ -40,7 +40,7 @@ export default defineConfig({
     },
     
     // Output directory
-    outDir: 'dist',
+    outDir: 'build_output',
     
     // Reportar tamaño de chunks
     reportCompressedSize: true,
