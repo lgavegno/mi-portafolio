@@ -36,12 +36,11 @@ export default defineConfig({
           'vendor-router': ['react-router-dom'],
           'vendor-icons': ['react-icons'],
         },
-        // Nombres de chunks con hash para cache busting
-        chunkFileNames: 'assets/js/[name]-[hash].js',
-        entryFileNames: 'assets/js/[name]-[hash].js',
-        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
       },
     },
+    
+    // Output directory
+    outDir: 'dist',
     
     // Reportar tamaño de chunks
     reportCompressedSize: true,

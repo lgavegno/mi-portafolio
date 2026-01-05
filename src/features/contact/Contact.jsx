@@ -21,16 +21,25 @@ const Contact = () => {
     }))
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     setIsSubmitting(true)
     
-    // Simular envío
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    console.log('Form submitted:', formData)
+    // Construir el enlace mailto con los datos del formulario
+    const email = 'lgavegno@gmail.com'
+    const subject = encodeURIComponent(`Contacto desde Portfolio - ${formData.name}`)
+    const body = encodeURIComponent(
+      `Nombre: ${formData.name}\nEmail: ${formData.email}\n\nMensaje:\n${formData.message}`
+    )
     
-    setIsSubmitting(false)
-    setFormData({ name: '', email: '', message: '' })
+    // Abrir cliente de correo
+    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`
+    
+    // Reset del formulario después de un breve delay
+    setTimeout(() => {
+      setIsSubmitting(false)
+      setFormData({ name: '', email: '', message: '' })
+    }, 1000)
   }
 
   const inputClasses = `
