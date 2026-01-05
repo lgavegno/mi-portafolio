@@ -23,6 +23,7 @@ export default defineConfig({
     // Output directory
     outDir: 'dist',
     emptyOutDir: true,
+    assetsDir: 'assets',
     
     // Minificación con esbuild (más rápido que terser)
     minify: 'esbuild',
