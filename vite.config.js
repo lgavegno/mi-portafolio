@@ -20,27 +20,15 @@ export default defineConfig({
 
   // Optimizaciones de build
   build: {
+    // Output directory
+    outDir: 'dist',
+    emptyOutDir: true,
+    
     // Minificación con esbuild (más rápido que terser)
     minify: 'esbuild',
     
     // Target moderno para mejor tree-shaking
     target: 'esnext',
-    
-    // Code splitting optimizado
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          // Vendor chunks separados
-          'vendor-react': ['react', 'react-dom'],
-          'vendor-motion': ['framer-motion'],
-          'vendor-router': ['react-router-dom'],
-          'vendor-icons': ['react-icons'],
-        },
-      },
-    },
-    
-    // Output directory
-    outDir: 'build_output',
     
     // Reportar tamaño de chunks
     reportCompressedSize: true,
