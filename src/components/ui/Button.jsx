@@ -122,7 +122,7 @@ const Button = ({
         transition-colors duration-200
         focus:outline-none focus:ring-2 focus:ring-cobalt-400 focus:ring-offset-2 focus:ring-offset-slate-900
         disabled:opacity-50 disabled:cursor-not-allowed
-        overflow-hidden
+        overflow-hidden touch-manipulation
         ${variantStyles[variant]}
         ${sizeStyles[size]}
         ${className}

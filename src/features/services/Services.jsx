@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FiCode, FiLayout, FiTool, FiCpu, FiTarget, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { fadeInUp, staggerContainer, glassCard } from '../../config/motionConfig';
+import { useVibrate } from '../../hooks/useVibrate';
 import './Services3DCarousel.css';
 
 const Services = () => {
@@ -9,6 +10,7 @@ const Services = () => {
   const carouselRef = useRef(null);
   const autoRotateInterval = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
+  const vibrateLight = useVibrate(5);
 
   const services = [
     {
@@ -53,11 +55,18 @@ const Services = () => {
   }, [isHovered, services.length]);
 
   const handlePrev = () => {
+    vibrateLight();
     setCurrentIndex(prev => (prev - 1 + services.length) % services.length);
   };
 
   const handleNext = () => {
+    vibrateLight();
     setCurrentIndex(prev => (prev + 1) % services.length);
+  };
+
+  const handleIndicatorClick = (index) => {
+    vibrateLight();
+    setCurrentIndex(index);
   };
 
   // Calculate rotation for each card with fixed depth (radius) to keep desktop curvature stable
@@ -128,7 +137,7 @@ const Services = () => {
                         </div>
                         <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 text-white">{service.title}</h3>
                         <p className="text-white/80 md:text-lg mb-6">{service.description}</p>
-                        <button className="px-6 py-2.5 bg-white/20 backdrop-blur-sm text-white font-semibold rounded-full hover:bg-white/30 transition-colors border border-white/20">
+                        <button className="px-6 py-2.5 bg-white/20 backdrop-blur-sm text-white font-semibold rounded-full hover:bg-white/30 active:bg-white/40 active:scale-95 transition-all border border-white/20 touch-manipulation select-none">
                           Saber más
                         </button>
                       </div>
@@ -150,7 +159,7 @@ const Services = () => {
           <motion.button 
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="carousel-nav prev glass"
+            className="carousel-nav prev glass touch-manipulation select-none"
             onClick={handlePrev}
             aria-label="Anterior"
           >
@@ -159,7 +168,7 @@ const Services = () => {
           <motion.button 
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="carousel-nav next glass"
+            className="carousel-nav next glass touch-manipulation select-none"
             onClick={handleNext}
             aria-label="Siguiente"
           >
@@ -170,14 +179,16 @@ const Services = () => {
         {/* Indicators */}
         <div className="flex justify-center gap-2 mt-8">
           {services.map((_, index) => (
-            <button
+            <motion.button
               key={index}
-              onClick={() => setCurrentIndex(index)}
+              onClick={() => handleIndicatorClick(index)}
+              whileTap={{ scale: 0.85 }}
               className={`
                 w-2 h-2 rounded-full transition-all duration-300
+                touch-manipulation select-none
                 ${index === currentIndex 
                   ? 'w-8 bg-cobalt-400' 
-                  : 'bg-white/20 hover:bg-white/40'
+                  : 'bg-white/20 hover:bg-white/40 active:bg-white/60'
                 }
               `}
               aria-label={`Ir al servicio ${index + 1}`}

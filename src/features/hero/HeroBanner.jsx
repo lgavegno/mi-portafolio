@@ -12,6 +12,7 @@ import {
   viewportConfig 
 } from '../../config/motionConfig';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
+import { useVibrate } from '../../hooks/useVibrate';
 import Button from '../../components/ui/Button';
 import ProjectCard from '../../components/ui/ProjectCard';
 import NeuralNetworkBackground from '../../components/NeuralNetworkBackground';
@@ -68,6 +69,7 @@ const Badge = ({ children, className = '' }) => {
         border border-cobalt-400/30
         backdrop-blur-sm
         relative overflow-hidden
+        select-none
         ${className}
       `}
     >
@@ -102,7 +104,7 @@ const Badge = ({ children, className = '' }) => {
 };
 
 // Iconos sociales con animación
-const SocialLink = ({ href, icon: Icon, label, delay = 0 }) => (
+const SocialLink = ({ href, icon: Icon, label, delay = 0, onTap }) => (
   <motion.a
     href={href}
     target="_blank"
@@ -112,13 +114,16 @@ const SocialLink = ({ href, icon: Icon, label, delay = 0 }) => (
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay, ...springConfig.gentle }}
     whileHover={{ y: -3, scale: 1.1 }}
-    whileTap={{ scale: 0.95 }}
+    whileTap={{ scale: 0.9 }}
+    onClick={onTap}
     className="
       p-3 rounded-full
       bg-white/5 border border-white/10
       text-gray-400 hover:text-mint-400
       hover:border-mint-400/30 hover:bg-mint-400/5
+      active:bg-mint-400/10
       transition-colors duration-300
+      touch-manipulation select-none
     "
   >
     <Icon className="w-5 h-5" />
@@ -127,6 +132,7 @@ const SocialLink = ({ href, icon: Icon, label, delay = 0 }) => (
 
 const HeroBanner = () => {
   const prefersReducedMotion = useReducedMotion();
+  const vibrateLight = useVibrate(5);
 
   const scrollToProjects = () => {
     document.getElementById('proyectos')?.scrollIntoView({ behavior: 'smooth' });
@@ -238,12 +244,14 @@ const HeroBanner = () => {
               icon={FaGithub} 
               label="GitHub"
               delay={0.5}
+              onTap={vibrateLight}
             />
             <SocialLink 
               href="https://linkedin.com/in/lgavegno" 
               icon={FaLinkedin} 
               label="LinkedIn"
               delay={0.6}
+              onTap={vibrateLight}
             />
           </motion.div>
 

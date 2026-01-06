@@ -2,6 +2,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { FaGithub, FaLinkedin, FaEnvelope, FaHeart } from 'react-icons/fa'
+import { useVibrate } from '../hooks/useVibrate'
 
 const socialLinks = [
   { href: 'https://github.com/lgavegno', icon: FaGithub, label: 'GitHub' },
@@ -11,6 +12,7 @@ const socialLinks = [
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
+  const vibrateLight = useVibrate(5)
 
   return (
     <footer className="relative bg-slate-950 border-t border-white/5">
@@ -47,14 +49,17 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={link.label}
+                onClick={() => vibrateLight()}
                 whileHover={{ y: -3, scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
+                whileTap={{ scale: 0.9 }}
                 className="
                   p-3 rounded-xl
                   bg-white/5 border border-white/10
                   text-gray-400 hover:text-mint-400
                   hover:border-mint-400/30 hover:bg-mint-400/5
+                  active:bg-mint-400/10
                   transition-colors duration-300
+                  touch-manipulation select-none
                 "
               >
                 <link.icon className="w-5 h-5" />

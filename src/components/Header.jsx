@@ -153,8 +153,8 @@ const Header = () => {
                     className="
                       block px-4 py-3 rounded-xl
                       text-gray-300 hover:text-white
-                      hover:bg-white/5
-                      transition-colors
+                      hover:bg-white/5 active:bg-white/10
+                      transition-colors touch-manipulation
                     "
                   >
                     {link.label}
@@ -170,7 +170,9 @@ const Header = () => {
                   className="
                     block mt-4 px-4 py-3 rounded-xl text-center
                     bg-gradient-to-r from-cobalt-500 to-cobalt-600
+                    active:from-cobalt-600 active:to-cobalt-700
                     text-white font-semibold
+                    touch-manipulation
                   "
                 >
                   Hablemos

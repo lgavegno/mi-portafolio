@@ -64,7 +64,9 @@ const ProjectCard = ({
         backdrop-blur-xl bg-white/5
         border border-white/10
         hover:border-cobalt-400/30
+        active:bg-white/8
         transition-colors duration-300
+        touch-manipulation select-none
         z-30
         ${className}
       `}
@@ -131,7 +133,7 @@ const ProjectCard = ({
                   bg-slate-700/50 text-gray-300
                   border border-slate-600/50
                   hover:border-cobalt-400/50 hover:text-cobalt-300
-                  transition-colors
+                  transition-colors select-none
                 "
               >
                 {tech}

@@ -60,7 +60,9 @@ const BlogCard = ({
           rounded-xl
           bg-white/5 border border-white/10
           hover:border-cobalt-400/30
+          active:bg-white/8
           transition-colors duration-300
+          touch-manipulation select-none
         "
       >
         {/* Content */}
@@ -110,7 +112,9 @@ const BlogCard = ({
         backdrop-blur-xl bg-white/5
         border border-white/10
         hover:border-cobalt-400/30
+        active:bg-white/8
         transition-colors duration-300
+        touch-manipulation select-none
       "
     >
       {/* Image placeholder */}

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { FiSend, FiMail, FiUser, FiMessageSquare } from 'react-icons/fi'
 import { fadeInUp, staggerContainer } from '../../config/motionConfig'
 import Button from '../../components/ui/Button'
+import { useVibrate } from '../../hooks/useVibrate'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ const Contact = () => {
     message: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const vibrateFocus = useVibrate(5)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -19,6 +21,10 @@ const Contact = () => {
       ...prev,
       [name]: value
     }))
+  }
+
+  const handleFocus = () => {
+    vibrateFocus()
   }
 
   const handleSubmit = (e) => {
@@ -48,7 +54,9 @@ const Contact = () => {
     border border-white/10 rounded-xl
     text-white placeholder-gray-500
     focus:outline-none focus:ring-2 focus:ring-cobalt-400/50 focus:border-cobalt-400/50
+    active:scale-[0.99] active:bg-white/8
     transition-all duration-200
+    touch-manipulation
   `
 
   return (
@@ -99,6 +107,7 @@ const Contact = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
+                    onFocus={handleFocus}
                     className={inputClasses}
                     placeholder="Tu nombre"
                     required
@@ -119,6 +128,7 @@ const Contact = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
+                    onFocus={handleFocus}
                     className={inputClasses}
                     placeholder="tu@email.com"
                     required
@@ -139,6 +149,7 @@ const Contact = () => {
                     rows="5"
                     value={formData.message}
                     onChange={handleChange}
+                    onFocus={handleFocus}
                     className={`${inputClasses} resize-none`}
                     placeholder="Cuéntame sobre tu proyecto..."
                     required

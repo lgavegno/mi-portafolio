@@ -4,14 +4,31 @@
 import { useCallback } from 'react';
 
 /**
+ * Detecta si el dispositivo soporta vibración
+ */
+const supportsVibration = () => 
+  typeof navigator !== 'undefined' && 'vibrate' in navigator;
+
+/**
+ * Detecta si es un dispositivo táctil
+ */
+const isTouchDevice = () =>
+  typeof window !== 'undefined' && 
+  ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+
+/**
  * Hook para vibración táctil
  * @param {number|number[]} pattern - Duración en ms o patrón de vibración [vibrar, pausa, vibrar...]
  * @returns {Function} - Función para activar la vibración
  */
 export const useVibrate = (pattern = 10) => {
   const vibrate = useCallback(() => {
-    if ('vibrate' in navigator) {
-      navigator.vibrate(pattern);
+    if (supportsVibration() && isTouchDevice()) {
+      try {
+        navigator.vibrate(pattern);
+      } catch (e) {
+        // Silently fail on browsers that block vibration
+      }
     }
   }, [pattern]);
 
