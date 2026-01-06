@@ -139,7 +139,7 @@ const HeroBanner = () => {
   return (
     <section 
       id="inicio"
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-800"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-800 pt-8 md:pt-0"
     >
       {/* Neural Network Animation - Solo en la parte superior */}
       <div className="absolute top-0 left-0 right-0 h-[70vh] overflow-hidden pointer-events-none" style={{ zIndex: 1 }}>
@@ -184,7 +184,7 @@ const HeroBanner = () => {
           {/* Headline principal */}
           <motion.h1
             variants={fadeInUp}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 tracking-tight"
           >
             <span className="text-white">Aprendiendo a resolver problemas reales</span>
             <br />
@@ -196,7 +196,7 @@ const HeroBanner = () => {
           {/* Subtítulo */}
           <motion.p
             variants={fadeInUp}
-            className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-gray-400 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed px-2 sm:px-0"
           >
             Desarrollo proyectos como parte de mi aprendizaje en programación y análisis,
             explorando cómo los sistemas y los datos pueden apoyar decisiones
@@ -206,7 +206,7 @@ const HeroBanner = () => {
           {/* CTAs */}
           <motion.div
             variants={fadeInUp}
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
+            className="flex flex-col sm:flex-row gap-4 justify-center mb-12 mt-6 sm:mt-8 px-4 sm:px-0"
           >
             <Button
               variant="accent"

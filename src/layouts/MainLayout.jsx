@@ -11,7 +11,7 @@ const MainLayout = ({ children }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
-        className="w-full max-w-[100vw] overflow-x-hidden"
+        className="w-full max-w-[100vw] overflow-x-hidden pt-16 md:pt-20"
       >
         {children}
       </motion.main>

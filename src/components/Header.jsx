@@ -139,9 +139,9 @@ const Header = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2 }}
-              className="md:hidden overflow-hidden"
+              className="md:hidden overflow-hidden bg-slate-950/95 backdrop-blur-xl"
             >
-              <div className="py-4 space-y-1 border-t border-white/5">
+              <div className="py-4 space-y-1 border-t border-white/10">
                 {navLinks.map((link, index) => (
                   <motion.a
                     key={link.href}
