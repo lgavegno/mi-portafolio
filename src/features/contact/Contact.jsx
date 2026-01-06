@@ -23,7 +23,7 @@ const Contact = () => {
   })
   const [status, setStatus] = useState(FORM_STATUS.IDLE)
   const [errorMessage, setErrorMessage] = useState('')
-  
+
   const vibrateFocus = useVibrate(5)
   const vibrateSuccess = useVibrate(50)
   const vibrateError = useVibrate(100)
@@ -64,6 +64,7 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    console.log("Iniciando envío con formData:", formData);
 
     // Validar antes de enviar
     if (!validateForm()) {
@@ -75,9 +76,15 @@ const Contact = () => {
     setStatus(FORM_STATUS.SENDING)
     setErrorMessage('')
 
+    console.log("Credenciales EmailJS (Check):", {
+      serviceId: !!import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      templateId: !!import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      publicKey: !!import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+    });
+
     try {
       // Enviar email con EmailJS
-      await emailjs.send(
+      const res = await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
@@ -88,6 +95,8 @@ const Contact = () => {
         },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       )
+
+      console.log("Respuesta EmailJS:", res);
 
       // Éxito
       setStatus(FORM_STATUS.SUCCESS)
@@ -146,9 +155,9 @@ const Contact = () => {
               Si necesitas ayuda con análisis de datos o automatización de procesos, estaré encantado de conversar contigo.
             </p>
           </motion.div>
-          
+
           {/* Form */}
-          <motion.div 
+          <motion.div
             variants={fadeInUp}
             className="glass-card p-8"
           >
@@ -173,7 +182,7 @@ const Contact = () => {
                   />
                 </div>
               </div>
-              
+
               {/* Email field */}
               <div className="relative">
                 <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
@@ -194,7 +203,7 @@ const Contact = () => {
                   />
                 </div>
               </div>
-              
+
               {/* Message field */}
               <div className="relative">
                 <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
@@ -215,7 +224,7 @@ const Contact = () => {
                   />
                 </div>
               </div>
-              
+
               {/* Status Messages */}
               <AnimatePresence mode="wait">
                 {status === FORM_STATUS.SUCCESS && (
