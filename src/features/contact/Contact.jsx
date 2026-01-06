@@ -63,7 +63,13 @@ const Contact = () => {
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    // Protección: PreventDefault seguro
+    if (e && e.preventDefault) e.preventDefault();
+
+    // Feedback visual inmediato (incluso antes de validar)
+    setStatus(FORM_STATUS.SENDING)
+    setErrorMessage('')
+
     console.log("Iniciando envío con formData:", formData);
 
     // Validar antes de enviar
@@ -72,9 +78,6 @@ const Contact = () => {
       vibrateError()
       return
     }
-
-    setStatus(FORM_STATUS.SENDING)
-    setErrorMessage('')
 
     console.log("Credenciales EmailJS (Check):", {
       serviceId: !!import.meta.env.VITE_EMAILJS_SERVICE_ID,
@@ -161,7 +164,14 @@ const Contact = () => {
             variants={fadeInUp}
             className="glass-card p-8"
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form
+              onSubmit={(e) => {
+                if (e && e.preventDefault) e.preventDefault();
+                handleSubmit(e);
+              }}
+              noValidate
+              className="space-y-6"
+            >
               {/* Name field */}
               <div className="relative">
                 <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
@@ -262,14 +272,15 @@ const Contact = () => {
               {/* Submit button */}
               <div className="pt-4">
                 <Button
-                  type="submit"
+                  type="button"
+                  onClick={handleSubmit}
                   variant={status === FORM_STATUS.SUCCESS ? 'success' : 'accent'}
                   size="lg"
                   loading={status === FORM_STATUS.SENDING}
                   disabled={status === FORM_STATUS.SENDING || status === FORM_STATUS.SUCCESS}
                   icon={status === FORM_STATUS.SUCCESS ? <FiCheck /> : <FiSend />}
                   iconPosition="right"
-                  className="w-full"
+                  className="w-full cursor-pointer"
                 >
                   {status === FORM_STATUS.SENDING && 'Enviando...'}
                   {status === FORM_STATUS.SUCCESS && '¡Enviado!'}
