@@ -1,20 +1,22 @@
 // src/components/Header.jsx
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { useVibrate } from '../hooks/useVibrate';
 
 const navLinks = [
-  { href: '#inicio', label: 'Inicio' },
-  { href: '#proyectos', label: 'Proyectos' },
-  { href: '#servicios', label: 'Servicios' },
-  { href: '#contacto', label: 'Contacto' },
+  { label: 'Inicio', id: 'hero' },
+  { label: 'Proyectos', id: 'proyectos' },
+  { label: 'Servicios', id: 'servicios' },
+  { label: 'Contacto', id: 'contacto' },
 ];
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const vibrate = useVibrate(10);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,14 +27,22 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (e, href) => {
-    e.preventDefault();
-    vibrate();
-    setIsOpen(false);
-    
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const handleNavClick = (e, targetId) => {
+    // Si estamos en la home, hacemos scroll suave manual
+    if (location.pathname === '/') {
+      e.preventDefault();
+      vibrate();
+      setIsOpen(false);
+
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // Si no estamos en la home, permitimos que el Link navegue,
+      // pasando el estado para que MainLayout maneje el scroll al montar.
+      vibrate();
+      setIsOpen(false);
     }
   };
 
@@ -44,8 +54,8 @@ const Header = () => {
       className={`
         fixed top-0 left-0 right-0 z-50
         transition-all duration-300
-        ${scrolled 
-          ? 'bg-slate-950/80 backdrop-blur-xl border-b border-white/5 shadow-lg shadow-black/10' 
+        ${scrolled
+          ? 'bg-slate-950/80 backdrop-blur-xl border-b border-white/5 shadow-lg shadow-black/10'
           : 'bg-transparent'
         }
       `}
@@ -53,63 +63,77 @@ const Header = () => {
       <div className="container mx-auto px-6">
         <nav className="flex justify-between items-center h-16 md:h-20">
           {/* Logo */}
-          <motion.a
-            href="#inicio"
-            onClick={(e) => handleNavClick(e, '#inicio')}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="font-bold text-xl text-white flex items-center gap-2"
+          <Link
+            to="/"
+            onClick={(e) => handleNavClick(e, 'hero')}
+            className="font-bold text-xl text-white flex items-center gap-2 cursor-pointer"
           >
-            <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-cobalt-500 to-mint-400 flex items-center justify-center text-sm font-bold">
-              LG
-            </span>
-            <span className="hidden sm:inline">Leandro</span>
-          </motion.a>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2"
+            >
+              <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-cobalt-500 to-mint-400 flex items-center justify-center text-sm font-bold">
+                LG
+              </span>
+              <span className="hidden sm:inline">Leandro</span>
+            </motion.div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link, index) => (
-              <motion.a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -2 }}
+              <Link
+                key={link.id}
+                to="/"
+                state={{ scrollTo: link.id }}
+                onClick={(e) => handleNavClick(e, link.id)}
+              >
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ y: -2 }}
+                  className="
+                    relative px-4 py-2 text-sm font-medium
+                    text-gray-300 hover:text-white
+                    transition-colors duration-200
+                    cursor-pointer
+                    group
+                  "
+                >
+                  {link.label}
+                  <span className="
+                    absolute bottom-0 left-1/2 -translate-x-1/2
+                    w-0 h-0.5 bg-gradient-to-r from-cobalt-400 to-mint-400
+                    group-hover:w-full transition-all duration-300
+                  " />
+                </motion.div>
+              </Link>
+            ))}
+
+            {/* CTA Button */}
+            <Link
+              to="/"
+              state={{ scrollTo: 'contacto' }}
+              onClick={(e) => handleNavClick(e, 'contacto')}
+            >
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 className="
-                  relative px-4 py-2 text-sm font-medium
-                  text-gray-300 hover:text-white
-                  transition-colors duration-200
-                  group
+                  ml-4 px-5 py-2.5 rounded-xl
+                  bg-gradient-to-r from-cobalt-500 to-cobalt-600
+                  text-white text-sm font-semibold
+                  shadow-lg shadow-cobalt-500/20
+                  hover:shadow-xl hover:shadow-cobalt-500/30
+                  transition-shadow duration-300
+                  cursor-pointer
                 "
               >
-                {link.label}
-                <span className="
-                  absolute bottom-0 left-1/2 -translate-x-1/2
-                  w-0 h-0.5 bg-gradient-to-r from-cobalt-400 to-mint-400
-                  group-hover:w-full transition-all duration-300
-                " />
-              </motion.a>
-            ))}
-            
-            {/* CTA Button */}
-            <motion.a
-              href="#contacto"
-              onClick={(e) => handleNavClick(e, '#contacto')}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="
-                ml-4 px-5 py-2.5 rounded-xl
-                bg-gradient-to-r from-cobalt-500 to-cobalt-600
-                text-white text-sm font-semibold
-                shadow-lg shadow-cobalt-500/20
-                hover:shadow-xl hover:shadow-cobalt-500/30
-                transition-shadow duration-300
-              "
-            >
-              Hablemos
-            </motion.a>
+                Hablemos
+              </motion.div>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -124,6 +148,7 @@ const Header = () => {
               text-gray-300 hover:text-white
               hover:bg-white/5
               transition-colors
+              cursor-pointer
             "
             aria-label="Toggle menu"
           >
@@ -143,40 +168,51 @@ const Header = () => {
             >
               <div className="py-4 space-y-1 border-t border-white/10">
                 {navLinks.map((link, index) => (
-                  <motion.a
-                    key={link.href}
-                    href={link.href}
-                    onClick={(e) => handleNavClick(e, link.href)}
+                  <Link
+                    key={link.id}
+                    to="/"
+                    state={{ scrollTo: link.id }}
+                    onClick={(e) => handleNavClick(e, link.id)}
+                  >
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      className="
+                        block px-4 py-3 rounded-xl
+                        text-gray-300 hover:text-white
+                        hover:bg-white/5 active:bg-white/10
+                        transition-colors touch-manipulation
+                        cursor-pointer
+                      "
+                    >
+                      {link.label}
+                    </motion.div>
+                  </Link>
+                ))}
+
+                <Link
+                  to="/"
+                  state={{ scrollTo: 'contacto' }}
+                  onClick={(e) => handleNavClick(e, 'contacto')}
+                  className="block mt-4"
+                >
+                  <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
+                    transition={{ delay: navLinks.length * 0.05 }}
                     className="
-                      block px-4 py-3 rounded-xl
-                      text-gray-300 hover:text-white
-                      hover:bg-white/5 active:bg-white/10
-                      transition-colors touch-manipulation
+                      px-4 py-3 rounded-xl text-center
+                      bg-gradient-to-r from-cobalt-500 to-cobalt-600
+                      active:from-cobalt-600 active:to-cobalt-700
+                      text-white font-semibold
+                      touch-manipulation
+                      cursor-pointer
                     "
                   >
-                    {link.label}
-                  </motion.a>
-                ))}
-                
-                <motion.a
-                  href="#contacto"
-                  onClick={(e) => handleNavClick(e, '#contacto')}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: navLinks.length * 0.05 }}
-                  className="
-                    block mt-4 px-4 py-3 rounded-xl text-center
-                    bg-gradient-to-r from-cobalt-500 to-cobalt-600
-                    active:from-cobalt-600 active:to-cobalt-700
-                    text-white font-semibold
-                    touch-manipulation
-                  "
-                >
-                  Hablemos
-                </motion.a>
+                    Hablemos
+                  </motion.div>
+                </Link>
               </div>
             </motion.div>
           )}

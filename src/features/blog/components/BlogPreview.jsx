@@ -6,15 +6,15 @@ import { motion } from 'framer-motion';
 import { FiBookOpen, FiArrowRight } from 'react-icons/fi';
 import { fadeInUp, staggerContainer } from '../../../config/motionConfig';
 import BlogCard from './BlogCard';
-import { featuredPosts } from '../data/blogData';
+import { blogPosts } from '../data/blogData';
 
-const BlogPreview = ({ 
+const BlogPreview = ({
   limit = 3,
   variant = 'grid', // 'grid' | 'list' | 'compact'
   showHeader = true,
   className = ''
 }) => {
-  const posts = featuredPosts.slice(0, limit);
+  const posts = blogPosts.slice(0, limit);
 
   if (variant === 'compact') {
     return (
@@ -26,7 +26,7 @@ const BlogPreview = ({
         className={`space-y-3 ${className}`}
       >
         {showHeader && (
-          <motion.div 
+          <motion.div
             variants={fadeInUp}
             className="flex items-center justify-between mb-4"
           >
@@ -68,7 +68,7 @@ const BlogPreview = ({
         className={className}
       >
         {showHeader && (
-          <motion.div 
+          <motion.div
             variants={fadeInUp}
             className="flex items-center justify-between mb-8"
           >
@@ -125,7 +125,7 @@ const BlogPreview = ({
       className={className}
     >
       {showHeader && (
-        <motion.div 
+        <motion.div
           variants={fadeInUp}
           className="text-center mb-12"
         >
@@ -142,7 +142,7 @@ const BlogPreview = ({
         </motion.div>
       )}
 
-      <motion.div 
+      <motion.div
         variants={fadeInUp}
         className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
       >
@@ -156,7 +156,7 @@ const BlogPreview = ({
       </motion.div>
 
       {/* CTA */}
-      <motion.div 
+      <motion.div
         variants={fadeInUp}
         className="text-center mt-12"
       >
