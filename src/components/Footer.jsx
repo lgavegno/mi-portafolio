@@ -6,8 +6,8 @@ import { useVibrate } from '../hooks/useVibrate'
 
 const socialLinks = [
   { href: 'https://github.com/lgavegno', icon: FaGithub, label: 'GitHub' },
-  { href: 'https://linkedin.com/in/lgavegno', icon: FaLinkedin, label: 'LinkedIn' },
-  { href: 'mailto:contacto@lgavegno.dev', icon: FaEnvelope, label: 'Email' },
+  { href: 'https://www.linkedin.com/in/leandro-gavegno/', icon: FaLinkedin, label: 'LinkedIn' },
+  { href: 'mailto:lgavegno@gmail.com', icon: FaEnvelope, label: 'Email' },
 ]
 
 const Footer = () => {
