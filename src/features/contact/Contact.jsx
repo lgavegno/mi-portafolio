@@ -1,10 +1,19 @@
 // src/features/contact/Contact.jsx
 import React, { useState } from 'react'
-import { motion } from 'framer-motion'
-import { FiSend, FiMail, FiUser, FiMessageSquare } from 'react-icons/fi'
+import { motion, AnimatePresence } from 'framer-motion'
+import { FiSend, FiMail, FiUser, FiMessageSquare, FiCheck, FiAlertCircle } from 'react-icons/fi'
+import emailjs from '@emailjs/browser'
 import { fadeInUp, staggerContainer } from '../../config/motionConfig'
 import Button from '../../components/ui/Button'
 import { useVibrate } from '../../hooks/useVibrate'
+
+// Estados del formulario
+const FORM_STATUS = {
+  IDLE: 'idle',
+  SENDING: 'sending',
+  SUCCESS: 'success',
+  ERROR: 'error'
+}
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -12,8 +21,12 @@ const Contact = () => {
     email: '',
     message: ''
   })
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [status, setStatus] = useState(FORM_STATUS.IDLE)
+  const [errorMessage, setErrorMessage] = useState('')
+  
   const vibrateFocus = useVibrate(5)
+  const vibrateSuccess = useVibrate(50)
+  const vibrateError = useVibrate(100)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -21,31 +34,77 @@ const Contact = () => {
       ...prev,
       [name]: value
     }))
+    // Limpiar estado de error al escribir
+    if (status === FORM_STATUS.ERROR) {
+      setStatus(FORM_STATUS.IDLE)
+      setErrorMessage('')
+    }
   }
 
   const handleFocus = () => {
     vibrateFocus()
   }
 
-  const handleSubmit = (e) => {
+  // Validación simple
+  const validateForm = () => {
+    if (!formData.name.trim()) {
+      setErrorMessage('Por favor, ingresa tu nombre')
+      return false
+    }
+    if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      setErrorMessage('Por favor, ingresa un email válido')
+      return false
+    }
+    if (!formData.message.trim()) {
+      setErrorMessage('Por favor, escribe un mensaje')
+      return false
+    }
+    return true
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setIsSubmitting(true)
     
-    // Construir el enlace mailto con los datos del formulario
-    const email = 'lgavegno@gmail.com'
-    const subject = encodeURIComponent(`Contacto desde Portfolio - ${formData.name}`)
-    const body = encodeURIComponent(
-      `Nombre: ${formData.name}\nEmail: ${formData.email}\n\nMensaje:\n${formData.message}`
-    )
-    
-    // Abrir cliente de correo
-    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`
-    
-    // Reset del formulario después de un breve delay
-    setTimeout(() => {
-      setIsSubmitting(false)
+    // Validar antes de enviar
+    if (!validateForm()) {
+      setStatus(FORM_STATUS.ERROR)
+      vibrateError()
+      return
+    }
+
+    setStatus(FORM_STATUS.SENDING)
+    setErrorMessage('')
+
+    try {
+      // Enviar email con EmailJS
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_email: 'lgavegno@gmail.com'
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
+
+      // Éxito
+      setStatus(FORM_STATUS.SUCCESS)
+      vibrateSuccess()
       setFormData({ name: '', email: '', message: '' })
-    }, 1000)
+
+      // Volver a estado idle después de 5 segundos
+      setTimeout(() => {
+        setStatus(FORM_STATUS.IDLE)
+      }, 5000)
+
+    } catch (error) {
+      console.error('EmailJS Error:', error)
+      setStatus(FORM_STATUS.ERROR)
+      setErrorMessage('Error al enviar el mensaje. Por favor, intenta de nuevo.')
+      vibrateError()
+    }
   }
 
   const inputClasses = `
@@ -157,18 +216,55 @@ const Contact = () => {
                 </div>
               </div>
               
+              {/* Status Messages */}
+              <AnimatePresence mode="wait">
+                {status === FORM_STATUS.SUCCESS && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                    className="flex items-center gap-3 p-4 rounded-xl bg-mint-400/10 border border-mint-400/30"
+                  >
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-mint-400/20 flex items-center justify-center">
+                      <FiCheck className="w-5 h-5 text-mint-400" />
+                    </div>
+                    <div>
+                      <p className="text-mint-400 font-medium">¡Mensaje enviado con éxito!</p>
+                      <p className="text-mint-400/70 text-sm">Te responderé lo antes posible.</p>
+                    </div>
+                  </motion.div>
+                )}
+
+                {status === FORM_STATUS.ERROR && errorMessage && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                    className="flex items-center gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/30"
+                  >
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center">
+                      <FiAlertCircle className="w-5 h-5 text-red-400" />
+                    </div>
+                    <p className="text-red-400 font-medium">{errorMessage}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
               {/* Submit button */}
               <div className="pt-4">
                 <Button
                   type="submit"
-                  variant="accent"
+                  variant={status === FORM_STATUS.SUCCESS ? 'success' : 'accent'}
                   size="lg"
-                  loading={isSubmitting}
-                  icon={<FiSend />}
+                  loading={status === FORM_STATUS.SENDING}
+                  disabled={status === FORM_STATUS.SENDING || status === FORM_STATUS.SUCCESS}
+                  icon={status === FORM_STATUS.SUCCESS ? <FiCheck /> : <FiSend />}
                   iconPosition="right"
                   className="w-full"
                 >
-                  {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
+                  {status === FORM_STATUS.SENDING && 'Enviando...'}
+                  {status === FORM_STATUS.SUCCESS && '¡Enviado!'}
+                  {(status === FORM_STATUS.IDLE || status === FORM_STATUS.ERROR) && 'Enviar mensaje'}
                 </Button>
               </div>
             </form>

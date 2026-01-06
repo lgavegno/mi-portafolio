@@ -68,6 +68,13 @@ const variantStyles = {
     shadow-lg shadow-red-500/25
     hover:shadow-xl hover:shadow-red-500/30
     border-0
+  `,
+  success: `
+    bg-gradient-to-r from-mint-400 to-mint-500
+    text-slate-900 font-bold
+    shadow-lg shadow-mint-400/25
+    hover:shadow-xl hover:shadow-mint-400/30
+    border-0
   `
 };
 

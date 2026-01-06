@@ -1,65 +1,120 @@
 # Mi Portafolio
 
-Este es un portafolio profesional desarrollado con **React** y **Tailwind CSS** utilizando Vite como entorno de desarrollo. El objetivo es mostrar tus proyectos, servicios y facilitar el contacto de manera moderna y responsiva.
+Portafolio profesional con arquitectura moderna, animaciones fluidas y UX optimizada para móviles.
 
-## 🚀 Tecnologías utilizadas
+---
 
-- [React](https://react.dev/) — Librería principal para la construcción de interfaces de usuario.
-- [Vite](https://vitejs.dev/) — Herramienta de desarrollo rápida para proyectos modernos de frontend.
-- [Tailwind CSS](https://tailwindcss.com/) — Framework de utilidades CSS para estilos rápidos y responsivos.
-- [PostCSS](https://postcss.org/) — Procesador de CSS para transformar estilos con plugins.
-- [Autoprefixer](https://github.com/postcss/autoprefixer) — Plugin de PostCSS para añadir prefijos automáticamente.
-- [ESLint](https://eslint.org/) — Linter para mantener la calidad del código.
+## 🛠️ Stack Tecnológico
 
-## ✨ Funcionalidades
+| Tecnología | Versión | Propósito |
+|------------|---------|-----------|
+| **React** | 19.1.0 | UI Library |
+| **Vite** | 6.3.5 | Build tool + Dev server |
+| **Tailwind CSS** | 3.3.0 | Utility-first CSS |
+| **Framer Motion** | 12.23.12 | Animaciones declarativas |
+| **React Icons** | 5.5.0 | Iconografía (Fi, Fa) |
+| **React Helmet Async** | 2.0.5 | SEO/Meta tags |
 
-- **Home:** Presentación personal con llamado a la acción.
-- **Proyectos:** Galería de proyectos destacados, cada uno con imagen, descripción y tecnologías utilizadas.
-- **Servicios:** Sección de servicios ofrecidos, con íconos y descripciones.
-- **Contacto:** Formulario de contacto funcional y datos de contacto directo.
-- **Navegación fija:** Menú superior siempre visible, con enlaces a cada sección.
-- **Modo oscuro:** Botón para alternar entre modo claro y oscuro.
-- **Diseño responsivo:** Adaptado para dispositivos móviles y escritorio.
-- **Footer:** Información de derechos y enlaces a redes sociales.
+### Dev Dependencies
+- ESLint 9.25 + React Hooks plugin
+- PostCSS + Autoprefixer
+- TypeScript types (solo para intellisense)
 
-## 📦 Instalación y uso
+---
 
-1. Clona el repositorio:
-   ```sh
-   git clone https://github.com/lgavegno/mi-portafolio.git
-   cd mi-portafolio
-   ```
+## 📦 Scripts
 
-2. Instala las dependencias:
-   ```sh
-   npm install
-   ```
+```bash
+# Desarrollo (HMR en http://localhost:5173)
+npm run dev
 
-3. Inicia el servidor de desarrollo:
-   ```sh
-   npm run dev
-   ```
+# Build de producción (output: dist/)
+npm run build
 
-4. Abre [http://localhost:5173](http://localhost:5173) en tu navegador.
+# Preview del build
+npm run preview
 
-## 📁 Estructura del proyecto
+# Linting
+npm run lint
+```
+
+---
+
+## 📁 Arquitectura
 
 ```
-mi-portafolio/
-├── src/
-│   ├── components/      # Componentes reutilizables (Header, Footer, Home, etc.)
-│   ├── layouts/         # Layout principal de la app
-│   ├── index.css        # Estilos globales con Tailwind
-│   └── main.jsx         # Punto de entrada de React
-├── public/              # Archivos estáticos
-├── tailwind.config.cjs  # Configuración de Tailwind
-├── postcss.config.js    # Configuración de PostCSS
-├── package.json         # Dependencias y scripts
-└── README.md            # Este archivo
+src/
+├── components/          # Componentes compartidos
+│   ├── ui/             # Atoms: Button, ProjectCard, Skeleton
+│   ├── Header.jsx      # Navegación
+│   └── Footer.jsx      # Pie de página
+│
+├── features/           # Módulos por dominio
+│   ├── hero/          # HeroBanner
+│   ├── services/      # Carousel 3D
+│   ├── works/         # Proyectos
+│   ├── contact/       # Formulario mailto
+│   └── blog/          # BlogCard, BlogPreview
+│
+├── hooks/              # Custom Hooks
+│   ├── useVibrate.js          # Haptic feedback
+│   ├── useReducedMotion.js    # Accesibilidad
+│   └── useIntersectionObserver.js
+│
+├── config/             # Configuración centralizada
+│   └── motionConfig.js # Variantes Framer Motion
+│
+├── layouts/            # MainLayout (Header + Main + Footer)
+├── data/               # Datos estáticos (projects.js)
+└── styles/             # CSS adicional
 ```
+
+---
+
+## ✨ Características
+
+- **Animaciones fluidas**: Framer Motion con variantes centralizadas
+- **UX Mobile-first**: `touch-manipulation`, haptic feedback, `whileTap`
+- **Accesibilidad**: `prefers-reduced-motion` respetado
+- **Lazy Loading**: Code splitting con `React.lazy` + `Suspense`
+- **Glassmorphism**: Cards con `backdrop-blur` y bordes sutiles
+- **Paleta 2025**: Deep Cobalt (#0047AB) + Spring Mint (#2BFF88)
+
+---
+
+## ⚠️ Deuda Técnica
+
+| Prioridad | Issue | Solución propuesta |
+|-----------|-------|-------------------|
+| 🔴 Alta | Sin TypeScript | Migrar a `.tsx` con tipos estrictos |
+| 🔴 Alta | Sin tests | Añadir Vitest + React Testing Library |
+| 🟡 Media | `react-helmet-async` incompatible con React 19 | Migrar a `@tanstack/react-helmet` o esperar actualización |
+| 🟡 Media | Datos hardcodeados | Extraer a CMS headless (Sanity, Strapi) |
+| 🟢 Baja | CSS en componentes | Considerar CSS Modules o styled-components |
+| 🟢 Baja | Sin i18n | Añadir `react-i18next` si se requiere multiidioma |
+
+---
+
+## 🚀 Deploy
+
+**Vercel** (recomendado):
+1. Conectar repo a Vercel
+2. Framework preset: Vite
+3. Build command: `npm run build`
+4. Output directory: `dist`
+
+No se requiere `vercel.json` - Vercel detecta Vite automáticamente.
+
+---
+
+## 📖 Documentación
+
+- **[TECHNICAL_GUIDE.md](./TECHNICAL_GUIDE.md)** - Guía técnica para desarrolladores
+
+---
 
 ## 📝 Licencia
 
-Este proyecto está bajo la licencia MIT.
+MIT © Lucas Gavegno
 
 
