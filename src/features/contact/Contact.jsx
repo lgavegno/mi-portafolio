@@ -62,22 +62,9 @@ const Contact = () => {
     return true
   }
 
-  // --- BLOQUE DE DEBUG TEMPORAL ---
-console.group('🔍 Debug Envío EmailJS');
-console.log('SERVICE_ID:', import.meta.env.VITE_EMAILJS_SERVICE_ID || '❌ No encontrado');
-console.log('TEMPLATE_ID:', import.meta.env.VITE_EMAILJS_TEMPLATE_ID || '❌ No encontrado');
-console.log('PUBLIC_KEY:', import.meta.env.VITE_EMAILJS_PUBLIC_KEY ? '✅ Cargada' : '❌ No encontrada');
-console.log('Payload a enviar:', {
-  from_name: formData.name,
-  from_email: formData.email,
-  message: formData.message,
-});
-console.groupEnd();
-// --------------------------------
-
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
+
     // Validar antes de enviar
     if (!validateForm()) {
       setStatus(FORM_STATUS.ERROR)
