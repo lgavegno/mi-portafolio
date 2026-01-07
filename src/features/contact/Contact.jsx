@@ -63,21 +63,27 @@ const Contact = () => {
   }
 
   const handleSubmit = async (e) => {
+    // CRITICAL: Persist event immediately for Safari (prevents React event recycling)
+    if (e && e.persist) e.persist();
+
     // Protección: PreventDefault seguro
     if (e && e.preventDefault) e.preventDefault();
 
-    // Feedback visual inmediato (incluso antes de validar)
-    setStatus(FORM_STATUS.SENDING)
-    setErrorMessage('')
+    // Debug alert for Vercel Safari testing (TEMPORARY)
+    alert("Iniciando envío...");
 
     console.log("Iniciando envío con formData:", formData);
 
-    // Validar antes de enviar
+    // IMPORTANT: Validate FIRST (before any state changes that could break Safari user activation)
     if (!validateForm()) {
-      setStatus(FORM_STATUS.ERROR)
-      vibrateError()
-      return
+      setStatus(FORM_STATUS.ERROR);
+      vibrateError();
+      return;
     }
+
+    // NOW set sending status (after validation passes)
+    setStatus(FORM_STATUS.SENDING);
+    setErrorMessage('');
 
     console.log("Credenciales EmailJS (Check):", {
       serviceId: !!import.meta.env.VITE_EMAILJS_SERVICE_ID,
@@ -86,7 +92,7 @@ const Contact = () => {
     });
 
     try {
-      // Enviar email con EmailJS
+      // Direct EmailJS call - no delays or intermediate steps
       const res = await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
@@ -97,25 +103,32 @@ const Contact = () => {
           to_email: 'lgavegno@gmail.com'
         },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-      )
+      );
 
       console.log("Respuesta EmailJS:", res);
 
+      // Debug alert for Vercel Safari testing (TEMPORARY)
+      alert("EmailJS respondió exitosamente: " + res.status);
+
       // Éxito
-      setStatus(FORM_STATUS.SUCCESS)
-      vibrateSuccess()
-      setFormData({ name: '', email: '', message: '' })
+      setStatus(FORM_STATUS.SUCCESS);
+      vibrateSuccess();
+      setFormData({ name: '', email: '', message: '' });
 
       // Volver a estado idle después de 5 segundos
       setTimeout(() => {
-        setStatus(FORM_STATUS.IDLE)
-      }, 5000)
+        setStatus(FORM_STATUS.IDLE);
+      }, 5000);
 
     } catch (error) {
-      console.error('EmailJS Error:', error)
-      setStatus(FORM_STATUS.ERROR)
-      setErrorMessage('Error al enviar el mensaje. Por favor, intenta de nuevo.')
-      vibrateError()
+      console.error('EmailJS Error:', error);
+
+      // Debug alert for Vercel Safari testing (TEMPORARY)
+      alert("Error EmailJS: " + (error.text || error.message || "Error desconocido"));
+
+      setStatus(FORM_STATUS.ERROR);
+      setErrorMessage('Error al enviar el mensaje. Por favor, intenta de nuevo.');
+      vibrateError();
     }
   }
 
