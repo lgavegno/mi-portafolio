@@ -69,9 +69,6 @@ const Contact = () => {
     // Protección: PreventDefault seguro
     if (e && e.preventDefault) e.preventDefault();
 
-    // Debug alert for Vercel Safari testing (TEMPORARY)
-    alert("Iniciando envío...");
-
     console.log("Iniciando envío con formData:", formData);
 
     // IMPORTANT: Validate FIRST (before any state changes that could break Safari user activation)
@@ -107,9 +104,6 @@ const Contact = () => {
 
       console.log("Respuesta EmailJS:", res);
 
-      // Debug alert for Vercel Safari testing (TEMPORARY)
-      alert("EmailJS respondió exitosamente: " + res.status);
-
       // Éxito
       setStatus(FORM_STATUS.SUCCESS);
       vibrateSuccess();
@@ -122,9 +116,6 @@ const Contact = () => {
 
     } catch (error) {
       console.error('EmailJS Error:', error);
-
-      // Debug alert for Vercel Safari testing (TEMPORARY)
-      alert("Error EmailJS: " + (error.text || error.message || "Error desconocido"));
 
       setStatus(FORM_STATUS.ERROR);
       setErrorMessage('Error al enviar el mensaje. Por favor, intenta de nuevo.');
