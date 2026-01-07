@@ -74,9 +74,9 @@ const Header = () => {
               className="flex items-center gap-2"
             >
               <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-cobalt-500 to-mint-400 flex items-center justify-center text-sm font-bold">
-                LG
+                OS
               </span>
-              <span className="hidden sm:inline">Leandro</span>
+              <span className="hidden sm:inline">Ongevag Studio</span>
             </motion.div>
           </Link>
 
