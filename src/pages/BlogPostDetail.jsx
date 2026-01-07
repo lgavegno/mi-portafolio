@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { FiArrowLeft, FiClock, FiCalendar, FiTag, FiShare2 } from 'react-icons/fi';
+import { FiArrowLeft, FiClock, FiCalendar, FiTag } from 'react-icons/fi';
 import { blogPosts } from '../features/blog/data/blogData';
+import ShareButton from '../components/ui/ShareButton';
 
 const BlogPostDetail = () => {
     const { slug } = useParams();
@@ -127,15 +128,11 @@ inline - flex items - center px - 3 py - 1 rounded - full text - sm font - mediu
                 {/* Footer del Post */}
                 <div className="mt-16 pt-8 border-t border-white/10 flex justify-between items-center">
                     <h4 className="text-white font-semibold">¿Te gustó este artículo?</h4>
-                    <button
-                        onClick={() => {
-                            navigator.clipboard.writeText(window.location.href);
-                            // Podría añadirse un toast aquí
-                        }}
-                        className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-white transition-colors"
-                    >
-                        <FiShare2 /> Compartir
-                    </button>
+                    <ShareButton
+                        url={window.location.href}
+                        title={post.title}
+                        description={post.description || `${post.title} - ${post.readTime} min de lectura`}
+                    />
                 </div>
 
                 <div className="mt-12 flex justify-center">
