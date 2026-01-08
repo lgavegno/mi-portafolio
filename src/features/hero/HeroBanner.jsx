@@ -16,7 +16,6 @@ import { useVibrate } from '../../hooks/useVibrate';
 import Button from '../../components/ui/Button';
 import ProjectCard from '../../components/ui/ProjectCard';
 import NeuralNetworkBackground from '../../components/NeuralNetworkBackground';
-import { BlogPreview } from '../blog';
 import { featuredProjects } from '../../data/projects';
 
 // Componente de texto animado letra por letra
@@ -285,17 +284,6 @@ const HeroBanner = () => {
             </div>
           </motion.div>
 
-          {/* Quick Blog Preview */}
-          <motion.div
-            variants={fadeInUp}
-            className="mt-16 max-w-md mx-auto"
-          >
-            <BlogPreview
-              limit={3}
-              variant="compact"
-              showHeader={true}
-            />
-          </motion.div>
         </motion.div>
       </div>
 

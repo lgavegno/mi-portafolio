@@ -6,7 +6,7 @@ import { fadeInUp, staggerContainer } from '../config/motionConfig';
 
 const About = () => {
     return (
-        <section className="py-20 relative bg-slate-950 overflow-hidden">
+        <section id="sobre-mi" className="py-20 relative bg-slate-950 overflow-hidden">
             {/* Background Elements for depth */}
             <div className="absolute top-0 right-0 w-1/3 h-full bg-cobalt-500/5 blur-3xl rounded-l-full pointer-events-none" />
 
@@ -47,18 +47,24 @@ const About = () => {
                                     Sobre <span className="text-mint-400">Mí</span>
                                 </h2>
 
-                                <div className="space-y-6 text-slate-300 text-lg leading-relaxed">
+                                <div className="space-y-6 text-slate-300 text-lg leading-relaxed whitespace-pre-line">
                                     <p>
-                                        ¡Hola! Soy un entusiasta de los datos y estudiante avanzado de la Tecnicatura en Programación en la UTN (FRRA).
-                                        Mi perfil combina más de 10 años de experiencia en gestión administrativa y operativa con una sólida formación técnica en SQL y Python.
+                                        ¡Hola! Soy estudiante avanzado de la Tecnicatura Universitaria en Programación en la UTN (FRRA)
+                                        con un interés creciente en el análisis de datos y la automatización de procesos.
+                                        Mi perfil combina experiencia en entornos administrativos y operativos
+                                        con una base técnica en programación, trabajando con SQL y Python para el procesamiento y análisis de datos,
+                                        y con conocimientos en Java y React aplicados al desarrollo de soluciones.
                                     </p>
                                     <p>
-                                        Mi enfoque está en transformar el caos de la información en estructuras claras.
-                                        Gracias a mi trayectoria en sectores como el automotriz y el agroindustrial, comprendo la importancia de la precisión en la carga y el control de datos operativos.
-                                        Hoy, integro esos conocimientos con el análisis de datos para automatizar tareas, explorar tendencias y aportar claridad a la toma de decisiones.
+                                        Mi enfoque está en organizar y preparar información para su análisis.
+                                        Gracias a mi trayectoria en sectores como el automotriz y el agroindustrial,
+                                        comprendo la importancia de la correcta carga, validación y control de datos operativos.
+                                        Hoy integro esa experiencia con el análisis de datos para automatizar tareas,
+                                        explorar tendencias básicas y generar información útil para la toma de decisiones.
                                     </p>
                                     <p>
-                                        Actualmente, estoy profundizando en Power BI para dar vida a los indicadores y sigo evolucionando mis habilidades técnicas para resolver problemas reales mediante el análisis inteligente.
+                                        Actualmente estoy profundizando en Power BI para la creación de visualizaciones claras y continúo desarrollando mis habilidades técnicas para resolver problemas reales
+                                        mediante el análisis y la exploración de datos.
                                     </p>
                                 </div>
                             </div>
@@ -97,7 +103,7 @@ const About = () => {
                                         <h3 className="text-white font-semibold">Trayectoria</h3>
                                     </div>
                                     <p className="text-sm text-slate-400 leading-relaxed">
-                                        +10 años en gestión operativa y reporting. Visión de negocio aplicada a datos.
+                                        +10 años de experiencia en gestión operativa y administrativa.
                                     </p>
                                 </motion.div>
                             </div>
