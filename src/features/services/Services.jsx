@@ -131,12 +131,12 @@ const Services = () => {
               return (
                 <div
                   key={index}
-                  className="carousel-card"
+                  className="carousel-card will-change-transform"
                   style={getCardStyle(index)}
                 >
-                  <div className="carousel-card-inner">
+                  <div className="carousel-card-inner" style={{ transformStyle: 'preserve-3d' }}>
                     {/* CARA FRONTAL */}
-                    <div className={`carousel-card-front bg-gradient-to-br ${service.gradient} border border-white/10`}>
+                    <div className={`carousel-card-front backface-hidden bg-gradient-to-br ${service.gradient} border border-white/5 backdrop-blur-md`}>
                       <div className="card-content">
                         <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-6">
                           <IconComponent className="w-8 h-8 text-white" />
@@ -148,7 +148,7 @@ const Services = () => {
                     </div>
 
                     {/* CARA TRASERA */}
-                    <div className="carousel-card-back bg-slate-900 border border-white/5">
+                    <div className="carousel-card-back backface-hidden bg-slate-900 border border-white/5">
                       <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center">
                         <IconComponent className="w-6 h-6 text-gray-600" />
                       </div>

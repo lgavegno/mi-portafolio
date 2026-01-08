@@ -11,6 +11,21 @@ Documentación técnica y registro de decisiones de arquitectura.
 
 ## Registro de Interacciones
 
+### ID: LOG-20260108-008
+**Fecha y Hora:** 2026-01-08 14:05:00
+**Prompt/Tema Principal:** Optimización Rendering 3D en Servicios
+**Consulta del Usuario:** > Corregir parpadeo y textos invertidos en tarjetas 3D (Mobile).
+
+**Resumen de la Interacción y Resultado:**
+- **Análisis Técnico:** El motor de renderizado móvil tenía problemas calculando la profundidad con transparencias complejas y falta de instrucciones de transformación.
+    1.  **Backface Visibility:** Se aplicó `backface-hidden` para evitar renderizar la cara trasera invertida y prevenir "z-fighting".
+    2.  **GPU Hints:** Se añadió `will-change-transform` para preparar el compositor del navegador.
+    3.  **Contexto 3D:** Se forzó `transform-style: preserve-3d` inline.
+    4.  **Optimización Visual:** Se redujo la opacidad del borde y se ajustó el blur para aligerar la carga de la GPU.
+- **Cambios Realizados:**
+  - `[PERF FIX] src/features/services/Services.jsx`
+- **Estado Final:** Tarjetas estables y optimizadas para móviles.
+
 ### ID: LOG-20260108-007
 **Fecha y Hora:** 2026-01-08 13:45:00
 **Prompt/Tema Principal:** Resolución de Errores de Build y Merge
