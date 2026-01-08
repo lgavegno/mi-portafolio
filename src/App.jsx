@@ -9,9 +9,11 @@ import BlogPostDetail from './pages/BlogPostDetail'
 
 // Lazy loading de secciones para code splitting
 const HeroBanner = lazy(() => import('./features/hero/HeroBanner'))
+const About = lazy(() => import('./components/About'))
 const Services = lazy(() => import('./features/services/Services'))
 const Works = lazy(() => import('./features/works/Works'))
 const Contact = lazy(() => import('./features/contact/Contact'))
+const SkillsGrid = lazy(() => import('./components/SkillsGrid'))
 
 // Wrapper con animación para cada sección
 const AnimatedSection = ({ children, id }) => (
@@ -30,6 +32,14 @@ const HomeSections = () => (
   <>
     <AnimatedSection id="hero">
       <HeroBanner />
+    </AnimatedSection>
+
+    <AnimatedSection id="about">
+      <About />
+    </AnimatedSection>
+
+    <AnimatedSection id="skills">
+      <SkillsGrid />
     </AnimatedSection>
 
     <AnimatedSection id="servicios">
