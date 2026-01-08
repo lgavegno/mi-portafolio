@@ -9,6 +9,7 @@ import BlogPostDetail from './pages/BlogPostDetail'
 
 // Lazy loading de secciones para code splitting
 const HeroBanner = lazy(() => import('./features/hero/HeroBanner'))
+const SkillsGrid = lazy(() => import('./components/SkillsGrid'))
 const Services = lazy(() => import('./features/services/Services'))
 const Works = lazy(() => import('./features/works/Works'))
 const Contact = lazy(() => import('./features/contact/Contact'))
@@ -30,6 +31,10 @@ const HomeSections = () => (
   <>
     <AnimatedSection id="hero">
       <HeroBanner />
+    </AnimatedSection>
+
+    <AnimatedSection id="skills">
+      <SkillsGrid className="py-20" />
     </AnimatedSection>
 
     <AnimatedSection id="servicios">
