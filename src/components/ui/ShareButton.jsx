@@ -78,7 +78,7 @@ const ShareButton = ({
                     setIsOpen(false);
                 } catch (err) {
                     // Usuario canceló o error
-                    console.log('Error al compartir:', err);
+
                 }
             }
         }] : []),

@@ -3,6 +3,8 @@ import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Header, Footer } from '../components'
+import PageTransition from '../components/ui/PageTransition'
+import BackToTop from '../components/ui/BackToTop'
 
 const MainLayout = ({ children }) => {
   const location = useLocation();
@@ -28,17 +30,15 @@ const MainLayout = ({ children }) => {
   }, [location]);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-gray-100 overflow-x-hidden">
+    <div className="min-h-screen bg-slate-950 text-gray-100 overflow-x-hidden relative">
       <Header />
-      <motion.main
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
-        className="w-full max-w-[100vw] overflow-x-hidden pt-16 md:pt-20"
-      >
-        {children}
-      </motion.main>
+      <main className="w-full max-w-[100vw] overflow-x-hidden pt-16 md:pt-20">
+        <PageTransition>
+          {children}
+        </PageTransition>
+      </main>
       <Footer />
+      <BackToTop />
     </div>
   )
 }

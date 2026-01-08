@@ -4,8 +4,8 @@
 export const featuredProjects = [
   {
     id: 'sistema-reservas',
-    title: 'Sistema de Gestión de Citas',
-    description: 'Plataforma para gestión de citas con funcionalidades básicas de programación y seguimiento de clientes.',
+    title: 'Sistema de Gestión de Turnos',
+    description: 'Plataforma para gestión de turnos con funcionalidades básicas de programación y seguimiento de clientes.',
     stack: ['React', 'Node.js', 'PostgreSQL'],
     progress: 75,
     progressLabel: 'En desarrollo: Integración de notificaciones',

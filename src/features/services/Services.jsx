@@ -14,28 +14,34 @@ const Services = () => {
 
   const services = [
     {
-      title: "Procesamiento de Datos",
-      description: "Transformación y limpieza de datos para su análisis. Extraigo información relevante de fuentes diversas y la preparo para su interpretación mediante Python y SQL.",
+      title: "Limpieza de Datos",
+      description: "Preparo y estructuro datasets crudos. Utilizo SQL y Python para eliminar inconsistencias y dejar los datos listos para su exploración.",
       icon: FiCode,
       gradient: "from-cobalt-500 to-cobalt-600"
     },
     {
-      title: "Automatización de Procesos",
-      description: "Identificación y automatización de tareas repetitivas. Desarrollo scripts en Python que optimizan flujos de trabajo, reduciendo tiempos de ejecución y minimizando errores humanos.",
+      title: "Automatización Simple",
+      description: "Optimización de flujos de trabajo. Desarrollo scripts en Python para automatizar tareas repetitivas y minimizar errores manuales.",
       icon: FiCpu,
       gradient: "from-mint-400 to-mint-500"
     },
     {
-      title: "Análisis de Negocios",
-      description: "Interpretación de métricas e indicadores clave. Analizo datos operacionales para identificar tendencias, oportunidades de mejora y respaldar decisiones estratégicas.",
+      title: "Análisis de Tendencias",
+      description: "Identificación de patrones clave. Analizo datos históricos para reportar métricas operativas que apoyen la toma de decisiones diarias.",
       icon: FiTarget,
       gradient: "from-amber-400 to-orange-500"
     },
     {
-      title: "Validación de Hipótesis",
-      description: "Desarrollo de pruebas conceptuales para evaluar la viabilidad de iniciativas. Implemento análisis rápidos que permiten tomar decisiones basadas en evidencia con mínima inversión de recursos.",
+      title: "Visualización de Datos",
+      description: "Comunicación visual de hallazgos. Estoy profundizando en Power BI para crear tableros claros que faciliten la lectura de indicadores.",
       icon: FiTool,
       gradient: "from-purple-400 to-purple-600"
+    },
+    {
+      title: "Análisis Exploratorio",
+      description: "Revisión inicial de información. Examino datasets nuevos para detectar patrones básicos, posibles inconsistencias y comprender su calidad antes de análisis más profundos.",
+      icon: FiLayout,
+      gradient: "from-blue-400 to-indigo-500"
     }
   ];
 
@@ -46,7 +52,7 @@ const Services = () => {
         setCurrentIndex(prev => (prev + 1) % services.length);
       }, 3000);
     }
-    
+
     return () => {
       if (autoRotateInterval.current) {
         clearInterval(autoRotateInterval.current);
@@ -98,24 +104,24 @@ const Services = () => {
           viewport={{ once: true, margin: "-100px" }}
           className="text-center mb-16"
         >
-          <motion.span 
+          <motion.span
             variants={fadeInUp}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cobalt-500/10 border border-cobalt-400/20 text-cobalt-300 text-sm font-medium mb-6"
           >
             <FiCode className="w-4 h-4" />
             Servicios
           </motion.span>
-          <motion.h2 
+          <motion.h2
             variants={fadeInUp}
             className="text-4xl sm:text-5xl font-bold text-white"
           >
-            Lo que puedo hacer por ti
+            ¿En qué puedo ayudarte?
           </motion.h2>
         </motion.div>
-        
+
         {/* Carousel */}
-        <div 
-          className="carousel-container" 
+        <div
+          className="carousel-container"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -123,7 +129,7 @@ const Services = () => {
             {services.map((service, index) => {
               const IconComponent = service.icon;
               return (
-                <div 
+                <div
                   key={index}
                   className="carousel-card"
                   style={getCardStyle(index)}
@@ -137,9 +143,7 @@ const Services = () => {
                         </div>
                         <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 text-white">{service.title}</h3>
                         <p className="text-white/80 md:text-lg mb-6">{service.description}</p>
-                        <button className="px-6 py-2.5 bg-white/20 backdrop-blur-sm text-white font-semibold rounded-full hover:bg-white/30 active:bg-white/40 active:scale-95 transition-all border border-white/20 touch-manipulation select-none">
-                          Saber más
-                        </button>
+
                       </div>
                     </div>
 
@@ -154,9 +158,9 @@ const Services = () => {
               );
             })}
           </div>
-          
+
           {/* Navigation buttons */}
-          <motion.button 
+          <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             className="carousel-nav prev glass touch-manipulation select-none"
@@ -165,7 +169,7 @@ const Services = () => {
           >
             <FiChevronLeft className="w-6 h-6" />
           </motion.button>
-          <motion.button 
+          <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             className="carousel-nav next glass touch-manipulation select-none"
@@ -186,8 +190,8 @@ const Services = () => {
               className={`
                 w-2 h-2 rounded-full transition-all duration-300
                 touch-manipulation select-none
-                ${index === currentIndex 
-                  ? 'w-8 bg-cobalt-400' 
+                ${index === currentIndex
+                  ? 'w-8 bg-cobalt-400'
                   : 'bg-white/20 hover:bg-white/40 active:bg-white/60'
                 }
               `}

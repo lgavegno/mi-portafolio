@@ -7,8 +7,10 @@ import { useVibrate } from '../hooks/useVibrate';
 
 const navLinks = [
   { label: 'Inicio', id: 'hero' },
+  { label: 'Sobre Mí', id: 'sobre-mi' },
   { label: 'Proyectos', id: 'proyectos' },
   { label: 'Servicios', id: 'servicios' },
+  { label: 'Blog', id: 'blog' },
   { label: 'Contacto', id: 'contacto' },
 ];
 

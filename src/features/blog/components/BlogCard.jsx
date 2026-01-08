@@ -24,7 +24,7 @@ const BlogCard = ({
   const handleClick = () => {
     vibrate();
     // Navegación al artículo (placeholder)
-    console.log(`Navigate to: /blog/${slug}`);
+
   };
 
   // Formatear fecha

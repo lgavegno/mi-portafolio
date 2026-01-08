@@ -4,18 +4,21 @@ import {
     FaReact,
     FaPython,
     FaJava,
-    FaDatabase,
+    FaWindows,
     FaChartBar
 } from 'react-icons/fa';
+import { DiSqllite } from 'react-icons/di';
 import { fadeInUp, staggerContainer, springConfig } from '../config/motionConfig';
 
 // Lista de tecnologías con sus iconos y colores
+// Orden solicitado: React, SQL, Java, Python, PowerBI, 365
 const skills = [
-    { name: 'SQL', icon: FaDatabase, color: 'from-blue-500 to-indigo-600' },
+    { name: 'React', icon: FaReact, color: 'from-cyan-400 to-blue-500' },
+    { name: 'SQL', icon: DiSqllite, color: 'from-blue-500 to-indigo-600' },
     { name: 'Java', icon: FaJava, color: 'from-red-500 to-orange-600' },
     { name: 'Python', icon: FaPython, color: 'from-blue-400 to-yellow-500' },
-    { name: 'React', icon: FaReact, color: 'from-cyan-400 to-blue-500' },
     { name: 'Power BI', icon: FaChartBar, color: 'from-yellow-500 to-orange-500' },
+    { name: 'Microsoft 365', icon: FaWindows, color: 'from-blue-400 to-cyan-300' },
 ];
 
 // Componente de tarjeta individual

@@ -69,7 +69,7 @@ const Contact = () => {
     // Protección: PreventDefault seguro
     if (e && e.preventDefault) e.preventDefault();
 
-    console.log("Iniciando envío con formData:", formData);
+
 
     // IMPORTANT: Validate FIRST (before any state changes that could break Safari user activation)
     if (!validateForm()) {
@@ -82,10 +82,11 @@ const Contact = () => {
     setStatus(FORM_STATUS.SENDING);
     setErrorMessage('');
 
-    console.log("Credenciales EmailJS (Check):", {
-      serviceId: !!import.meta.env.VITE_EMAILJS_SERVICE_ID,
-      templateId: !!import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-      publicKey: !!import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+
+    console.log("EmailJS Status:", {
+      service: Boolean(import.meta.env.VITE_EMAILJS_SERVICE_ID),
+      template: Boolean(import.meta.env.VITE_EMAILJS_TEMPLATE_ID),
+      public: Boolean(import.meta.env.VITE_EMAILJS_PUBLIC_KEY)
     });
 
     try {
@@ -102,7 +103,7 @@ const Contact = () => {
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
 
-      console.log("Respuesta EmailJS:", res);
+
 
       // Éxito
       setStatus(FORM_STATUS.SUCCESS);
