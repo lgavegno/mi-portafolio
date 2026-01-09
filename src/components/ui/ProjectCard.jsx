@@ -67,6 +67,7 @@ const ProjectCard = ({
         active:bg-white/8
         transition-colors duration-300
         touch-manipulation select-none
+        h-full flex flex-col
         z-30
         ${className}
       `}
@@ -95,7 +96,7 @@ const ProjectCard = ({
       )}
 
       {/* Contenido */}
-      <div className="p-6 relative z-10">
+      <div className="p-6 relative z-10 flex-1 flex flex-col">
         {/* Badge de estado */}
         <span className={`
           inline-flex items-center gap-1.5
@@ -114,7 +115,7 @@ const ProjectCard = ({
         </h3>
 
         {/* Descripción */}
-        <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-2">
+        <p className="text-gray-400 text-sm leading-relaxed mb-4">
           {description}
         </p>
 

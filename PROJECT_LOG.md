@@ -11,6 +11,24 @@ Documentación técnica y registro de decisiones de arquitectura.
 
 ## Registro de Interacciones
 
+### ID: LOG-20260109-013
+**Fecha y Hora:** 2026-01-09 09:45:00
+**Autor:** Gemini AI (IA Collaborator)
+**Prompt/Tema Principal:** Normalización del Grid de Proyectos y Eliminación de Truncado de Texto
+**Consulta del Usuario:** > Eliminar truncado de texto en proyectos y optimizar grid para simetría visual perfecta.
+
+**Resumen de la Interacción y Resultado:**
+- **Análisis Técnico:** La sección de Proyectos presentaba dos problemas críticos de UX: (1) descripciones truncadas con `line-clamp-2` que ocultaban información valiosa, y (2) grid de 3 columnas (`lg:grid-cols-3`) que con 4 proyectos dejaba una tarjeta "huérfana" en la última fila, rompiendo la simetría visual.
+    1.  **Eliminación de Truncado (ProjectCard.jsx línea 117):** Se removió la clase `line-clamp-2` de las descripciones para mostrar el texto completo sin puntos suspensivos "...", mejorando la accesibilidad y transparencia del contenido.
+    2.  **Grid Simétrico 2x2 (Works.jsx línea 58):** Se cambió de `lg:grid-cols-3` a `md:grid-cols-2` para crear un layout 2x2 perfecto con los 4 proyectos actuales (3 de `allProjects` + 1 adicional), eliminando tarjetas huérfanas.
+    3.  **Altura Consistente (ProjectCard.jsx líneas 61-72, 97-98):** Se añadió `h-full flex flex-col` al contenedor principal y `flex-1 flex flex-col` al contenido para que todas las tarjetas de la misma fila tengan exactamente la misma altura, independientemente de la longitud de la descripción.
+    4.  **Responsive Mobile:** Se mantuvo `grid-cols-1` en móvil para óptima legibilidad en pantallas pequeñas.
+- **Cambios Realizados:**
+  - `[MODIFY] src/components/ui/ProjectCard.jsx` (Eliminación de line-clamp-2, añadido h-full y flex layout)
+  - `[MODIFY] src/features/works/Works.jsx` (Grid 2x2 simétrico)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Grid perfectamente simétrico 2x2. Texto completo visible. Tarjetas con altura uniforme. Cero elementos huérfanos.
+
 ### ID: LOG-20260109-012
 **Fecha y Hora:** 2026-01-09 09:34:00
 **Autor:** Gemini AI (IA Collaborator)

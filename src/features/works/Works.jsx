@@ -53,9 +53,9 @@ const Works = () => {
           </motion.div>
 
           {/* Projects Grid */}
-          <motion.div 
+          <motion.div
             variants={fadeInUp}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
           >
             {displayProjects.map((project, index) => (
               <ProjectCard
@@ -74,7 +74,7 @@ const Works = () => {
           </motion.div>
 
           {/* CTA */}
-          <motion.div 
+          <motion.div
             variants={fadeInUp}
             className="text-center mt-16"
           >
