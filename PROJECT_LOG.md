@@ -11,6 +11,23 @@ Documentación técnica y registro de decisiones de arquitectura.
 
 ## Registro de Interacciones
 
+### ID: LOG-20260109-012
+**Fecha y Hora:** 2026-01-09 09:34:00
+**Autor:** Gemini AI (IA Collaborator)
+**Prompt/Tema Principal:** Eliminación de Bloques de Código Disruptivos en Blog
+**Consulta del Usuario:** > Eliminar snippets de código que causan scroll horizontal y sustituirlos por formato de ficha técnica.
+
+**Resumen de la Interacción y Resultado:**
+- **Análisis Técnico:** Los bloques `<pre><code>` en el contenido del blog causaban scroll horizontal en dispositivos móviles, rompiendo la experiencia de lectura y el layout responsive. A pesar de tener `overflow-x-auto`, estos bloques forzaban un ancho mayor al viewport en pantallas pequeñas.
+    1.  **Snippet Python (blogData.js líneas 32-52):** Bloque de código de análisis de datos con pandas/numpy reemplazado por una ficha técnica estilizada que lista las funciones clave (`pd.read_csv()`, `df.groupby()`, `.agg()`, `np.std`, `.reset_index()`) con descripciones concisas.
+    2.  **Snippet JavaScript (blogData.js líneas 114-125):** Objeto de métricas de performance web reemplazado por una lista visual con código de colores que muestra las causas de lentitud sin necesidad de scroll horizontal.
+    3.  **Formato de Ficha Técnica:** Se implementó un diseño con `bg-slate-50 dark:bg-slate-900`, bordes redondeados y espaciado generoso que mantiene la información técnica sin comprometer el layout.
+    4.  **Preservación de Contenido:** Se mantuvo el 100% del valor educativo, transformando código ejecutable en especificaciones técnicas legibles y mobile-friendly.
+- **Cambios Realizados:**
+  - `[MODIFY] src/features/blog/data/blogData.js` (Eliminación de 2 bloques de código y reemplazo por fichas técnicas)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Contenido 100% fluido. Ningún elemento fuerza ancho mayor al viewport. Layout central perfecto en móviles.
+
 ### ID: LOG-20260109-011
 **Fecha y Hora:** 2026-01-09 09:23:00
 **Autor:** Gemini AI (IA Collaborator)

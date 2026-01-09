@@ -30,26 +30,19 @@ export const blogPosts = [
       </ul>
 
       <h3>Implementación Práctica</h3>
-      <p>Veamos cómo podríamos analizar un dataset de ventas para detectar productos de bajo rendimiento pero alta volatilidad:</p>
+      <p>Para analizar un dataset de ventas y detectar productos de bajo rendimiento pero alta volatilidad, utilizamos las siguientes funciones clave:</p>
 
-      <pre><code class="language-python">
-import pandas as pd
-import numpy as np
-
-# Cargar datos
-df = pd.read_csv('ventas_q4.csv')
-
-# Análisis de cohortes por Categoría
-reporte = df.groupby('categoria').agg({
-    'ingresos': ['sum', 'mean'],
-    'margen': 'mean',
-    'cantidad': np.std # Detectar volatilidad en pedidos
-}).reset_index()
-
-# Filtrar oportunidades
-kpi_alarma = reporte[reporte['margen']['mean'] < 0.15]
-print(kpi_alarma)
-      </code></pre>
+      <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-6 my-6">
+        <h4 class="font-bold text-slate-900 dark:text-white mb-4">🔧 Funciones Esenciales</h4>
+        <ul class="space-y-3 text-slate-700 dark:text-slate-300">
+          <li><strong class="text-primary">pd.read_csv()</strong> — Carga datos desde archivos CSV</li>
+          <li><strong class="text-primary">df.groupby()</strong> — Agrupa datos por categoría para análisis de cohortes</li>
+          <li><strong class="text-primary">.agg()</strong> — Aplica múltiples funciones de agregación (sum, mean, std)</li>
+          <li><strong class="text-primary">np.std</strong> — Calcula desviación estándar para detectar volatilidad</li>
+          <li><strong class="text-primary">.reset_index()</strong> — Convierte el índice agrupado en columnas normales</li>
+        </ul>
+        <p class="mt-4 text-sm text-slate-600 dark:text-slate-400 italic">💡 Tip: Filtra productos con margen < 15% para identificar oportunidades de optimización</p>
+      </div>
 
       <h2>El Ciclo de Vida del Análisis</h2>
       <p>Un flujo de trabajo profesional no es lineal, pero sigue pasos rigurosos para asegurar la integridad de los insights:</p>
@@ -112,17 +105,18 @@ print(kpi_alarma)
       <p>Un Diagrama de Pareto combina un gráfico de barras (causas individuales ordenadas por frecuencia) con una línea acumulativa (porcentaje total). Úsalo para priorizar qué <em>bugs</em> arreglar primero o qué endpoints optimizar para obtener el mayor impacto con el menor esfuerzo.</p>
 
       <h3>Ejemplo en Optimización Web</h3>
-      <p>Imagina que analizas los tiempos de carga de tu sitio. Probablemente descubras que:</p>
-      <pre><code class="language-js">
-// Causas de lentitud (segundos acumulados en carga)
-const metricas = {
-  "Terceros (Ads/Analytics)": 4.5, // El 80% del problema
-  "Imágenes sin optimizar": 0.8,
-  "Ejecución JS principal": 0.3,
-  "Estilos CSS": 0.1
-};
-      </code></pre>
-      <p>Optimizar el JS principal te dará mejoras marginales. Atacar los scripts de terceros resolverá la mayor parte del problema de rendimiento.</p>
+      <p>Al analizar los tiempos de carga de un sitio, típicamente descubrimos que el 80% del problema proviene del 20% de las causas:</p>
+      
+      <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-6 my-6">
+        <h4 class="font-bold text-slate-900 dark:text-white mb-4">⏱️ Causas de Lentitud (Segundos Acumulados)</h4>
+        <ul class="space-y-2 text-slate-700 dark:text-slate-300">
+          <li><strong class="text-red-400">Terceros (Ads/Analytics):</strong> 4.5s — <span class="text-sm italic">El 80% del problema</span></li>
+          <li><strong class="text-amber-400">Imágenes sin optimizar:</strong> 0.8s</li>
+          <li><strong class="text-green-400">Ejecución JS principal:</strong> 0.3s</li>
+          <li><strong class="text-blue-400">Estilos CSS:</strong> 0.1s</li>
+        </ul>
+        <p class="mt-4 text-sm text-slate-600 dark:text-slate-400 italic">💡 Conclusión: Optimizar el JS principal te dará mejoras marginales. Atacar los scripts de terceros resolverá la mayor parte del problema.</p>
+      </div>
 
       <h2>¿Barras o Líneas?</h2>
       <p>Una confusión común. La regla es simple:</p>
