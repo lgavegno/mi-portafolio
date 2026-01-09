@@ -17,7 +17,7 @@ export const blogPosts = [
       <h2>Introducción al Análisis de Datos Moderno</h2>
       <p>En la era del Big Data, <strong>Python</strong> se ha consolidado como el lenguaje franco de la ciencia de datos. Su simplicidad sintáctica combinada con la potencia bruta de librerías optimizadas en C y Fortran lo hacen imbatible. Para un analista de datos moderno, no es solo un lenguaje, es una navaja suiza capaz de todo: desde la limpieza de terabytes de logs hasta la automatización de reportes ejecutivos.</p>
       
-      <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=2676&auto=format&fit=crop" alt="Data Analytics Dashboard" class="w-full h-64 object-cover rounded-xl my-8 shadow-lg" />
+      <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=2676&auto=format&fit=crop" alt="Data Analytics Dashboard" class="w-full h-64 object-cover rounded-xl my-8 shadow-lg" loading="lazy" decoding="async" />
 
       <p>En este artículo, nos centraremos en el ecosistema <strong>Pandas</strong> y <strong>Numpy</strong>, las piedras angulares de cualquier pipeline de datos, y cómo utilizarlos para extraer valor real del caos de información.</p>
 
@@ -94,7 +94,7 @@ print(kpi_alarma)
       <h2>Visualización Efectiva de Datos</h2>
       <p>El cerebro humano procesa imágenes 60,000 veces más rápido que texto. Una visualización vale más que mil tablas, pero elegir el gráfico correcto es la diferencia entre confundir a tu audiencia con "ruido visual" o persuadirla con datos claros. En performance web y análisis de sistemas, la visualización es nuestra principal herramienta de diagnóstico.</p>
 
-      <img src="https://images.unsplash.com/photo-1543286386-713df548e9cc?q=80&w=2670&auto=format&fit=crop" alt="Analysis Charts on Tablet" class="w-full h-64 object-cover rounded-xl my-8 shadow-lg" />
+      <img src="https://images.unsplash.com/photo-1543286386-713df548e9cc?q=80&w=2670&auto=format&fit=crop" alt="Analysis Charts on Tablet" class="w-full h-64 object-cover rounded-xl my-8 shadow-lg" loading="lazy" decoding="async" />
 
       <h2>Herramientas de Diagnóstico Visual</h2>
       <p>Existen cientos de tipos de gráficos, pero estos tres son los caballos de batalla del análisis estadístico:</p>
@@ -160,7 +160,7 @@ const metricas = {
       
       <p><strong>React Native</strong>, por el contrario, no usa HTML ni CSS. Utiliza un hilo de JavaScript que se comunica a través de un "puente" (Bridge) —o la nueva arquitectura JSI (JavaScript Interface)— para invocar componentes nativos reales de iOS (UIKit/SwiftUI) y Android (Android Views/Jetpack Compose). El resultado es una app que se siente, se ve y rinde como una nativa.</p>
 
-      <img src="https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=2670&auto=format&fit=crop" alt="Coding React Component" class="w-full h-64 object-cover rounded-xl my-8 shadow-lg" />
+      <img src="https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=2670&auto=format&fit=crop" alt="Coding React Component" class="w-full h-64 object-cover rounded-xl my-8 shadow-lg" loading="lazy" decoding="async" />
 
       <h2>Tabla Comparativa Técnica</h2>
       <div class="table-wrapper">

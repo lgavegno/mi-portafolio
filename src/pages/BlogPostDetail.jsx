@@ -89,9 +89,15 @@ const BlogPostDetail = () => {
 
             {/* Hero Image */}
             <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-                <div className="relative aspect-video lg:aspect-[21/9] rounded-3xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-800/50">
+                <div className="relative aspect-video lg:aspect-[21/9] rounded-3xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-800/50 min-h-[200px] bg-slate-800">
                     {post.image ? (
-                        <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+                        <img
+                            src={post.image}
+                            alt={post.title}
+                            className="w-full h-full object-cover"
+                            loading="eager"
+                            decoding="async"
+                        />
                     ) : (
                         <div className="w-full h-full bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
                             <span className="text-6xl">✨</span>
@@ -185,9 +191,15 @@ const BlogPostDetail = () => {
                         <div className="space-y-6">
                             {relatedPosts.map(p => (
                                 <Link key={p.id} to={`/blog/${p.slug}`} className="group flex gap-4">
-                                    <div className="w-20 h-20 rounded-lg bg-slate-200 dark:bg-slate-800 overflow-hidden flex-shrink-0">
+                                    <div className="w-20 h-20 min-h-[80px] rounded-lg bg-slate-200 dark:bg-slate-800 overflow-hidden flex-shrink-0">
                                         {p.image ? (
-                                            <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+                                            <img
+                                                src={p.image}
+                                                alt={p.title}
+                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                                                loading="lazy"
+                                                decoding="async"
+                                            />
                                         ) : (
                                             <div className="w-full h-full flex items-center justify-center text-xl">📄</div>
                                         )}

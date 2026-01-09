@@ -11,6 +11,23 @@ Documentación técnica y registro de decisiones de arquitectura.
 
 ## Registro de Interacciones
 
+### ID: LOG-20260109-011
+**Fecha y Hora:** 2026-01-09 09:23:00
+**Autor:** Gemini AI (IA Collaborator)
+**Prompt/Tema Principal:** Corrección de Imágenes Rotas en Producción Móvil
+**Consulta del Usuario:** > Corregir imágenes del blog que aparecen rotas en Vercel en dispositivos móviles.
+
+**Resumen de la Interacción y Resultado:**
+- **Análisis Técnico:** Se identificaron problemas de carga de imágenes en dispositivos móviles en el entorno de producción de Vercel. Las imágenes de Unsplash (URLs absolutas) no tenían atributos de carga optimizados y los contenedores colapsaban durante la carga, causando layout shift y percepción de imágenes rotas.
+    1.  **Hero Image Container:** Se añadió `min-h-[200px]` y `bg-slate-800` al contenedor principal de la imagen hero para prevenir colapso visual durante la carga y proporcionar feedback visual inmediato.
+    2.  **Loading Attributes:** Se implementó `loading="eager"` en la imagen hero (above-the-fold) y `loading="lazy"` en thumbnails del sidebar para optimizar el rendimiento. Se añadió `decoding="async"` para evitar bloqueo del hilo principal.
+    3.  **Sidebar Thumbnails:** Se añadió `min-h-[80px]` a los contenedores de miniaturas recomendadas para mantener la estabilidad del layout.
+    4.  **Rutas de Imágenes:** Se verificó que todas las URLs de imágenes en `blogData.js` sean absolutas (Unsplash), cumpliendo con los requisitos de producción en Vercel.
+- **Cambios Realizados:**
+  - `[MODIFY] src/pages/BlogPostDetail.jsx` (Optimización de contenedores de imagen y atributos de carga)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Imágenes optimizadas para carga en móviles. Layout estable sin colapso. Listo para deployment en Vercel.
+
 ### ID: LOG-20260109-009
 **Fecha y Hora:** 2026-01-09 08:38:00
 **Prompt/Tema Principal:** Ajuste Global de Espaciado Vertical entre Secciones
