@@ -11,6 +11,37 @@ Documentación técnica y registro de decisiones de arquitectura.
 
 ## Registro de Interacciones
 
+### ID: LOG-20260109-009
+**Fecha y Hora:** 2026-01-09 08:38:00
+**Prompt/Tema Principal:** Ajuste Global de Espaciado Vertical entre Secciones
+**Consulta del Usuario:** > Mejorar jerarquía visual y evitar solapamiento entre secciones Skills y Services.
+
+**Resumen de la Interacción y Resultado:**
+- **Análisis Técnico:** Se identificó falta de "aire" (breathing room) entre secciones consecutivas, causando una sensación de diseño apretado. Se implementó un sistema de padding vertical progresivo basado en breakpoints:
+    1.  **SkillsGrid:** Se añadió `py-24 md:py-32 lg:py-40` (96px → 128px → 160px) para crear transición visual entre el fondo oscuro de Skills y el gradiente de Services.
+    2.  **Services:** Se incrementó de `py-24` a `py-32 md:py-40 lg:py-48` (128px → 160px → 192px) para asegurar espacio superior generoso.
+    3.  **Principio de Diseño:** Se aplicó la regla de "proporción áurea" de espaciado: cada sección debe tener suficiente padding para existir como una unidad visual independiente sin colisionar con sus vecinas.
+- **Cambios Realizados:**
+  - `[MODIFY] src/components/SkillsGrid.jsx` (Padding vertical responsive)
+  - `[MODIFY] src/features/services/Services.jsx` (Padding vertical aumentado)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Jerarquía visual mejorada. Transiciones suaves entre secciones en todas las resoluciones.
+
+### ID: LOG-20260109-010
+**Fecha y Hora:** 2026-01-09 08:44:00
+**Prompt/Tema Principal:** Optimización de Bloques de Código en Responsive
+**Consulta del Usuario:** > Corregir desbordamiento de bloques de código en móviles que rompe el layout.
+
+**Resumen de la Interacción y Resultado:**
+- **Análisis Técnico:** Los bloques `<pre><code>` en el contenido del blog se desbordaban horizontalmente en dispositivos móviles, rompiendo el layout y haciendo el código ilegible. Se implementaron tres optimizaciones clave:
+    1.  **Fuente Responsive:** Se añadió `prose-pre:text-xs md:prose-pre:text-sm` para reducir el tamaño de fuente de código a 12px en móvil y 14px en tablet/desktop, permitiendo que quepa más contenido sin scroll.
+    2.  **Scroll Horizontal:** Se habilitó `prose-pre:overflow-x-auto` para permitir desplazamiento lateral dentro del bloque de código sin afectar el ancho de la página.
+    3.  **Padding Interno:** Se aseguró `prose-pre:p-4` para que el código tenga espacio interno y no toque los bordes del contenedor oscuro.
+- **Cambios Realizados:**
+  - `[MODIFY] src/pages/BlogPostDetail.jsx` (Estilos de prose para bloques de código)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Bloques de código optimizados para todas las resoluciones. Layout estable en móviles.
+
 ### ID: LOG-20260108-008
 **Fecha y Hora:** 2026-01-08 14:05:00
 **Prompt/Tema Principal:** Optimización Rendering 3D en Servicios

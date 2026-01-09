@@ -98,7 +98,7 @@ const SkillCard = ({ skill, index }) => {
 // Componente principal
 const SkillsGrid = ({ className = '' }) => {
     return (
-        <section className={`w-full relative overflow-hidden ${className}`}>
+        <section className={`w-full relative overflow-hidden py-24 md:py-32 lg:py-40 ${className}`}>
             {/* Background effects */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-1/4 -left-32 w-96 h-96 bg-cobalt-500/10 rounded-full filter blur-[128px]" />
@@ -137,9 +137,10 @@ const SkillsGrid = ({ className = '' }) => {
                     <motion.div
                         variants={fadeInUp}
                         className="
-              grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5
-              gap-4 sm:gap-6
-              max-w-6xl mx-auto
+              grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6
+              gap-6 md:gap-6 lg:gap-4
+              max-w-7xl mx-auto
+              px-2 sm:px-0
             "
                     >
                         {skills.map((skill, index) => (

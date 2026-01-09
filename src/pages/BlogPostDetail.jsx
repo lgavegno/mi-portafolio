@@ -45,8 +45,8 @@ const BlogPostDetail = () => {
                     Volver al Blog
                 </Link>
 
-                <header className="max-w-4xl">
-                    <div className="flex flex-wrap gap-4 items-center mb-6">
+                <header className="max-w-4xl mx-auto md:mx-0 text-center md:text-left">
+                    <div className="flex flex-wrap gap-4 items-center justify-center md:justify-start mb-6">
                         <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium border backdrop-blur-sm ${categoryColor}`}>
                             {post.category}
                         </span>
@@ -58,12 +58,12 @@ const BlogPostDetail = () => {
                         </span>
                     </div>
 
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white leading-tight mb-8">
+                    <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold text-slate-900 dark:text-white leading-tight mb-8">
                         {post.title}
                     </h1>
 
                     {/* Autor Gemini AI */}
-                    <div className="flex items-center gap-4 border-t border-b border-slate-200 dark:border-slate-800 py-6">
+                    <div className="flex flex-col md:flex-row items-center gap-4 border-t border-b border-slate-200 dark:border-slate-800 py-6">
                         <div className="relative">
                             <img
                                 src="/gemini-avatar.png"
@@ -74,8 +74,8 @@ const BlogPostDetail = () => {
                                 AI
                             </div>
                         </div>
-                        <div>
-                            <h4 className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <div className="text-center md:text-left">
+                            <h4 className="font-bold text-slate-900 dark:text-white flex items-center justify-center md:justify-start gap-2">
                                 Gemini AI
                                 <span className="px-2 py-0.5 rounded text-[10px] bg-gradient-to-r from-blue-500 to-green-400 text-white font-bold uppercase tracking-wider">
                                     IA Collaborator
@@ -89,7 +89,7 @@ const BlogPostDetail = () => {
 
             {/* Hero Image */}
             <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-                <div className="relative aspect-video lg:aspect-[21/9] rounded-2xl overflow-hidden shadow-2xl">
+                <div className="relative aspect-video lg:aspect-[21/9] rounded-3xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-800/50">
                     {post.image ? (
                         <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
                     ) : (
@@ -120,12 +120,14 @@ const BlogPostDetail = () => {
                 <div className="lg:col-span-8">
                     <div
                         className="
-                            prose prose-lg prose-slate dark:prose-invert max-w-none
-                            prose-headings:font-bold prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
-                            prose-p:text-slate-600 dark:prose-p:text-slate-300 prose-p:leading-relaxed
+                            prose prose-xl prose-slate dark:prose-invert max-w-4xl mx-auto
+                            prose-headings:font-bold prose-h1:text-4xl lg:prose-h1:text-5xl prose-h2:text-2xl lg:prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-8
+                            prose-p:text-xl lg:prose-p:text-3xl prose-p:leading-loose prose-p:text-slate-600 dark:prose-p:text-slate-300
                             prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-                            prose-li:text-slate-600 dark:prose-li:text-slate-300
+                            prose-li:text-slate-600 dark:prose-li:text-slate-300 lg:prose-li:text-2xl
+                            prose-pre:text-xs md:prose-pre:text-sm prose-pre:overflow-x-auto prose-pre:p-4
                             [&>pre]:bg-slate-900 [&>pre]:border [&>pre]:border-slate-800 [&>pre]:shadow-lg
+                            [&>img]:rounded-xl [&>img]:shadow-lg
                         "
                         dangerouslySetInnerHTML={{ __html: post.content }}
                     />
@@ -158,7 +160,7 @@ const BlogPostDetail = () => {
                 </div>
 
                 {/* 3. Right Widgets */}
-                <aside className="lg:col-span-3 space-y-8">
+                <aside className="lg:col-span-3 space-y-8 text-center md:text-left">
                     {/* Newsletter Widget */}
                     <div className="p-6 rounded-2xl bg-slate-900 text-white shadow-xl">
                         <h3 className="font-bold text-lg mb-2">Newsletter Semanal</h3>
