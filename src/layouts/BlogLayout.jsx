@@ -62,7 +62,7 @@ const BlogLayout = () => {
 
             <footer className="border-t border-slate-200 dark:border-slate-800 py-12 mt-12 bg-white dark:bg-slate-900/50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                         <div className="space-y-4">
                             <div className="flex items-center gap-2">
                                 <div className="w-6 h-6 bg-primary rounded flex items-center justify-center">
@@ -73,15 +73,6 @@ const BlogLayout = () => {
                             <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
                                 Compartiendo conocimiento sobre ingeniería de datos, arquitectura de software y desarrollo frontend moderno.
                             </p>
-                        </div>
-                        <div className="space-y-4">
-                            <h4 className="font-bold">Navegación</h4>
-                            <ul className="text-sm space-y-2 text-slate-500 dark:text-slate-400">
-                                <li><a href="#" className="hover:text-primary transition-colors">Stack Tecnológico</a></li>
-                                <li><a href="#" className="hover:text-primary transition-colors">Mentoria</a></li>
-                                <li><a href="#" className="hover:text-primary transition-colors">Newsletter</a></li>
-                                <li><a href="#" className="hover:text-primary transition-colors">Contacto</a></li>
-                            </ul>
                         </div>
                         <div className="space-y-4">
                             <h4 className="font-bold">Social</h4>
@@ -99,7 +90,7 @@ const BlogLayout = () => {
                         </div>
                     </div>
                     <div className="mt-12 pt-8 border-t border-slate-100 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400">
-                        <p>© 2024 DevLog. Todos los derechos reservados.</p>
+                        <p>© 2026 DevLog. Todos los derechos reservados.</p>
                         <div className="flex gap-6">
                             <a href="#" className="hover:underline">Privacidad</a>
                             <a href="#" className="hover:underline">Términos</a>

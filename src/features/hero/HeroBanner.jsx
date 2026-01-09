@@ -99,11 +99,11 @@ const HeroBanner = () => {
             {/* Right Column - 3D Wireframe with Frame */}
             <motion.div
               variants={fadeInUp}
-              className="hidden lg:flex items-center justify-center h-full min-h-[400px]"
+              className="hidden lg:flex items-center justify-center h-full min-h-[400px] max-h-[500px] p-8"
             >
               {/* Cyan frame container with glow and float */}
               <motion.div
-                className="relative p-8 border rounded-sm"
+                className="relative p-6 border rounded-sm scale-90"
                 style={{
                   borderColor: 'rgba(0, 255, 255, 0.4)',
                   boxShadow: '0 0 15px rgba(0, 255, 255, 0.3)',

@@ -24,7 +24,7 @@ const GlowButton = ({
             whileTap={{ scale: 0.98 }}
             className={`
         group relative
-        px-8 py-4
+        px-6 py-3
         border-2 ${variants[variant]}
         bg-obsidian
         font-bold text-sm tracking-widest uppercase

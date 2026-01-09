@@ -103,7 +103,7 @@ const Header = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ y: -2 }}
-                  className="relative px-5 py-2.5 text-base font-medium text-gray-300 hover:text-white transition-colors duration-200 cursor-pointer group"
+                  className="relative px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200 cursor-pointer group"
                 >
                   {link.label}
                   <span
@@ -123,7 +123,7 @@ const Header = () => {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="ml-4 px-6 py-3 rounded-xl text-black text-base font-semibold transition-all duration-300 cursor-pointer"
+                className="ml-4 px-5 py-2 rounded-xl text-black text-sm font-semibold transition-all duration-300 cursor-pointer"
                 style={{
                   background: 'linear-gradient(to right, rgb(0, 255, 255), rgba(0, 255, 255, 0.9))',
                   boxShadow: '0 10px 15px -3px rgba(0, 255, 255, 0.3)'
