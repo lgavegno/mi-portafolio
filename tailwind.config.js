@@ -8,6 +8,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        primary: "#3b82f6", // Vibrant blue for accent
+        "background-light": "#f8fafc",
+        "background-dark": "#0f172a",
+        "card-dark": "#1e293b",
         // Paleta 2025: Deep Cobalt + Slate Grey + Spring Mint
         cobalt: {
           50: '#e6f0ff',

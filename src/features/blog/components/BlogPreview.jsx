@@ -1,9 +1,8 @@
 // src/features/blog/components/BlogPreview.jsx
-// Preview de artículos recientes para el Hero
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FiBookOpen, FiArrowRight } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import { fadeInUp, staggerContainer } from '../../../config/motionConfig';
 import BlogCard from './BlogCard';
 import { blogPosts } from '../data/blogData';
@@ -34,14 +33,13 @@ const BlogPreview = ({
               <FiBookOpen className="w-4 h-4" />
               Últimos artículos
             </h3>
-            <motion.a
-              href="/blog"
-              whileHover={{ x: 3 }}
+            <Link
+              to="/blog"
               className="text-xs text-cobalt-400 hover:text-cobalt-300 flex items-center gap-1"
             >
               Ver todos
               <FiArrowRight className="w-3 h-3" />
-            </motion.a>
+            </Link>
           </motion.div>
         )}
 
@@ -81,10 +79,8 @@ const BlogPreview = ({
                 Últimos artículos
               </h2>
             </div>
-            <motion.a
-              href="/blog"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            <Link
+              to="/blog"
               className="
                 hidden sm:flex items-center gap-2
                 px-5 py-2.5 rounded-xl
@@ -96,7 +92,7 @@ const BlogPreview = ({
             >
               Ver todos
               <FiArrowRight className="w-4 h-4" />
-            </motion.a>
+            </Link>
           </motion.div>
         )}
 
@@ -160,10 +156,8 @@ const BlogPreview = ({
         variants={fadeInUp}
         className="text-center mt-12"
       >
-        <motion.a
-          href="/blog"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+        <Link
+          to="/blog"
           className="
             inline-flex items-center gap-3
             px-8 py-4 rounded-xl
@@ -177,7 +171,7 @@ const BlogPreview = ({
           <FiBookOpen className="w-5 h-5" />
           Ver todos los artículos
           <FiArrowRight className="w-4 h-4" />
-        </motion.a>
+        </Link>
       </motion.div>
     </motion.div>
   );

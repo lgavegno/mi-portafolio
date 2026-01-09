@@ -1,17 +1,20 @@
 // src/App.jsx
 import React, { lazy, Suspense } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, Outlet } from 'react-router-dom'
 import MainLayout from './layouts/MainLayout'
+import BlogLayout from './layouts/BlogLayout' // New Layout
 import { SkeletonPage } from './components/ui/Skeleton'
 import { pageTransition } from './config/motionConfig'
 import BlogPostDetail from './pages/BlogPostDetail'
+import BlogIndex from './pages/BlogIndex' // New Page
 
 // Lazy loading de secciones para code splitting
 const HeroBanner = lazy(() => import('./features/hero/HeroBanner'))
 const About = lazy(() => import('./components/About'))
 const Services = lazy(() => import('./features/services/Services'))
 const Works = lazy(() => import('./features/works/Works'))
+// BlogPreview might still be used in Home, keeping it.
 const BlogPreview = lazy(() => import('./features/blog/components/BlogPreview'))
 const Contact = lazy(() => import('./features/contact/Contact'))
 const SkillsGrid = lazy(() => import('./components/SkillsGrid'))
@@ -63,20 +66,33 @@ const HomeSections = () => (
   </>
 )
 
+// Wrapper component for MainLayout to use in Route element
+const MainLayoutWrapper = () => (
+  <MainLayout>
+    <Outlet />
+  </MainLayout>
+);
+
 function App() {
   const location = useLocation();
 
   return (
-    <MainLayout>
-      <AnimatePresence mode="wait">
-        <Suspense fallback={<SkeletonPage />}>
-          <Routes location={location} key={location.pathname}>
+    <AnimatePresence mode="wait">
+      <Suspense fallback={<SkeletonPage />}>
+        <Routes location={location} key={location.pathname}>
+          {/* Main Site Routes */}
+          <Route element={<MainLayoutWrapper />}>
             <Route path="/" element={<HomeSections />} />
-            <Route path="/blog/:slug" element={<BlogPostDetail />} />
-          </Routes>
-        </Suspense>
-      </AnimatePresence>
-    </MainLayout>
+          </Route>
+
+          {/* Blog Routes */}
+          <Route path="/blog" element={<BlogLayout />}>
+            <Route index element={<BlogIndex />} />
+            <Route path=":slug" element={<BlogPostDetail />} />
+          </Route>
+        </Routes>
+      </Suspense>
+    </AnimatePresence>
   )
 }
 
