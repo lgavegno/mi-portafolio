@@ -7,6 +7,7 @@
    ============================================ */
 
 @layer base {
+
   /* Reset y configuración base */
   html {
     scroll-behavior: smooth;
@@ -15,7 +16,7 @@
   }
 
   body {
-    @apply bg-obsidian text-gray-100;
+    @apply bg-obsidian text-gray-100 text-base lg:text-xl;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
@@ -48,9 +49,46 @@
   :focus-visible {
     @apply outline-none ring-2 ring-cyan-institutional ring-offset-2 ring-offset-obsidian;
   }
+
+  /* ===========================================
+     OVERRIDE GLOBAL OBLIGATORIO - DESKTOP 20px
+     =========================================== */
+  @media (min-width: 1024px) {
+    html {
+      font-size: 20px !important;
+      /* Base 20px en Desktop - FORZADO */
+    }
+
+    body,
+    p,
+    li,
+    a,
+    span,
+    div,
+    button,
+    input,
+    textarea,
+    label {
+      font-size: 1rem !important;
+      /* Heredan 20px del html root - FORZADO */
+      line-height: 1.6 !important;
+    }
+
+    /* Proteger jerarquía de Títulos - dejar que Tailwind los maneje */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: revert !important;
+      line-height: revert !important;
+    }
+  }
 }
 
 @layer components {
+
   /* Glassmorphism utilities */
   .glass {
     @apply backdrop-blur-xl bg-white/5 border border-white/10;
@@ -98,19 +136,17 @@
     inset: 0;
     padding: 2px;
     border-radius: inherit;
-    background: linear-gradient(
-      90deg,
-      theme('colors.cobalt.500'),
-      theme('colors.mint.400'),
-      theme('colors.cobalt.500')
-    );
+    background: linear-gradient(90deg,
+        theme('colors.cobalt.500'),
+        theme('colors.mint.400'),
+        theme('colors.cobalt.500'));
     background-size: 200% 100%;
     animation: gradient-shift 3s linear infinite;
-    -webkit-mask: 
-      linear-gradient(#fff 0 0) content-box, 
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
       linear-gradient(#fff 0 0);
-    mask: 
-      linear-gradient(#fff 0 0) content-box, 
+    mask:
+      linear-gradient(#fff 0 0) content-box,
       linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -133,6 +169,7 @@
 }
 
 @layer utilities {
+
   /* Animation delays */
   .animation-delay-2000 {
     animation-delay: 2s;
@@ -144,6 +181,7 @@
 
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
@@ -172,9 +210,12 @@
 
 /* Keyframes */
 @keyframes gradient-shift {
-  0%, 100% {
+
+  0%,
+  100% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }

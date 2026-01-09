@@ -87,7 +87,7 @@ export const blogPosts = [
       <h2>Visualización Efectiva de Datos</h2>
       <p>El cerebro humano procesa imágenes 60,000 veces más rápido que texto. Una visualización vale más que mil tablas, pero elegir el gráfico correcto es la diferencia entre confundir a tu audiencia con "ruido visual" o persuadirla con datos claros. En performance web y análisis de sistemas, la visualización es nuestra principal herramienta de diagnóstico.</p>
 
-      <img src="https://images.unsplash.com/photo-1543286386-713df548e9cc?q=80&w=2670&auto=format&fit=crop" alt="Analysis Charts on Tablet" class="w-full h-64 object-cover rounded-xl my-8 shadow-lg" loading="lazy" decoding="async" />
+      <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop" alt="Dashboard de análisis de datos" class="w-full h-64 object-cover rounded-xl my-8 shadow-lg" loading="lazy" decoding="async" />
 
       <h2>Herramientas de Diagnóstico Visual</h2>
       <p>Existen cientos de tipos de gráficos, pero estos tres son los caballos de batalla del análisis estadístico:</p>
@@ -104,19 +104,7 @@ export const blogPosts = [
       </blockquote>
       <p>Un Diagrama de Pareto combina un gráfico de barras (causas individuales ordenadas por frecuencia) con una línea acumulativa (porcentaje total). Úsalo para priorizar qué <em>bugs</em> arreglar primero o qué endpoints optimizar para obtener el mayor impacto con el menor esfuerzo.</p>
 
-      <h3>Ejemplo en Optimización Web</h3>
-      <p>Al analizar los tiempos de carga de un sitio, típicamente descubrimos que el 80% del problema proviene del 20% de las causas:</p>
-      
-      <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-6 my-6">
-        <h4 class="font-bold text-slate-900 dark:text-white mb-4">⏱️ Causas de Lentitud (Segundos Acumulados)</h4>
-        <ul class="space-y-2 text-slate-700 dark:text-slate-300">
-          <li><strong class="text-red-400">Terceros (Ads/Analytics):</strong> 4.5s — <span class="text-sm italic">El 80% del problema</span></li>
-          <li><strong class="text-amber-400">Imágenes sin optimizar:</strong> 0.8s</li>
-          <li><strong class="text-green-400">Ejecución JS principal:</strong> 0.3s</li>
-          <li><strong class="text-blue-400">Estilos CSS:</strong> 0.1s</li>
-        </ul>
-        <p class="mt-4 text-sm text-slate-600 dark:text-slate-400 italic">💡 Conclusión: Optimizar el JS principal te dará mejoras marginales. Atacar los scripts de terceros resolverá la mayor parte del problema.</p>
-      </div>
+
 
       <h2>¿Barras o Líneas?</h2>
       <p>Una confusión común. La regla es simple:</p>
@@ -133,6 +121,34 @@ export const blogPosts = [
         <li>El contexto importa: Un número sin comparación (benchmark o histórico) no dice nada.</li>
         <li>Simplifica: Elimina todo elemento gráfico que no aporte información (Chartjunk).</li>
       </ul>
+
+      <hr class="my-8 border-slate-200 dark:border-slate-800" />
+
+      <h3>El Arsenal Visual: 12 Gráficos para Contar Historias</h3>
+      <p>Tener el mejor modelo predictivo no sirve de mucho si nadie entiende lo que dice. La visualización es el idioma que usamos para traducir matemáticas complejas a decisiones de negocio claras.</p>
+
+      <p class="mb-4">Aquí tienes la caja de herramientas fundamental para que tus análisis no terminen olvidados en un cajón:</p>
+
+      <ul class="list-disc pl-5 space-y-2 mb-8 text-slate-700 dark:text-slate-300">
+        <li><strong>Barras</strong>: El clásico confiable. Úsalo para comparar cantidades entre categorías sin complicarte (A vs B).</li>
+        <li><strong>Histograma</strong>: Para ver la "forma" de tus datos. ¿Es una campana de Gauss normal o hay algo raro?</li>
+        <li><strong>Boxplot (Caja y Bigotes)</strong>: El detector de mentiras. Te enseña dónde están realmente los datos y expone a los outliers sin piedad.</li>
+        <li><strong>Líneas</strong>: Imprescindible para ver el pasado y proyectar el futuro (series temporales).</li>
+        <li><strong>Scatter Plot (Dispersión)</strong>: ¿Tienen relación estas dos variables o es pura coincidencia? Aquí lo ves claro.</li>
+        <li><strong>Heatmap (Mapa de Calor)</strong>: Ideal para matrices de correlación. Donde está rojo intenso, hay una relación fuerte.</li>
+        <li><strong>Barras Apiladas</strong>: Para ver el "todo" y sus "partes" al mismo tiempo. Útil para composiciones.</li>
+        <li><strong>Pastel (Pie Chart)</strong>: Úsalo con mucha moderación. Los humanos somos malos comparando ángulos; úsalo solo para diferencias muy obvias.</li>
+        <li><strong>Violin Plot</strong>: Como un Boxplot pero con más detalle sobre la densidad. Elegante, pero a veces confunde a quien no es técnico.</li>
+        <li><strong>Pair Plot</strong>: Una vista de pájaro de todas las relaciones posibles entre tus variables a la vez.</li>
+        <li><strong>Área</strong>: Similar al de líneas, pero enfatiza el volumen acumulado en el tiempo.</li>
+        <li><strong>Tree Map</strong>: Perfecto para visualizar jerarquías y tamaños relativos de un vistazo.</li>
+      </ul>
+
+      <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-6 my-6">
+        <h4 class="font-bold text-slate-900 dark:text-white mb-4">Consejo Pro</h4>
+        <p class="text-slate-700 dark:text-slate-300">Antes de abrir Matplotlib, Seaborn o Tableau, pregúntate: <strong>"¿Qué quiero que vea la otra persona?"</strong>.</p>
+        <p class="mt-4 text-slate-700 dark:text-slate-300">Si la respuesta no es clara, ningún gráfico te va a salvar. El objetivo de visualizar no es demostrar cuánto sabes de código, es reducir la carga cognitiva de quien te lee para que pueda tomar una decisión rápido.</p>
+      </div>
     `
   },
   {

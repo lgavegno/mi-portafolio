@@ -39,7 +39,7 @@ const Services = () => {
     },
     {
       title: "Análisis Exploratorio",
-      description: "Revisión inicial de información. Examino datasets nuevos para detectar patrones básicos, posibles inconsistencias y comprender su calidad antes de análisis más profundos.",
+      description: "Revisión inicial de información. Examino datasets nuevos para detectar patrones básicos, posibles inconsistencias y comprender su calidad.",
       icon: FiLayout,
       gradient: "from-blue-400 to-indigo-500"
     }
@@ -142,7 +142,7 @@ const Services = () => {
                           <IconComponent className="w-8 h-8 text-white" />
                         </div>
                         <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 text-white">{service.title}</h3>
-                        <p className="text-white/80 md:text-lg mb-6">{service.description}</p>
+                        <p className="text-white/80 md:text-xl mb-6">{service.description}</p>
 
                       </div>
                     </div>

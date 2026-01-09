@@ -21,7 +21,7 @@
   padding: 0;
 }
 
-/* Base halo under carousel to simulate stage */
+/* Base halo under carousel - CYAN ONGEVAG */
 .carousel-container::after {
   content: "";
   position: absolute;
@@ -30,7 +30,7 @@
   width: 70%;
   height: 120px;
   transform: translateX(-50%);
-  background: radial-gradient(ellipse at center, rgba(211,253,1,0.12) 0%, rgba(211,253,1,0.06) 35%, rgba(0,0,0,0) 70%);
+  background: radial-gradient(ellipse at center, rgba(0, 255, 255, 0.15) 0%, rgba(0, 255, 255, 0.08) 35%, rgba(0, 0, 0, 0) 70%);
   filter: blur(18px);
   pointer-events: none;
   z-index: 0;
@@ -51,9 +51,17 @@
 
 /* Floating suspension effect */
 @keyframes float {
-  0%, 100% { transform: translateZ(-250px) translateY(0px); }
-  50% { transform: translateZ(-250px) translateY(-20px); }
+
+  0%,
+  100% {
+    transform: translateZ(-250px) translateY(0px);
+  }
+
+  50% {
+    transform: translateZ(-250px) translateY(-20px);
+  }
 }
+
 .carousel-track {
   animation: float 6s ease-in-out infinite;
 }
@@ -64,7 +72,7 @@
   width: 360px;
   height: 520px;
   left: 50%;
-  top:50%;
+  top: 50%;
   margin-left: -180px;
   margin-top: -260px;
   border-radius: 20px;
@@ -80,13 +88,8 @@
   text-align: center;
   border: 2px solid rgba(255, 255, 255, 0.1);
   transform-style: preserve-3d;
-}
-
-/* Card container setup */
-.carousel-card {
-  background: transparent !important; /* color ahora en las caras */
+  background: transparent !important;
   border: none !important;
-  transform-style: preserve-3d;
 }
 
 .carousel-card-inner {
@@ -115,72 +118,94 @@
   display: none;
 }
 
-/* Focus styles for accessibility */
+/* Focus styles for accessibility - CYAN */
 .carousel-card:focus-visible {
-  outline: 2px solid #d3fd01;
+  outline: 2px solid #00FFFF;
   outline-offset: 4px;
   border-radius: 22px;
   z-index: 10;
 }
 
-/* Card front panel styling */
+/* Card front panel styling - OBSIDIAN + CYAN */
 .carousel-card-front {
-  background: rgba(17, 24, 39, 0.9); /* Slightly more opaque for better text contrast */
-  border: 2px solid #d3fd01;
-  box-shadow: 0 0 0 1px rgba(211,253,1,0.15) inset,
-              0 8px 24px rgba(0,0,0,0.45),
-              0 0 28px rgba(211,253,1,0.18);
+  background: rgba(0, 0, 0, 0.95);
+  /* Obsidian black */
+  border: 2px solid #00FFFF;
+  /* Cyan ONGEVAG */
+  box-shadow: 0 0 0 1px rgba(0, 255, 255, 0.15) inset,
+    0 8px 24px rgba(0, 0, 0, 0.45),
+    0 0 28px rgba(0, 255, 255, 0.2);
   transition: all 0.3s ease-out;
 }
 
 .carousel-card:hover .carousel-card-front {
-  box-shadow: 0 0 0 1px rgba(211,253,1,0.25) inset,
-              0 10px 30px rgba(0,0,0,0.5),
-              0 0 40px rgba(211,253,1,0.28);
+  box-shadow: 0 0 0 1px rgba(0, 255, 255, 0.25) inset,
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(0, 255, 255, 0.35);
   transform: translateZ(20px);
 }
 
-/* Typography and icon accent inside card */
+/* ===========================================
+   TYPOGRAPHY ISOLATION - Override Global 20px
+   =========================================== */
 .carousel-card-front .card-content {
-  color: #e5e7eb; /* text-gray-200 */
-}
-.carousel-card-front .card-content > div:first-child {
-  color: #d3fd01; /* icon color */
-  filter: drop-shadow(0 0 8px rgba(211,253,1,0.35));
-}
-.carousel-card-front h3 {
-  color: #d3fd01;
-}
-.carousel-card-front p {
-  color: #cbd5e1; /* text-slate-300 */
-}
-.carousel-card-front .card-content button {
-  background: #d3fd01;
-  color: #111827;
-  border-radius: 9999px;
-  box-shadow: 0 6px 18px rgba(211,253,1,0.35);
-}
-.carousel-card-front .card-content button:hover {
-  box-shadow: 0 10px 28px rgba(211,253,1,0.45);
+  color: #e5e7eb;
 }
 
-/* Card hover effects */
+.carousel-card-front .card-content>div:first-child {
+  color: #00FFFF;
+  /* Cyan icon */
+  filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.4));
+}
+
+.carousel-card-front h3 {
+  color: #00FFFF;
+  /* Cyan title */
+  font-size: 1.5rem !important;
+  /* 24px - Override global */
+  line-height: 1.2 !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.carousel-card-front p {
+  color: #cbd5e1;
+  font-size: 0.95rem !important;
+  /* ~15px - Override global */
+  line-height: 1.4 !important;
+}
+
+.carousel-card-front .card-content button {
+  background: #00FFFF;
+  color: #000000;
+  border-radius: 9999px;
+  box-shadow: 0 6px 18px rgba(0, 255, 255, 0.35);
+}
+
+.carousel-card-front .card-content button:hover {
+  box-shadow: 0 10px 28px rgba(0, 255, 255, 0.5);
+}
+
+/* Card hover effects - CYAN GLOW */
 .carousel-card:hover {
-  box-shadow: 0 0 30px 5px rgba(211, 253, 1, 0.3);
+  box-shadow: 0 0 30px 5px rgba(0, 255, 255, 0.3);
   transition: all 0.3s ease-out;
 }
 
 /* Card title styling */
 .carousel-card h3 {
-  color: #d3fd01;
+  color: #00FFFF;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
   text-align: center;
   margin-bottom: 1rem;
+  font-size: 1.5rem !important;
+  line-height: 1.2 !important;
 }
 
 .carousel-card:hover h3 {
-  text-shadow: 0 0 15px rgba(211, 253, 1, 0.7);
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
 }
 
 /* Card Content */
@@ -196,13 +221,18 @@
   box-sizing: border-box;
 }
 
+.card-content p {
+  font-size: 0.95rem !important;
+  line-height: 1.4 !important;
+}
+
 /* Card Content Hover Effect */
 .carousel-card:hover .card-content {
   transform: translateZ(40px) scale(1.03);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Navigation Buttons - Flechas */
+/* Navigation Buttons - CYAN */
 .carousel-nav {
   position: absolute;
   top: 50%;
@@ -225,11 +255,11 @@
 }
 
 .carousel-nav:hover {
-  background: rgba(211, 253, 1, 0.2);
+  background: rgba(0, 255, 255, 0.2);
   transform: translateY(-50%) scale(1.1);
-  border-color: rgba(211, 253, 1, 0.5);
-  color: #d3fd01;
-  box-shadow: 0 0 15px rgba(211, 253, 1, 0.3);
+  border-color: rgba(0, 255, 255, 0.5);
+  color: #00FFFF;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
 }
 
 .carousel-nav.prev {
@@ -240,17 +270,24 @@
   right: 20px;
 }
 
-/* Gradient backgrounds now provided by Tailwind in JSX (e.g., bg-gradient-to-br from-cyan-400 to-blue-500) */
-
 /* Responsive Design */
 @media (max-width: 1024px) {
   .carousel-container {
     height: 520px;
   }
-  
+
   .carousel-card {
     width: 300px;
     height: 420px;
+  }
+
+  .carousel-card h3 {
+    font-size: 1.25rem !important;
+  }
+
+  .carousel-card p,
+  .card-content p {
+    font-size: 0.9rem !important;
   }
 }
 
@@ -258,7 +295,6 @@
   .carousel-container {
     height: 520px;
     perspective: 2000px;
-    /* Reset to normal flow on mobile */
     width: 100%;
     left: 0;
     right: 0;
@@ -267,31 +303,38 @@
     overflow: visible;
     position: relative;
   }
-  
+
   .carousel-card {
-    width: 280px; /* Reducir ancho en móvil */
-    height: 400px; /* Reducir alto en móvil */
-    margin-left: -140px; /* Mitad del nuevo ancho */
-    margin-top: -200px;  /* Mitad del nuevo alto */
+    width: 280px;
+    height: 400px;
+    margin-left: -140px;
+    margin-top: -200px;
     padding: 1.25rem;
   }
-  
+
+  .carousel-card h3 {
+    font-size: 1.2rem !important;
+  }
+
+  .carousel-card p,
+  .card-content p {
+    font-size: 0.875rem !important;
+  }
+
   .carousel-nav {
     width: 40px;
     height: 40px;
     font-size: 1.2rem;
-    height: 36px;
-    font-size: 1.1rem;
   }
-  
+
   .carousel-nav.prev {
     left: 5px;
   }
-  
+
   .carousel-nav.next {
     right: 5px;
   }
-  
+
   .carousel-track {
     width: 100%;
     margin: 0 auto;
@@ -302,22 +345,23 @@
 /* Extra small devices */
 @media (max-width: 480px) {
   .carousel-card {
-    width: 90vw;        /* full-bleed relative to viewport */
+    width: 90vw;
     height: 360px;
-    margin-left: -45vw; /* center horizontally */
-    margin-top: -180px; /* center vertically for 360px */
+    margin-left: -45vw;
+    margin-top: -180px;
     padding: 1rem;
   }
-  
+
   .card-content h3 {
-    font-size: 1.5rem;
+    font-size: 1.1rem !important;
   }
-  
+
   .card-content p {
-    font-size: 0.9rem;
+    font-size: 0.8rem !important;
     margin-bottom: 1rem;
+    line-height: 1.3 !important;
   }
-  
+
   .carousel-nav {
     width: 32px;
     height: 32px;
@@ -331,8 +375,13 @@
 
 /* Animation for auto-rotation */
 @keyframes rotateCarousel {
-  from { transform: rotateY(0deg); }
-  to { transform: rotateY(360deg); }
+  from {
+    transform: rotateY(0deg);
+  }
+
+  to {
+    transform: rotateY(360deg);
+  }
 }
 
 /* Pause animation on hover */

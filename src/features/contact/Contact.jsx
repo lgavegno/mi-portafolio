@@ -83,12 +83,6 @@ const Contact = () => {
     setErrorMessage('');
 
 
-    console.log("EmailJS Status:", {
-      service: Boolean(import.meta.env.VITE_EMAILJS_SERVICE_ID),
-      template: Boolean(import.meta.env.VITE_EMAILJS_TEMPLATE_ID),
-      public: Boolean(import.meta.env.VITE_EMAILJS_PUBLIC_KEY)
-    });
-
     try {
       // Direct EmailJS call - no delays or intermediate steps
       const res = await emailjs.send(
@@ -159,7 +153,7 @@ const Contact = () => {
             <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
               ¿Trabajamos juntos?
             </h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-400 text-xl max-w-2xl mx-auto">
               Si necesitas ayuda con análisis de datos o automatización de procesos, estaré encantado de conversar contigo.
             </p>
           </motion.div>

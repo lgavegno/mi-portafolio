@@ -47,7 +47,7 @@ const About = () => {
                                     Sobre <span className="text-mint-400">Mí</span>
                                 </h2>
 
-                                <div className="space-y-6 text-slate-300 text-lg leading-relaxed whitespace-pre-line">
+                                <div className="space-y-6 text-slate-300 text-lg lg:text-xl leading-relaxed whitespace-pre-line">
                                     <p>
                                         ¡Hola! Soy estudiante avanzado de la Tecnicatura Universitaria en Programación en la UTN (FRRA)
                                         con un interés creciente en el análisis de datos y la automatización de procesos.

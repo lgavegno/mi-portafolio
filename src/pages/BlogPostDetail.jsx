@@ -126,14 +126,19 @@ const BlogPostDetail = () => {
                 <div className="lg:col-span-8">
                     <div
                         className="
-                            prose prose-xl prose-slate dark:prose-invert max-w-4xl mx-auto
-                            prose-headings:font-bold prose-h1:text-4xl lg:prose-h1:text-5xl prose-h2:text-2xl lg:prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-8
-                            prose-p:text-xl lg:prose-p:text-3xl prose-p:leading-loose prose-p:text-slate-600 dark:prose-p:text-slate-300
-                            prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-                            prose-li:text-slate-600 dark:prose-li:text-slate-300 lg:prose-li:text-2xl
-                            prose-pre:text-xs md:prose-pre:text-sm prose-pre:overflow-x-auto prose-pre:p-4
-                            [&>pre]:bg-slate-900 [&>pre]:border [&>pre]:border-slate-800 [&>pre]:shadow-lg
-                            [&>img]:rounded-xl [&>img]:shadow-lg
+                            max-w-4xl mx-auto
+                            [&_h1]:text-4xl [&_h1]:lg:text-5xl [&_h1]:font-bold [&_h1]:text-slate-900 [&_h1]:dark:text-white [&_h1]:leading-tight [&_h1]:mb-8
+                            [&_h2]:text-2xl [&_h2]:lg:text-3xl [&_h2]:font-bold [&_h2]:text-slate-900 [&_h2]:dark:text-white [&_h2]:mt-12 [&_h2]:mb-8
+                            [&_h3]:text-xl [&_h3]:lg:text-2xl [&_h3]:font-bold [&_h3]:text-slate-900 [&_h3]:dark:text-white [&_h3]:mt-8 [&_h3]:mb-4
+                            [&_p]:text-lg [&_p]:lg:text-xl [&_p]:leading-loose [&_p]:text-slate-600 [&_p]:dark:text-slate-300 [&_p]:mb-6
+                            [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-6 [&_ul]:text-slate-600 [&_ul]:dark:text-slate-300
+                            [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-6 [&_ol]:text-slate-600 [&_ol]:dark:text-slate-300
+                            [&_li]:text-lg [&_li]:lg:text-xl [&_li]:mb-2
+                            [&_a]:text-primary [&_a]:no-underline hover:[&_a]:underline
+                            [&_blockquote]:border-l-4 [&_blockquote]:border-primary [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-slate-700 [&_blockquote]:dark:text-slate-400 [&_blockquote]:my-8
+                            [&_hr]:my-12 [&_hr]:border-slate-200 [&_hr]:dark:border-slate-800
+                            [&_img]:rounded-xl [&_img]:shadow-lg [&_img]:my-8 [&_img]:w-full
+                            [&_div.bg-slate-50]:text-lg [&_div.bg-slate-50]:lg:text-xl
                         "
                         dangerouslySetInnerHTML={{ __html: post.content }}
                     />

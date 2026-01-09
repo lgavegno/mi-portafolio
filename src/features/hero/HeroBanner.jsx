@@ -66,7 +66,7 @@ const HeroBanner = () => {
               {/* Description */}
               <motion.p
                 variants={fadeInUp}
-                className="text-gray-400 text-base md:text-lg leading-relaxed max-w-xl"
+                className="text-gray-400 text-base md:text-lg lg:text-xl leading-relaxed max-w-xl"
               >
                 Desarrollo proyectos como parte de mi aprendizaje en programación y análisis,
                 explorando cómo los sistemas y los datos pueden apoyar decisiones
