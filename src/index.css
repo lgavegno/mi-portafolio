@@ -15,13 +15,13 @@
   }
 
   body {
-    @apply bg-slate-950 text-gray-100;
+    @apply bg-obsidian text-gray-100;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
   /* Selección de texto con colores de marca */
   ::selection {
-    @apply bg-cobalt-500/30 text-white;
+    @apply bg-cyan-institutional/30 text-white;
   }
 
   /* Scrollbar personalizado */
@@ -46,7 +46,7 @@
 
   /* Focus visible para accesibilidad */
   :focus-visible {
-    @apply outline-none ring-2 ring-cobalt-400 ring-offset-2 ring-offset-slate-900;
+    @apply outline-none ring-2 ring-cyan-institutional ring-offset-2 ring-offset-obsidian;
   }
 }
 
@@ -80,6 +80,11 @@
 
   .glow-mint {
     box-shadow: 0 0 40px -10px theme('colors.mint.400');
+  }
+
+  /* ONGEVAG cyan glow */
+  .glow-cyan {
+    box-shadow: 0 0 40px -10px theme('colors.cyan.institutional');
   }
 
   /* Animated gradient border */

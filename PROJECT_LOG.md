@@ -11,6 +11,80 @@ Documentación técnica y registro de decisiones de arquitectura.
 
 ## Registro de Interacciones
 
+### ID: LOG-20260110-017
+**Fecha y Hora:** 2026-01-09 11:11:00
+**Autor:** Gemini AI (IA Collaborator)
+**Prompt/Tema Principal:** Ajuste de Alineación Hero y Marco Cyan para Figura 3D
+**Consulta del Usuario:** > Alinear texto del Hero con logo del navbar, reducir espacio entre columnas y envolver figura 3D en marco cuadrado con efectos cyan.
+
+**Resumen de la Interacción y Resultado:**
+- **Análisis Técnico:** Se requería mejorar la cohesión visual del Hero alineando el texto "ONGEVAG" con el logo del navbar, compactar el diseño reduciendo el gap entre columnas, y añadir un marco perimetral cyan a la figura 3D para mayor presencia visual.
+    1.  **Alineación con Navbar:** Se cambió `text-center lg:text-left` a `text-left lg:pl-0` en la columna izquierda para alinear el inicio de "ONGEVAG" con el logo del navbar. Se removió `mx-auto lg:mx-0` del párrafo de descripción para mantener alineación consistente.
+    2.  **Reducción de Espacio:** Gap entre columnas reducido de `gap-12 lg:gap-20` a `gap-8 lg:gap-12`, creando una unidad visual más compacta y cohesiva entre texto y figura.
+    3.  **Marco Cuadrado Cyan:** Se envolvió `WireframeGeometry` en un `motion.div` con:
+        - Border: `border border-cyan-institutional/40` (opacidad 40% para sutileza)
+        - Glow: `boxShadow: '0 0 15px rgba(0, 255, 255, 0.3)'`
+        - Padding: `p-8` para espaciado interno
+        - Animación flotante: `y: [0, -10, 0]` con rotación sutil `rotateZ: [0, 1, 0, -1, 0]` (6s loop)
+    4.  **Efectos de Profundidad:** La animación independiente del marco (flotación + rotación leve) crea sensación de profundidad separada de la rotación interna de la figura geométrica.
+    5.  **Preservación:** Botones mantienen textos "Ver proyectos" y "Contactar". Fondo negro obsidian intacto.
+- **Cambios Realizados:**
+  - `[MODIFY] src/features/hero/HeroBanner.jsx` (Alineación, gap reducido, marco cyan con efectos)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Texto Hero alineado con navbar. Columnas más compactas. Figura 3D envuelta en marco cyan con glow y animación flotante independiente.
+
+### ID: LOG-20260109-016
+**Fecha y Hora:** 2026-01-09 11:01:00
+**Autor:** Gemini AI (IA Collaborator)
+**Prompt/Tema Principal:** Implementación de Figura Geométrica 3D Animada en Hero
+**Consulta del Usuario:** > Replicar visualización 3D de la imagen de referencia con figura geométrica wireframe animada y restaurar idioma de botones.
+
+**Resumen de la Interacción y Resultado:**
+- **Análisis Técnico:** Se requería sustituir la imagen estática de red de datos por una figura geométrica 3D animada (wireframe) que replique el efecto visual de la imagen de referencia, con rotación continua en los tres ejes y efecto glow cyan institucional.
+    1.  **WireframeGeometry Component:** Se creó componente React con SVG que renderiza una figura geométrica compleja (diamante con círculos orbitales y nodos pulsantes). Implementa rotación continua en ejes X, Y, Z usando `transform: rotateX/Y/Z` con valores incrementales basados en tiempo.
+    2.  **Interactividad Mouse:** Se añadió efecto parallax que modifica la rotación basándose en la posición del cursor dentro del contenedor, creando sensación de profundidad 3D.
+    3.  **Estilo Glow Institucional:** Bordes en cyan (#00FFFF) con `filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.6))` para efecto de resplandor. Nodos con animación de pulso usando SVG `<animate>`.
+    4.  **Estructura Visual:** Diamante exterior con 4 nodos en esquinas, centro con nodo principal pulsante, círculo interno, y dos elipses orbitales rotadas 45° y -45° para crear efecto de anillos 3D.
+    5.  **Restauración de Idioma:** Botones cambiados de inglés a español: "View Repository" → "Ver proyectos", "Get in Touch" → "Contactar".
+    6.  **Preservación:** Se mantuvo intacto el H1 "ONGEVAG", descripción del rol, layout de dos columnas y fondo negro obsidian.
+- **Cambios Realizados:**
+  - `[NEW] src/components/WireframeGeometry.jsx` (Figura geométrica 3D animada)
+  - `[MODIFY] src/features/hero/HeroBanner.jsx` (Integración de WireframeGeometry y botones en español)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Figura geométrica 3D animada funcionando con rotación continua, parallax mouse, glow cyan y nodos pulsantes. Botones en español. Layout Hero preservado.
+
+### ID: LOG-20260109-015
+**Fecha y Hora:** 2026-01-09 10:42:00
+**Autor:** Gemini AI (IA Collaborator)
+**Prompt/Tema Principal:** Implementación de Identidad de Marca ONGEVAG - Diseño Institucional Fintech
+**Consulta del Usuario:** > Transformar la UI/UX hacia la marca ONGEVAG con diseño institucional de alta gama (estilo Bequant/Fintech).
+
+**Resumen de la Interacción y Resultado:**
+- **Análisis Técnico:** Refactor completo de la identidad visual del portafolio, migrando de la paleta cobalt/mint a un esquema institucional negro absoluto (#000000) con acentos cyan (#00FFFF), inspirado en diseños fintech de alta gama.
+    1.  **Tailwind Configuration:** Se añadieron colores `obsidian` (#000000) y `cyan.institutional` (#00FFFF), familia de fuentes `mono` (JetBrains Mono, Fira Code), sombras `cyan-glow` y `cyan-glow-lg`, y animación `ticker` para scroll infinito.
+    2.  **Hero Refactor (HeroBanner.jsx):** Rediseño completo con layout de dos columnas (grid lg:grid-cols-2). Columna izquierda: tipografía monumental "ONGEVAG" (text-8xl font-black), subtítulo "Software Developer & Data Analyst", descripción y botones CTA con glow cyan. Columna derecha: visualización abstracta de red de datos. Base: ticker técnico infinito. Eliminados: badge, proyectos destacados, links sociales, scroll indicator.
+    3.  **Nuevos Componentes:**
+        - `TechnicalTicker.jsx`: Scroll infinito horizontal con habilidades técnicas (React, SQL, Java, Python, Power BI, Microsoft 365) en fuente monoespaciada.
+        - `DataVisualization.jsx`: Red de datos interactiva en Canvas con nodos cyan que reaccionan al mouse, creando efecto fintech premium.
+        - `GlowButton.jsx`: Botones CTA con efecto glow cyan, texto uppercase con tracking amplio, y gradiente animado en hover.
+    4.  **Adaptación Global:**
+        - `index.css`: Body background cambiado a `obsidian`, selección de texto a `cyan-institutional/30`, focus rings a cyan, añadida utilidad `.glow-cyan`.
+        - `Works.jsx`: Background a `bg-obsidian`, orbs de fondo a `cyan-institutional/5` y `/10`, badge a cyan.
+        - `ProjectCard.jsx`: Hover border a `cyan-institutional/30`, efecto de brillo con cyan.
+    5.  **Preservación de Contenido:** Se mantuvo el 100% del contenido de proyectos, blog y descripciones. Solo se adaptaron los contenedores visuales al nuevo esquema de color.
+    6.  **Responsive:** Layout Hero se apila verticalmente en móvil (texto arriba, visualización oculta), manteniendo el centrado optimizado previamente.
+- **Cambios Realizados:**
+  - `[MODIFY] tailwind.config.js` (Colores ONGEVAG, fuentes mono, glow cyan, ticker animation)
+  - `[NEW] src/components/TechnicalTicker.jsx`
+  - `[NEW] src/components/DataVisualization.jsx`
+  - `[NEW] src/components/ui/GlowButton.jsx`
+  - `[MODIFY] src/features/hero/HeroBanner.jsx` (Refactor completo a diseño institucional)
+  - `[MODIFY] src/index.css` (Background obsidian, cyan accents)
+  - `[MODIFY] src/features/works/Works.jsx` (Adaptación a cyan)
+  - `[MODIFY] src/components/ui/ProjectCard.jsx` (Hover cyan)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Identidad ONGEVAG implementada. Diseño institucional fintech con negro absoluto y cyan. Hero monumental de dos columnas. Ticker técnico funcional. Visualización de datos interactiva. Grid 2x2 de proyectos preservado.
+
 ### ID: LOG-20260109-013
 **Fecha y Hora:** 2026-01-09 09:45:00
 **Autor:** Gemini AI (IA Collaborator)

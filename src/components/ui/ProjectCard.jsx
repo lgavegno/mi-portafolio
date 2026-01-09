@@ -63,7 +63,7 @@ const ProjectCard = ({
         rounded-2xl overflow-hidden
         backdrop-blur-xl bg-white/5
         border border-white/10
-        hover:border-cobalt-400/30
+        hover:border-cyan-institutional/30
         active:bg-white/8
         transition-colors duration-300
         touch-manipulation select-none

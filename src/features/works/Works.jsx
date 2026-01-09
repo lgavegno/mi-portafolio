@@ -24,11 +24,11 @@ const Works = () => {
   const displayProjects = [...allProjects, ...additionalProjects];
 
   return (
-    <section className="w-full relative overflow-hidden bg-gradient-to-b from-slate-900 to-slate-800 py-24">
+    <section className="w-full relative overflow-hidden bg-obsidian py-24">
       {/* Background effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/3 -left-32 w-96 h-96 bg-mint-400/5 rounded-full filter blur-[128px]" />
-        <div className="absolute bottom-1/3 -right-32 w-96 h-96 bg-cobalt-500/10 rounded-full filter blur-[128px]" />
+        <div className="absolute top-1/3 -left-32 w-96 h-96 bg-cyan-institutional/5 rounded-full filter blur-[128px]" />
+        <div className="absolute bottom-1/3 -right-32 w-96 h-96 bg-cyan-institutional/10 rounded-full filter blur-[128px]" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -40,7 +40,7 @@ const Works = () => {
         >
           {/* Header */}
           <motion.div variants={fadeInUp} className="text-center mb-16">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-mint-400/10 border border-mint-400/20 text-mint-400 text-sm font-medium mb-6">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-institutional/10 border border-cyan-institutional/20 text-cyan-institutional text-sm font-medium mb-6">
               <FiFolder className="w-4 h-4" />
               Portafolio
             </span>

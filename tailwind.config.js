@@ -12,6 +12,8 @@ module.exports = {
         "background-light": "#f8fafc",
         "background-dark": "#0f172a",
         "card-dark": "#1e293b",
+        // ONGEVAG Brand Colors
+        obsidian: "#000000", // Pure black background
         // Paleta 2025: Deep Cobalt + Slate Grey + Spring Mint
         cobalt: {
           50: '#e6f0ff',
@@ -41,6 +43,20 @@ module.exports = {
           800: '#008837',
           900: '#00682a',
         },
+        cyan: {
+          institutional: '#00FFFF', // ONGEVAG primary cyan
+          glow: '#00FFFF',
+          50: '#ecfeff',
+          100: '#cffafe',
+          200: '#a5f3fc',
+          300: '#67e8f9',
+          400: '#22d3ee',
+          500: '#00FFFF',
+          600: '#00d9d9',
+          700: '#00b3b3',
+          800: '#008c8c',
+          900: '#006666',
+        },
         // Accent colors
         accent: {
           lime: '#d3fd01', // Original accent (keeping for compatibility)
@@ -51,6 +67,7 @@ module.exports = {
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
         display: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'Fira Code', 'Consolas', 'monospace'],
       },
       letterSpacing: {
         'tight': '-0.025em',
@@ -67,6 +84,7 @@ module.exports = {
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'shimmer': 'shimmer 2s linear infinite',
         'blob': 'blob 7s infinite',
+        'ticker': 'ticker 30s linear infinite',
       },
       keyframes: {
         gradient: {
@@ -87,12 +105,18 @@ module.exports = {
           '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
           '100%': { transform: 'translate(0px, 0px) scale(1)' },
         },
+        ticker: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
       },
       boxShadow: {
         'glow-sm': '0 0 15px -3px',
         'glow': '0 0 25px -5px',
         'glow-lg': '0 0 50px -12px',
         'inner-glow': 'inset 0 0 20px 0',
+        'cyan-glow': '0 0 20px rgba(0, 255, 255, 0.5)',
+        'cyan-glow-lg': '0 0 40px rgba(0, 255, 255, 0.7)',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
