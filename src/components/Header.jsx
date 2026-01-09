@@ -30,7 +30,6 @@ const Header = () => {
   }, []);
 
   const handleNavClick = (e, targetId) => {
-    // Si estamos en la home, hacemos scroll suave manual
     if (location.pathname === '/') {
       e.preventDefault();
       vibrate();
@@ -41,8 +40,6 @@ const Header = () => {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      // Si no estamos en la home, permitimos que el Link navegue,
-      // pasando el estado para que MainLayout maneje el scroll al montar.
       vibrate();
       setIsOpen(false);
     }
@@ -57,25 +54,35 @@ const Header = () => {
         fixed top-0 left-0 right-0 z-50
         transition-all duration-300
         ${scrolled
-          ? 'bg-slate-950/80 backdrop-blur-xl border-b border-white/5 shadow-lg shadow-black/10'
+          ? 'bg-slate-950/80 backdrop-blur-xl border-b shadow-lg'
           : 'bg-transparent'
         }
       `}
+      style={scrolled ? {
+        borderBottomColor: 'rgba(0, 255, 255, 0.2)',
+        boxShadow: '0 4px 6px -1px rgba(0, 255, 255, 0.05)'
+      } : {}}
     >
       <div className="container mx-auto px-6">
-        <nav className="flex justify-between items-center h-16 md:h-20">
+        <nav className="flex justify-between items-center h-16 md:h-24">
           {/* Logo */}
           <Link
             to="/"
             onClick={(e) => handleNavClick(e, 'hero')}
-            className="font-bold text-xl text-white flex items-center gap-2 cursor-pointer"
+            className="font-bold text-xl md:text-2xl text-white flex items-center gap-2 cursor-pointer"
           >
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2"
+              className="flex items-center gap-3"
             >
-              <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-cobalt-500 to-mint-400 flex items-center justify-center text-sm font-bold">
+              <span
+                className="w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center text-base md:text-lg font-bold shadow-lg text-black"
+                style={{
+                  background: 'linear-gradient(to bottom right, rgb(0, 255, 255), rgba(0, 255, 255, 0.8))',
+                  boxShadow: '0 10px 15px -3px rgba(0, 255, 255, 0.3)'
+                }}
+              >
                 OS
               </span>
               <span className="hidden sm:inline">Ongevag Studio</span>
@@ -83,7 +90,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden md:flex items-center gap-2">
             {navLinks.map((link, index) => (
               <Link
                 key={link.id}
@@ -96,20 +103,13 @@ const Header = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ y: -2 }}
-                  className="
-                    relative px-4 py-2 text-sm font-medium
-                    text-gray-300 hover:text-white
-                    transition-colors duration-200
-                    cursor-pointer
-                    group
-                  "
+                  className="relative px-5 py-2.5 text-base font-medium text-gray-300 hover:text-white transition-colors duration-200 cursor-pointer group"
                 >
                   {link.label}
-                  <span className="
-                    absolute bottom-0 left-1/2 -translate-x-1/2
-                    w-0 h-0.5 bg-gradient-to-r from-cobalt-400 to-mint-400
-                    group-hover:w-full transition-all duration-300
-                  " />
+                  <span
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 group-hover:w-full transition-all duration-300"
+                    style={{ background: 'linear-gradient(to right, rgba(0, 255, 255, 0.8), rgba(0, 255, 255, 0.6))' }}
+                  />
                 </motion.div>
               </Link>
             ))}
@@ -123,15 +123,17 @@ const Header = () => {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="
-                  ml-4 px-5 py-2.5 rounded-xl
-                  bg-gradient-to-r from-cobalt-500 to-cobalt-600
-                  text-white text-sm font-semibold
-                  shadow-lg shadow-cobalt-500/20
-                  hover:shadow-xl hover:shadow-cobalt-500/30
-                  transition-shadow duration-300
-                  cursor-pointer
-                "
+                className="ml-4 px-6 py-3 rounded-xl text-black text-base font-semibold transition-all duration-300 cursor-pointer"
+                style={{
+                  background: 'linear-gradient(to right, rgb(0, 255, 255), rgba(0, 255, 255, 0.9))',
+                  boxShadow: '0 10px 15px -3px rgba(0, 255, 255, 0.3)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(0, 255, 255, 0.4)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(0, 255, 255, 0.3)';
+                }}
               >
                 Hablemos
               </motion.div>
@@ -145,13 +147,7 @@ const Header = () => {
               vibrate();
               setIsOpen(!isOpen);
             }}
-            className="
-              md:hidden p-2 rounded-lg
-              text-gray-300 hover:text-white
-              hover:bg-white/5
-              transition-colors
-              cursor-pointer
-            "
+            className="md:hidden p-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors cursor-pointer"
             aria-label="Toggle menu"
           >
             {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
@@ -180,13 +176,7 @@ const Header = () => {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.05 }}
-                      className="
-                        block px-4 py-3 rounded-xl
-                        text-gray-300 hover:text-white
-                        hover:bg-white/5 active:bg-white/10
-                        transition-colors touch-manipulation
-                        cursor-pointer
-                      "
+                      className="block px-4 py-3 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 active:bg-white/10 transition-colors touch-manipulation cursor-pointer"
                     >
                       {link.label}
                     </motion.div>
@@ -203,14 +193,8 @@ const Header = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: navLinks.length * 0.05 }}
-                    className="
-                      px-4 py-3 rounded-xl text-center
-                      bg-gradient-to-r from-cobalt-500 to-cobalt-600
-                      active:from-cobalt-600 active:to-cobalt-700
-                      text-white font-semibold
-                      touch-manipulation
-                      cursor-pointer
-                    "
+                    className="px-4 py-3 rounded-xl text-center text-black font-semibold touch-manipulation cursor-pointer"
+                    style={{ background: 'linear-gradient(to right, rgb(0, 255, 255), rgba(0, 255, 255, 0.9))' }}
                   >
                     Hablemos
                   </motion.div>

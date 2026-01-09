@@ -56,7 +56,8 @@ const HeroBanner = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3, duration: 0.8 }}
-                  className="text-lg md:text-xl lg:text-2xl text-cyan-institutional font-light tracking-wide"
+                  className="text-lg md:text-xl lg:text-2xl font-light tracking-wide"
+                  style={{ color: 'rgb(0, 255, 255)' }}
                 >
                   Software Developer & Data Analyst
                 </motion.p>
@@ -102,8 +103,9 @@ const HeroBanner = () => {
             >
               {/* Cyan frame container with glow and float */}
               <motion.div
-                className="relative p-8 border border-cyan-institutional/40 rounded-sm"
+                className="relative p-8 border rounded-sm"
                 style={{
+                  borderColor: 'rgba(0, 255, 255, 0.4)',
                   boxShadow: '0 0 15px rgba(0, 255, 255, 0.3)',
                 }}
                 animate={{
