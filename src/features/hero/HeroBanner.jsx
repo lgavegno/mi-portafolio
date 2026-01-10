@@ -34,12 +34,13 @@ const HeroBanner = () => {
       />
 
       {/* Main content container */}
-      <div className="flex-1 flex items-center">
-        <div className="container mx-auto px-6 pt-4 pb-6 lg:py-0">
+      <div className="flex-1 flex items-start lg:items-center">
+        <div className="container mx-auto px-6 pt-20 pb-6 lg:pt-0 lg:py-0">
           <motion.div
             variants={staggerContainer}
             initial="hidden"
             animate="visible"
+            transition={{ staggerChildren: 0.1 }}
             className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
           >
             {/* Left Column - Brand & CTAs */}
@@ -65,7 +66,7 @@ const HeroBanner = () => {
                   <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
                     className="text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter leading-none"
                   >
                     ONGEVAG
@@ -75,7 +76,7 @@ const HeroBanner = () => {
                   <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 0.3, duration: 0.8 }}
+                    transition={{ delay: 0.1, duration: 0.4 }}
                     className="text-lg md:text-xl lg:text-2xl font-light tracking-wide"
                     style={{ color: 'rgb(0, 255, 255)' }}
                   >
