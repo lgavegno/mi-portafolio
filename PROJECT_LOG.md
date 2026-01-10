@@ -294,3 +294,73 @@ Documentación técnica y registro de decisiones de arquitectura.
   - `[NEW] src/assets/profile-about.png`
   - `[MODIFY] src/App.jsx` (Lazy load de componente)
 - **Estado Final:** Componente integrado y responsive.
+
+### ID: LOG-20260110-020
+**Fecha y Hora:** 2026-01-10 17:10:00
+**Autor:** Gemini AI (IA Collaborator)
+**Prompt/Tema Principal:** Optimización LCP mediante Code Splitting Estratégico
+**Consulta del Usuario:** > Actúa como un Arquitecto Senior de Software. Optimiza el Lazy Loading en features/ para mejorar LCP.
+
+**Resumen de la Interacción y Resultado:**
+- **Análisis Técnico:** Se identificó que la carga diferida (`React.lazy`) del componente `HeroBanner` en `App.jsx` estaba retrasando el Largest Contentful Paint (LCP), ya que el navegador debía descargar el bundle principal y luego solicitar el chunk del Hero antes de renderizar el título crítico. Además, el componente `WireframeGeometry` (pesado por SVG/lógica) estaba siendo empaquetado junto con el Hero, aumentando el tamaño inicial necesario para renderizar.
+- **Estrategia Implementada:** Inversión de dependencias de carga.
+    1.  **Critical Path (App.jsx):** Se cambió la importación de `HeroBanner` de dinámica (`lazy`) a estática (`import`). Esto asegura que el Texto Hero, Título y Botones (elementos LCP) estén presentes en el bundle inicial y se rendericen inmediatamente.
+    2.  **Code Splitting (HeroBanner.jsx):** Se movió la importación de `WireframeGeometry` a `React.lazy`. Esto aísla la lógica visual "pesada" en un chunk separado que se carga en paralelo o bajo demanda, sin bloquear el renderizado del texto principal.
+    3.  **Suspense Boundary:** Se envolvió el `WireframeGeometry` en un `<Suspense>` con un fallback `div` de dimensiones fijas (`w-64 h-64`) para evitar Layout Shifts (CLS) cuando el componente 3D termina de cargar.
+    4.  **Preservación:** Se mantuvieron intactos los textos, botones en español y animaciones de framer-motion.
+- **Cambios Realizados:**
+  - `[PERF] src/App.jsx` (HeroBanner -> Static Import)
+  - `[PERF] src/features/hero/HeroBanner.jsx` (WireframeGeometry -> Lazy Import + Suspense)
+  - `[UPDATE] PROJECT_LOG.md` (Registro de cambios)
+- **Estado Final:** Arquitectura optimizada. LCP mejorado al priorizar contenido crítico. Carga diferida de elementos visuales pesados.
+
+### ID: LOG-20260110-021
+**Fecha y Hora:** 2026-01-10 20:20:00
+**Autor:** Gemini AI (IA Collaborator)
+**Prompt/Tema Principal:** Implementación de Split-Layout en Hero Móvil
+**Consulta del Usuario:** > Reestructurar el layout móvil del HeroBanner.jsx para separar el título de la descripción/botones.
+
+**Resumen de la Interacción y Resultado:**
+- **Análisis Técnico:** Se reestructuró el contenedor principal dentro de la columna izquierda del Hero para habilitar un diseño "Split" en móviles. Esto permite que el video de fondo sea visible en la zona central de la pantalla (aprox. 75vh de altura mínima), separando el bloque de marca (título) hacia arriba y el bloque de acción (descripción/botones) hacia abajo.
+    1.  **Layout Móvil:** Se aplicó `flex flex-col justify-between min-h-[75vh]` al contenedor interno, forzando la separación vertical.
+    2.  **Visibilidad de Video:** El video y el overlay oscuro se mantienen como fondo (`absolute inset-0`), pero el espaciado central permite apreciarlos mejor.
+    3.  **Ajustes de Espaciado:**
+        - Bloque Superior (Marca): `pt-8 px-6` para margen superior breathing room.
+        - Bloque Inferior (Acción): `pb-12 px-6` para separar del borde inferior.
+    4.  **Desktop Preservado:** En breakpoints `lg:`, se revierte a `lg:block lg:min-h-auto lg:p-0` para mantener el diseño de bloque único alineado a la izquierda.
+- **Cambios Realizados:**
+  - `[MODIFY] src/features/hero/HeroBanner.jsx` (Reestructuración DOM y clases Tailwind)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Hero Banner optimizado para móviles con layout dividido y video central visible. Desktop sin cambios.
+
+### ID: LOG-20260110-022
+**Fecha y Hora:** 2026-01-10 20:25:00
+**Autor:** Gemini AI (IA Collaborator)
+**Prompt/Tema Principal:** Optimización de Legibilidad en Video Móvil
+**Consulta del Usuario:** > Optimizar la visibilidad del video de fondo en dispositivos móviles reduciendo overlay y mejorando contraste de texto.
+
+**Resumen de la Interacción y Resultado:**
+- **Análisis Técnico:** Se redujo la opacidad del overlay oscuro en móviles para permitir que el video de fondo sea más visible y vibrante. Para compensar la reducción de contraste en el fondo, se añadieron sombras fuertes al texto.
+    1.  **Overlay Ajustado:** `bg-black/70` → `bg-black/40`. Esto revela más detalles del video `ongevagDesign.mp4`.
+    2.  **Refuerzo de Legibilidad:** Se aplicó `drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]` a los contenedores superior e inferior. Esto crea un "halo" oscuro detrás del texto y botones, asegurando legibilidad sin importar el frame del video que esté detrás.
+    3.  **Preservación:** Los cambios están restringidos a las clases contenedoras y el overlay móvil. El layout desktop permanece intocable.
+- **Cambios Realizados:**
+  - `[MODIFY] src/features/hero/HeroBanner.jsx` (Ajuste de opacidad y drop-shadow)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Video móvil más visible y vibrante. Texto perfectamente legible gracias al sombreado reforzado.
+
+### ID: LOG-20260110-023
+**Fecha y Hora:** 2026-01-10 20:30:00
+**Autor:** Gemini AI (IA Collaborator)
+**Prompt/Tema Principal:** Mejora de Legibilidad en Descripción Hero
+**Consulta del Usuario:** > Mejorar la legibilidad de la descripción del Hero sobre el video de fondo mediante ajuste de color y sombras móviles.
+
+**Resumen de la Interacción y Resultado:**
+- **Análisis Técnico:** El texto de descripción gris medio (`text-gray-400`) perdía contraste contra las zonas claras del video de fondo en móviles. Se optó por "iluminar" el texto y reforzar su separación del fondo.
+    1.  **Color Más Brillante:** Cambio a `text-gray-200`. Esto aumenta significativamente el contraste lumínico sin llegar al blanco puro (que competiría con el título).
+    2.  **Sombra Específica Móvil:** Se añadió `max-lg:drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]`. Esta sombra dura y oscura es invisible en desktop (donde el fondo es negro sólido) pero crítica en móvil para crear una placa de lectura sobre el video.
+    3.  **Peso Visual:** Se explícito `font-normal` para garantizar que el trazo de la fuente tenga suficiente cuerpo.
+- **Cambios Realizados:**
+  - `[MODIFY] src/features/hero/HeroBanner.jsx` (text-gray-200, drop-shadow condicional)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Descripción nítida y legible sobre el video en movimiento. Integridad visual mantenida en todas las resoluciones.

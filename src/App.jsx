@@ -10,7 +10,10 @@ import BlogPostDetail from './pages/BlogPostDetail'
 import BlogIndex from './pages/BlogIndex' // New Page
 
 // Lazy loading de secciones para code splitting
-const HeroBanner = lazy(() => import('./features/hero/HeroBanner'))
+import HeroBanner from './features/hero/HeroBanner'
+// Lazy loading de secciones para code splitting
+// HeroBanner importado estáticamente para mejorar LCP
+// const HeroBanner = lazy(() => import('./features/hero/HeroBanner'))
 const About = lazy(() => import('./components/About'))
 const Services = lazy(() => import('./features/services/Services'))
 const Works = lazy(() => import('./features/works/Works'))

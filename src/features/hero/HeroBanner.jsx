@@ -6,8 +6,11 @@ import { motion } from 'framer-motion';
 import { FiLayers, FiMail } from 'react-icons/fi';
 import { fadeInUp, staggerContainer } from '../../config/motionConfig';
 import GlowButton from '../../components/ui/GlowButton';
-import WireframeGeometry from '../../components/WireframeGeometry';
+
 import TechnicalTicker from '../../components/TechnicalTicker';
+
+// Lazy loading del componente pesado 3D
+const WireframeGeometry = React.lazy(() => import('../../components/WireframeGeometry'));
 
 const HeroBanner = () => {
   const scrollToProjects = () => {
@@ -44,9 +47,9 @@ const HeroBanner = () => {
             className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
           >
             {/* Left Column - Brand & CTAs */}
-            <motion.div variants={fadeInUp} className="space-y-8 text-left">
-              {/* Video Container - Only for mobile */}
-              <div className="relative overflow-hidden rounded-2xl px-5 pb-6 pt-3 lg:p-0 lg:overflow-visible lg:bg-transparent">
+            <motion.div variants={fadeInUp} className="w-full lg:space-y-8 text-left">
+              {/* Main Container - Split Layout for Mobile */}
+              <div className="relative flex flex-col justify-between min-h-[75vh] lg:min-h-auto lg:block lg:space-y-8">
                 {/* Mobile Background Video */}
                 <video
                   autoPlay
@@ -59,61 +62,66 @@ const HeroBanner = () => {
                 </video>
 
                 {/* Dark overlay for text legibility on mobile */}
-                <div className="absolute inset-0 -z-10 bg-black/70 lg:hidden" />
+                <div className="absolute inset-0 -z-10 bg-black/40 lg:hidden" />
 
-                {/* Monumental Brand Name */}
-                <div className="space-y-4">
-                  <motion.h1
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
-                    className="text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter leading-none"
-                  >
-                    ONGEVAG
-                  </motion.h1>
+                {/* Block 1: Top (Title & Subtitle) */}
+                <div className="pt-8 px-6 lg:p-0 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+                  <div className="space-y-4">
+                    <motion.h1
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                      className="text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter leading-none"
+                    >
+                      ONGEVAG
+                    </motion.h1>
 
-                  {/* Role Subtitle */}
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.1, duration: 0.4 }}
-                    className="text-lg md:text-xl lg:text-2xl font-light tracking-wide"
-                    style={{ color: 'rgb(0, 255, 255)' }}
-                  >
-                    Software Developer · Data & Systems Enthusiast
-                  </motion.p>
+                    {/* Role Subtitle */}
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.1, duration: 0.4 }}
+                      className="text-lg md:text-xl lg:text-2xl font-light tracking-wide"
+                      style={{ color: 'rgb(0, 255, 255)' }}
+                    >
+                      Software Developer · Data & Systems Enthusiast
+                    </motion.p>
+                  </div>
                 </div>
 
-                {/* Description */}
-                <motion.p
-                  variants={fadeInUp}
-                  className="text-gray-400 text-base md:text-lg lg:text-xl leading-relaxed max-w-xl mt-6"
-                >
-                  Diseño y desarrollo proyectos de software y análisis de datos, explorando cómo los sistemas bien pensados pueden mejorar decisiones y procesos reales.
-                </motion.p>
+                {/* Block 2: Bottom (Description & Buttons) */}
+                <div className="pb-12 px-6 lg:p-0 space-y-8 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+                  {/* Description */}
+                  <motion.p
+                    variants={fadeInUp}
+                    className="text-gray-200 font-normal text-base md:text-lg lg:text-xl leading-relaxed max-w-xl lg:mt-6 max-lg:drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
+                  >
+                    Diseño y desarrollo proyectos de software y análisis de datos, explorando cómo los sistemas bien pensados pueden mejorar decisiones y procesos reales.
+                  </motion.p>
+
+                  {/* CTA Buttons */}
+                  <motion.div
+                    variants={fadeInUp}
+                    className="flex flex-col sm:flex-row gap-4"
+                  >
+                    <GlowButton
+                      variant="primary"
+                      onClick={scrollToProjects}
+                      icon={<FiLayers />}
+                    >
+                      Ver proyectos
+                    </GlowButton>
+
+                    <GlowButton
+                      variant="secondary"
+                      onClick={scrollToContact}
+                      icon={<FiMail />}
+                    >
+                      Contactar
+                    </GlowButton>
+                  </motion.div>
+                </div>
               </div>
-
-              {/* CTA Buttons - Outside video container */}
-              <motion.div
-                variants={fadeInUp}
-                className="flex flex-col sm:flex-row gap-4"
-              >
-                <GlowButton
-                  variant="primary"
-                  onClick={scrollToProjects}
-                  icon={<FiLayers />}
-                >
-                  Ver proyectos
-                </GlowButton>
-
-                <GlowButton
-                  variant="secondary"
-                  onClick={scrollToContact}
-                  icon={<FiMail />}
-                >
-                  Contactar
-                </GlowButton>
-              </motion.div>
             </motion.div>
 
             {/* Right Column - 3D Wireframe with Frame */}
@@ -138,7 +146,9 @@ const HeroBanner = () => {
                   ease: "easeInOut",
                 }}
               >
-                <WireframeGeometry />
+                <React.Suspense fallback={<div className="w-64 h-64" />}>
+                  <WireframeGeometry />
+                </React.Suspense>
               </motion.div>
             </motion.div>
           </motion.div>
