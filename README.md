@@ -62,11 +62,7 @@ Para más detalles, consultar [ARCHITECTURE.md](./ARCHITECTURE.md) y [COMPONENT-
 
 ## ✨ Características Clave
 
-- **Hero Híbrido:** Video de fondo optimizado para móviles y geometría 3D interactiva para desktop.
-- **Sistema de Blog:** Layout dedicado con modo oscuro independiente, filtrado por categorías y estimación de lectura.
-- **Navegación Fluida:** Scroll suave a secciones y transiciones entre páginas.
-- **Glassmorphism UI:** Diseño moderno con efectos de desenfoque y transparencias.
-- **Performance:** Carga diferida (Lazy loading) de secciones pesadas.
+ece
 
 ## 🚀 Despliegue (Vercel)
 
