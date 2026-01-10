@@ -16,7 +16,7 @@
   }
 
   body {
-    @apply bg-obsidian text-gray-100 text-base lg:text-xl;
+    @apply bg-obsidian text-gray-100 text-base;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
@@ -48,42 +48,6 @@
   /* Focus visible para accesibilidad */
   :focus-visible {
     @apply outline-none ring-2 ring-cyan-institutional ring-offset-2 ring-offset-obsidian;
-  }
-
-  /* ===========================================
-     OVERRIDE GLOBAL OBLIGATORIO - DESKTOP 20px
-     =========================================== */
-  @media (min-width: 1024px) {
-    html {
-      font-size: 20px !important;
-      /* Base 20px en Desktop - FORZADO */
-    }
-
-    body,
-    p,
-    li,
-    a,
-    span,
-    div,
-    button,
-    input,
-    textarea,
-    label {
-      font-size: 1rem !important;
-      /* Heredan 20px del html root - FORZADO */
-      line-height: 1.6 !important;
-    }
-
-    /* Proteger jerarquía de Títulos - dejar que Tailwind los maneje */
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-size: revert !important;
-      line-height: revert !important;
-    }
   }
 }
 

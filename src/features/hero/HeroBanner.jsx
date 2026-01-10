@@ -3,13 +3,17 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FiGithub, FiMail } from 'react-icons/fi';
+import { FiLayers, FiMail } from 'react-icons/fi';
 import { fadeInUp, staggerContainer } from '../../config/motionConfig';
 import GlowButton from '../../components/ui/GlowButton';
 import WireframeGeometry from '../../components/WireframeGeometry';
 import TechnicalTicker from '../../components/TechnicalTicker';
 
 const HeroBanner = () => {
+  const scrollToProjects = () => {
+    document.getElementById('proyectos')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   const scrollToContact = () => {
     document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -59,7 +63,7 @@ const HeroBanner = () => {
                   className="text-lg md:text-xl lg:text-2xl font-light tracking-wide"
                   style={{ color: 'rgb(0, 255, 255)' }}
                 >
-                  Software Developer & Data Analyst
+                  Software Developer · Data & Systems Enthusiast
                 </motion.p>
               </div>
 
@@ -68,9 +72,7 @@ const HeroBanner = () => {
                 variants={fadeInUp}
                 className="text-gray-400 text-base md:text-lg lg:text-xl leading-relaxed max-w-xl"
               >
-                Desarrollo proyectos como parte de mi aprendizaje en programación y análisis,
-                explorando cómo los sistemas y los datos pueden apoyar decisiones
-                y mejorar procesos reales.
+                Diseño y desarrollo proyectos de software y análisis de datos, explorando cómo los sistemas bien pensados pueden mejorar decisiones y procesos reales.
               </motion.p>
 
               {/* CTA Buttons */}
@@ -80,8 +82,8 @@ const HeroBanner = () => {
               >
                 <GlowButton
                   variant="primary"
-                  onClick={() => window.open('https://github.com/lgavegno', '_blank')}
-                  icon={<FiGithub />}
+                  onClick={scrollToProjects}
+                  icon={<FiLayers />}
                 >
                   Ver proyectos
                 </GlowButton>

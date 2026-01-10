@@ -6,12 +6,12 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import { useVibrate } from '../hooks/useVibrate';
 
 const navLinks = [
-  { label: 'Inicio', id: 'hero' },
+  { label: 'Inicio', id: 'inicio' },
   { label: 'Sobre Mí', id: 'sobre-mi' },
   { label: 'Proyectos', id: 'proyectos' },
-  { label: 'Servicios', id: 'servicios' },
+  { label: 'Qué hago', id: 'que-hago' },
   { label: 'Blog', id: 'blog' },
-  { label: 'Contacto', id: 'contacto' },
+
 ];
 
 const Header = () => {
@@ -85,7 +85,12 @@ const Header = () => {
               >
                 OS
               </span>
-              <span className="hidden sm:inline">Ongevag Studio</span>
+              <div className="hidden sm:flex flex-col leading-tight">
+                <span className="text-white">Ongevag</span>
+                <span className="text-xs text-gray-400 tracking-wide">
+                  Software & Data
+                </span>
+              </div>
             </motion.div>
           </Link>
 
@@ -135,7 +140,7 @@ const Header = () => {
                   e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(0, 255, 255, 0.3)';
                 }}
               >
-                Hablemos
+                Contacto
               </motion.div>
             </Link>
           </div>

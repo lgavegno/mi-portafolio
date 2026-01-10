@@ -88,7 +88,7 @@ const Services = () => {
   };
 
   return (
-    <section className="w-full relative overflow-hidden bg-gradient-to-b from-slate-800 to-slate-900 text-white py-32 md:py-40 lg:py-48">
+    <section id="que-hago" className="w-full relative overflow-hidden bg-gradient-to-b from-slate-800 to-slate-900 text-white py-32 md:py-40 lg:py-48">
       {/* Background effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 -left-32 w-96 h-96 bg-cobalt-500/10 rounded-full filter blur-[128px]" />
@@ -109,7 +109,7 @@ const Services = () => {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cobalt-500/10 border border-cobalt-400/20 text-cobalt-300 text-sm font-medium mb-6"
           >
             <FiCode className="w-4 h-4" />
-            Servicios
+            Qué hago
           </motion.span>
           <motion.h2
             variants={fadeInUp}
