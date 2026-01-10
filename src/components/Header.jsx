@@ -76,15 +76,11 @@ const Header = () => {
               whileTap={{ scale: 0.95 }}
               className="flex items-center gap-3"
             >
-              <span
-                className="w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center text-base md:text-lg font-bold shadow-lg text-black"
-                style={{
-                  background: 'linear-gradient(to bottom right, rgb(0, 255, 255), rgba(0, 255, 255, 0.8))',
-                  boxShadow: '0 10px 15px -3px rgba(0, 255, 255, 0.3)'
-                }}
-              >
-                OS
-              </span>
+              <img
+                src="/logo-ongevag.png"
+                alt="Ongevag Logo"
+                className="w-10 h-10 md:w-12 md:h-12 rounded-lg object-cover"
+              />
               <div className="hidden sm:flex flex-col leading-tight">
                 <span className="text-white">Ongevag</span>
                 <span className="text-xs text-gray-400 tracking-wide">
