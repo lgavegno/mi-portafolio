@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { FiArrowLeft, FiClock, FiCalendar, FiShare2, FiHeart } from 'react-icons/fi';
+import { MdLightbulb } from 'react-icons/md';
 import { blogPosts } from '../features/blog/data/blogData';
 import ShareButton from '../components/ui/ShareButton';
 
@@ -146,7 +147,7 @@ const BlogPostDetail = () => {
                     {/* Bloque de Flujo de Trabajo Sugerido */}
                     <div className="mt-16 p-8 rounded-2xl bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 border border-slate-200 dark:border-slate-700">
                         <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-                            <span className="material-icons-round text-primary">tips_and_updates</span>
+                            <MdLightbulb className="text-primary text-2xl" />
                             Flujo de Trabajo Sugerido
                         </h3>
                         <ol className="list-decimal list-inside space-y-3 text-slate-600 dark:text-slate-300">

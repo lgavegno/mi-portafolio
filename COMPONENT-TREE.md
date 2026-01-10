@@ -1,48 +1,62 @@
 # 🌳 Árbol de Componentes
 
-Este mapa refleja la jerarquía real de renderizado de la aplicación.
+Este mapa refleja la jerarquía real de renderizado de la aplicación (v2.0).
 
 ```mermaid
 graph TD
     Root[main.jsx] --> App[App.jsx]
     
     subgraph Routing
-    App --> Router[BrowserRouter]
-    Router --> MainLayout[MainLayout.jsx]
+    App --> Routes
+    Routes --> HomeRoute[Route: /]
+    Routes --> BlogRoute[Route: /blog/*]
     end
 
-    subgraph Layout
+    subgraph Home Page
+    HomeRoute --> MainLayoutWrapper
+    MainLayoutWrapper --> MainLayout[MainLayout.jsx]
     MainLayout --> Header[Header.jsx]
-    MainLayout --> PageTrans[PageTransition.jsx]
-    MainLayout --> Footer[Footer.jsx]
-    MainLayout --> BackTop[BackToTop.jsx]
-    end
-
-    subgraph Pages & Features
-    PageTrans --> Home[Home Sections]
-    PageTrans --> BlogDetail[BlogPostDetail.jsx]
-
-    Home --> Hero[HeroBanner.jsx]
-    Home --> Services[Services.jsx]
-    Home --> Works[Works.jsx]
-    Home --> Contact[Contact.jsx]
-    end
-
-    subgraph Components Desglose
-    Hero --> NeuralBg[NeuralNetworkBackground.jsx]
-    Hero --> BlogPrev[BlogPreview.jsx]
     
-    BlogPrev --> BlogCard[BlogCard.jsx]
-    BlogDetail --> BlogCard
+    MainLayout --> Landing[HomeSections]
+    Landing --> Hero[HeroBanner.jsx]
+    Landing --> About[About.jsx]
+    Landing --> Skills[SkillsGrid.jsx]
+    Landing --> Services[Services.jsx]
+    Landing --> Works[Works.jsx]
+    Landing --> BlogPrev[BlogPreview.jsx]
+    Landing --> Contact[Contact.jsx]
+    
+    MainLayout --> Footer[Footer.jsx]
+    end
 
-    Works --> ProjCard[ProjectCard.jsx]
-    ProjCard --> ProgressBar[ProgressBar.jsx]
+    subgraph Blog System
+    BlogRoute --> BlogLayout[BlogLayout.jsx]
+    BlogLayout --> Outlet
+    
+    Outlet --> BlogIndex[BlogIndex.jsx]
+    Outlet --> BlogPost[BlogPostDetail.jsx]
 
-    Contact --> UI_Button[Button.jsx]
+    BlogIndex --> CatFilter[CategoryFilter]
+    BlogIndex --> FeatPost[FeaturedPost]
+    BlogIndex --> PostGrid[PostGrid]
+    
+    BlogPost --> ShareBtn[ShareButton]
+    end
+
+    subgraph Feature Details
+    Hero --> VideoMobile[Video (Mobile Only)]
+    Hero --> Wireframe[WireframeGeometry (Desktop)]
+    Hero --> Ticker[TechnicalTicker]
+
+    Services --> Carousel3D
+    
+    Works --> ProjectCard
+    
+    Contact --> ContactForm
     end
 ```
 
 ## 📦 Leyenda
 - **Layouts**: Estructuran el contenido global.
 - **Features**: Módulos funcionales grandes.
-- **UI Components**: Componentes visuales pequeños y reutilizables.
+- **Components**: Piezas visuales reutilizables.

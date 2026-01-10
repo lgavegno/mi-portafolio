@@ -1,120 +1,79 @@
-# Mi Portafolio
+# Ongevag Portfolio
 
-Portafolio profesional con arquitectura moderna, animaciones fluidas y UX optimizada para móviles.
+> **Software & Data Studio**  
+> Portafolio profesional moderno construido con React 19, Vite y Tailwind CSS.
 
----
+![Ongevag Banner](/public/logo-ongevag.png)
 
-## 🛠️ Stack Tecnológico
+## ⚡ Stack Tecnológico
 
-| Tecnología | Versión | Propósito |
-|------------|---------|-----------|
-| **React** | 19.1.0 | UI Library |
-| **Vite** | 6.3.5 | Build tool + Dev server |
-| **Tailwind CSS** | 3.3.0 | Utility-first CSS |
-| **Framer Motion** | 12.23.12 | Animaciones declarativas |
-| **React Icons** | 5.5.0 | Iconografía (Fi, Fa) |
-| **React Helmet Async** | 2.0.5 | SEO/Meta tags |
+| Tecnología | Propósito | Características |
+|------------|-----------|-----------------|
+| **React 19** | Core | Hooks, Suspense, Lazy Loading |
+| **Vite** | Tooling | Hot Module Replacement (HMR) instantáneo |
+| **Tailwind CSS** | Styling | Diseño atómico, Dark Mode nativo |
+| **Framer Motion** | UX | Animaciones de entrada, scroll y micro-interacciones |
+| **React Icons** | UI | Iconografía SVG optimizada (Feather, Material) |
 
-### Dev Dependencies
-- ESLint 9.25 + React Hooks plugin
-- PostCSS + Autoprefixer
-- TypeScript types (solo para intellisense)
+## 🚀 Instalación y Uso
 
----
+### Prerrequisitos
+- Node.js v18+
+- npm v9+
 
-## 📦 Scripts
-
+### Desarrollo Local
 ```bash
-# Desarrollo (HMR en http://localhost:5173)
+# 1. Clonar repositorio
+git clone https://github.com/lgavegno/mi-portafolio.git
+
+# 2. Instalar dependencias
+npm install
+
+# 3. Configurar entorno (.env)
+# VITE_EMAILJS_SERVICE_ID=...
+# VITE_EMAILJS_TEMPLATE_ID=...
+# VITE_EMAILJS_PUBLIC_KEY=...
+
+# 4. Iniciar servidor
 npm run dev
-
-# Build de producción (output: dist/)
-npm run build
-
-# Preview del build
-npm run preview
-
-# Linting
-npm run lint
 ```
 
----
+### Comandos de Build
+```bash
+npm run build   # Genera producción en dist/
+npm run preview # Previsualiza la build localmente
+npm run lint    # Chequeo de calidad de código
+```
 
-## 📁 Arquitectura
+## 📁 Arquitectura del Proyecto
+
+El proyecto sigue una arquitectura basada en **Features** para escalabilidad:
 
 ```
 src/
-├── components/          # Componentes compartidos
-│   ├── ui/             # Atoms: Button, ProjectCard, Skeleton
-│   ├── Header.jsx      # Navegación
-│   └── Footer.jsx      # Pie de página
-│
-├── features/           # Módulos por dominio
-│   ├── hero/          # HeroBanner
-│   ├── services/      # Carousel 3D
-│   ├── works/         # Proyectos
-│   ├── contact/       # Formulario mailto
-│   └── blog/          # BlogCard, BlogPreview
-│
-├── hooks/              # Custom Hooks
-│   ├── useVibrate.js          # Haptic feedback
-│   ├── useReducedMotion.js    # Accesibilidad
-│   └── useIntersectionObserver.js
-│
-├── config/             # Configuración centralizada
-│   └── motionConfig.js # Variantes Framer Motion
-│
-├── layouts/            # MainLayout (Header + Main + Footer)
-├── data/               # Datos estáticos (projects.js)
-└── styles/             # CSS adicional
+├── components/     # UI Kit compartido (Header, Footer, Buttons)
+├── features/       # Módulos de negocio (Hero, Blog, Contact, Services)
+├── layouts/        # Estructuras de página (Main, Blog)
+├── hooks/          # Lógica reutilizable
+└── config/         # Configuraciones globales (Animaciones)
 ```
 
----
+Para más detalles, consultar [ARCHITECTURE.md](./ARCHITECTURE.md) y [COMPONENT-TREE.md](./COMPONENT-TREE.md).
 
-## ✨ Características
+## ✨ Características Clave
 
-- **Animaciones fluidas**: Framer Motion con variantes centralizadas
-- **UX Mobile-first**: `touch-manipulation`, haptic feedback, `whileTap`
-- **Accesibilidad**: `prefers-reduced-motion` respetado
-- **Lazy Loading**: Code splitting con `React.lazy` + `Suspense`
-- **Glassmorphism**: Cards con `backdrop-blur` y bordes sutiles
-- **Paleta 2025**: Deep Cobalt (#0047AB) + Spring Mint (#2BFF88)
+- **Hero Híbrido:** Video de fondo optimizado para móviles y geometría 3D interactiva para desktop.
+- **Sistema de Blog:** Layout dedicado con modo oscuro independiente, filtrado por categorías y estimación de lectura.
+- **Navegación Fluida:** Scroll suave a secciones y transiciones entre páginas.
+- **Glassmorphism UI:** Diseño moderno con efectos de desenfoque y transparencias.
+- **Performance:** Carga diferida (Lazy loading) de secciones pesadas.
 
----
+## 🚀 Despliegue (Vercel)
 
-## ⚠️ Deuda Técnica
-
-| Prioridad | Issue | Solución propuesta |
-|-----------|-------|-------------------|
-| 🔴 Alta | Sin TypeScript | Migrar a `.tsx` con tipos estrictos |
-| 🔴 Alta | Sin tests | Añadir Vitest + React Testing Library |
-| 🟡 Media | `react-helmet-async` incompatible con React 19 | Migrar a `@tanstack/react-helmet` o esperar actualización |
-| 🟡 Media | Datos hardcodeados | Extraer a CMS headless (Sanity, Strapi) |
-| 🟢 Baja | CSS en componentes | Considerar CSS Modules o styled-components |
-| 🟢 Baja | Sin i18n | Añadir `react-i18next` si se requiere multiidioma |
+El proyecto está optimizado para Vercel (Preset: Vite).
+1. Importar repositorio en Vercel.
+2. Configurar Variables de Entorno (`.env`).
+3. Deploy.
 
 ---
-
-## 🚀 Deploy
-
-**Vercel** (recomendado):
-1. Conectar repo a Vercel
-2. Framework preset: Vite
-3. Build command: `npm run build`
-4. Output directory: `dist`
-
-No se requiere `vercel.json` - Vercel detecta Vite automáticamente.
-
----
-
-## 📖 Documentación
-
-- **[TECHNICAL_GUIDE.md](./TECHNICAL_GUIDE.md)** - Guía técnica para desarrolladores
-
----
-
-## 📝 Licencia
-
-MIT © Lucas Gavegno
-
-
+© 2026 Ongevag Studio - MIT License

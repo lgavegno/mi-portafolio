@@ -1,6 +1,6 @@
 # 🏗️ Arquitectura Técnica del Proyecto
 
-> **Versión:** 1.0.0  
+> **Versión:** 2.0.0
 > **Última actualización:** Enero 2026
 
 ## 🛠️ Tech Stack Principal
@@ -9,39 +9,53 @@ El proyecto está construido sobre un stack moderno basado en React y Vite, opti
 
 | Tecnología | Propósito | Características Clave |
 |------------|-----------|-----------------------|
-| **Vite** | Build Tool | HMR instantáneo, builds optimizados con Rollup. |
+| **Vite** | Build Tool | HMR instantáneo, builds optimizados. |
 | **React 19** | UI Library | Hooks, Suspense, Lazy Loading, StrictMode. |
 | **Tailwind CSS** | Estilizado | Utility-first, Diseño Responsivo, Dark Mode nativo. |
-| **Framer Motion** | Animaciones | Transiciones de página, micro-interacciones, scroll animations. |
+| **Framer Motion** | Animaciones | Transiciones de página, orquestación compleja. |
+| **React Icons** | Iconografía | Librería exclusiva para iconos (Fi, Md). |
 | **EmailJS** | Backendless | Envío de formularios de contacto sin servidor. |
-| **React Router** | Routing | Navegación SPA (Single Page Application). |
+| **React Router** | Routing | Navegación SPA y sistema de rutas híbrido. |
 
 ## 📐 Decisiones de Arquitectura
 
-### 1. Estructura basada en Features
-Se utiliza una arquitectura híbrida donde los componentes reutilizables viven en `components/` y la lógica de negocio específica en `features/`.
+### 1. Estructura basada en Features (Domain-Driven Design Light)
+Se utiliza una arquitectura donde la lógica de negocio se agrupa por dominio en `features/`.
 
 ```
 src/
-├── components/ui/   # Átomos y moléculas (Botones, Cards, Inputs)
-├── features/        # Organismos y páginas (Hero, Contact, Blog)
-├── hooks/           # Lógica reutilizable (useVibrate, useReducedMotion)
-└── layouts/         # Estructuras de página (MainLayout)
+├── components/          # Componentes visuales compartidos
+│   ├── ui/             # Atoms: GlowButton, Skeleton, ShareButton
+│   ├── Header.jsx      # Navegación Global
+│   └── Footer.jsx      # Pie de página
+│
+├── features/           # Módulos por dominio
+│   ├── hero/           # HeroBanner (Video Mobile, 3D Desktop)
+│   ├── services/       # Carousel 3D de Servicios
+│   ├── works/          # Grid de Proyectos
+│   ├── contact/        # Formulario de Contacto
+│   └── blog/           # Sistema de Blog (Index, Detail, Components)
+│
+├── hooks/              # Lógica reutilizable (useVibrate, useReducedMotion)
+├── layouts/            # Layouts (MainLayout, BlogLayout)
+└── config/             # Configuración centralizada (motionConfig.js)
 ```
 
-### 2. Rendimiento y Lazy Loading
-- **Code Splitting:** Las secciones principales (`Hero`, `Services`, `Works`, `Contact`) se cargan perezosamente (`React.lazy`) en `App.jsx`.
-- **Suspense:** Se muestra un `SkeletonPage` mientras cargan los módulos.
-- **Assets:** Las imágenes y recursos pesados se optimizan en el build.
+### 2. Rendimiento y UX
+- **Mobile First Hero:** Se implementa un video de fondo optimizado exclusivamente para móviles para reducir el TBT en desktop.
+- **Code Splitting:** Rutas y secciones pesadas cargadas con `React.lazy`.
+- **Zero CLS:** Uso de skeletons y dimensiones explícitas en imágenes/videos.
 
-### 3. Sistema de Animaciones
-Centralizado en `config/motionConfig.js`. Se definen variantes reutilizables (`fadeInUp`, `staggerContainer`) para mantener consistencia visual sin repetir código en cada componente.
+### 3. Sistema de Estilos y Animación
+- **Tailwind Only:** No se permiten archivos CSS externos (excepto `index.css` global). Todo el estilo es utilitario.
+- **Framer Motion Config:** Variantes de animación centralizadas en `config/motionConfig.js` para mantener consistencia (`fadeInUp`, `staggerContainer`).
 
-### 4. Estilizado (Tailwind + Glassmorphism)
-Se extiende la configuración de Tailwind (`tailwind.config.js`) para incluir paletas de colores personalizadas (`cobalt`, `mint`) y utilidades para efectos de "cristal" (backdrop-blur, bordes semitransparentes).
+### 4. Iconografía
+- **Estandarización:** Uso exclusivo de `react-icons` (principalmente Feather `fi` y Material Design `md`).
+- **Prohibido:** Uso de fuentes de iconos externas (Google Fonts Material Icons) para mejorar la carga.
 
-## 🔄 Flujo de Datos
+## 🔄 Flujo de Datos Global
 
-1. **Estado Local:** La mayoría de los componentes gestionan su propio estado (`useState` para formularios o UI).
-2. **Prop Drilling:** Mínimo, usado solo para componentes de UI puros.
-3. **Configuración Global:** Constantes y datos estáticos residen en `data/` o variables de entorno (`.env`).
+1. **Routing:** `App.jsx` maneja las rutas principales (`/`) y las rutas de blog (`/blog/*`).
+2. **Theme:** `BlogLayout` gestiona el estado del tema (Dark/Light) usando `localStorage` y clases de Tailwind.
+3. **Data:** Los datos de blog y proyectos residen en archivos estáticos JS en `features/*/data/` para fácil mantenimiento sin CMS.

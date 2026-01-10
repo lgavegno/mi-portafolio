@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { FiSun, FiMoon, FiCode, FiTerminal, FiShare2 } from 'react-icons/fi';
 
 const BlogLayout = () => {
     const [isDark, setIsDark] = useState(() => {
@@ -45,9 +46,9 @@ const BlogLayout = () => {
                                 aria-label="Toggle theme"
                             >
                                 {isDark ? (
-                                    <span className="material-icons-round text-[20px] align-middle">light_mode</span>
+                                    <FiSun className="text-[20px] align-middle" />
                                 ) : (
-                                    <span className="material-icons-round text-[20px] align-middle">dark_mode</span>
+                                    <FiMoon className="text-[20px] align-middle" />
                                 )}
                             </button>
                         </div>
@@ -78,13 +79,13 @@ const BlogLayout = () => {
                             <h4 className="font-bold">Social</h4>
                             <div className="flex gap-4">
                                 <a href="#" className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-all">
-                                    <i className="material-icons-round text-lg">code</i>
+                                    <FiCode className="text-lg" />
                                 </a>
                                 <a href="#" className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-all">
-                                    <i className="material-icons-round text-lg">terminal</i>
+                                    <FiTerminal className="text-lg" />
                                 </a>
                                 <a href="#" className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-all">
-                                    <i className="material-icons-round text-lg">share</i>
+                                    <FiShare2 className="text-lg" />
                                 </a>
                             </div>
                         </div>

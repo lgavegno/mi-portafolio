@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FiCalendar, FiClock, FiArrowRight } from 'react-icons/fi';
 
 export const CategoryFilter = ({ categories, selectedCategory, onSelectCategory }) => {
     return (
@@ -45,10 +46,10 @@ export const FeaturedPost = ({ post }) => {
                 </div>
                 <div className="flex items-center gap-4 mb-4 text-sm text-slate-500">
                     <span className="flex items-center gap-1">
-                        <span className="material-icons-round text-base">calendar_today</span> {post.date}
+                        <FiCalendar className="text-base" /> {post.date}
                     </span>
                     <span className="flex items-center gap-1">
-                        <span className="material-icons-round text-base">schedule</span> {post.readTime} min read
+                        <FiClock className="text-base" /> {post.readTime} min read
                     </span>
                 </div>
                 <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
@@ -60,7 +61,7 @@ export const FeaturedPost = ({ post }) => {
                     ))}
                 </div>
                 <span className="inline-flex items-center gap-2 text-primary font-bold hover:underline decoration-2 underline-offset-4">
-                    Read Full Story <span className="material-icons-round">arrow_forward</span>
+                    Read Full Story <FiArrowRight />
                 </span>
             </Link>
         </div>
