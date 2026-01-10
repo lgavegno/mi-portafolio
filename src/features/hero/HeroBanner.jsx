@@ -35,7 +35,7 @@ const HeroBanner = () => {
 
       {/* Main content container */}
       <div className="flex-1 flex items-center">
-        <div className="container mx-auto px-6 py-20 lg:py-0">
+        <div className="container mx-auto px-6 pt-4 pb-6 lg:py-0">
           <motion.div
             variants={staggerContainer}
             initial="hidden"
@@ -44,38 +44,55 @@ const HeroBanner = () => {
           >
             {/* Left Column - Brand & CTAs */}
             <motion.div variants={fadeInUp} className="space-y-8 text-left">
-              {/* Monumental Brand Name */}
-              <div className="space-y-4">
-                <motion.h1
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                  className="text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter leading-none"
+              {/* Video Container - Only for mobile */}
+              <div className="relative overflow-hidden rounded-2xl px-5 pb-6 pt-3 lg:p-0 lg:overflow-visible lg:bg-transparent">
+                {/* Mobile Background Video */}
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover -z-10 lg:hidden opacity-60"
                 >
-                  ONGEVAG
-                </motion.h1>
+                  <source src="/videos/ongevagDesign.mp4" type="video/mp4" />
+                </video>
 
-                {/* Role Subtitle */}
+                {/* Dark overlay for text legibility on mobile */}
+                <div className="absolute inset-0 -z-10 bg-black/70 lg:hidden" />
+
+                {/* Monumental Brand Name */}
+                <div className="space-y-4">
+                  <motion.h1
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter leading-none"
+                  >
+                    ONGEVAG
+                  </motion.h1>
+
+                  {/* Role Subtitle */}
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3, duration: 0.8 }}
+                    className="text-lg md:text-xl lg:text-2xl font-light tracking-wide"
+                    style={{ color: 'rgb(0, 255, 255)' }}
+                  >
+                    Software Developer · Data & Systems Enthusiast
+                  </motion.p>
+                </div>
+
+                {/* Description */}
                 <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3, duration: 0.8 }}
-                  className="text-lg md:text-xl lg:text-2xl font-light tracking-wide"
-                  style={{ color: 'rgb(0, 255, 255)' }}
+                  variants={fadeInUp}
+                  className="text-gray-400 text-base md:text-lg lg:text-xl leading-relaxed max-w-xl mt-6"
                 >
-                  Software Developer · Data & Systems Enthusiast
+                  Diseño y desarrollo proyectos de software y análisis de datos, explorando cómo los sistemas bien pensados pueden mejorar decisiones y procesos reales.
                 </motion.p>
               </div>
 
-              {/* Description */}
-              <motion.p
-                variants={fadeInUp}
-                className="text-gray-400 text-base md:text-lg lg:text-xl leading-relaxed max-w-xl"
-              >
-                Diseño y desarrollo proyectos de software y análisis de datos, explorando cómo los sistemas bien pensados pueden mejorar decisiones y procesos reales.
-              </motion.p>
-
-              {/* CTA Buttons */}
+              {/* CTA Buttons - Outside video container */}
               <motion.div
                 variants={fadeInUp}
                 className="flex flex-col sm:flex-row gap-4"
