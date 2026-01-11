@@ -151,7 +151,7 @@ const Contact = () => {
               Contacto
             </span>
             <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-              ¿Trabajamos juntos?
+              ¿Hablamos?
             </h2>
             <p className="text-gray-400 text-xl max-w-2xl mx-auto">
               Si necesitas ayuda con análisis de datos o automatización de procesos, estaré encantado de conversar contigo.

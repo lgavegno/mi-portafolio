@@ -641,3 +641,21 @@ Documentación técnica y registro de decisiones de arquitectura.
   - `[MODIFY] src/components/Header.jsx` (Refactor a componente controlado)
   - `[UPDATE] PROJECT_LOG.md` (Documentación)
 - **Estado Final:** Experiencia de navegación móvil premium con transiciones suaves y foco visual claro.
+
+### ID: LOG-20260111-043
+**Fecha y Hora:** 2026-01-11 08:55:00
+**Autor:** Antigravity (IA Collaborator)
+**Prompt/Tema Principal:** Actualización de perfil académico e IA
+**Consulta del Usuario:** > Actualizar la sección de Formación... incluyendo Tecnicatura en Programación y Licenciatura en Org. Industrial... e insertar bloque de IA.
+
+**Resumen de la Interacción y Resultado:**
+- **Refactor de About:** Se reestructuró la grilla de la sección "Sobre Mí" para dar más peso y detalle a la formación académica.
+- **Detalle Académico (UTN):**
+    - **Tecnicatura:** Inclusión de "Plan 2024" y materias técnicas (SQL, C, Datos). Nota sobre transición de plan.
+    - **Licenciatura:** Inclusión de materias de gestión (Economía, Org. Industrial).
+- **Nuevo Bloque de IA:** Se creó la sección "Herramientas de IA y Asistencia al Desarrollo", destacando la metodología de trabajo moderna con un diseño visual diferenciado (Cyan Institutional Glow).
+- **Consistencia:** Se mantuvo el bloque de "Trayectoria" con mejoras leves de copy ("visión sistémica").
+- **Cambios Realizados:**
+  - `[MODIFY] src/components/About.jsx` (Implementación de nuevas tarjetas educativas y de IA)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Perfil profesional actualizado reflejando el estado actual de "Estudiante Avanzado" y la adopción de nuevas tecnologías.
