@@ -1,11 +1,12 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
+import { imagetools } from 'vite-imagetools'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  
+  plugins: [react(), imagetools()],
+
   // Alias para imports más limpios
   resolve: {
     alias: {
@@ -24,19 +25,19 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: true,
     assetsDir: 'assets',
-    
+
     // Minificación con esbuild (más rápido que terser)
     minify: 'esbuild',
-    
+
     // Target moderno para mejor tree-shaking
     target: 'esnext',
-    
+
     // Reportar tamaño de chunks
     reportCompressedSize: true,
-    
+
     // Límite de advertencia de chunk (500kb)
     chunkSizeWarningLimit: 500,
-    
+
     // CSS code splitting
     cssCodeSplit: true,
   },
@@ -45,10 +46,10 @@ export default defineConfig({
   server: {
     // Hot Module Replacement
     hmr: true,
-    
+
     // Puerto por defecto
     port: 5173,
-    
+
     // Abrir navegador automáticamente
     open: true,
   },

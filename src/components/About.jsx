@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaGraduationCap, FaBriefcase } from 'react-icons/fa';
-import profileImage from '../assets/profile-about.png';
+import profileImage from '../assets/profile-about.png?format=webp';
 import { fadeInUp, staggerContainer } from '../config/motionConfig';
 
 const About = () => {
@@ -30,6 +30,7 @@ const About = () => {
                                     <img
                                         src={profileImage}
                                         alt="Profile"
+                                        loading="lazy"
                                         className="w-full h-full object-cover transform transition duration-500 group-hover:scale-105"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

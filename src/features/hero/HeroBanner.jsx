@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FiLayers, FiMail } from 'react-icons/fi';
+import { FiLayers, FiMail, FiDownload } from 'react-icons/fi';
 import { fadeInUp, staggerContainer } from '../../config/motionConfig';
 import GlowButton from '../../components/ui/GlowButton';
 
@@ -56,13 +56,14 @@ const HeroBanner = () => {
                   loop
                   muted
                   playsInline
-                  className="absolute inset-0 w-full h-full object-cover -z-10 lg:hidden opacity-60"
+                  preload="metadata"
+                  className="absolute inset-0 w-full h-full object-cover -z-10 lg:hidden opacity-60 pointer-events-none"
                 >
                   <source src="/videos/ongevagDesign.mp4" type="video/mp4" />
                 </video>
 
                 {/* Dark overlay for text legibility on mobile */}
-                <div className="absolute inset-0 -z-10 bg-black/40 lg:hidden" />
+                <div className="absolute inset-0 -z-10 bg-black/40 lg:hidden pointer-events-none" />
 
                 {/* Block 1: Top (Title & Subtitle) */}
                 <div className="pt-8 px-6 lg:p-0 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
@@ -118,6 +119,16 @@ const HeroBanner = () => {
                       icon={<FiMail />}
                     >
                       Contactar
+                    </GlowButton>
+
+                    <GlowButton
+                      variant="secondary"
+                      href="/CV_LeandroGavegno.pdf"
+                      download="CV_LeandroGavegno.pdf"
+                      icon={<FiDownload />}
+                      className="lg:hidden"
+                    >
+                      Descargar CV
                     </GlowButton>
                   </motion.div>
                 </div>

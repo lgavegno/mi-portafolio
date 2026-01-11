@@ -10,16 +10,26 @@ const GlowButton = ({
     onClick,
     variant = 'primary',
     icon,
-    className = ''
+    className = '',
+    href,
+    download,
+    target,
+    rel
 }) => {
     const variants = {
         primary: 'border-cyan-institutional text-cyan-institutional hover:shadow-cyan-glow-lg hover:bg-cyan-institutional/10',
         secondary: 'border-cyan-institutional/50 text-white hover:border-cyan-institutional hover:shadow-cyan-glow hover:bg-cyan-institutional/5',
     };
 
+    const Component = href ? motion.a : motion.button;
+
     return (
-        <motion.button
+        <Component
             onClick={onClick}
+            href={href}
+            download={download}
+            target={target}
+            rel={rel}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className={`
@@ -30,6 +40,7 @@ const GlowButton = ({
         font-bold text-sm tracking-widest uppercase
         transition-all duration-300
         overflow-hidden
+        cursor-pointer text-center flex items-center justify-center
         ${className}
       `}
         >
@@ -53,7 +64,7 @@ const GlowButton = ({
                     </motion.span>
                 )}
             </span>
-        </motion.button>
+        </Component>
     );
 };
 

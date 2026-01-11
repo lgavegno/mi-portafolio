@@ -28,7 +28,7 @@ const AnimatedSection = ({ children, id }) => (
     id={id}
     initial="initial"
     whileInView="animate"
-    viewport={{ once: true, margin: "-100px" }}
+    viewport={{ once: true, amount: 0.05, fallback: true }}
     variants={pageTransition}
   >
     {children}

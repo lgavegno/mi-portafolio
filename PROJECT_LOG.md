@@ -508,3 +508,77 @@ Documentación técnica y registro de decisiones de arquitectura.
   - `[MODIFY] src/pages/BlogPostDetail.jsx` (Imports actualizados)
   - `[UPDATE] PROJECT_LOG.md` (Documentación)
 - **Estado Final:** Activos estáticos críticos migrados y gestionados por el sistema de build.
+
+### ID: LOG-20260111-036
+**Fecha y Hora:** 2026-01-11 06:45:00
+**Autor:** Antigravity (IA Collaborator)
+**Prompt/Tema Principal:** Optimización de performance de scroll
+**Consulta del Usuario:** > Optimizar la fluidez del scroll y rendimiento de animaciones en móviles sin alterar el diseño institucional.
+
+**Resumen de la Interacción y Resultado:**
+- **Análisis Técnico:** Optimización de performance de scroll. Ajuste de momentum táctil y reducción de carga en triggers de Framer Motion.
+    1.  **CSS Scroll Hints:** Se añadió `-webkit-overflow-scrolling: touch` y `overscroll-behavior-y: none` para mejorar la respuesta táctil y evitar efectos de rebote no deseados en móviles.
+    2.  **GPU Acceleration:** Se activó `will-change: transform, opacity` en la clase `.glass` para promover capas a la GPU antes de la animación.
+    3.  **Framer Motion Optimization:** Se ajustó el viewport trigger de `AnimatedSection` a `amount: 0.05` con `fallback: true` para disparar animaciones más rápido y liberar recursos del hilo principal.
+    4.  **Touch Handling:** Se desactivaron eventos de puntero (`pointer-events-none`) en el video y overlay del Hero para asegurar que el scroll no sea interceptado.
+- **Cambios Realizados:**
+  - `[PERF] src/index.css` (Scroll hints & will-change)
+  - `[PERF] src/App.jsx` (Viewport amount 0.05)
+  - `[PERF] src/features/hero/HeroBanner.jsx` (pointer-events-none)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+### ID: LOG-20260111-037
+**Fecha y Hora:** 2026-01-11 06:48:00
+**Autor:** Antigravity (IA Collaborator)
+**Prompt/Tema Principal:** Inserción de CTA de descarga de CV en el layout móvil
+**Consulta del Usuario:** > Añadir el botón de "Descargar CV" en la sección móvil del HeroBanner.jsx para mejorar la accesibilidad del perfil.
+
+**Resumen de la Interacción y Resultado:**
+- **Análisis Técnico:** Se requería añadir un botón de descarga de CV visible solo en dispositivos móviles dentro del HeroBanner para facilitar el acceso rápido al currículum.
+    1.  **GlowButton Polimórfico:** Se actualizó `GlowButton.jsx` para comportarse como un enlace `<a>` (usando `motion.a`) cuando se proporciona la prop `href`, permitiendo descargas directas sin perder los estilos y animaciones del componente.
+    2.  **Hero Mobile Layout:** Se insertó el tercer botón en el bloque de acciones del Hero, con la clase `lg:hidden` para restringir su visibilidad a pantallas pequeñas (móvil/tablet).
+    3.  **Configuración de Descarga:** Se configuró con `href="/CV_LeandroGavegno.pdf"` y `download` para forzar la acción de guardar archivo.
+- **Cambios Realizados:**
+  - `[MODIFY] src/components/ui/GlowButton.jsx` (Soporte para href/download)
+  - `[MODIFY] src/features/hero/HeroBanner.jsx` (Añadido botón Descargar CV móvil)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Botón de descarga de CV integrado en la experiencia móvil del Hero. Componente GlowButton ahora es más versátil.
+
+### ID: LOG-20260111-038
+**Fecha y Hora:** 2026-01-11 06:58:00
+**Autor:** Antigravity (IA Collaborator)
+**Prompt/Tema Principal:** Auditoría interna de performance
+**Consulta del Usuario:** > Realizar un análisis técnico de la infraestructura actual frente al PERFORMANCE_CHECKLIST.md y actualizar su estado.
+
+**Resumen de la Interacción y Resultado:**
+- **Análisis Técnico:** Se realizó una auditoría de código para verificar la implementación de las optimizaciones recientes y sincronizar el checklist de performance.
+    1.  **Code Splitting & LCP:** Confirmado que `HeroBanner` se carga estáticamente en `App.jsx` (LCP) mientras que `WireframeGeometry` utiliza `React.lazy` (Code Splitting), equilibrando carga inicial y peso del bundle.
+    2.  **Assets:** Verificada la existencia de assets críticos en `src/assets` para procesamiento por Vite.
+    3.  **Mobile UX:** Reglas de scroll inercial (`-webkit-overflow-scrolling`) y `overscroll-behavior-y` presentes en `index.css`.
+    4.  **Viewport:** Ajuste de `AnimatedSection` verificado.
+- **Cambios Realizados:**
+  - `[UPDATE] PERFORMANCE_CHECKLIST.md` (Añadidos items completados de LCP, Mobile UX y Assets)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación de auditoría)
+- **Estado Final:** Checklist actualizado reflejando el estado real de la optimización mobile y LCP.
+
+### ID: LOG-20260111-039
+**Fecha y Hora:** 2026-01-11 07:08:00
+**Autor:** Antigravity (IA Collaborator)
+**Prompt/Tema Principal:** Activación de pipeline de imágenes
+**Consulta del Usuario:** > Activar el procesamiento automático de imágenes en vite.config.js y optimizar los assets actuales.
+
+**Resumen de la Interacción y Resultado:**
+- **Configuración:**
+    1.  **Vite Imagetools:** Se configuró el plugin en `vite.config.js` para permitir transformaciones de imágenes en tiempo de compilación.
+    2.  **Formato WebP:** Se actualizaron las importaciones de imágenes (Logo, Perfil, Avatar) para forzar la conversión a WebP (`?format=webp`).
+- **UX & Rendimiento:**
+    1.  **Lazy Loading:** Se auditó y aseguró `loading="lazy"` en imágenes secundarias (`About`, `Avatar`), manteniendo `eager` (implícito) en el LCP (Hero).
+    2.  **Video Optimization:** Se añadió `preload="metadata"` al video del Hero móvil para reducir el consumo de datos inicial.
+- **Cambios Realizados:**
+  - `[MODIFY] vite.config.js` (Añadido plugin imagetools)
+  - `[MODIFY] src/components/Header.jsx` (Logo a WebP)
+  - `[MODIFY] src/components/About.jsx` (Perfil a WebP + Lazy)
+  - `[MODIFY] src/pages/BlogPostDetail.jsx` (Avatar a WebP + Lazy)
+  - `[MODIFY] src/features/hero/HeroBanner.jsx` (Video preload)
+  - `[UPDATE] PERFORMANCE_CHECKLIST.md` (Items de imagen completados)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Pipeline de optimización de imágenes activo y configuración de carga eficiente implementada.

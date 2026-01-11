@@ -30,16 +30,22 @@
 - [x] ARIA labels en botones e iconos
 - [x] Contraste de colores adecuado
 
+### Optimización Reciente (Mobile & LCP)
+- [x] Optimización de LCP mediante carga estática del Hero
+- [x] Implementación de inercia táctil para móviles
+- [x] Lazy loading de componentes pesados (WireframeGeometry)
+- [x] Reorganización de assets estáticos (logos a src/assets)
+
 ---
 
 ## 📋 Pendiente de Implementar
 
 ### Imágenes (Alto Impacto)
-- [ ] Convertir imágenes a WebP/AVIF
+- [x] Convertir imágenes a WebP/AVIF
 - [ ] Implementar `srcset` para responsive images
-- [ ] Añadir `loading="lazy"` a todas las imágenes
+- [x] Añadir `loading="lazy"` a todas las imágenes
 - [ ] Placeholder blur durante carga
-- [ ] Optimizar con `vite-imagetools` o similar
+- [x] Optimizar con `vite-imagetools` o similar
 
 ### Fuentes (Medio Impacto)
 - [ ] Preload de fuente Inter

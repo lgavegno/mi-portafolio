@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { useVibrate } from '../hooks/useVibrate';
-import logoOngevag from '../assets/logo-ongevag.png';
+import logoOngevag from '../assets/logo-ongevag.png?format=webp';
 
 const navLinks = [
   { label: 'Inicio', id: 'inicio' },
