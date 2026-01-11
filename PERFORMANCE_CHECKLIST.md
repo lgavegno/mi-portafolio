@@ -59,7 +59,7 @@
 
 ### Compresión (Alto Impacto)
 - [x] Instalar `vite-plugin-compression` para gzip/brotli
-- [ ] Configurar headers de cache en deploy
+- [x] Configurar headers de cache en deploy
 
 ---
 

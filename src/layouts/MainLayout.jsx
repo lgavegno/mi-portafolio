@@ -8,8 +8,12 @@ import BackToTop from '../components/ui/BackToTop'
 
 const MainLayout = ({ children }) => {
   const location = useLocation();
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   useEffect(() => {
+    // Reset menu on route change
+    setIsMenuOpen(false);
+
     if (location.state?.scrollTo) {
       const element = document.getElementById(location.state.scrollTo);
       if (element) {
@@ -31,13 +35,34 @@ const MainLayout = ({ children }) => {
 
   return (
     <div className="min-h-screen bg-slate-950 text-gray-100 overflow-x-hidden relative">
-      <Header />
-      <main className="w-full max-w-[100vw] overflow-x-hidden pt-16 md:pt-20">
+      <Header isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />
+
+      {/* Content wrapper with blur effect */}
+      <motion.main
+        className="w-full max-w-[100vw] overflow-x-hidden pt-16 md:pt-20"
+        animate={{
+          filter: isMenuOpen ? 'blur(8px)' : 'blur(0px)',
+          opacity: isMenuOpen ? 0.4 : 1,
+          scale: isMenuOpen ? 0.98 : 1, // Subtle scale effect for depth
+        }}
+        transition={{ duration: 0.3 }}
+      >
         <PageTransition>
           {children}
         </PageTransition>
-      </main>
-      <Footer />
+      </motion.main>
+
+      {/* Footer also gets blurred */}
+      <motion.div
+        animate={{
+          filter: isMenuOpen ? 'blur(8px)' : 'blur(0px)',
+          opacity: isMenuOpen ? 0.4 : 1,
+        }}
+        transition={{ duration: 0.3 }}
+      >
+        <Footer />
+      </motion.div>
+
       <BackToTop />
     </div>
   )

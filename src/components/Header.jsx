@@ -15,8 +15,8 @@ const navLinks = [
 
 ];
 
-const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const Header = ({ isOpen, setIsOpen }) => {
+  // const [isOpen, setIsOpen] = useState(false); // Managed by parent
   const [scrolled, setScrolled] = useState(false);
   const vibrate = useVibrate(10);
   const location = useLocation();

@@ -605,3 +605,39 @@ Documentación técnica y registro de decisiones de arquitectura.
   - `[UPDATE] PERFORMANCE_CHECKLIST.md` (Items finales marcados)
   - `[UPDATE] PROJECT_LOG.md` (Documentación)
 - **Estado Final:** Infraestructura optimizada para puntaje alto en Lighthouse y experiencia de usuario fluida.
+
+### ID: LOG-20260111-041
+**Fecha y Hora:** 2026-01-11 07:25:00
+**Autor:** Antigravity (IA Collaborator)
+**Prompt/Tema Principal:** Configuración de despliegue (Vercel)
+**Consulta del Usuario:** > Crear la configuración de despliegue para Vercel, optimizando el almacenamiento en caché y la seguridad.
+
+**Resumen de la Interacción y Resultado:**
+- **Infraestructura Vercel:**
+    1.  **vercel.json:** Se creó el archivo de configuración para definir el comportamiento del servidor en el borde (Edge).
+    2.  **Caching Strategy:** Se implementó una política extrema (`immutable`, 1 año) para `assets/*` y archivos estáticos conocidos (pdf, img, videos), aprovechando el hash en los nombres de archivo generado por Vite.
+    3.  **Seguridad:** Inyección de cabeceras de seguridad (`nosniff`, `DENY`, `XSS-Protection`) en todas las respuestas.
+    4.  **Routing:** Configuración de `rewrites` para soportar SPA (Single Page Application) y `cleanUrls`.
+- **Cambios Realizados:**
+  - `[NEW] vercel.json` (Configuración completa de deploy)
+  - `[UPDATE] PERFORMANCE_CHECKLIST.md` (Item de headers completado)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Proyecto listo para despliegue en producción con best practices de servidor configuradas.
+
+### ID: LOG-20260111-042
+**Fecha y Hora:** 2026-01-11 07:33:00
+**Autor:** Antigravity (IA Collaborator)
+**Prompt/Tema Principal:** Mejora de UX móvil (Backdrop Blur)
+**Consulta del Usuario:** > Aplicar un efecto de desenfoque (blur) al contenido del sitio cuando el menú móvil está desplegado.
+
+**Resumen de la Interacción y Resultado:**
+- **State Lifting:** Se elevó el estado `isMenuOpen` desde `Header.jsx` hacia `MainLayout.jsx` para permitir que el layout controle el estilo visual de todo el sitio basado en el estado del menú.
+- **Efecto Visual:** Implementado filtro condicional con Framer Motion en `MainLayout`:
+    - **Menú Abierto:** `filter: blur(8px)`, `opacity: 0.4`, `scale: 0.98`. Esto crea profundidad y focaliza la atención en la navegación.
+    - **Menú Cerrado:** Estado natural (`blur(0px)`, `opacity: 1`).
+- **Coordinación:** `Header` ahora recibe `isOpen` y `setIsOpen` como props, manteniendo su funcionalidad intacta pero delegando el estado.
+- **Cambios Realizados:**
+  - `[MODIFY] src/layouts/MainLayout.jsx` (Lógica de estado y wrappers de animación)
+  - `[MODIFY] src/components/Header.jsx` (Refactor a componente controlado)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Experiencia de navegación móvil premium con transiciones suaves y foco visual claro.
