@@ -364,3 +364,147 @@ Documentación técnica y registro de decisiones de arquitectura.
   - `[MODIFY] src/features/hero/HeroBanner.jsx` (text-gray-200, drop-shadow condicional)
   - `[UPDATE] PROJECT_LOG.md` (Documentación)
 - **Estado Final:** Descripción nítida y legible sobre el video en movimiento. Integridad visual mantenida en todas las resoluciones.
+
+### ID: LOG-20260110-024
+**Fecha y Hora:** 2026-01-10 20:35:00
+**Autor:** Gemini AI (IA Collaborator)
+**Prompt/Tema Principal:** Inicialización Módulo Analytics
+**Consulta del Usuario:** > Crear la estructura base del módulo de Analytics siguiendo la arquitectura de Features y el sistema de diseño ONGEVAG.
+
+**Resumen de la Interacción y Resultado:**
+- **Análisis Técnico:** Se creó la estructura del feature `analytics` con componentes de presentación que adhieren estrictamente al Design System (Glassmorphism + Cyan Monospace).
+    1.  **AnalyticsCard.jsx:** Contenedor reutilizable con:
+        - Estilo: `bg-obsidian/80`, `backdrop-blur-md`, `border-cyan-institutional/20`.
+        - Animación: `fadeInUp` (framer-motion) para entrada suave.
+        - Decoración: Glow sutil en esquina superior derecha.
+    2.  **DataChart.jsx:** Componente visual placeholder para gráficos.
+        - Estilo: Barras con altura variable, bordes cyan y efecto de brillo superior.
+        - Tipografía: `font-mono` para datos técnicos.
+        - Interacción: Hover revela valores numéricos.
+- **Cambios Realizados:**
+  - `[NEW] src/features/analytics/components/AnalyticsCard.jsx`
+  - `[NEW] src/features/analytics/components/DataChart.jsx`
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Componentes base de Analytics creados y listos para integración futura. Estética consistente con la marca ONGEVAG.
+
+### ID: LOG-20260110-025
+**Fecha y Hora:** 2026-01-10 20:40:00
+**Autor:** Gemini AI (IA Collaborator)
+**Prompt/Tema Principal:** Upgrade Visual Sistema de Blog
+**Consulta del Usuario:** > Adaptar el sistema de blog (BlogIndex y BlogPreview) a la identidad institucional ONGEVAG.
+
+**Resumen de la Interacción y Resultado:**
+- **Análisis Técnico:** Se refactorizaron los componentes de Blog para alinearlos con la nueva estética "Institutional Fintech" de ONGEVAG, eliminando los colores de categoría heredados (purple, cobalt, mint) y adoptando un sistema monocromático Cyan/Obsidian.
+    1.  **BlogCard.jsx (Core):**
+        - **UI Categorías:** Transformadas a estilo terminal (`mono uppercase tracking-widest text-[10px]`) con borde y fondo cyan sutil.
+        - **Glassmorphism:** Wrapper actualizado a `bg-obsidian/80 backdrop-blur-md border-cyan-institutional/20` para consistencia con `AnalyticsCard`.
+        - **Micro-interacciones:** Implementado `scrollReveal` (desplazamiento lateral + fade). Hover activa `grayscale-0` en imagen y glow cyan en borde y sombra.
+        - **Tipografía:** Textos técnicos en fuente monoespaciada para fechas y tiempos de lectura.
+    2.  **BlogPreview.jsx:**
+        - Headers y CTAs actualizados de estilos Purple a Cyan/Obsidian para consistencia global.
+- **Cambios Realizados:**
+  - `[MODIFY] src/features/blog/components/BlogCard.jsx` (Rediseño completo de estilo)
+  - `[MODIFY] src/features/blog/components/BlogPreview.jsx` (Adaptación a paleta ONGEVAG)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Sistema de blog integrado visualmente a la identidad ONGEVAG. Estética minimalista, técnica y premium.
+
+### ID: LOG-20260110-027
+**Fecha y Hora:** 2026-01-10 20:50:00
+**Autor:** Gemini AI (IA Collaborator)
+**Prompt/Tema Principal:** Implementación de Botón CV y Ajuste de Identidad
+**Consulta del Usuario:** > Añadir botón de descarga de CV en Header y actualizar subtítulo del Hero a perfil estudiante.
+
+**Resumen de la Interacción y Resultado:**
+- **Análisis Técnico:** Se implementaron cambios sutiles pero significativos para alinear el portafolio con el estado actual del perfil (Estudiante / Trainee), ofreciendo acceso directo al CV de forma elegante.
+    1.  **Header CTA:** Se añadió un enlace `<a>` para descarga de CV.
+        - Estilo: Minimalista y técnico (`border border-gray-700`, `text-xs`) para no competir con el botón principal de Contacto.
+        - Interacción: Hover activa acentos cyan, manteniendo la coherencia con el Design System.
+    2.  **Identidad Hero:** Se actualizó el subtítulo a "Estudiante de Programación · UTN FRRA". Esto establece una expectativa honesta y profesional desde el primer vistazo.
+- **Cambios Realizados:**
+  - `[MODIFY] src/components/Header.jsx` (Añadido botón Descargar CV)
+  - `[MODIFY] src/features/hero/HeroBanner.jsx` (Subtítulo actualizado)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Perfil profesional ajustado a la realidad académica. Navegación enriquecida con acceso a CV.
+
+### ID: LOG-20260110-028
+**Fecha y Hora:** 2026-01-10 20:55:00
+**Autor:** Gemini AI (IA Collaborator)
+**Prompt/Tema Principal:** Ajuste Botón CV y Preservación de Branding
+**Consulta del Usuario:** > Añadir el botón de descarga del CV al Header.jsx vinculando el archivo PDF existente sin realizar cambios en textos o títulos del sitio.
+
+**Resumen de la Interacción y Resultado:**
+- **Análisis Técnico:** Se refinó la implementación del botón de CV en el Header para especificar el nombre de archivo en el atributo `download` y se revirtió el cambio de texto en el HeroBanner, respetando la decisión del usuario de mantener el título "Software Developer".
+    1.  **Header:** Atributo `download="CV_LeandroGavegno.pdf"` añadido para asegurar una descarga correcta con el nombre deseado.
+    2.  **HeroBanner:** Revertido el subtítulo a "Software Developer · Data & Systems Enthusiast".
+- **Cambios Realizados:**
+  - `[MODIFY] src/components/Header.jsx` (Refinamiento atributo download)
+  - `[MODIFY] src/features/hero/HeroBanner.jsx` (Revertido texto subtítulo)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Botón de CV funcional y branding original preservado.
+
+### ID: LOG-20260110-029
+**Fecha y Hora:** 2026-01-10 21:00:00
+**Autor:** Gemini AI (IA Collaborator)
+**Prompt/Tema Principal:** Corrección Integridad Descarga CV
+**Consulta del Usuario:** > Corregir la descarga del CV en Header.jsx para evitar que el archivo se descargue dañado usando BASE_URL.
+
+**Resumen de la Interacción y Resultado:**
+- **Análisis Técnico:** Se detectó que el link relativo `/` podía causar problemas en ciertos entornos de despliegue o navegadores que no resuelven correctamente la raíz al servir assets estáticos binarios. Se implementó una ruta absoluta dinámica usando variables de entorno de Vite.
+    1.  **Ruta Robusta:** `href={`${import.meta.env.BASE_URL}CV_LeandroGavegno.pdf`}` asegura que Vite resuelva la ubicación correcta del archivo en `public/` independientemente de si el sitio está en un subdirectorio o en la raíz.
+    2.  **Atributos de Navegador:** `target="_blank"` y `rel="noopener noreferrer"` añaden una capa de seguridad y fuerzan al navegador a tratar el recurso en un contexto nuevo, facilitando la detección del tipo MIME correcto (application/pdf).
+- **Cambios Realizados:**
+  - `[FIX] src/components/Header.jsx` (Implementación de BASE_URL y atributos de seguridad)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Descarga de CV robusta y compatible con distintos entornos de despliegue.
+
+### ID: LOG-20260110-030
+**Fecha y Hora:** 2026-01-10 21:05:00
+**Autor:** Gemini AI (IA Collaborator)
+**Prompt/Tema Principal:** Solución Conflicto Routing PDF
+**Consulta del Usuario:** > Corregir el conflicto entre React Router y la descarga del PDF en Header.jsx usando etiqueta estándar.
+
+**Resumen de la Interacción y Resultado:**
+- **Análisis Técnico:** React Router a veces intenta interceptar clics en enlaces relativos incluso si son archivos estáticos. Para mitigar esto y asegurar que el navegador maneje la descarga del archivo binario directamente:
+    1.  **Tag Estándar Simplificado:** Se usó `<a href="/CV_LeandroGavegno.pdf">` directo a la raíz pública.
+    2.  **Target Self:** `target="_self"` (o omitirlo, que es el default) asegura que la acción ocurra en el contexto actual, permitiendo que el atributo `download` tome precedencia sin abrir ventanas fantasma innecesarias.
+- **Cambios Realizados:**
+  - `[FIX] src/components/Header.jsx` (Simplificación de ancla y target)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Conflicto de enrutamiento resuelto. Descarga directa funcional.
+
+### ID: LOG-20260110-031
+**Fecha y Hora:** 2026-01-10 21:10:00
+**Autor:** Gemini AI (IA Collaborator)
+**Prompt/Tema Principal:** Verificación Descarga CV y Ruteo
+**Consulta del Usuario:** > Corregir el conflicto de ruteo para permitir la descarga del CV desde Header.jsx usando etiqueta nativa.
+
+**Resumen de la Interacción y Resultado:**
+- **Análisis Técnico:** Se verificó y aseguró la implementación de la etiqueta ancla `<a>` nativa para la descarga del CV. Esta aproximación garantiza que el navegador gestione la petición de archivo estático sin interferencia del enrutador de cliente (React Router).
+    1.  **Tag Nativo:** Confirmado uso de `<a href="/CV_LeandroGavegno.pdf">` en lugar de `<Link>`.
+    2.  **Atributos:** `download` presente para forzar guardado.
+    3.  **Identidad:** Se respetó estrictamente el título "Software Developer · Data & Systems Enthusiast" en el Hero, manteniendo la coherencia del perfil profesional.
+- **Cambios Realizados:**
+  - `[VERIFY] src/components/Header.jsx` (Confirmación de implementación correcta)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Descarga de CV totalmente funcional sin conflictos de SPA.
+
+### ID: LOG-20260110-032
+**Fecha y Hora:** 2026-01-10 21:18:00
+**Autor:** Gemini AI (IA Collaborator)
+**Prompt/Tema Principal:** Migración de Activos a src/assets
+**Consulta del Usuario:** > Actualizar las rutas de imágenes tras la migración a src/assets/.
+
+**Resumen de la Interacción y Resultado:**
+- **Análisis Técnico:** Se movieron los logos e imágenes de perfil desde `public/` a `src/assets/` para permitir que el bundler (Vite) los procese y optimice (hash en nombre de archivo, cache busting). Los videos grandes se mantuvieron en `public/` para evitar bloat del bundle principal.
+    1.  **Movimiento de Archivos:** `logo-ongevag.png` y `gemini-avatar.png` trasladados.
+    2.  **Actualización de Importaciones:**
+        - `Header.jsx`: Import dinámico de logo.
+        - `BlogPostDetail.jsx`: Import dinámico de avatar.
+    3.  **Preservación:** Video de fondo en `HeroBanner.jsx` mantenido en `/videos/ongevagDesign.mp4` (public folder).
+- **Cambios Realizados:**
+  - `[MOVE] public/logo-ongevag.png` -> `src/assets/logo-ongevag.png`
+  - `[MOVE] public/gemini-avatar.png` -> `src/assets/gemini-avatar.png`
+  - `[MODIFY] src/components/Header.jsx` (Imports actualizados)
+  - `[MODIFY] src/pages/BlogPostDetail.jsx` (Imports actualizados)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Activos estáticos críticos migrados y gestionados por el sistema de build.

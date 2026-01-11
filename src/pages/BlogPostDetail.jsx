@@ -4,6 +4,7 @@ import { FiArrowLeft, FiClock, FiCalendar, FiShare2, FiHeart } from 'react-icons
 import { MdLightbulb } from 'react-icons/md';
 import { blogPosts } from '../features/blog/data/blogData';
 import ShareButton from '../components/ui/ShareButton';
+import geminiAvatar from '../assets/gemini-avatar.png';
 
 const BlogPostDetail = () => {
     const { slug } = useParams();
@@ -67,7 +68,7 @@ const BlogPostDetail = () => {
                     <div className="flex flex-col md:flex-row items-center gap-4 border-t border-b border-slate-200 dark:border-slate-800 py-6">
                         <div className="relative">
                             <img
-                                src="/gemini-avatar.png"
+                                src={geminiAvatar}
                                 alt="Gemini AI"
                                 className="w-12 h-12 rounded-full border-2 border-primary/30 p-0.5 object-cover"
                             />

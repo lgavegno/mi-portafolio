@@ -35,7 +35,7 @@ const BlogPreview = ({
             </h3>
             <Link
               to="/blog"
-              className="text-xs text-cobalt-400 hover:text-cobalt-300 flex items-center gap-1"
+              className="text-xs text-cyan-institutional hover:text-cyan-institutional/80 flex items-center gap-1"
             >
               Ver todos
               <FiArrowRight className="w-3 h-3" />
@@ -71,7 +71,7 @@ const BlogPreview = ({
             className="flex items-center justify-between mb-8"
           >
             <div>
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-400/20 text-purple-300 text-sm font-medium mb-4">
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-institutional/10 border border-cyan-institutional/20 text-cyan-institutional text-sm font-medium mb-4">
                 <FiBookOpen className="w-4 h-4" />
                 Blog
               </span>
@@ -84,9 +84,9 @@ const BlogPreview = ({
               className="
                 hidden sm:flex items-center gap-2
                 px-5 py-2.5 rounded-xl
-                bg-white/5 border border-white/10
+                bg-white/5 border border-cyan-institutional/10
                 text-gray-300 hover:text-white
-                hover:border-purple-400/30
+                hover:border-cyan-institutional/40
                 transition-colors
               "
             >
@@ -125,7 +125,7 @@ const BlogPreview = ({
           variants={fadeInUp}
           className="text-center mb-12"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-400/20 text-purple-300 text-sm font-medium mb-6">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-institutional/10 border border-cyan-institutional/20 text-cyan-institutional text-sm font-medium mb-6">
             <FiBookOpen className="w-4 h-4" />
             Blog
           </span>
@@ -161,9 +161,9 @@ const BlogPreview = ({
           className="
             inline-flex items-center gap-3
             px-8 py-4 rounded-xl
-            bg-white/5 border border-white/10
+            bg-white/5 border border-cyan-institutional/10
             text-gray-300 hover:text-white
-            hover:border-purple-400/30 hover:bg-purple-500/5
+            hover:border-cyan-institutional/40 hover:bg-cyan-institutional/5
             transition-all duration-300
             font-medium
           "

@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { useVibrate } from '../hooks/useVibrate';
+import logoOngevag from '../assets/logo-ongevag.png';
 
 const navLinks = [
   { label: 'Inicio', id: 'inicio' },
@@ -77,7 +78,7 @@ const Header = () => {
               className="flex items-center gap-3"
             >
               <img
-                src="/logo-ongevag.png"
+                src={logoOngevag}
                 alt="Ongevag Logo"
                 className="w-10 h-10 md:w-12 md:h-12 rounded-lg object-cover"
               />
@@ -114,6 +115,16 @@ const Header = () => {
                 </motion.div>
               </Link>
             ))}
+
+            {/* Resume Download */}
+            <a
+              href="/CV_LeandroGavegno.pdf"
+              download="CV_LeandroGavegno.pdf"
+              target="_self"
+              className="ml-4 border border-gray-700 text-gray-300 hover:text-cyan-institutional hover:border-cyan-institutional px-3 py-1.5 rounded-sm text-xs transition-all"
+            >
+              Descargar CV
+            </a>
 
             {/* CTA Button */}
             <Link
