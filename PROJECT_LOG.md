@@ -582,3 +582,26 @@ Documentación técnica y registro de decisiones de arquitectura.
   - `[UPDATE] PERFORMANCE_CHECKLIST.md` (Items de imagen completados)
   - `[UPDATE] PROJECT_LOG.md` (Documentación)
 - **Estado Final:** Pipeline de optimización de imágenes activo y configuración de carga eficiente implementada.
+
+### ID: LOG-20260111-040
+**Fecha y Hora:** 2026-01-11 07:18:00
+**Autor:** Antigravity (IA Collaborator)
+**Prompt/Tema Principal:** Pipeline de Compresión, Fuentes y Preloading
+**Consulta del Usuario:** > Implementar las fases finales de Fuentes, Preloading y Compresión de alto impacto.
+
+**Resumen de la Interacción y Resultado:**
+- **Compresión & Bundle:**
+    1.  **Vite Compression:** Configuración dual para generar assets en **Gzip** y **Brotli** (`.br`).
+    2.  **Manual Chunks:** Estrategia de splitting para separar `vendor` y `ui` (react-icons), mejorando la caché del navegador.
+- **Fuentes:**
+    1.  **Inter Font:** Inserción de `<link rel="preload">` y uso de `font-display: swap` (via Google Fonts param).
+    2.  **DNS Prefetch:** Añadido para `fonts.googleapis.com`.
+- **Preloading:**
+    1.  **Background Prefetch:** Implementado en `App.jsx` para cargar recursivamente los módulos del Blog (`BlogIndex`, `BlogLayout`) tras 3 segundos de inactividad en el Hero.
+- **Cambios Realizados:**
+  - `[MODIFY] vite.config.js` (Compresión + Split de Chunks)
+  - `[MODIFY] index.html` (Preload Inter + DNS Prefetch)
+  - `[MODIFY] src/App.jsx` (Prefetch lógico)
+  - `[UPDATE] PERFORMANCE_CHECKLIST.md` (Items finales marcados)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Infraestructura optimizada para puntaje alto en Lighthouse y experiencia de usuario fluida.

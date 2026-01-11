@@ -79,6 +79,22 @@ const MainLayoutWrapper = () => (
 function App() {
   const location = useLocation();
 
+  React.useEffect(() => {
+    // Strategic Prefetching: Load Blog chunk when user is idle/viewing Hero
+    const prefetchBlog = async () => {
+      try {
+        await import('./pages/BlogIndex');
+        await import('./layouts/BlogLayout');
+      } catch (error) {
+        // Silent fail
+      }
+    };
+
+    // Delay to prioritize LCP
+    const timer = setTimeout(prefetchBlog, 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <AnimatePresence mode="wait">
       <Suspense fallback={<SkeletonPage />}>

@@ -40,7 +40,7 @@
 
 ## 📋 Pendiente de Implementar
 
-### Imágenes (Alto Impacto)
+### Imágenes (Alto Impacto)no
 - [x] Convertir imágenes a WebP/AVIF
 - [ ] Implementar `srcset` para responsive images
 - [x] Añadir `loading="lazy"` a todas las imágenes
@@ -48,17 +48,17 @@
 - [x] Optimizar con `vite-imagetools` o similar
 
 ### Fuentes (Medio Impacto)
-- [ ] Preload de fuente Inter
-- [ ] `font-display: swap` para evitar FOIT
-- [ ] Subset de caracteres (solo latin)
+- [x] Preload de fuente Inter
+- [x] `font-display: swap` para evitar FOIT
+- [x] Subset de caracteres (solo latin)
 
 ### Preloading (Medio Impacto)
-- [ ] Preload de rutas críticas
+- [x] Preload de rutas críticas
 - [ ] Prefetch de secciones below-the-fold
-- [ ] DNS prefetch para recursos externos
+- [x] DNS prefetch para recursos externos
 
 ### Compresión (Alto Impacto)
-- [ ] Instalar `vite-plugin-compression` para gzip/brotli
+- [x] Instalar `vite-plugin-compression` para gzip/brotli
 - [ ] Configurar headers de cache en deploy
 
 ---

@@ -2,10 +2,16 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 import { imagetools } from 'vite-imagetools'
+import viteCompression from 'vite-plugin-compression'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), imagetools()],
+  plugins: [
+    react(),
+    imagetools(),
+    viteCompression({ algorithm: 'gzip' }),
+    viteCompression({ algorithm: 'brotliCompress', ext: '.br' }),
+  ],
 
   // Alias para imports más limpios
   resolve: {
@@ -25,6 +31,16 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: true,
     assetsDir: 'assets',
+
+    // Configuración de Rollup para chunks
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'framer-motion', 'react-router-dom', 'react-helmet-async'],
+          ui: ['react-icons'],
+        }
+      }
+    },
 
     // Minificación con esbuild (más rápido que terser)
     minify: 'esbuild',
