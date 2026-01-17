@@ -659,3 +659,19 @@ Documentación técnica y registro de decisiones de arquitectura.
   - `[MODIFY] src/components/About.jsx` (Implementación de nuevas tarjetas educativas y de IA)
   - `[UPDATE] PROJECT_LOG.md` (Documentación)
 - **Estado Final:** Perfil profesional actualizado reflejando el estado actual de "Estudiante Avanzado" y la adopción de nuevas tecnologías.
+
+### ID: LOG-20260117-047
+**Fecha y Hora:** 2026-01-17 11:03:00
+**Autor:** Cascade (IA Collaborator)
+**Prompt/Tema Principal:** Reparación de configuración de infraestructura (Vercel)
+**Consulta del Usuario:** > Reparar la configuración de despliegue para eliminar el error de Vercel.
+
+**Resumen de la Interacción y Resultado:**
+- **Infraestructura:** Se identificó que `vercel.json` estaba corrupto (contenía null bytes), impidiendo su validación/lectura normal. Se decidió simplificar la configuración a un JSON mínimo válido para destrabar el despliegue.
+- **Verificación de Assets:** Confirmado que el archivo `public/CV_LeandroGavegno.pdf` existe y que las referencias en `Header.jsx` y `HeroBanner.jsx` respetan exactamente el case `CV_LeandroGavegno.pdf`.
+- **Build Tooling:** Se fortaleció la importación/configuración de `vite-imagetools` para evitar conflictos de exportación (named vs default) en CI/Vercel.
+- **Cambios Realizados:**
+  - `[FIX] vite.config.js` (Importación robusta de `vite-imagetools`)
+  - `[FIX] vercel.json` (Simplificación a JSON mínimo válido)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Configuración de despliegue simplificada y consistente para resolver el error crítico en Vercel.
