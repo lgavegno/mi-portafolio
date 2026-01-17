@@ -660,6 +660,22 @@ Documentación técnica y registro de decisiones de arquitectura.
   - `[UPDATE] PROJECT_LOG.md` (Documentación)
 - **Estado Final:** Perfil profesional actualizado reflejando el estado actual de "Estudiante Avanzado" y la adopción de nuevas tecnologías.
 
+### ID: LOG-20260117-049
+**Fecha y Hora:** 2026-01-17 12:39:00
+**Autor:** Cascade (IA Collaborator)
+**Prompt/Tema Principal:** Remoción de vercel.json y desactivación de plugins de compresión
+**Consulta del Usuario:** > Estabilizar el build eliminando configuraciones manuales de infraestructura.
+
+**Resumen de la Interacción y Resultado:**
+- **Infraestructura:** Se eliminó físicamente `vercel.json` para permitir que Vercel use su detección automática de framework (Vite) y evitar conflictos con configuración manual.
+- **Build Tooling:** Se desactivaron completamente los plugins de compresión (`vite-plugin-compression`) en `vite.config.js` para evitar errores de permisos de escritura en el entorno de Vercel.
+- **Verificación:** Se confirmó que no quedan referencias activas a `viteCompression` en el código; solo permanecen comentadas.
+- **Cambios Realizados:**
+  - `[DELETE] vercel.json` (Eliminación física del archivo)
+  - `[DISABLE] vite.config.js` (Comentarios completos en vite-plugin-compression)
+  - `[UPDATE] PROJECT_LOG.md` (Documentación)
+- **Estado Final:** Configuración de build simplificada y sin dependencias de plugins que pueden fallar en entornos CI/CD. Listo para deploy estable.
+
 ### ID: LOG-20260117-047
 **Fecha y Hora:** 2026-01-17 11:03:00
 **Autor:** Cascade (IA Collaborator)
@@ -675,5 +691,6 @@ Documentación técnica y registro de decisiones de arquitectura.
   - `[FIX] vercel.json` (Simplificación a JSON mínimo válido)
   - `[UPDATE] PROJECT_LOG.md` (Documentación)
 - **Estado Final:** Configuración de despliegue simplificada y consistente para resolver el error crítico en Vercel.
--   [ 2 0 2 6 - 0 1 - 1 7 ]   F o r c i n g   f r e s h   b u i l d   t o   r e s o l v e   V e r c e l   s t a l e   s t a t e .  
+-   [ 2 0 2 6 - 0 1 - 1 7 ]   F o r c i n g   f r e s h   b u i l d   t o   r e s o l v e   V e r c e l   s t a l e   s t a t e . 
+ 
  
