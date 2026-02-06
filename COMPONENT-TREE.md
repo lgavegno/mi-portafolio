@@ -10,6 +10,7 @@ graph TD
     App --> Routes
     Routes --> HomeRoute[Route: /]
     Routes --> BlogRoute[Route: /blog/*]
+    Routes --> ProjectRoute[Route: /proyecto/:id]
     end
 
     subgraph Home Page
@@ -41,6 +42,7 @@ graph TD
     BlogIndex --> PostGrid[PostGrid]
     
     BlogPost --> ShareBtn[ShareButton]
+    BlogPost --> ProjectDetail[ProjectDetail.jsx]
     end
 
     subgraph Feature Details

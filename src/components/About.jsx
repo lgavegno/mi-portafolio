@@ -44,11 +44,11 @@ const About = () => {
                             className="md:col-span-7 lg:col-span-8 space-y-8"
                         >
                             <div className="space-y-6">
-                                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                                <h2 className="text-3xl md:text-5xl font-bold text-white mb-8">
                                     Sobre <span className="text-mint-400">Mí</span>
                                 </h2>
 
-                                <div className="space-y-6 text-slate-300 text-lg lg:text-xl leading-relaxed whitespace-pre-line">
+                                <div className="space-y-6 text-slate-300 text-lg leading-relaxed whitespace-pre-line">
                                     <p>
                                         ¡Hola! Soy estudiante avanzado de la Tecnicatura Universitaria en Programación en la UTN (FRRA)
                                         con un interés creciente en el análisis de datos y la automatización de procesos.
@@ -72,28 +72,28 @@ const About = () => {
                             <div className="grid grid-cols-1 gap-6 pt-4">
 
                                 {/* Formación Académica */}
-                                <div className="space-y-4">
-                                    <h3 className="text-xl font-bold text-white flex items-center gap-3">
+                                <div className="space-y-6">
+                                    <h3 className="text-2xl font-bold text-white flex items-center gap-3">
                                         <FaGraduationCap className="text-mint-400" />
                                         Formación Académica
                                     </h3>
 
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                                         {/* Tecnicatura */}
                                         <motion.div
                                             variants={fadeInUp}
-                                            className="p-5 rounded-xl backdrop-blur-md bg-white/5 border border-white/10 hover:border-mint-400/30 transition-colors group"
+                                            className="p-8 rounded-xl backdrop-blur-md bg-white/5 border border-white/10 hover:border-mint-400/30 transition-colors group"
                                         >
-                                            <div className="flex justify-between items-start mb-2">
-                                                <h4 className="text-white font-semibold group-hover:text-mint-400 transition-colors">Tecnicatura Universitaria en Programación</h4>
-                                                <span className="text-[10px] px-2 py-0.5 rounded-full bg-mint-500/20 text-mint-300 border border-mint-500/20 whitespace-nowrap">
+                                            <div className="flex justify-between items-start mb-4">
+                                                <h4 className="text-lg text-white font-semibold group-hover:text-mint-400 transition-colors">Tecnicatura Universitaria en Programación</h4>
+                                                <span className="text-[11px] px-3 py-1 rounded-full bg-mint-500/20 text-mint-300 border border-mint-500/20 whitespace-nowrap">
                                                     En curso (Plan 2024)
                                                 </span>
                                             </div>
-                                            <p className="text-sm text-slate-400 mb-3">UTN - FRRA</p>
-                                            <div className="flex flex-wrap gap-2 mb-3">
+                                            <p className="text-base lg:text-lg text-slate-400 mb-6">UTN - FRRA</p>
+                                            <div className="flex flex-wrap gap-3 mb-6">
                                                 {['SQL Server', 'Programación C', 'Java', 'Matemática', 'Estadística', 'Base de Datos', 'Intro Análisis de Datos'].map((subject) => (
-                                                    <span key={subject} className="px-2 py-1 rounded-md bg-white/5 text-[10px] text-slate-300 border border-white/5">
+                                                    <span key={subject} className="px-2 py-1 rounded bg-white/5 text-[11px] text-slate-300 border border-white/5">
                                                         {subject}
                                                     </span>
                                                 ))}
@@ -106,18 +106,18 @@ const About = () => {
                                         {/* Licenciatura */}
                                         <motion.div
                                             variants={fadeInUp}
-                                            className="p-5 rounded-xl backdrop-blur-md bg-white/5 border border-white/10 hover:border-blue-400/30 transition-colors group"
+                                            className="p-8 rounded-xl backdrop-blur-md bg-white/5 border border-white/10 hover:border-blue-400/30 transition-colors group"
                                         >
-                                            <div className="flex justify-between items-start mb-2">
-                                                <h4 className="text-white font-semibold group-hover:text-blue-400 transition-colors">Licenciatura en Organización Industrial</h4>
-                                                <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/20 whitespace-nowrap">
+                                            <div className="flex justify-between items-start mb-4">
+                                                <h4 className="text-lg text-white font-semibold group-hover:text-blue-400 transition-colors">Licenciatura en Organización Industrial</h4>
+                                                <span className="text-[11px] px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/20 whitespace-nowrap">
                                                     En curso
                                                 </span>
                                             </div>
-                                            <p className="text-sm text-slate-400 mb-3">UTN - FRRA</p>
-                                            <div className="flex flex-wrap gap-2">
+                                            <p className="text-base lg:text-lg text-slate-400 mb-6">UTN - FRRA</p>
+                                            <div className="flex flex-wrap gap-3">
                                                 {['Álgebra', 'Economía General', 'Org. Industrial I'].map((subject) => (
-                                                    <span key={subject} className="px-2 py-1 rounded-md bg-white/5 text-[10px] text-slate-300 border border-white/5">
+                                                    <span key={subject} className="px-2 py-1 rounded bg-white/5 text-[11px] text-slate-300 border border-white/5">
                                                         {subject}
                                                     </span>
                                                 ))}
@@ -127,18 +127,18 @@ const About = () => {
                                 </div>
 
                                 {/* IA & Trayectoria */}
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                                     {/* AI Block */}
                                     <motion.div
                                         variants={fadeInUp}
-                                        className="p-5 rounded-xl backdrop-blur-md bg-cyan-institutional/5 border border-cyan-institutional/20 relative overflow-hidden group"
+                                        className="p-8 rounded-xl backdrop-blur-md bg-cyan-institutional/5 border border-cyan-institutional/20 relative overflow-hidden group"
                                     >
                                         <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-institutional/10 blur-2xl rounded-full -translate-y-1/2 translate-x-1/2 group-hover:bg-cyan-institutional/20 transition-colors" />
 
-                                        <h3 className="text-white font-bold mb-3 relative z-10 flex items-center gap-2">
+                                        <h3 className="text-lg text-white font-bold mb-4 relative z-10 flex items-center gap-2">
                                             Herramientas de IA y Asistencia al Desarrollo
                                         </h3>
-                                        <p className="text-sm text-slate-300 leading-relaxed relative z-10">
+                                        <p className="text-base text-slate-300 leading-relaxed relative z-10">
                                             Metodología de trabajo potenciada por modelos de lenguaje avanzados para optimización de código, generación de documentación técnica y resolución eficiente de problemas complejos.
                                         </p>
                                     </motion.div>
@@ -146,15 +146,15 @@ const About = () => {
                                     {/* Trayectoria Block */}
                                     <motion.div
                                         variants={fadeInUp}
-                                        className="p-5 rounded-xl backdrop-blur-md bg-white/5 border border-white/10 hover:border-cobalt-400/30 transition-colors"
+                                        className="p-8 rounded-xl backdrop-blur-md bg-white/5 border border-white/10 hover:border-cobalt-400/30 transition-colors"
                                     >
-                                        <div className="flex items-center gap-3 mb-3">
-                                            <div className="w-8 h-8 rounded-lg bg-cobalt-400/10 flex items-center justify-center text-cobalt-400">
-                                                <FaBriefcase className="w-4 h-4" />
+                                        <div className="flex items-center gap-3 mb-4">
+                                            <div className="w-10 h-10 rounded-lg bg-cobalt-400/10 flex items-center justify-center text-cobalt-400">
+                                                <FaBriefcase className="w-5 h-5" />
                                             </div>
-                                            <h3 className="text-white font-semibold">Trayectoria</h3>
+                                            <h3 className="text-lg text-white font-semibold">Trayectoria</h3>
                                         </div>
-                                        <p className="text-sm text-slate-400 leading-relaxed">
+                                        <p className="text-base text-slate-400 leading-relaxed">
                                             +10 años de experiencia en gestión operativa y administrativa, aportando una visión sistémica a los desafíos de negocio.
                                         </p>
                                     </motion.div>

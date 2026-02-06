@@ -12,10 +12,14 @@ export const featuredProjects = [
     progressLabel: 'Finalizado: Reporte de Insights entregado',
     status: 'completed',
     image: fitnessImg, // Asegúrate de mover la imagen aquí
-    link: 'https://github.com/lgavegno/Proyecto-FitnessApp', // Tu link de GitHub
+    link: 'https://github.com/lgavegno/proyecto-fitNess-retencion', // Tu link de GitHub
     featured: true,
     category: 'ai-ml',
-    highlights: ['Integridad de Datos', 'K-Means Clustering', 'Métricas DAU/MAU']
+    highlights: ['Integridad de Datos', 'K-Means Clustering', 'Métricas DAU/MAU'],
+    longDescription: 'El proyecto consistió en un análisis profundo de una base de datos de 11,600 registros con una tasa de churn inicial del 65%. Tras detectar inconsistencias masivas (89% de ruido), se realizó un proceso ETL para consolidar un dataset veraz de 1,168 usuarios. Se aplicó aprendizaje no supervisado para segmentar usuarios y predecir el abandono temprano.',
+    methodology: ['Auditoría de Integridad Referencial', 'ETL & Saneamiento de Datos', 'Modelado K-Means Clustering', 'Análisis de Sticky Factor (DAU/MAU)'],
+    results: ['Reducción proyectada de Churn al 45%', 'Identificación de HIIT/Fuerza como drivers de retención', 'Detección de falla de activación en el Día 0'],
+    notionLink: 'https://wind-texture-7af.notion.site/FitNess-App-Estrategia-de-Retenci-n-basada-en-Datos-Machine-Learning-2fea3541aceb80598ae3d60e469ca31b'
   },
   {
     id: 'sistema-reservas',

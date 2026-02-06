@@ -3,6 +3,28 @@
 
 export const blogPosts = [
   {
+    id: 'fitness-data-integrity-refactor',
+    title: 'Data Integrity & ML: Saneando 11,600 registros con Python',
+    excerpt: 'Cómo transformar un dataset con 89% de ruido en un motor de predicción de Churn veraz mediante técnicas de auditoría y clustering.',
+    category: 'Data Science',
+    readTime: 10,
+    date: '2026-02-06',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop',
+    tags: ['Python', 'Clustering', 'ETL', 'Audit'],
+    featured: true,
+    slug: 'fitness-data-integrity-refactor',
+    content: `
+      <h2>El Desafío de la Integridad</h2>
+      <p>En mi reciente refactorización del proyecto <strong>FitNess App</strong>, me encontré con un escenario común en la industria: un dataset masivo pero profundamente corrupto. De 11,600 registros, solo 1,168 cumplían con los estándares de integridad referencial.</p>
+      
+      <h3>Metodología Senior</h3>
+      <p>Implementé un pipeline ETL que priorizó la <strong>veracidad</strong> sobre la cantidad. El resultado fue una reducción del ruido estadístico del 89%, permitiendo que el modelo de <strong>K-Means Clustering</strong> identificara perfiles de riesgo reales en lugar de artefactos de datos.</p>
+      
+      <h2>Insights de Negocio</h2>
+      <p>El análisis reveló que el 45% de los usuarios abandonaba en el día 7 debido a una falla en el flujo de onboarding, no por falta de interés en el contenido de HIIT o Fuerza.</p>
+    `
+  },
+  {
     id: 'python-data-analytics-guide',
     title: 'Python para Data Analytics: Guía de supervivencia',
     excerpt: 'Domina las herramientas esenciales de pandas y numpy para convertir datos crudos en insights accionables.',

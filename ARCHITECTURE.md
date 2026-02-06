@@ -50,7 +50,13 @@ src/
 - **Tailwind Only:** No se permiten archivos CSS externos (excepto `index.css` global). Todo el estilo es utilitario.
 - **Framer Motion Config:** Variantes de animación centralizadas en `config/motionConfig.js` para mantener consistencia (`fadeInUp`, `staggerContainer`).
 
-### 4. Iconografía
+### 4. Navegación Interna de Proyectos
+- **Estandarización:** Implementación de rutas dinámicas `/proyecto/:id` para despliegue de casos de estudio detallados, mejorando la retención del usuario en el sitio.
+
+### 5. Sistema Tipográfico Centralizado
+- **Estandarización:** Estandarización de escalas visuales en `index.css` para asegurar jerarquía armónica y legibilidad 'pixel-perfect' en resoluciones Desktop.
+
+### 6. Iconografía
 - **Estandarización:** Uso exclusivo de `react-icons` (principalmente Feather `fi` y Material Design `md`).
 - **Prohibido:** Uso de fuentes de iconos externas (Google Fonts Material Icons) para mejorar la carga.
 

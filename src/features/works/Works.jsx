@@ -46,6 +46,7 @@ const Works = () => {
             {displayProjects.map((project, index) => (
               <ProjectCard
                 key={project.id}
+                id={project.id}
                 title={project.title}
                 description={project.description}
                 stack={project.stack}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { glassCard, springConfig } from '../../config/motionConfig';
 import { useVibrate } from '../../hooks/useVibrate';
@@ -6,6 +7,7 @@ import { useReducedMotion } from '../../hooks/useReducedMotion';
 import ProgressBar from './ProgressBar';
 
 const ProjectCard = ({
+  id, // Asegúrate de recibir el id
   title,
   description,
   stack = [],
@@ -20,6 +22,7 @@ const ProjectCard = ({
 }) => {
   const vibrate = useVibrate(10);
   const prefersReducedMotion = useReducedMotion();
+  const navigate = useNavigate();
 
   const statusConfig = {
     'in-progress': {
@@ -38,9 +41,14 @@ const ProjectCard = ({
 
   const currentStatus = statusConfig[status] || statusConfig['in-progress'];
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    // Si el clic fue en un enlace externo (si lo hubiera dentro de la card) o botón específico, no navegar
+    if (e.target.closest('a') || e.target.closest('button')) return;
+
     vibrate();
-    if (link) {
+    if (id) {
+      navigate(`/proyecto/${id}`);
+    } else if (link) {
       window.open(link, '_blank', 'noopener,noreferrer');
     }
   };
@@ -58,8 +66,8 @@ const ProjectCard = ({
       className={`
         group relative cursor-pointer
         rounded-2xl overflow-hidden
-        backdrop-blur-xl bg-white/5
-        border border-white/10
+        backdrop-blur-xl bg-white/10
+        border border-white/15
         hover:border-cyan-institutional/30
         active:bg-white/8
         transition-colors duration-300
@@ -105,11 +113,11 @@ const ProjectCard = ({
           {currentStatus.label}
         </span>
 
-        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cobalt-300 transition-colors">
+        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cobalt-300 transition-colors">
           {title}
         </h3>
 
-        <p className="text-gray-400 text-sm leading-relaxed mb-6">
+        <p className="text-white/80 text-base leading-relaxed mb-6 line-clamp-2">
           {description}
         </p>
 
@@ -130,18 +138,16 @@ const ProjectCard = ({
 
         <div className="mt-auto">
           {/* Stack tecnológico */}
-          {stack.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-6">
-              {stack.map((tech) => (
-                <span
-                  key={tech}
-                  className="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-gray-300 border border-white/5 group-hover:border-cobalt-400/30 transition-colors"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          )}
+          <div className="flex flex-wrap gap-2 mb-6">
+            {stack.map((tech) => (
+              <span
+                key={tech}
+                className="px-2 py-0.5 rounded bg-white/5 text-[11px] font-mono text-gray-300 border border-white/5 group-hover:border-cobalt-400/30 transition-colors"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
 
           {/* Barra de progreso */}
           {progress > 0 && (

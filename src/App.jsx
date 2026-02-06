@@ -8,6 +8,7 @@ import { SkeletonPage } from './components/ui/Skeleton'
 import { pageTransition } from './config/motionConfig'
 import BlogPostDetail from './pages/BlogPostDetail'
 import BlogIndex from './pages/BlogIndex' // New Page
+import ProjectDetail from './pages/ProjectDetail'
 
 // Lazy loading de secciones para code splitting
 import HeroBanner from './features/hero/HeroBanner'
@@ -102,6 +103,7 @@ function App() {
           {/* Main Site Routes */}
           <Route element={<MainLayoutWrapper />}>
             <Route path="/" element={<HomeSections />} />
+            <Route path="/proyecto/:id" element={<ProjectDetail />} />
           </Route>
 
           {/* Blog Routes */}
