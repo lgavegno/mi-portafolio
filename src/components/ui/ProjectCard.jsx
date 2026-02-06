@@ -1,6 +1,3 @@
-// src/components/ui/ProjectCard.jsx
-// Card de proyecto con glassmorphism y micro-interacciones
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { glassCard, springConfig } from '../../config/motionConfig';
@@ -17,13 +14,13 @@ const ProjectCard = ({
   status = 'in-progress',
   image,
   link,
+  highlights = [], // Nueva prop añadida
   className = '',
   index = 0
 }) => {
   const vibrate = useVibrate(10);
   const prefersReducedMotion = useReducedMotion();
 
-  // Estados visuales
   const statusConfig = {
     'in-progress': {
       label: 'En desarrollo',
@@ -80,9 +77,9 @@ const ProjectCard = ({
         }}
       />
 
-      {/* Imagen del proyecto (opcional) */}
+      {/* Imagen del proyecto */}
       {image && (
-        <div className="relative h-40 overflow-hidden">
+        <div className="relative h-48 overflow-hidden">
           <motion.img
             src={image}
             alt={title}
@@ -91,69 +88,72 @@ const ProjectCard = ({
             transition={springConfig.gentle}
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent" />
         </div>
       )}
 
       {/* Contenido */}
       <div className="p-6 relative z-10 flex-1 flex flex-col">
-        {/* Badge de estado */}
         <span className={`
           inline-flex items-center gap-1.5
-          px-3 py-1 rounded-full text-xs font-medium
+          px-3 py-1 rounded-full text-[10px] uppercase tracking-wider font-bold
           border backdrop-blur-sm
           ${currentStatus.color}
-          mb-4
+          mb-4 w-fit
         `}>
           <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
           {currentStatus.label}
         </span>
 
-        {/* Título */}
         <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cobalt-300 transition-colors">
           {title}
         </h3>
 
-        {/* Descripción */}
-        <p className="text-gray-400 text-sm leading-relaxed mb-4">
+        <p className="text-gray-400 text-sm leading-relaxed mb-6">
           {description}
         </p>
 
-        {/* Stack tecnológico */}
-        {stack.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-4">
-            {stack.map((tech, i) => (
-              <motion.span
-                key={tech}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.3 + i * 0.05 }}
-                viewport={{ once: true }}
-                className="
-                  px-2.5 py-1 rounded-full text-xs font-medium
-                  bg-slate-700/50 text-gray-300
-                  border border-slate-600/50
-                  hover:border-cobalt-400/50 hover:text-cobalt-300
-                  transition-colors select-none
-                "
-              >
-                {tech}
-              </motion.span>
-            ))}
+        {/* Technical Highlights (NUEVO SECCIÓN) */}
+        {highlights.length > 0 && (
+          <div className="mb-6 space-y-2">
+            <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Key Insights</p>
+            <div className="flex flex-col gap-2">
+              {highlights.map((item, i) => (
+                <div key={i} className="flex items-center gap-2 text-xs text-mint-400/90 font-medium">
+                  <span className="w-1 h-1 rounded-full bg-mint-400" />
+                  {item}
+                </div>
+              ))}
+            </div>
           </div>
         )}
 
-        {/* Barra de progreso */}
-        {progress > 0 && (
-          <ProgressBar
-            progress={progress}
-            label={progressLabel}
-            variant={progress >= 75 ? 'success' : 'default'}
-            size="sm"
-          />
-        )}
+        <div className="mt-auto">
+          {/* Stack tecnológico */}
+          {stack.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-6">
+              {stack.map((tech) => (
+                <span
+                  key={tech}
+                  className="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-gray-300 border border-white/5 group-hover:border-cobalt-400/30 transition-colors"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          )}
 
-        {/* Indicador de link */}
+          {/* Barra de progreso */}
+          {progress > 0 && (
+            <ProgressBar
+              progress={progress}
+              label={progressLabel}
+              variant={progress >= 75 ? 'success' : 'default'}
+              size="sm"
+            />
+          )}
+        </div>
+
         {link && (
           <motion.div
             className="absolute bottom-6 right-6 text-gray-500 group-hover:text-cobalt-400 transition-colors"
@@ -166,7 +166,6 @@ const ProjectCard = ({
         )}
       </div>
 
-      {/* Borde con gradiente animado en hover */}
       <motion.div
         className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity"
         style={{

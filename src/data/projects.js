@@ -1,11 +1,26 @@
 // src/data/projects.js
 // Datos de proyectos destacados para el portafolio
+import fitnessImg from '../assets/fig_clusters_ai.png'; // Importación explícita
 
 export const featuredProjects = [
   {
+    id: 'fitness-retention-analysis',
+    title: 'Análisis de Retención & ML - FitNess App',
+    description: 'Refactorización técnica y modelado de datos para reducir el Churn del 65% al 45%. Auditoría de integridad sobre 1,168 registros y segmentación de perfiles de riesgo mediante Clustering K-Means.',
+    stack: ['Python', 'Scikit-Learn', 'Pandas', 'Power BI'],
+    progress: 100,
+    progressLabel: 'Finalizado: Reporte de Insights entregado',
+    status: 'completed',
+    image: fitnessImg, // Asegúrate de mover la imagen aquí
+    link: 'https://github.com/lgavegno/Proyecto-FitnessApp', // Tu link de GitHub
+    featured: true,
+    category: 'ai-ml',
+    highlights: ['Integridad de Datos', 'K-Means Clustering', 'Métricas DAU/MAU']
+  },
+  {
     id: 'sistema-reservas',
     title: 'Sistema de Gestión de Turnos',
-    description: 'Plataforma para gestión de turnos con funcionalidades básicas de programación y seguimiento de clientes.',
+    description: 'Plataforma para gestión de turnos con funcionalidades de programación y seguimiento de clientes.',
     stack: ['React', 'Node.js', 'PostgreSQL'],
     progress: 75,
     progressLabel: 'En desarrollo: Integración de notificaciones',
@@ -17,8 +32,8 @@ export const featuredProjects = [
   },
   {
     id: 'sistema-gestion',
-    title: 'Sistema de Gestión Empresarial (ERP) – Proyecto de Aprendizaje',
-    description: 'Sistema de gestión básico desarrollado con Java y Spring Boot para aprender sobre arquitectura de software. Incluye módulos para gestión de inventario, ventas y reportes simples.',
+    title: 'ERP Empresarial - Core Engine',
+    description: 'Arquitectura de software para gestión de inventario y ventas desarrollada con Spring Boot. Enfoque en escalabilidad y módulos de reportes dinámicos.',
     stack: ['Java', 'Spring Boot', 'JavaFX', 'MySQL'],
     progress: 60,
     progressLabel: 'En desarrollo: Mejora de reportes',
@@ -44,8 +59,7 @@ export const featuredProjects = [
 ];
 
 export const allProjects = [
-  ...featuredProjects,
-  // Proyectos adicionales pueden ir aquí
+  ...featuredProjects
 ];
 
 // Categorías de proyectos
@@ -53,8 +67,7 @@ export const projectCategories = [
   { id: 'all', label: 'Todos', icon: '🎯' },
   { id: 'fullstack', label: 'Full Stack', icon: '🌐' },
   { id: 'backend', label: 'Backend', icon: '⚙️' },
-  { id: 'frontend', label: 'Frontend', icon: '🎨' },
-  { id: 'ai-ml', label: 'AI/ML', icon: '🤖' },
+  { id: 'ai-ml', label: 'Data Science / ML', icon: '🤖' }, // Refinado el label
   { id: 'automation', label: 'Automatización', icon: '🔄' }
 ];
 

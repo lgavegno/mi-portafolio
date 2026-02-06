@@ -7,21 +7,7 @@ import ProjectCard from '../../components/ui/ProjectCard';
 
 const Works = () => {
   // Proyectos adicionales para mostrar en grid
-  const additionalProjects = [
-    {
-      id: 'portfolio-2025',
-      title: "Portafolio Personal 2025",
-      description: "Este sitio web desarrollado con tecnologías modernas para mostrar mis proyectos y aprendizaje en análisis de datos y desarrollo.",
-      stack: ["React", "Vite", "Tailwind"],
-      progress: 90,
-      progressLabel: "En desarrollo",
-      status: "in-progress",
-      link: "#",
-      category: "frontend"
-    }
-  ];
-
-  const displayProjects = [...allProjects, ...additionalProjects];
+  const displayProjects = [...allProjects];
 
   return (
     <section className="w-full relative overflow-hidden bg-obsidian py-24">
