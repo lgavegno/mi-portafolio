@@ -11,6 +11,42 @@ Documentación técnica y registro de decisiones de arquitectura.
 
 ## Registro de Interacciones
 
+### ID: LOG-20260206-002
+**Fecha y Hora:** 2026-02-06 11:05:00
+**Autor:** Antigravity (IA Collaborator)
+**Prompt/Tema Principal:** Rigor Técnico en Performance Checklist y Optimización de Imágenes
+**Consulta del Usuario:** > Actualizar PERFORMANCE_CHECKLIST.md delegando compresión a Vercel Edge, añadiendo pendientes de optimización dinámica y alertas de CLS post-refactor v2.1.
+
+**Resumen de la Interacción y Resultado:**
+- **Análisis Técnico:** Se ajustó la hoja de ruta de performance para reflejar decisiones de infraestructura (Vercel Edge) y nuevos retos tras la actualización tipográfica 2.1. Se corrigieron inconsistencias manuales.
+- **Cambios Realizados:**
+  - `[MODIFY] PERFORMANCE_CHECKLIST.md` (Update de compresión, imágenes y notas de CLS)
+- **Estado Final:** Documentación técnica sincronizada con la arquitectura actual.
+
+---
+
+### ID: LOG-20260206-001
+**Fecha y Hora:** 2026-02-06 10:50:00
+**Autor:** Gemini (IA Collaborator)
+**Prompt/Tema Principal:** Sistema Tipográfico Universal, Navegación Dinámica y Consolidación de Reglas
+**Consulta del Usuario:** > Implementar navegación dinámica de proyectos, refactorizar la escala tipográfica a estándares de Product Design y establecer protocolo de interacción Senior.
+
+**Resumen de la Interacción y Resultado:**
+- **Análisis Técnico:** Se realizó una reestructuración sistémica de la UI y la arquitectura de datos. 
+    1. **Navegación:** Implementación de rutas dinámicas `/proyecto/:id` en `App.jsx` y creación de `ProjectDetail.jsx` con lógica de split-title para jerarquía visual.
+    2. **Tipografía:** Migración de una escala "ultra-scaled" a un sistema balanceado en `index.css` (Cuerpo base: 1.05rem / Títulos: 4xl-6xl) con paleta Slate para reducir fatiga visual. Se resolvieron dependencias circulares de PostCSS.
+    3. **Motion:** Refactor de `motionConfig.js` para aligerar la carga visual. Se ajustaron constantes de *stagger* (0.07s) y *blur* (4px) para mayor fluidez.
+    4. **Gobernanza:** Creación de `.cursorrules` para estandarizar el comportamiento de la IA y el registro obligatorio de cambios.
+- **Cambios Realizados:**
+  - `[NEW] .cursorrules` (Protocolo de ingeniería y logging)
+  - `[NEW] src/pages/ProjectDetail.jsx` (Página de estudio de caso dinámica)
+  - `[MODIFY] src/index.css` (Refactor integral de capa @layer base)
+  - `[MODIFY] src/config/motionConfig.js` (Saneamiento de exportaciones y tiempos)
+  - `[UPDATE] README.md` & `ARCHITECTURE.md` (Sincronización con v2.1)
+- **Estado Final:** Compilación exitosa. UI equilibrada y lista para producción.
+
+---
+
 ### ID: LOG-20260117-050
 **Fecha y Hora:** 2026-01-17 12:45:00
 **Autor:** Antigravity (IA Collaborator)

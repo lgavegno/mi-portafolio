@@ -40,12 +40,13 @@
 
 ## 📋 Pendiente de Implementar
 
-### Imágenes (Alto Impacto)no
+### Imágenes (Alto Impacto)
 - [x] Convertir imágenes a WebP/AVIF
 - [ ] Implementar `srcset` para responsive images
 - [x] Añadir `loading="lazy"` a todas las imágenes
 - [ ] Placeholder blur durante carga
 - [x] Optimizar con `vite-imagetools` o similar
+- [ ] Implementar optimización dinámica para imágenes de ProjectDetail provenientes de objetos de datos
 
 ### Fuentes (Medio Impacto)
 - [x] Preload de fuente Inter
@@ -58,7 +59,7 @@
 - [x] DNS prefetch para recursos externos
 
 ### Compresión (Alto Impacto)
-- [x] Instalar `vite-plugin-compression` para gzip/brotli
+- [-] Instalar `vite-plugin-compression` para gzip/brotli (Delegado nativamente a Vercel Edge para evitar conflictos en el pipeline de CI/CD)
 - [x] Configurar headers de cache en deploy
 
 ---
@@ -117,6 +118,9 @@ onTTFB(console.log);
 | **FCP** | < 1.8s | First Contentful Paint |
 | **TTI** | < 3.8s | Time to Interactive |
 | **TBT** | < 200ms | Total Blocking Time |
+
+> [!NOTE]
+> Tras el refactor de escala tipográfica (v2.1), el CLS debe ser monitoreado con especial atención en Desktop.
 
 ---
 
