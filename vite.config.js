@@ -24,6 +24,9 @@ export default defineConfig({
       '@hooks': resolve(__dirname, './src/hooks'),
       '@config': resolve(__dirname, './src/config'),
       '@data': resolve(__dirname, './src/data'),
+      '@pages': resolve(__dirname, './src/pages'),
+      '@layouts': resolve(__dirname, './src/layouts'),
+      '@assets': resolve(__dirname, './src/assets'),
     },
   },
 
