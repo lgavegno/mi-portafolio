@@ -1,3 +1,8 @@
+> ⚠️ **DEPRECADO** — Este archivo fue consolidado en la documentación SDD.
+> Ver `CLAUDE.md`, `src/docs/adr/` y `CHANGELOG.md` como fuentes de verdad.
+
+---
+
 # 🏗️ Arquitectura Técnica del Proyecto
 
 > **Versión:** 2.0.0

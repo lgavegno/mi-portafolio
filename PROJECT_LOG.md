@@ -1,3 +1,8 @@
+> ⚠️ **DEPRECADO** — Este archivo fue consolidado en `CHANGELOG.md`.
+> Ver `CHANGELOG.md` como fuente de verdad para historial de cambios.
+
+---
+
 # PROJECT LOG: Ongevag Studio Portfolio
 
 ## Descripción General

@@ -1,3 +1,8 @@
+> ⚠️ **DEPRECADO** — Este archivo fue consolidado en la documentación SDD.
+> Ver `CLAUDE.md`, `src/docs/adr/` y `CHANGELOG.md` como fuentes de verdad.
+
+---
+
 # 📘 TECHNICAL GUIDE - Mi Portafolio
 
 > Guía técnica de referencia rápida para desarrolladores.
