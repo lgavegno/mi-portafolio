@@ -97,6 +97,33 @@ git push origin main
 - Imágenes importadas en JS deben estar optimizadas (Vite ImageTools las procesa automáticamente)
 - Formatos preferidos: WebP, JPEG. Evitar PNG para fotos.
 
+### Path Aliases
+
+**Todo código nuevo debe usar path aliases** para imports más limpios:
+
+```javascript
+// ✅ Correcto (código nuevo)
+import Button from '@components/ui/Button'
+import { fadeInUp } from '@config/motionConfig'
+import { useVibrate } from '@hooks/useVibrate'
+
+// ⚠️ Legado (imports existentes con rutas relativas)
+import Button from '../../components/ui/Button'
+```
+
+**Aliases disponibles:**
+- `@components/*` → `src/components/*`
+- `@features/*` → `src/features/*`
+- `@hooks/*` → `src/hooks/*`
+- `@config/*` → `src/config/*`
+- `@data/*` → `src/data/*`
+- `@pages/*` → `src/pages/*`
+- `@layouts/*` → `src/layouts/*`
+- `@assets/*` → `src/assets/*`
+- `@/*` → `src/*` (acceso a root)
+
+**Nota:** Los imports existentes usan rutas relativas. No refactorizar archivos legacy, solo usar aliases en código nuevo.
+
 ## Checklist antes de cada commit
 
 - [ ] `npm run build` ejecuta sin errores
