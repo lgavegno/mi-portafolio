@@ -13,17 +13,48 @@
   body {
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-y: none;
-  }
-
-  html {
-    scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-obsidian text-gray-100 text-base;
+    /* Bajamos de text-lg a un intermedio más elegante */
+    @apply bg-obsidian text-slate-200 text-[1.05rem];
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Escala Tipográfica Equilibrada - Estilo SaaS */
+  h1 {
+    /* 3.75rem aprox - Potente pero no invasivo */
+    @apply text-4xl lg:text-6xl font-bold tracking-tight text-white leading-tight;
+  }
+
+  h2 {
+    /* 2.25rem aprox - Jerarquía clara de sección */
+    @apply text-2xl lg:text-3xl font-bold tracking-tight text-white mb-6;
+  }
+
+  h3 {
+    /* 1.5rem aprox - Ideal para títulos de cards */
+    @apply text-xl lg:text-2xl font-semibold text-white;
+  }
+
+  /* Cuerpo de texto: Normalizamos la lectura */
+  p,
+  li {
+    /* text-base (16px) es suficiente con leading-relaxed */
+    @apply text-base lg:text-[1.05rem] leading-relaxed text-slate-400;
+  }
+
+  small,
+  .text-sm {
+    /* 12px/13px para metadata técnica */
+    font-size: 0.8rem;
+    @apply text-slate-500 tracking-wide font-medium;
   }
 
   /* Selección de texto con colores de marca */
@@ -31,7 +62,7 @@
     @apply bg-cyan-institutional/30 text-white;
   }
 
-  /* Scrollbar personalizado */
+  /* ... resto de scrollbars y focus-visible igual que antes ... */
   ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -51,7 +82,6 @@
     @apply bg-slate-600;
   }
 
-  /* Focus visible para accesibilidad */
   :focus-visible {
     @apply outline-none ring-2 ring-cyan-institutional ring-offset-2 ring-offset-obsidian;
   }
@@ -129,6 +159,7 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    line-clamp: 2;
   }
 
   .line-clamp-3 {
@@ -136,6 +167,7 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    line-clamp: 3;
   }
 }
 

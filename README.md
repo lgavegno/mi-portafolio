@@ -60,6 +60,11 @@ Implementaciones destacadas que demuestran capacidades técnicas avanzadas:
 - **Accesibilidad:** Uso de HTML semántico y atributos ARIA donde es necesario.
 - **Micro-interacciones:** Feedback táctil y visual en cada interacción del usuario (Hover, Focus, Active).
 
+### 📊 Data-Driven Decision Support
+- **Pipeline de Saneamiento:** Auditoría integral de datos con Python (Pandas/Numpy) para eliminar inconsistencias en bases de datos relacionales.
+- **Machine Learning en Producción:** Implementación de modelos de clustering para segmentación de usuarios y predicción de retención.
+- **Integración de Insights:** Visualizaciones avanzadas integradas en la arquitectura React para soporte de decisiones estratégicas.
+
 ## 🚀 Instalación y Desarrollo
 
 ### Prerrequisitos

@@ -65,7 +65,7 @@ const Header = ({ isOpen, setIsOpen }) => {
       } : {}}
     >
       <div className="container mx-auto px-6">
-        <nav className="flex justify-between items-center h-16 md:h-24">
+        <nav className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link
             to="/"
@@ -80,11 +80,11 @@ const Header = ({ isOpen, setIsOpen }) => {
               <img
                 src={logoOngevag}
                 alt="Ongevag Logo"
-                className="w-10 h-10 md:w-12 md:h-12 rounded-lg object-cover"
+                className="w-12 h-12 md:w-16 md:h-16 rounded-lg object-cover"
               />
               <div className="hidden sm:flex flex-col leading-tight">
-                <span className="text-white">Ongevag</span>
-                <span className="text-xs text-gray-400 tracking-wide">
+                <span className="text-white text-lg md:text-xl">Ongevag</span>
+                <span className="text-sm text-gray-400 tracking-wide">
                   Software & Data
                 </span>
               </div>
@@ -105,7 +105,7 @@ const Header = ({ isOpen, setIsOpen }) => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ y: -2 }}
-                  className="relative px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200 cursor-pointer group"
+                  className="relative px-5 py-3 text-base font-medium text-gray-300 hover:text-white transition-colors duration-200 cursor-pointer group"
                 >
                   {link.label}
                   <span
@@ -118,8 +118,8 @@ const Header = ({ isOpen, setIsOpen }) => {
 
             {/* Resume Download */}
             <a
-              href="/CV_LeandroGavegno.pdf"
-              download="CV_LeandroGavegno.pdf"
+              href="/CV_LeandroGavegno-04-26.pdf"
+              download="CV_LeandroGavegno-04-26.pdf"
               target="_self"
               className="ml-4 border border-gray-700 text-gray-300 hover:text-cyan-institutional hover:border-cyan-institutional px-3 py-1.5 rounded-sm text-xs transition-all"
             >
@@ -135,10 +135,10 @@ const Header = ({ isOpen, setIsOpen }) => {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="ml-4 px-5 py-2 rounded-xl text-black text-sm font-semibold transition-all duration-300 cursor-pointer"
+                className="ml-6 px-5 py-2 rounded-lg text-black text-sm font-bold transition-all duration-300 cursor-pointer"
                 style={{
                   background: 'linear-gradient(to right, rgb(0, 255, 255), rgba(0, 255, 255, 0.9))',
-                  boxShadow: '0 10px 15px -3px rgba(0, 255, 255, 0.3)'
+                  boxShadow: '0 4px 10px -2px rgba(0, 255, 255, 0.3)'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(0, 255, 255, 0.4)';

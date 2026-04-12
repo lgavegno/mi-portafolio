@@ -97,7 +97,7 @@ const HeroBanner = () => {
                     variants={fadeInUp}
                     className="text-gray-200 font-normal text-base md:text-lg lg:text-xl leading-relaxed max-w-xl lg:mt-6 max-lg:drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
                   >
-                    Diseño y desarrollo proyectos de software y análisis de datos, explorando cómo los sistemas bien pensados pueden mejorar decisiones y procesos reales.
+                    Diseño y desarrollo proyectos de software y análisis de datos.
                   </motion.p>
 
                   {/* CTA Buttons */}
@@ -123,8 +123,8 @@ const HeroBanner = () => {
 
                     <GlowButton
                       variant="secondary"
-                      href="/CV_LeandroGavegno.pdf"
-                      download="CV_LeandroGavegno.pdf"
+                      href="/CV_LeandroGavegno-04-26.pdf"
+                      download="CV_LeandroGavegno-04-26.pdf"
                       icon={<FiDownload />}
                       className="lg:hidden"
                     >

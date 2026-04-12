@@ -4,7 +4,7 @@ import { FiArrowLeft, FiClock, FiCalendar, FiShare2, FiHeart } from 'react-icons
 import { MdLightbulb } from 'react-icons/md';
 import { blogPosts } from '../features/blog/data/blogData';
 import ShareButton from '../components/ui/ShareButton';
-import geminiAvatar from '../assets/gemini-avatar.png?format=webp';
+import geminiAvatar from '../assets/gemini-avatar.webp';
 
 const BlogPostDetail = () => {
     const { slug } = useParams();

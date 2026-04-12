@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 import * as viteImagetools from 'vite-imagetools'
-// import viteCompression from 'vite-plugin-compression'
+import viteCompression from 'vite-plugin-compression'
 
 const imagetools = viteImagetools.imagetools ?? viteImagetools.default
 
@@ -11,8 +11,12 @@ export default defineConfig({
   plugins: [
     react(),
     imagetools?.(),
-    // viteCompression({ algorithm: 'gzip' }),
-    // viteCompression({ algorithm: 'brotliCompress', ext: '.br' }),
+    viteCompression({
+      algorithm: 'brotliCompress',
+      ext: '.br',
+      threshold: 10240,
+      deleteOriginFile: false
+    }),
   ],
 
   // Alias para imports más limpios
@@ -24,6 +28,9 @@ export default defineConfig({
       '@hooks': resolve(__dirname, './src/hooks'),
       '@config': resolve(__dirname, './src/config'),
       '@data': resolve(__dirname, './src/data'),
+      '@pages': resolve(__dirname, './src/pages'),
+      '@layouts': resolve(__dirname, './src/layouts'),
+      '@assets': resolve(__dirname, './src/assets'),
     },
   },
 
