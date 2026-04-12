@@ -256,7 +256,7 @@ export const blogPosts = [
     category: 'Data Science',
     readTime: 15,
     date: '2026-04-12',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
     tags: ['Estadística', 'Data Science', 'Analytics', 'FitNess'],
     featured: true,
     slug: 'guia-estadistica-data-analyst',
