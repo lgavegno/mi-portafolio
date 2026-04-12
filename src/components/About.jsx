@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaGraduationCap, FaBriefcase } from 'react-icons/fa';
-import profileImage from '../assets/profile-about.png?format=webp';
+import profileImage from '../assets/profile-about.webp';
 import { fadeInUp, staggerContainer } from '../config/motionConfig';
 
 const About = () => {

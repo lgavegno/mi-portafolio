@@ -123,8 +123,8 @@ const HeroBanner = () => {
 
                     <GlowButton
                       variant="secondary"
-                      href="/CV_LeandroGavegno.pdf"
-                      download="CV_LeandroGavegno.pdf"
+                      href="/CV_LeandroGavegno-04-26.pdf"
+                      download="CV_LeandroGavegno-04-26.pdf"
                       icon={<FiDownload />}
                       className="lg:hidden"
                     >

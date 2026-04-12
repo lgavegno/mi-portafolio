@@ -1,6 +1,12 @@
 // src/data/projects.js
 // Datos de proyectos destacados para el portafolio
-import fitnessImg from '../assets/fig_clusters_ai.png'; // Importación explícita
+import fitnessImg from '../assets/fig_clusters_ai.png';
+import omnistock1Img from '../assets/omnistock1.webp';
+import omnistock2Img from '../assets/omnistock2.webp';
+import faroart1Img from '../assets/faroart1.webp';
+import faroart2Img from '../assets/faroart2.webp';
+import generador1Img from '../assets/generador1.webp';
+import generador2Img from '../assets/generador2.webp';
 
 export const featuredProjects = [
   {
@@ -11,8 +17,8 @@ export const featuredProjects = [
     progress: 100,
     progressLabel: 'Finalizado: Reporte de Insights entregado',
     status: 'completed',
-    image: fitnessImg, // Asegúrate de mover la imagen aquí
-    link: 'https://github.com/lgavegno/proyecto-fitNess-retencion', // Tu link de GitHub
+    image: fitnessImg,
+    link: 'https://github.com/lgavegno/proyecto-fitNess-retencion',
     featured: true,
     category: 'ai-ml',
     highlights: ['Integridad de Datos', 'K-Means Clustering', 'Métricas DAU/MAU'],
@@ -22,43 +28,76 @@ export const featuredProjects = [
     notionLink: 'https://wind-texture-7af.notion.site/FitNess-App-Estrategia-de-Retenci-n-basada-en-Datos-Machine-Learning-2fea3541aceb80598ae3d60e469ca31b'
   },
   {
-    id: 'sistema-reservas',
-    title: 'Sistema de Gestión de Turnos',
-    description: 'Plataforma para gestión de turnos con funcionalidades de programación y seguimiento de clientes.',
-    stack: ['React', 'Node.js', 'PostgreSQL'],
-    progress: 75,
-    progressLabel: 'En desarrollo: Integración de notificaciones',
+    id: 'omnistock',
+    title: 'OmniStock — Sistema de Inventario Desktop',
+    description: 'Aplicación desktop para control de stock, presupuestos, proveedores, recetas y auditoría interna. Arquitectura offline-first con base de datos local SQLite.',
+    stack: ['Tauri', 'React', 'Rust', 'SQLite', 'TypeScript'],
+    progress: 70,
+    progressLabel: 'En desarrollo activo — v2.0 alpha',
     status: 'in-progress',
-    image: null,
-    link: '#',
+    image: omnistock1Img,
+    link: null,
     featured: true,
-    category: 'fullstack'
+    category: 'fullstack',
+    highlights: ['App nativa cross-platform', 'Offline-first con SQLite', 'Software comercial con licenciamiento HWID'],
+    longDescription: 'Sistema de inventario y gestión comercial para PyMEs desarrollado con Tauri. Permite control de stock, punto de venta, presupuestos, gestión de proveedores, recetas BOM y auditoría interna. Funciona 100% offline con base de datos SQLite local. Producto comercial en desarrollo activo bajo metodología SDD.',
+    methodology: ['Spec-Driven Development (SDD)', 'Arquitectura modular por bloques lógicos', 'Testing unitario en Rust', 'Licenciamiento por HWID'],
+    results: ['App nativa para Windows, macOS y Linux', 'Módulos: POS, Inventario, Presupuestos, Proveedores, Recetas & BOM', 'Producto listo para comercialización en MercadoLibre'],
+    notionLink: null
   },
   {
-    id: 'sistema-gestion',
-    title: 'ERP Empresarial - Core Engine',
-    description: 'Arquitectura de software para gestión de inventario y ventas desarrollada con Spring Boot. Enfoque en escalabilidad y módulos de reportes dinámicos.',
-    stack: ['Java', 'Spring Boot', 'JavaFX', 'MySQL'],
-    progress: 60,
-    progressLabel: 'En desarrollo: Mejora de reportes',
-    status: 'in-progress',
-    image: null,
-    link: '#',
+    id: 'faro-art-shop',
+    title: 'Faro Art Shop — Tienda Online',
+    description: 'Tienda e-commerce de kits de String Art. Setup completo en Tienda Nube con dominio propio, CSS personalizado y optimización de conversión.',
+    stack: ['Tienda Nube', 'CSS3', 'Hostinger DNS', 'MercadoPago'],
+    progress: 100,
+    progressLabel: 'Finalizado: Tienda en producción con ventas activas',
+    status: 'completed',
+    image: faroart1Img,
+    link: 'https://faroartshop.com',
     featured: true,
-    category: 'backend'
+    category: 'frontend',
+    highlights: ['Tienda en producción con ventas activas', 'Dominio propio configurado', 'CSS personalizado sobre Tienda Nube'],
+    longDescription: 'Diseño, configuración y lanzamiento de tienda online en Tienda Nube para venta de kits de String Art artesanales. Incluye customización completa del tema via CSS editor avanzado, configuración DNS con Hostinger para dominio propio, optimización de fichas de producto y configuración de MercadoPago como pasarela de pago.',
+    methodology: ['Setup completo en Tienda Nube', 'Customización CSS avanzada', 'Configuración DNS y dominio propio', 'Optimización de conversión'],
+    results: ['Tienda operativa en faroartshop.com', 'Integración MercadoPago funcionando', 'Dominio propio con SSL activo'],
+    notionLink: null
   },
   {
-    id: 'procesamiento-documentos',
-    title: 'Procesamiento de Documentos con OCR',
-    description: 'Herramienta para extraer información de documentos financieros usando reconocimiento óptico de caracteres.',
-    stack: ['Python', 'OpenCV', 'Tesseract'],
-    progress: 50,
-    progressLabel: 'En desarrollo: Mejora de precisión',
-    status: 'in-progress',
-    image: null,
-    link: '#',
+    id: 'generador-presupuestos',
+    title: 'Generador de Presupuestos Web',
+    description: 'Herramienta para cotizaciones de proyectos web en tiempo real. Backend serverless con Google Apps Script, almacenamiento en Google Sheets y notificaciones por email.',
+    stack: ['Vanilla JS', 'Google Apps Script', 'Google Sheets API', 'HTML5', 'CSS3'],
+    progress: 100,
+    progressLabel: 'Finalizado: En producción — v2.2.0',
+    status: 'completed',
+    image: generador1Img,
+    link: 'https://lgavegno.github.io/generador-presupuestos/presupuestador/',
     featured: true,
-    category: 'ai-ml'
+    category: 'fullstack',
+    highlights: ['Infraestructura $0/mes — serverless', 'Flujo automático a Google Sheets', 'Modo proyecto a medida con derivación'],
+    longDescription: 'Calculadora de presupuestos para servicios de desarrollo web. El cliente configura tipo de sitio, secciones y funcionalidades premium — el sistema calcula el precio en tiempo real, envía los datos a Google Apps Script y notifica al propietario por email. Incluye modo especial para proyectos a medida que deriva automáticamente a entrevista técnica.',
+    methodology: ['Spec-Driven Development (SDD)', 'Arquitectura serverless sin backend propio', 'Google Apps Script como webhook', 'Google Sheets como base de datos'],
+    results: ['Infraestructura a $0/mes usando servicios Google gratuitos', 'Notificaciones automáticas por email al propietario', 'Documentación técnica completa en /docs del repositorio'],
+    notionLink: null
+  },
+  {
+    id: 'form-invent',
+    title: 'form-invent — Sistema de Inventario Excel',
+    description: 'Sistema de inventario comercial en Excel con VBA. Control de entradas, salidas, stock en tiempo real y dashboard con filtros por mes. Producto a la venta en MercadoLibre.',
+    stack: ['Excel', 'VBA', 'Macros', 'Dashboard'],
+    progress: 100,
+    progressLabel: 'Finalizado: Disponible en MercadoLibre',
+    status: 'completed',
+    image: null,
+    link: null,
+    featured: true,
+    category: 'tools',
+    highlights: ['Sistema completo con macros VBA', 'Dashboard con filtros dinámicos por mes', 'Producto comercial en MercadoLibre'],
+    longDescription: 'Sistema de inventario desarrollado en Excel con macros VBA para PyMEs que no requieren software especializado. Incluye módulos de entradas y salidas de stock, validaciones automáticas, dashboard con filtros dinámicos por mes y bloqueo de productos inactivos. Comercializado como producto digital en MercadoLibre.',
+    methodology: ['Desarrollo en Excel + VBA puro', 'Arquitectura con tablas estructuradas (tbl_Stock)', 'Fórmulas SUMAR.SI.CONJUNTO para reportes', 'Testing manual exhaustivo'],
+    results: ['Control completo de inventario sin software adicional', 'Dashboard mensual con filtros dinámicos', 'Producto listo para venta en MercadoLibre'],
+    notionLink: null
   }
 ];
 
@@ -70,9 +109,9 @@ export const allProjects = [
 export const projectCategories = [
   { id: 'all', label: 'Todos', icon: '🎯' },
   { id: 'fullstack', label: 'Full Stack', icon: '🌐' },
-  { id: 'backend', label: 'Backend', icon: '⚙️' },
-  { id: 'ai-ml', label: 'Data Science / ML', icon: '🤖' }, // Refinado el label
-  { id: 'automation', label: 'Automatización', icon: '🔄' }
+  { id: 'frontend', label: 'Frontend', icon: '🎨' },
+  { id: 'ai-ml', label: 'Data Science / ML', icon: '🤖' },
+  { id: 'tools', label: 'Herramientas', icon: '🔧' }
 ];
 
 export default featuredProjects;

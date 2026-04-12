@@ -46,7 +46,7 @@
 - [x] Añadir `loading="lazy"` a todas las imágenes
 - [ ] Placeholder blur durante carga
 - [x] Optimizar con `vite-imagetools` o similar
-- [ ] Implementar optimización dinámica para imágenes de ProjectDetail provenientes de objetos de datos
+- [ ] Implementar optimización dinámica para imágenes de ProjectDetail
 
 ### Fuentes (Medio Impacto)
 - [x] Preload de fuente Inter
@@ -59,52 +59,8 @@
 - [x] DNS prefetch para recursos externos
 
 ### Compresión (Alto Impacto)
-- [-] Instalar `vite-plugin-compression` para gzip/brotli (Delegado nativamente a Vercel Edge para evitar conflictos en el pipeline de CI/CD)
+- [-] Instalar `vite-plugin-compression` para gzip/brotli (Delegado nativamente a Vercel Edge)
 - [x] Configurar headers de cache en deploy
-
----
-
-## 🧪 Scripts de Prueba
-
-### Lighthouse CLI
-```bash
-# Instalar Lighthouse
-npm install -g lighthouse
-
-# Ejecutar auditoría en modo mobile
-lighthouse http://localhost:5173 --view --preset=perf --emulated-form-factor=mobile
-
-# Ejecutar auditoría en modo desktop
-lighthouse http://localhost:5173 --view --preset=perf --emulated-form-factor=desktop
-
-# Generar reporte JSON
-lighthouse http://localhost:5173 --output=json --output-path=./lighthouse-report.json
-```
-
-### Bundle Analyzer
-```bash
-# Instalar visualizer
-npm install -D rollup-plugin-visualizer
-
-# Añadir a vite.config.js:
-# import { visualizer } from 'rollup-plugin-visualizer';
-# plugins: [react(), visualizer({ open: true })]
-
-# Ejecutar build y ver reporte
-npm run build
-```
-
-### Web Vitals en Consola
-```javascript
-// Añadir a main.jsx para debugging
-import { onCLS, onFID, onLCP, onFCP, onTTFB } from 'web-vitals';
-
-onCLS(console.log);
-onFID(console.log);
-onLCP(console.log);
-onFCP(console.log);
-onTTFB(console.log);
-```
 
 ---
 
@@ -144,21 +100,6 @@ Thumbnails: max 400px width, quality 70%
 - **Sharp** (Node.js): `npm install sharp`
 - **ImageMagick** (CLI): `convert input.jpg -resize 800x -quality 75 output.webp`
 
-### Implementación con srcset
-```jsx
-<img
-  src="/images/project-800.webp"
-  srcSet="
-    /images/project-400.webp 400w,
-    /images/project-800.webp 800w,
-    /images/project-1200.webp 1200w
-  "
-  sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 1200px"
-  loading="lazy"
-  alt="Descripción del proyecto"
-/>
-```
-
 ---
 
 ## 📦 Estimación de Bundle Size
@@ -182,25 +123,6 @@ Total: < 200KB gzipped (cumplido ✅)
 
 ---
 
-## 🔄 Plan de Implementación por Fases
-
-### Fase 1: Crítico (Semana 1)
-1. Optimizar imágenes existentes
-2. Añadir preload de fuentes
-3. Configurar compresión gzip/brotli
-
-### Fase 2: Mejoras (Semana 2)
-1. Implementar srcset responsive
-2. Añadir placeholder blur
-3. Prefetch de rutas
-
-### Fase 3: Pulido (Semana 3)
-1. Auditoría Lighthouse completa
-2. Ajustes finos de animaciones
-3. Testing en dispositivos reales
-
----
-
 ## 🛠️ Comandos Útiles
 
 ```bash
@@ -212,9 +134,6 @@ npm run build
 
 # Preview del build
 npm run preview
-
-# Análisis de bundle (después de configurar visualizer)
-npm run build -- --mode analyze
 
 # Lint
 npm run lint
@@ -228,3 +147,19 @@ npm run lint
 - Framer Motion hace tree-shaking automático de features no usadas
 - react-icons solo incluye los iconos importados específicamente
 - El HMR de Vite no afecta el bundle de producción
+
+---
+
+## 🔧 Fixes aplicados — Sprint 12 (Abril 2026)
+
+| Fix | Descripción | Estado |
+|-----|-------------|--------|
+| Brotli compression | vite-plugin-compression activado (threshold: 10KB, deleteOriginFile: false) | ✅ |
+| Video preload | preload="metadata" en HeroBanner (ya implementado) | ✅ |
+| Canvas defer | WireframeGeometry con lazy + Suspense (500ms fallback) | ✅ |
+| React Icons | Tree-shaking: 19 archivos con imports correctos (sin wildcard) | ✅ |
+
+---
+
+**Última revisión:** Abril 2026
+**Próxima auditoría:** Después de cambios en bundle o assets principales
