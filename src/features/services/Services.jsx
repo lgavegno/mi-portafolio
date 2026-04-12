@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { FiCode, FiLayout, FiTool, FiCpu, FiTarget, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { FiCode, FiLayout, FiTool, FiCpu, FiTarget, FiMonitor, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { fadeInUp, staggerContainer, glassCard } from '../../config/motionConfig';
 import { useVibrate } from '../../hooks/useVibrate';
 import './Services3DCarousel.css';
@@ -42,6 +42,12 @@ const Services = () => {
       description: "Revisión inicial de información. Examino datasets nuevos para detectar patrones básicos, posibles inconsistencias y comprender su calidad.",
       icon: FiLayout,
       gradient: "from-blue-400 to-indigo-500"
+    },
+    {
+      title: "Diseño Web",
+      description: "Sitios web personales, portfolios y tiendas online. Desarrollo en WordPress con plugins premium o Tienda Nube para e-commerce. Diseño responsive, optimizado para conversión.",
+      icon: FiMonitor,
+      gradient: "from-cyan-400 to-cyan-600"
     }
   ];
 
