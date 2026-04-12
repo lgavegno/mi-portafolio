@@ -111,12 +111,12 @@ const About = () => {
                                             <div className="flex justify-between items-start mb-4">
                                                 <h4 className="text-lg text-white font-semibold group-hover:text-blue-400 transition-colors">Licenciatura en Organización Industrial</h4>
                                                 <span className="text-[11px] px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/20 whitespace-nowrap">
-                                                    En curso
+                                                    2018 – 2020
                                                 </span>
                                             </div>
                                             <p className="text-base lg:text-lg text-slate-400 mb-6">UTN - FRRA</p>
                                             <div className="flex flex-wrap gap-3">
-                                                {['Álgebra', 'Economía General', 'Org. Industrial I'].map((subject) => (
+                                                {['Álgebra', 'Economía General', 'Org. Industrial I', 'Informática (Excel)'].map((subject) => (
                                                     <span key={subject} className="px-2 py-1 rounded bg-white/5 text-[11px] text-slate-300 border border-white/5">
                                                         {subject}
                                                     </span>
