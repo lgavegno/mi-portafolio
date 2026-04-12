@@ -58,11 +58,12 @@ Portfolio profesional que valida la capacidad técnica de Leandro Gavegno como d
 | ID | Título | Featured | Categoría | Link Externo | Status |
 |----|--------|----------|-----------|--------------|--------|
 | `fitness-retention-analysis` | Análisis de Retención & ML - FitNess App | ✅ Sí | Data Science/ML | GitHub | ✅ Completed |
-| `sistema-reservas` | Sistema de Gestión de Turnos | ✅ Sí | Full Stack | N/A | 🟡 In Progress (75%) |
-| `sistema-gestion` | ERP Empresarial - Core Engine | ✅ Sí | Backend | N/A | 🟡 In Progress (60%) |
-| `procesamiento-documentos` | Procesamiento de Documentos con OCR | ✅ Sí | Data Science/ML | N/A | 🟡 In Progress (50%) |
+| `omnistock` | OmniStock — Sistema de Inventario Desktop | ✅ Sí | Full Stack | N/A | 🟡 In Progress (70%) |
+| `faro-art-shop` | Faro Art Shop — Tienda Online | ✅ Sí | Frontend | Live | ✅ Completed |
+| `generador-presupuestos` | Generador de Presupuestos Web | ✅ Sí | Full Stack | Live | ✅ Completed |
+| `form-invent` | form-invent — Sistema de Inventario Excel | ✅ Sí | Tools | N/A | ✅ Completed |
 
-**Total:** 4 proyectos (1 completado, 3 en desarrollo)
+**Total:** 5 proyectos (4 completados, 1 en desarrollo)
 **Nota:** El proyecto `fitness-retention-analysis` tiene descripción extendida (longDescription, methodology, results) y link a Notion.
 
 ### Blog Posts (src/features/blog/data/blogData.js)
@@ -177,10 +178,10 @@ VITE_EMAILJS_PUBLIC_KEY=...        # API key pública EmailJS
 - [ ] Crear robots.txt y sitemap.xml
 - [ ] Agregar Schema.org JSON-LD
 
-**Sprint 4 (Content & Projects):**
-- [ ] Completar descripción extendida de sistema-reservas
-- [ ] Agregar OmniStock y Faro Art Shop
-- [ ] Nuevo blog post sobre Tauri
+**Sprint 4 (Content & Projects):** ✅ COMPLETADO
+- [x] Agregar OmniStock, Faro Art Shop, Generador de Presupuestos, form-invent
+- [x] Refactor: Eliminar sistema-reservas, sistema-gestion, procesamiento-documentos
+- [ ] Nuevo blog post sobre Tauri + OmniStock
 
 **Sprint 5 (Testing):**
 - [ ] Configurar Vitest
