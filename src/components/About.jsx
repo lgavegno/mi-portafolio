@@ -115,7 +115,7 @@ const About = () => {
                                                 <div className="flex-shrink-0 w-64 rounded-xl bg-slate-800/50 border-l-4 border-cyan-500 p-4"
                                                      style={{ scrollSnapAlign: 'start' }}>
                                                     <span className="inline-block mb-2 px-3 py-1 rounded-full text-xs font-medium bg-green-900/40 text-green-400">
-                                                        En curso
+                                                        2022 – Actualidad
                                                     </span>
                                                     <h4 className="text-white font-semibold text-sm mb-1">
                                                         Tecnicatura Universitaria en Programación
@@ -133,7 +133,7 @@ const About = () => {
                                                 <div className="flex-shrink-0 w-64 rounded-xl bg-slate-800/50 border-l-4 border-amber-500 p-4"
                                                      style={{ scrollSnapAlign: 'start' }}>
                                                     <span className="inline-block mb-2 px-3 py-1 rounded-full text-xs font-medium bg-slate-700 text-slate-300">
-                                                        2018 – 2020
+                                                    2020
                                                     </span>
                                                     <h4 className="text-white font-semibold text-sm mb-1">
                                                         Lic. en Organización Industrial
@@ -150,7 +150,7 @@ const About = () => {
                                                 <div className="flex-shrink-0 w-64 rounded-xl bg-slate-800/50 border-l-4 border-purple-500 p-4"
                                                      style={{ scrollSnapAlign: 'start' }}>
                                                     <span className="inline-block mb-2 px-3 py-1 rounded-full text-xs font-medium bg-slate-700 text-slate-300">
-                                                        abr. – nov. 2016
+                                                        2016
                                                     </span>
                                                     <h4 className="text-white font-semibold text-sm mb-1">
                                                         Tecnicatura Superior en Logística
