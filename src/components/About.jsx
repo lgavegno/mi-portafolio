@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaGraduationCap, FaBriefcase } from 'react-icons/fa';
 import profileImage from '../assets/profile-about.webp';
 import { fadeInUp, staggerContainer } from '../config/motionConfig';
 
 const About = () => {
+    const [activeTab, setActiveTab] = useState('formacion');
+
     return (
         <section id="sobre-mi" className="py-20 relative bg-slate-950 overflow-hidden">
             {/* Background Elements for depth */}
@@ -71,132 +73,151 @@ const About = () => {
                             {/* Education & Methodology Grid */}
                             <div className="grid grid-cols-1 gap-6 pt-4">
 
-                                {/* Formación Académica */}
-                                <div className="space-y-6">
-                                    <h3 className="text-2xl font-bold text-white flex items-center gap-3">
-                                        <FaGraduationCap className="text-mint-400" />
-                                        Formación Académica
-                                    </h3>
+                                {/* SECCIÓN EDUCACIÓN CON TABS */}
+                                <div className="w-full">
 
-                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-                                        {/* Tecnicatura */}
-                                        <motion.div
-                                            variants={fadeInUp}
-                                            className="p-8 rounded-xl backdrop-blur-md bg-white/5 border border-white/10 hover:border-mint-400/30 transition-colors group"
+                                    {/* TABS */}
+                                    <div className="flex gap-2 mb-6">
+                                        <button
+                                            onClick={() => setActiveTab('formacion')}
+                                            className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 border
+                                                ${activeTab === 'formacion'
+                                                    ? 'bg-cyan-500 text-white border-cyan-500'
+                                                    : 'bg-transparent text-slate-400 border-slate-600 hover:border-slate-400'
+                                                }`}
                                         >
-                                            <div className="flex justify-between items-start mb-4">
-                                                <h4 className="text-lg text-white font-semibold group-hover:text-mint-400 transition-colors">Tecnicatura Universitaria en Programación</h4>
-                                                <span className="text-[11px] px-3 py-1 rounded-full bg-mint-500/20 text-mint-300 border border-mint-500/20 whitespace-nowrap">
-                                                    En curso (Plan 2024)
-                                                </span>
-                                            </div>
-                                            <p className="text-base lg:text-lg text-slate-400 mb-6">UTN - FRRA</p>
-                                            <div className="flex flex-wrap gap-3 mb-6">
-                                                {['SQL Server', 'Programación C', 'Java', 'Matemática', 'Estadística', 'Base de Datos', 'Intro Análisis de Datos'].map((subject) => (
-                                                    <span key={subject} className="px-2 py-1 rounded bg-white/5 text-[11px] text-slate-300 border border-white/5">
-                                                        {subject}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                            <p className="text-xs text-slate-500 italic">
-                                                * Transición de Plan 2003 a Plan 2024
-                                            </p>
-                                        </motion.div>
-
-                                        {/* Licenciatura */}
-                                        <motion.div
-                                            variants={fadeInUp}
-                                            className="p-8 rounded-xl backdrop-blur-md bg-white/5 border border-white/10 hover:border-blue-400/30 transition-colors group"
+                                            <FaGraduationCap className="inline mr-2" /> Formación académica
+                                        </button>
+                                        <button
+                                            onClick={() => setActiveTab('cursos')}
+                                            className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 border
+                                                ${activeTab === 'cursos'
+                                                    ? 'bg-cyan-500 text-white border-cyan-500'
+                                                    : 'bg-transparent text-slate-400 border-slate-600 hover:border-slate-400'
+                                                }`}
                                         >
-                                            <div className="flex justify-between items-start mb-4">
-                                                <h4 className="text-lg text-white font-semibold group-hover:text-blue-400 transition-colors">Licenciatura en Organización Industrial</h4>
-                                                <span className="text-[11px] px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/20 whitespace-nowrap">
-                                                    2018 – 2020
-                                                </span>
-                                            </div>
-                                            <p className="text-base lg:text-lg text-slate-400 mb-6">UTN - FRRA</p>
-                                            <div className="flex flex-wrap gap-3">
-                                                {['Álgebra', 'Economía General', 'Org. Industrial I', 'Informática (Excel)'].map((subject) => (
-                                                    <span key={subject} className="px-2 py-1 rounded bg-white/5 text-[11px] text-slate-300 border border-white/5">
-                                                        {subject}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </motion.div>
-
-                                        {/* Tecnicatura Superior en Logística */}
-                                        <motion.div
-                                            variants={fadeInUp}
-                                            className="p-8 rounded-xl backdrop-blur-md bg-white/5 border border-white/10 hover:border-amber-400/30 transition-colors group"
-                                        >
-                                            <div className="flex justify-between items-start mb-4">
-                                                <h4 className="text-lg text-white font-semibold group-hover:text-amber-400 transition-colors">Tecnicatura Superior en Logística</h4>
-                                                <span className="text-[11px] px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/20 whitespace-nowrap">
-                                                    abr. – nov. 2016
-                                                </span>
-                                            </div>
-                                            <p className="text-base lg:text-lg text-slate-400 mb-6">ISFD Dr. Joaquín V. González</p>
-                                            <div className="flex flex-wrap gap-3">
-                                                {['Comunicación UDI', 'Comunicación Organizacional', 'Contabilidad', 'Inglés Técnico', 'Gestión de Abastecimiento', 'Economía'].map((subject) => (
-                                                    <span key={subject} className="px-2 py-1 rounded bg-white/5 text-[11px] text-slate-300 border border-white/5">
-                                                        {subject}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </motion.div>
+                                            <FaGraduationCap className="inline mr-2" /> Cursos y certificaciones
+                                        </button>
                                     </div>
-                                </div>
 
-                                {/* Cursos y Certificaciones */}
-                                <div className="space-y-6">
-                                    <h3 className="text-2xl font-bold text-white flex items-center gap-3">
-                                        <FaGraduationCap className="text-cyan-institutional" />
-                                        Cursos y Certificaciones
-                                    </h3>
-
-                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                        {/* Argentina Programa */}
+                                    {/* PANEL FORMACIÓN */}
+                                    {activeTab === 'formacion' && (
                                         <motion.div
-                                            variants={fadeInUp}
-                                            className="p-6 rounded-xl backdrop-blur-md bg-white/5 border border-white/10 hover:border-cyan-institutional/30 transition-colors group"
+                                            initial={{ opacity: 0, y: 8 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ duration: 0.25 }}
                                         >
-                                            <div className="flex justify-between items-start mb-3">
-                                                <h4 className="text-base text-white font-semibold group-hover:text-cyan-institutional transition-colors">Programación y Desarrollo de Aplicaciones</h4>
-                                                <span className="text-[10px] px-2 py-1 rounded-full bg-cyan-institutional/20 text-cyan-institutional/90 border border-cyan-institutional/20 whitespace-nowrap">
-                                                    2022 – 2023
-                                                </span>
-                                            </div>
-                                            <p className="text-sm text-slate-400">Argentina Programa 4.0</p>
-                                        </motion.div>
+                                            <p className="text-xs text-slate-500 mb-3">← deslizá para ver más</p>
+                                            <div className="flex gap-4 overflow-x-auto scroll-smooth pb-3"
+                                                 style={{ scrollSnapType: 'x mandatory', scrollbarWidth: 'none' }}>
 
-                                        {/* Codo a Codo */}
-                                        <motion.div
-                                            variants={fadeInUp}
-                                            className="p-6 rounded-xl backdrop-blur-md bg-white/5 border border-white/10 hover:border-purple-400/30 transition-colors group"
-                                        >
-                                            <div className="flex justify-between items-start mb-3">
-                                                <h4 className="text-base text-white font-semibold group-hover:text-purple-400 transition-colors">Full Stack Java</h4>
-                                                <span className="text-[10px] px-2 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/20 whitespace-nowrap">
-                                                    2023
-                                                </span>
-                                            </div>
-                                            <p className="text-sm text-slate-400">Codo a Codo 4.0</p>
-                                        </motion.div>
+                                                {/* Card 1 — Tecnicatura en Programación */}
+                                                <div className="flex-shrink-0 w-64 rounded-xl bg-slate-800/50 border-l-4 border-cyan-500 p-4"
+                                                     style={{ scrollSnapAlign: 'start' }}>
+                                                    <span className="inline-block mb-2 px-3 py-1 rounded-full text-xs font-medium bg-green-900/40 text-green-400">
+                                                        En curso
+                                                    </span>
+                                                    <h4 className="text-white font-semibold text-sm mb-1">
+                                                        Tecnicatura Universitaria en Programación
+                                                    </h4>
+                                                    <p className="text-slate-400 text-xs mb-3">UTN — FRRA · Plan 2024</p>
+                                                    <div className="flex flex-wrap gap-1">
+                                                        {['SQL Server', 'Java', 'Programación C', 'Matemática', 'Estadística', 'Base de Datos', 'Intro Análisis de Datos'].map(m => (
+                                                            <span key={m} className="px-2 py-0.5 text-xs rounded bg-slate-700 text-slate-300">{m}</span>
+                                                        ))}
+                                                    </div>
+                                                    <p className="text-slate-500 text-xs mt-3 italic">* Transición Plan 2003 → Plan 2024</p>
+                                                </div>
 
-                                        {/* n8n */}
-                                        <motion.div
-                                            variants={fadeInUp}
-                                            className="p-6 rounded-xl backdrop-blur-md bg-white/5 border border-white/10 hover:border-orange-400/30 transition-colors group"
-                                        >
-                                            <div className="flex justify-between items-start mb-3">
-                                                <h4 className="text-base text-white font-semibold group-hover:text-orange-400 transition-colors">Automatización con n8n</h4>
-                                                <span className="text-[10px] px-2 py-1 rounded-full bg-orange-500/20 text-orange-300 border border-orange-500/20 whitespace-nowrap">
-                                                    2025
-                                                </span>
+                                                {/* Card 2 — Org. Industrial */}
+                                                <div className="flex-shrink-0 w-64 rounded-xl bg-slate-800/50 border-l-4 border-amber-500 p-4"
+                                                     style={{ scrollSnapAlign: 'start' }}>
+                                                    <span className="inline-block mb-2 px-3 py-1 rounded-full text-xs font-medium bg-slate-700 text-slate-300">
+                                                        2018 – 2020
+                                                    </span>
+                                                    <h4 className="text-white font-semibold text-sm mb-1">
+                                                        Lic. en Organización Industrial
+                                                    </h4>
+                                                    <p className="text-slate-400 text-xs mb-3">UTN — FRRA</p>
+                                                    <div className="flex flex-wrap gap-1">
+                                                        {['Álgebra', 'Economía General', 'Org. Industrial I', 'Informática (Excel)'].map(m => (
+                                                            <span key={m} className="px-2 py-0.5 text-xs rounded bg-slate-700 text-slate-300">{m}</span>
+                                                        ))}
+                                                    </div>
+                                                </div>
+
+                                                {/* Card 3 — Logística */}
+                                                <div className="flex-shrink-0 w-64 rounded-xl bg-slate-800/50 border-l-4 border-purple-500 p-4"
+                                                     style={{ scrollSnapAlign: 'start' }}>
+                                                    <span className="inline-block mb-2 px-3 py-1 rounded-full text-xs font-medium bg-slate-700 text-slate-300">
+                                                        abr. – nov. 2016
+                                                    </span>
+                                                    <h4 className="text-white font-semibold text-sm mb-1">
+                                                        Tecnicatura Superior en Logística
+                                                    </h4>
+                                                    <p className="text-slate-400 text-xs mb-3">ISFD Dr. Joaquín V. González</p>
+                                                    <div className="flex flex-wrap gap-1">
+                                                        {['Comunicación UDI', 'Comunicación Organizacional', 'Contabilidad', 'Inglés Técnico', 'Gestión de Abastecimiento', 'Economía'].map(m => (
+                                                            <span key={m} className="px-2 py-0.5 text-xs rounded bg-slate-700 text-slate-300">{m}</span>
+                                                        ))}
+                                                    </div>
+                                                </div>
+
                                             </div>
-                                            <p className="text-sm text-slate-400">Udemy / Formación Independiente</p>
                                         </motion.div>
-                                    </div>
+                                    )}
+
+                                    {/* PANEL CURSOS */}
+                                    {activeTab === 'cursos' && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 8 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ duration: 0.25 }}
+                                        >
+                                            <p className="text-xs text-slate-500 mb-3">← deslizá para ver más</p>
+                                            <div className="flex gap-4 overflow-x-auto scroll-smooth pb-3"
+                                                 style={{ scrollSnapType: 'x mandatory', scrollbarWidth: 'none' }}>
+
+                                                {/* Curso 1 */}
+                                                <div className="flex-shrink-0 w-56 rounded-xl bg-slate-800/50 border-l-4 border-cyan-400 p-4"
+                                                     style={{ scrollSnapAlign: 'start' }}>
+                                                    <span className="inline-block mb-2 px-3 py-1 rounded-full text-xs font-medium bg-cyan-900/40 text-cyan-400">
+                                                        2022 – 2023
+                                                    </span>
+                                                    <h4 className="text-white font-semibold text-sm mb-1">
+                                                        Programación y Desarrollo de Aplicaciones
+                                                    </h4>
+                                                    <p className="text-slate-400 text-xs">Argentina Programa 4.0</p>
+                                                </div>
+
+                                                {/* Curso 2 */}
+                                                <div className="flex-shrink-0 w-56 rounded-xl bg-slate-800/50 border-l-4 border-purple-400 p-4"
+                                                     style={{ scrollSnapAlign: 'start' }}>
+                                                    <span className="inline-block mb-2 px-3 py-1 rounded-full text-xs font-medium bg-purple-900/40 text-purple-400">
+                                                        2023
+                                                    </span>
+                                                    <h4 className="text-white font-semibold text-sm mb-1">
+                                                        Full Stack Java
+                                                    </h4>
+                                                    <p className="text-slate-400 text-xs">Codo a Codo 4.0</p>
+                                                </div>
+
+                                                {/* Curso 3 */}
+                                                <div className="flex-shrink-0 w-56 rounded-xl bg-slate-800/50 border-l-4 border-amber-400 p-4"
+                                                     style={{ scrollSnapAlign: 'start' }}>
+                                                    <span className="inline-block mb-2 px-3 py-1 rounded-full text-xs font-medium bg-amber-900/40 text-amber-400">
+                                                        2025
+                                                    </span>
+                                                    <h4 className="text-white font-semibold text-sm mb-1">
+                                                        Automatización con n8n
+                                                    </h4>
+                                                    <p className="text-slate-400 text-xs">Formación independiente</p>
+                                                </div>
+
+                                            </div>
+                                        </motion.div>
+                                    )}
+
                                 </div>
 
                                 {/* IA & Trayectoria */}
