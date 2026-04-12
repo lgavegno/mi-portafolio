@@ -82,7 +82,7 @@ const About = () => {
                                             onClick={() => setActiveTab('formacion')}
                                             className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 border
                                                 ${activeTab === 'formacion'
-                                                    ? 'bg-cyan-500 text-white border-cyan-500'
+                                                    ? 'bg-cyan-500 text-slate-900 border-cyan-500'
                                                     : 'bg-transparent text-slate-400 border-slate-600 hover:border-slate-400'
                                                 }`}
                                         >
@@ -92,7 +92,7 @@ const About = () => {
                                             onClick={() => setActiveTab('cursos')}
                                             className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 border
                                                 ${activeTab === 'cursos'
-                                                    ? 'bg-cyan-500 text-white border-cyan-500'
+                                                    ? 'bg-cyan-500 text-slate-900 border-cyan-500'
                                                     : 'bg-transparent text-slate-400 border-slate-600 hover:border-slate-400'
                                                 }`}
                                         >
