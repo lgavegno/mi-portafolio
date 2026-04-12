@@ -13,29 +13,41 @@
 | perf | Mejora de performance | perf: diferir carga de NeuralNetworkBackground |
 | chore | Tareas de mantenimiento | chore: actualizar dependencias |
 
-## Flujo de trabajo
+## Flujo de branches
+
+```
+main        ← producción. Solo recibe merges desde develop
+develop     ← integración. Todas las features mergean acá primero
+feature/*   ← trabajo nuevo (feat/fix/content/docs)
+```
+
+## Flujo correcto
 
 ```bash
-# 1. Crear branch descriptiva
-git checkout -b content/agregar-proyecto-nuevo
-git checkout -b docs/actualizar-claude-md
-git checkout -b fix/formulario-contacto-safari
+# 1. Partir desde develop
+git checkout develop
+git checkout -b content/nombre-del-cambio
 
-# 2. Hacer cambios
-# 3. Commit atómico con mensaje convencional
+# 2. Trabajar y commitear
 git add [archivos específicos]
 git commit -m "tipo: descripción breve en minúscula"
 
-# 4. Push y verificar preview en Vercel
-git push origin nombre-de-la-branch
-# Vercel genera preview URL automáticamente
+# 3. Mergear a develop
+git checkout develop
+git merge content/nombre-del-cambio --no-ff
+git push origin develop
 
-# 5. Merge a main cuando el preview está OK
+# 4. Solo cuando develop está estable y testeado: mergear a main
 git checkout main
-git merge nombre-de-la-branch
+git merge develop --no-ff
 git push origin main
 # Deploy automático a https://ongevag.vercel.app/
 ```
+
+## ⚠️ Nunca
+
+- Nunca mergear `feature/*` directo a `main`
+- Nunca pushear directo a `main` sin pasar por `develop`
 
 ## Cómo agregar un proyecto al portfolio
 
