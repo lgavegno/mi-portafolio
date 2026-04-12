@@ -79,7 +79,7 @@ const Header = ({ isOpen, setIsOpen }) => {
               <img
                 src={logoOngevag}
                 alt="Ongevag Studio"
-                className="w-14 h-14 md:w-20 md:h-20 rounded-xl object-contain"
+                className="w-20 h-20 md:w-28 md:h-28 rounded-xl object-contain"
               />
             </motion.div>
           </Link>
