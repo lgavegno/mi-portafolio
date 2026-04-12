@@ -72,7 +72,7 @@ const HeroBanner = () => {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, ease: "easeOut" }}
-                      className="text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter leading-none"
+                      className="text-6xl md:text-7xl lg:text-8xl font-display font-bold text-white tracking-tighter leading-none"
                     >
                       ONGEVAG
                     </motion.h1>
