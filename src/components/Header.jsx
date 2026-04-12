@@ -75,19 +75,12 @@ const Header = ({ isOpen, setIsOpen }) => {
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-3"
             >
               <img
                 src={logoOngevag}
-                alt="Ongevag Logo"
-                className="w-12 h-12 md:w-16 md:h-16 rounded-lg object-cover"
+                alt="Ongevag Studio"
+                className="w-14 h-14 md:w-20 md:h-20 rounded-xl object-contain"
               />
-              <div className="hidden sm:flex flex-col leading-tight">
-                <span className="text-white text-lg md:text-xl">Ongevag</span>
-                <span className="text-sm text-gray-400 tracking-wide">
-                  Software & Data
-                </span>
-              </div>
             </motion.div>
           </Link>
 
