@@ -31,7 +31,7 @@ export const blogPosts = [
     category: 'Data Engineering',
     readTime: 12,
     date: '2025-01-05',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80',
     tags: ['Python', 'Pandas', 'KPIs', 'Analytics'],
     featured: true,
     slug: 'python-para-data-analytics-guia',
