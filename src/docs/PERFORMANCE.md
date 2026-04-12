@@ -150,5 +150,16 @@ npm run lint
 
 ---
 
-**Última revisión:** Febrero 2026
+## 🔧 Fixes aplicados — Sprint 12 (Abril 2026)
+
+| Fix | Descripción | Estado |
+|-----|-------------|--------|
+| Brotli compression | vite-plugin-compression activado (threshold: 10KB, deleteOriginFile: false) | ✅ |
+| Video preload | preload="metadata" en HeroBanner (ya implementado) | ✅ |
+| Canvas defer | WireframeGeometry con lazy + Suspense (500ms fallback) | ✅ |
+| React Icons | Tree-shaking: 19 archivos con imports correctos (sin wildcard) | ✅ |
+
+---
+
+**Última revisión:** Abril 2026
 **Próxima auditoría:** Después de cambios en bundle o assets principales
