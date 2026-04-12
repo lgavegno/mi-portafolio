@@ -55,6 +55,7 @@ const Works = () => {
                 status={project.status}
                 image={project.image}
                 link={project.link}
+                linkLabel={project.linkLabel}
                 index={index}
               />
             ))}

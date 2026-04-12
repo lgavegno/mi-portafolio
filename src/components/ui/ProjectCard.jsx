@@ -16,6 +16,7 @@ const ProjectCard = ({
   status = 'in-progress',
   image,
   link,
+  linkLabel,
   highlights = [], // Nueva prop añadida
   className = '',
   index = 0
@@ -161,14 +162,19 @@ const ProjectCard = ({
         </div>
 
         {link && (
-          <motion.div
-            className="absolute bottom-6 right-6 text-gray-500 group-hover:text-cobalt-400 transition-colors"
-            whileHover={{ x: 3 }}
+          <motion.a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="absolute bottom-6 right-6 inline-flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium text-gray-400 hover:text-white bg-white/5 hover:bg-cobalt-500/10 border border-white/10 hover:border-cobalt-400/30 transition-all"
+            whileHover={{ x: 2 }}
           >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            {linkLabel || 'Ver proyecto'}
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
-          </motion.div>
+          </motion.a>
         )}
       </div>
 
