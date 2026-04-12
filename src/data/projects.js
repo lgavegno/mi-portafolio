@@ -55,6 +55,7 @@ export const featuredProjects = [
     status: 'completed',
     image: faroart1Img,
     link: 'https://faroartshop.com',
+    linkLabel: 'Ver tienda online',
     featured: true,
     category: 'frontend',
     highlights: ['Tienda en producción con ventas activas', 'Dominio propio configurado', 'CSS personalizado sobre Tienda Nube'],
