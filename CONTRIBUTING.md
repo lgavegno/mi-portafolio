@@ -55,9 +55,9 @@ git push origin main
 
 ## Cómo actualizar el CV
 
-1. Renombrar el nuevo PDF como `CV_LeandroGavegno.pdf`
-2. Reemplazar `public/CV_LeandroGavegno.pdf`
-3. Verificar que los links en el código siguen apuntando al mismo nombre
+1. Renombrar el nuevo PDF como `CV_LeandroGavegno-[MM-DD].pdf`
+2. Reemplazar `public/CV_LeandroGavegno-[MM-DD].pdf`
+3. Actualizar referencias en `src/features/hero/HeroBanner.jsx` y `src/components/Header.jsx`
 4. Commit: `content: actualizar CV [mes año]`
 
 ## Reglas de código
