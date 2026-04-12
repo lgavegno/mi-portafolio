@@ -2,14 +2,22 @@ import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { FiArrowLeft, FiClock, FiCalendar, FiShare2, FiHeart } from 'react-icons/fi';
 import { MdLightbulb } from 'react-icons/md';
+import DOMPurify from 'dompurify';
 import { blogPosts } from '../features/blog/data/blogData';
 import ShareButton from '../components/ui/ShareButton';
+import BlogMetaTags from '../components/BlogMetaTags';
 import geminiAvatar from '../assets/gemini-avatar.webp';
 
 const BlogPostDetail = () => {
     const { slug } = useParams();
     const post = blogPosts.find(p => p.slug === slug);
     const relatedPosts = blogPosts.filter(p => p.slug !== slug).slice(0, 3);
+
+    // DOMPurify config: only allow safe HTML tags
+    const purifyConfig = {
+        ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'u', 'h2', 'h3', 'h4', 'ul', 'ol', 'li', 'code', 'pre', 'blockquote', 'a', 'img', 'hr', 'div', 'span', 'table', 'thead', 'tbody', 'tr', 'td', 'th'],
+        ALLOWED_ATTR: ['src', 'alt', 'href', 'title', 'class', 'loading', 'decoding']
+    };
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -26,6 +34,9 @@ const BlogPostDetail = () => {
         );
     }
 
+    // Sanitize content
+    const sanitizedContent = DOMPurify.sanitize(post.content, purifyConfig);
+
     const categoryColors = {
         'Data Engineering': 'bg-purple-500/20 text-purple-300 border-purple-400/30',
         'Backend': 'bg-primary/20 text-blue-300 border-blue-400/30',
@@ -36,7 +47,16 @@ const BlogPostDetail = () => {
     const categoryColor = categoryColors[post.category] || categoryColors['Frontend'];
 
     return (
-        <article className="min-h-screen pt-12 pb-20">
+        <>
+            <BlogMetaTags
+                title={post.title}
+                description={post.excerpt}
+                slug={post.slug}
+                imageUrl={post.image}
+                publishDate={post.date}
+                author="Gemini AI"
+            />
+            <article className="min-h-screen pt-12 pb-20">
             {/* Header / Hero del Post */}
             <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
                 <Link
@@ -143,7 +163,7 @@ const BlogPostDetail = () => {
                             [&_img]:rounded-xl [&_img]:shadow-lg [&_img]:my-8 [&_img]:w-full
                             [&_div.bg-slate-50]:text-lg [&_div.bg-slate-50]:lg:text-xl
                         "
-                        dangerouslySetInnerHTML={{ __html: post.content }}
+                        dangerouslySetInnerHTML={{ __html: sanitizedContent }}
                     />
 
                     {/* Bloque de Flujo de Trabajo Sugerido */}
@@ -226,6 +246,7 @@ const BlogPostDetail = () => {
 
             </div>
         </article>
+        </>
     );
 };
 

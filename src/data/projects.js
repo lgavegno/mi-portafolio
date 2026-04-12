@@ -1,6 +1,6 @@
 // src/data/projects.js
 // Datos de proyectos destacados para el portafolio
-import fitnessImg from '../assets/fig_clusters_ai.png';
+import fitnessImg from '../assets/fig_clusters_ai.webp';
 import omnistock1Img from '../assets/omnistock1.webp';
 import omnistock2Img from '../assets/omnistock2.webp';
 import faroart1Img from '../assets/faroart1.webp';

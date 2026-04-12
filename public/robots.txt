@@ -1,0 +1,24 @@
+# Robots.txt for Ongevag Studio
+# https://ongevag.vercel.app
+
+# Default rule for all bots
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: *.json
+Disallow: *?sort=
+Disallow: *?filter=
+Crawl-delay: 1
+
+# Googlebot specific
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bingbot specific
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://ongevag.vercel.app/sitemap.xml
