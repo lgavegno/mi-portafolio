@@ -23,6 +23,7 @@ const Contact = () => {
   })
   const [status, setStatus] = useState(FORM_STATUS.IDLE)
   const [errorMessage, setErrorMessage] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const vibrateFocus = useVibrate(5)
   const vibrateSuccess = useVibrate(50)
@@ -69,7 +70,8 @@ const Contact = () => {
     // Protección: PreventDefault seguro
     if (e && e.preventDefault) e.preventDefault();
 
-
+    // Anti-spam: Prevent double submit
+    if (isSubmitting) return;
 
     // IMPORTANT: Validate FIRST (before any state changes that could break Safari user activation)
     if (!validateForm()) {
@@ -78,6 +80,9 @@ const Contact = () => {
       return;
     }
 
+    // Set submitting flag to prevent spam
+    setIsSubmitting(true);
+
     // NOW set sending status (after validation passes)
     setStatus(FORM_STATUS.SENDING);
     setErrorMessage('');
@@ -85,7 +90,7 @@ const Contact = () => {
 
     try {
       // Direct EmailJS call - no delays or intermediate steps
-      const res = await emailjs.send(
+      await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
@@ -97,8 +102,6 @@ const Contact = () => {
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
 
-
-
       // Éxito
       setStatus(FORM_STATUS.SUCCESS);
       vibrateSuccess();
@@ -107,6 +110,7 @@ const Contact = () => {
       // Volver a estado idle después de 5 segundos
       setTimeout(() => {
         setStatus(FORM_STATUS.IDLE);
+        setIsSubmitting(false);
       }, 5000);
 
     } catch (error) {
@@ -115,6 +119,11 @@ const Contact = () => {
       setStatus(FORM_STATUS.ERROR);
       setErrorMessage('Error al enviar el mensaje. Por favor, intenta de nuevo.');
       vibrateError();
+
+      // Reset submit flag after 3 seconds to allow retry
+      setTimeout(() => {
+        setIsSubmitting(false);
+      }, 3000);
     }
   }
 
@@ -187,6 +196,7 @@ const Contact = () => {
                     onFocus={handleFocus}
                     className={inputClasses}
                     placeholder="Tu nombre"
+                    maxLength={100}
                     required
                   />
                 </div>
@@ -208,6 +218,7 @@ const Contact = () => {
                     onFocus={handleFocus}
                     className={inputClasses}
                     placeholder="tu@email.com"
+                    maxLength={150}
                     required
                   />
                 </div>
@@ -229,6 +240,7 @@ const Contact = () => {
                     onFocus={handleFocus}
                     className={`${inputClasses} resize-none`}
                     placeholder="Cuéntame sobre tu proyecto..."
+                    maxLength={2000}
                     required
                   />
                 </div>
@@ -275,15 +287,15 @@ const Contact = () => {
                   onClick={handleSubmit}
                   variant={status === FORM_STATUS.SUCCESS ? 'success' : 'accent'}
                   size="lg"
-                  loading={status === FORM_STATUS.SENDING}
-                  disabled={status === FORM_STATUS.SENDING || status === FORM_STATUS.SUCCESS}
+                  loading={status === FORM_STATUS.SENDING || isSubmitting}
+                  disabled={status === FORM_STATUS.SENDING || status === FORM_STATUS.SUCCESS || isSubmitting}
                   icon={status === FORM_STATUS.SUCCESS ? <FiCheck /> : <FiSend />}
                   iconPosition="right"
                   className="w-full cursor-pointer"
                 >
-                  {status === FORM_STATUS.SENDING && 'Enviando...'}
+                  {(status === FORM_STATUS.SENDING || isSubmitting) && 'Enviando...'}
                   {status === FORM_STATUS.SUCCESS && '¡Enviado!'}
-                  {(status === FORM_STATUS.IDLE || status === FORM_STATUS.ERROR) && 'Enviar mensaje'}
+                  {(status === FORM_STATUS.IDLE || status === FORM_STATUS.ERROR) && !isSubmitting && 'Enviar mensaje'}
                 </Button>
               </div>
             </form>
