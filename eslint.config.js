@@ -30,4 +30,13 @@ export default [
       ],
     },
   },
+  // Config files need Node.js globals
+  {
+    files: ['vite.config.js', 'tailwind.config.js', 'postcss.config.js', 'scripts/**/*.js'],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
+    },
+  },
 ]

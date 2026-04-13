@@ -2,11 +2,8 @@
 // Datos de proyectos destacados para el portafolio
 import fitnessImg from '../assets/fig_clusters_ai.webp';
 import omnistock1Img from '../assets/omnistock1.webp';
-import omnistock2Img from '../assets/omnistock2.webp';
 import faroart1Img from '../assets/faroart1.webp';
-import faroart2Img from '../assets/faroart2.webp';
 import generador1Img from '../assets/generador1.webp';
-import generador2Img from '../assets/generador2.webp';
 
 export const featuredProjects = [
   {

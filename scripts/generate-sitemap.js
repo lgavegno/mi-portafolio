@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-/* global process */
 
 import fs from 'fs';
 import path from 'path';
@@ -10,13 +9,10 @@ const __dirname = path.dirname(__filename);
 
 const baseUrl = 'https://ongevag.vercel.app';
 
-// Static routes
+// Static routes (only real React Router routes)
 const staticRoutes = [
   { path: '/', changefreq: 'weekly', priority: 1.0 },
   { path: '/blog', changefreq: 'daily', priority: 0.9 },
-  { path: '/works', changefreq: 'monthly', priority: 0.8 },
-  { path: '/services', changefreq: 'monthly', priority: 0.8 },
-  { path: '/skills', changefreq: 'monthly', priority: 0.7 },
 ];
 
 // Function to extract blog slugs from blogData.js
