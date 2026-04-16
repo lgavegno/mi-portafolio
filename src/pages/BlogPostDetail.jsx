@@ -6,7 +6,6 @@ import DOMPurify from 'dompurify';
 import { blogPosts } from '../features/blog/data/blogData';
 import ShareButton from '../components/ui/ShareButton';
 import BlogMetaTags from '../components/BlogMetaTags';
-import geminiAvatar from '../assets/gemini-avatar.webp';
 
 const BlogPostDetail = () => {
     const { slug } = useParams();
@@ -54,7 +53,6 @@ const BlogPostDetail = () => {
                 slug={post.slug}
                 imageUrl={post.image}
                 publishDate={post.date}
-                author="Gemini AI"
             />
             <article className="min-h-screen pt-12 pb-20">
             {/* Header / Hero del Post */}
@@ -83,30 +81,6 @@ const BlogPostDetail = () => {
                     <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold text-slate-900 dark:text-white leading-tight mb-8">
                         {post.title}
                     </h1>
-
-                    {/* Autor Gemini AI */}
-                    <div className="flex flex-col md:flex-row items-center gap-4 border-t border-b border-slate-200 dark:border-slate-800 py-6">
-                        <div className="relative">
-                            <img
-                                src={geminiAvatar}
-                                alt="Gemini AI"
-                                loading="lazy"
-                                className="w-12 h-12 rounded-full border-2 border-primary/30 p-0.5 object-cover"
-                            />
-                            <div className="absolute -bottom-1 -right-1 bg-primary text-[10px] text-white px-1.5 py-0.5 rounded-full font-bold shadow-sm">
-                                AI
-                            </div>
-                        </div>
-                        <div className="text-center md:text-left">
-                            <h4 className="font-bold text-slate-900 dark:text-white flex items-center justify-center md:justify-start gap-2">
-                                Gemini AI
-                                <span className="px-2 py-0.5 rounded text-[10px] bg-gradient-to-r from-blue-500 to-green-400 text-white font-bold uppercase tracking-wider">
-                                    IA Collaborator
-                                </span>
-                            </h4>
-                            <p className="text-xs text-slate-500 dark:text-slate-400">Co-created with advanced reasoning models</p>
-                        </div>
-                    </div>
                 </header>
             </div>
 
