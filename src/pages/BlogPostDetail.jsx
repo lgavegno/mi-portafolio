@@ -195,20 +195,16 @@ const BlogPostDetail = () => {
 
                 {/* 3. Right Widgets */}
                 <aside className="lg:col-span-3 space-y-8 text-center md:text-left">
-                    {/* Newsletter Widget */}
+                    {/* Contact CTA */}
                     <div className="p-6 rounded-2xl bg-slate-900 text-white shadow-xl">
-                        <h3 className="font-bold text-lg mb-2">Newsletter Semanal</h3>
-                        <p className="text-slate-400 text-sm mb-4">Recibe lo mejor de mi blog directo en tu correo.</p>
-                        <form onSubmit={(e) => e.preventDefault()} className="space-y-3">
-                            <input
-                                type="email"
-                                placeholder="tu@email.com"
-                                className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-primary outline-none"
-                            />
-                            <button className="w-full bg-primary hover:bg-blue-600 transition-colors font-bold py-2 rounded-lg text-sm">
-                                Suscribirme
-                            </button>
-                        </form>
+                        <h3 className="font-bold text-lg mb-2">¿Querés estar al tanto?</h3>
+                        <p className="text-slate-400 text-sm mb-4">Escribime y te aviso cuando publique contenido nuevo.</p>
+                        <a
+                            href="/#contacto"
+                            className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-blue-600 transition-colors font-bold py-2 rounded-lg text-sm"
+                        >
+                            Contactarme →
+                        </a>
                     </div>
 
                     {/* Recommended Articles */}
