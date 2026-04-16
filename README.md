@@ -3,7 +3,6 @@
 > **Software & Data Studio**  
 > Una implementación profesional de React 19 diseñada con una arquitectura escalable basada en Features (DDD Light).
 
-![Ongevag Banner](/public/logo-ongevag.png)
 
 ## ⚡ Stack Tecnológico
 

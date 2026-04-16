@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { useVibrate } from '../hooks/useVibrate';
-import logoOngevag from '../assets/ongevag-logo.webp';
 
 const navLinks = [
   { label: 'Inicio', id: 'inicio' },
@@ -76,11 +75,35 @@ const Header = ({ isOpen, setIsOpen }) => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <img
-                src={logoOngevag}
-                alt="Ongevag Studio"
-                className="w-20 h-20 md:w-28 md:h-28 rounded-xl object-contain"
-              />
+              <div className="flex items-center gap-2 cursor-pointer">
+                {/* Ícono SVG del nodo */}
+                <svg width="36" height="36" viewBox="0 0 48 48"
+                  fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Líneas del nodo */}
+                  <line x1="24" y1="22" x2="8" y2="38"
+                    stroke="#22d3ee" strokeWidth="2" strokeLinecap="round"/>
+                  <line x1="24" y1="22" x2="40" y2="38"
+                    stroke="#22d3ee" strokeWidth="2" strokeLinecap="round"/>
+                  <line x1="24" y1="22" x2="24" y2="6"
+                    stroke="#22d3ee" strokeWidth="2" strokeLinecap="round"/>
+                  {/* Nodo central */}
+                  <circle cx="24" cy="22" r="5" fill="#0ea5e9"/>
+                  {/* Nodos extremos */}
+                  <circle cx="8" cy="38" r="3.5" fill="none"
+                    stroke="#22d3ee" strokeWidth="1.5"/>
+                  <circle cx="40" cy="38" r="3.5" fill="none"
+                    stroke="#22d3ee" strokeWidth="1.5"/>
+                  <circle cx="24" cy="6" r="3.5" fill="none"
+                    stroke="#22d3ee" strokeWidth="1.5"/>
+                </svg>
+                {/* Wordmark */}
+                <div className="flex flex-col leading-none">
+                  <span className="font-display font-bold text-base
+                    text-white tracking-tight">Ongevag</span>
+                  <span className="text-[10px] text-slate-500
+                    tracking-widest uppercase">Studio</span>
+                </div>
+              </div>
             </motion.div>
           </Link>
 
