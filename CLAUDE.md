@@ -118,6 +118,19 @@ Requerida para que funcione el formulario de contacto con EmailJS.
 
 ---
 
+## Archivos Críticos
+
+No romper sin entender:
+
+| Archivo | Responsabilidad | Notas |
+|---------|-----------------|-------|
+| src/features/hero/HeroBanner.jsx | Componente principal del hero con layout responsive | Contiene badge, título gradient, botones CTA |
+| src/components/ParticleBackground.jsx | Canvas animado de fondo con partículas y conexiones | Usa ResizeObserver y requestAnimationFrame; NO usar React.lazy |
+| src/components/WireframeGeometry.jsx | Geometría 3D flotante (desktop only) | Lazy loaded; tiene animación de flotación |
+| src/config/motionConfig.js | Variantes de animación Framer Motion reutilizables | Usado en fadeInUp, staggerContainer, glassCard |
+
+---
+
 ## Arquitectura
 
 ### Patrón: Feature-Based Architecture (DDD Light)
@@ -147,6 +160,12 @@ El proyecto rechaza la estructura tradicional por "tipos" (components/hooks/util
 ---
 
 ## Notas Importantes
+
+### ParticleBackground
+- Archivo: `src/components/ParticleBackground.jsx`
+- **NO importar con React.lazy** — debe cargar con el hero para evitar flash blanco
+- Respeta `prefers-reduced-motion` retornando null (accesibilidad)
+- Canvas resizable con ResizeObserver; manualmente optimizado
 
 ### EmailJS Integration
 - Archivo: `src/features/contact/Contact.jsx`
