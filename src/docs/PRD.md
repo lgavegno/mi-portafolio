@@ -38,16 +38,18 @@ Portfolio profesional que valida la capacidad técnica de Leandro Gavegno como d
 
 | Feature | Ruta | Descripción | Estado |
 |---------|------|-------------|--------|
-| **Hero Banner** | `/` | Particle system + geometría 3D flotante + badge "Disponible" + stats | ✅ Producción (v2.3.0) |
+| **Hero Banner** | `/` | Particle system + geometría 3D flotante + badge "Disponible" + stats | ✅ v2.4.0 |
 | **About** | `/` (sección) | Descripción de Leandro y Ongevag Studio | ✅ Producción |
 | **Skills Grid** | `/` (sección) | Grid de tecnologías: React, Python, Data Science, etc. | ✅ Producción |
 | **Servicios** | `/` (sección) | Carrusel 3D de servicios ofrecidos | ✅ Producción |
 | **Works (Proyectos)** | `/` (sección) | Grid de proyectos destacados con filtrado por categoría | ✅ Producción |
 | **Detalle Proyecto** | `/proyecto/:id` | Vista completa de proyecto con descripción extendida, stack, results | ✅ Producción |
 | **Blog Preview** | `/` (sección) | Preview de últimos 3 posts en home | ✅ Producción |
-| **Blog Index** | `/blog` | Listado completo de posts con filtrado por categoría | ✅ Producción |
-| **Detalle Post** | `/blog/:slug` | Vista completa de articulo Markdown con navegación adyacente | ✅ Producción |
+| **Blog Index** | `/blog` | Listado completo de posts con filtrado por categoría, mobile optimizado | ✅ v2.4.0 |
+| **Detalle Post** | `/blog/:slug` | Vista completa con ShareButton mobile, código responsive, tablas con scroll | ✅ v2.4.0 |
 | **Contacto** | `/` (sección) | Formulario sin backend (EmailJS → lgavegno@gmail.com) | ✅ Producción |
+| **Favicon** | `public/favicon.svg` | Ícono personalizado Ongevag en navegador | ✅ v2.4.0 |
+| **Social Sharing** | og:image | Meta tags para previews en redes sociales | ✅ v2.4.0 |
 
 ---
 
@@ -108,6 +110,15 @@ VITE_EMAILJS_PUBLIC_KEY=...        # API key pública EmailJS
 ---
 
 ## 8. Backlog priorizado
+
+### ✅ Completados (v2.4.0)
+- [x] **Favicon personalizado** — aparece en tabs del navegador
+- [x] **og:image para social sharing** — LinkedIn y Twitter usan este archivo para previews
+- [x] **Fix SPA routing Vercel** — 404 en rutas directas resuelto via vercel.json
+- [x] **Eliminar referencias a Gemini AI** — bloque autor removido de BlogPostDetail
+- [x] **Blog mobile responsive** — código con overflow-x-auto, tablas con scroll, ShareButton en mobile
+
+### Pendientes
 
 | Prioridad | Feature | Impacto | Esfuerzo | Notas |
 |-----------|---------|---------|---------|-------|
