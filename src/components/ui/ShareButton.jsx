@@ -1,7 +1,7 @@
 // src/components/ui/ShareButton.jsx
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiShare2, FiMail, FiCopy, FiCheck } from 'react-icons/fi';
+import { FiShare2, FiMail, FiCopy, FiCheck, FiLinkedin } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
 
 const ShareButton = ({
@@ -60,6 +60,16 @@ const ShareButton = ({
                     : `Mira esto: ${url}`;
                 const mailtoUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                 window.location.href = mailtoUrl;
+                setIsOpen(false);
+            }
+        },
+        {
+            name: 'LinkedIn',
+            icon: FiLinkedin,
+            color: 'text-blue-500 hover:bg-blue-500/10',
+            action: () => {
+                const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+                window.open(linkedinUrl, '_blank', 'noopener,noreferrer');
                 setIsOpen(false);
             }
         },
