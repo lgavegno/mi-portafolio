@@ -1,5 +1,6 @@
 // src/App.jsx
 import React, { lazy, Suspense } from 'react'
+import { Analytics } from '@vercel/analytics/react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Routes, Route, useLocation, Outlet } from 'react-router-dom'
 import MainLayout from './layouts/MainLayout'
@@ -97,23 +98,26 @@ function App() {
   }, []);
 
   return (
-    <AnimatePresence mode="wait">
-      <Suspense fallback={<SkeletonPage />}>
-        <Routes location={location} key={location.pathname}>
-          {/* Main Site Routes */}
-          <Route element={<MainLayoutWrapper />}>
-            <Route path="/" element={<HomeSections />} />
-            <Route path="/proyecto/:id" element={<ProjectDetail />} />
-          </Route>
+    <>
+      <AnimatePresence mode="wait">
+        <Suspense fallback={<SkeletonPage />}>
+          <Routes location={location} key={location.pathname}>
+            {/* Main Site Routes */}
+            <Route element={<MainLayoutWrapper />}>
+              <Route path="/" element={<HomeSections />} />
+              <Route path="/proyecto/:id" element={<ProjectDetail />} />
+            </Route>
 
-          {/* Blog Routes */}
-          <Route path="/blog" element={<BlogLayout />}>
-            <Route index element={<BlogIndex />} />
-            <Route path=":slug" element={<BlogPostDetail />} />
-          </Route>
-        </Routes>
-      </Suspense>
-    </AnimatePresence>
+            {/* Blog Routes */}
+            <Route path="/blog" element={<BlogLayout />}>
+              <Route index element={<BlogIndex />} />
+              <Route path=":slug" element={<BlogPostDetail />} />
+            </Route>
+          </Routes>
+        </Suspense>
+      </AnimatePresence>
+      <Analytics />
+    </>
   )
 }
 
