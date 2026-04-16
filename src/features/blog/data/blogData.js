@@ -3,6 +3,97 @@
 
 export const blogPosts = [
   {
+    id: 'google-sheets-backend-serverless',
+    title: 'Cómo configuré Google Sheets como backend serverless',
+    excerpt: 'Sin servidor, sin base de datos, sin costo mensual. Cómo construí un sistema de cotizaciones con Google Apps Script, Sheets y Gmail que procesa formularios en tiempo real.',
+    category: 'Desarrollo',
+    readTime: 8,
+    date: '2026-04-16',
+    image: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&q=80',
+    tags: ['Google Sheets', 'Apps Script', 'Serverless', 'Vanilla JS'],
+    featured: true,
+    slug: 'google-sheets-backend-serverless',
+    content: `
+<h2>El problema que quería resolver</h2>
+<p>Necesitaba que los clientes pudieran generar cotizaciones de proyectos web en tiempo real y que yo recibiera esa información automáticamente — sin montar un servidor, sin pagar hosting de backend, sin mantener una base de datos.</p>
+<p>La solución fue usar infraestructura que ya existe y es gratuita: <strong>Google Sheets como base de datos, Google Apps Script como servidor, y Gmail como sistema de notificaciones.</strong></p>
+
+<h2>La arquitectura completa</h2>
+<p>El flujo tiene cuatro capas que se comunican entre sí:</p>
+<pre><code>Frontend (Vanilla JS)
+    ↓ POST JSON
+Google Apps Script (Webhook)
+    ↓              ↓
+Google Sheets    Gmail
+(almacenamiento) (notificación)</code></pre>
+<p>El cliente completa el formulario, el JavaScript del frontend calcula el precio en tiempo real y al enviar hace un <code>fetch()</code> POST al webhook de Apps Script. El script valida los datos, los guarda en Sheets y me manda un email con el detalle completo.</p>
+
+<h2>Paso 1 — El frontend calcula, no el servidor</h2>
+<p>La primera decisión fue mover toda la lógica de precios al cliente. Cada vez que el usuario selecciona un tipo de sitio o una funcionalidad, JavaScript recalcula el total instantáneamente sin hacer ninguna llamada a un servidor.</p>
+<p>Esto tiene dos ventajas: la experiencia es inmediata (sin latencia), y el servidor solo recibe el resultado final, no tiene que procesar nada complejo.</p>
+<pre><code>function calcularPresupuesto() {
+  const base = PRECIOS[tipoSitio] || 0;
+  const extras = seccionesSeleccionadas * 50000;
+  const funcionalidades = funcSeleccionadas * 60000;
+  return base + extras + funcionalidades;
+}</code></pre>
+
+<h2>Paso 2 — Google Apps Script como webhook</h2>
+<p>Apps Script permite publicar una función como endpoint HTTP accesible públicamente. La función <code>doPost()</code> es el equivalente a una ruta <code>POST /api/cotizacion</code> en Express, pero sin servidor.</p>
+<pre><code>function doPost(e) {
+  const data = JSON.parse(e.postData.contents);
+
+  // Guardar en Sheets
+  const sheet = SpreadsheetApp.openById(SHEET_ID)
+    .getSheetByName('SUBMISSIONS');
+  sheet.appendRow([
+    new Date(),
+    data.nombre,
+    data.email,
+    data.tipo_sitio,
+    data.presupuesto.total
+  ]);
+
+  // Notificar por email
+  MailApp.sendEmail({
+    to: 'tu@email.com',
+    subject: 'Nueva cotización — ' + data.nombre,
+    body: formatearEmail(data)
+  });
+
+  return ContentService
+    .createTextOutput(JSON.stringify({ success: true }))
+    .setMimeType(ContentService.MimeType.JSON);
+}</code></pre>
+
+<h2>Paso 3 — El problema del CORS y cómo resolverlo</h2>
+<p>Acá hay una trampa que me tomó tiempo: Apps Script no soporta CORS correctamente cuando usás <code>fetch()</code> con <code>mode: 'cors'</code>. La solución es usar <code>mode: 'no-cors'</code> en el frontend.</p>
+<p>El trade-off es que no podés leer la respuesta del servidor, pero para este caso no importa — si el script falla, el usuario ve un error genérico de red, no un mensaje personalizado.</p>
+<pre><code>await fetch(GOOGLE_SCRIPT_URL, {
+  method: 'POST',
+  mode: 'no-cors', // necesario para Apps Script
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(payload)
+});</code></pre>
+
+<h2>Paso 4 — Google Sheets como base de datos</h2>
+<p>Sheets tiene cuatro pestañas con funciones específicas: <strong>SUBMISSIONS</strong> guarda cada cotización con timestamp y todos los campos, <strong>STATISTICS</strong> tiene fórmulas que calculan automáticamente métricas como total de cotizaciones y presupuesto promedio, <strong>LOGS</strong> registra cada evento del script para debugging, y <strong>TEMPLATE</strong> define el formato del email.</p>
+<p>La ventaja de Sheets sobre una base de datos real es que podés ver, filtrar y exportar los datos sin escribir una sola query.</p>
+
+<h2>El caso especial: proyectos a medida</h2>
+<p>El formulario tiene dos modos: el estándar con precios fijos, y un modo "proyecto a medida" para sistemas complejos donde el precio no se puede calcular sin una entrevista técnica.</p>
+<p>Cuando el usuario activa ese modo, las secciones y funcionalidades se deshabilitan, el total muestra "A consultar" y el email que recibo tiene asunto <code>SOLICITUD PROYECTO CUSTOM</code> para diferenciarlo visualmente en mi bandeja.</p>
+
+<h2>Resultado y métricas</h2>
+<p>El sistema lleva varios semanas en producción sin incidentes. El costo de infraestructura es <strong>$0/mes</strong> — todo corre en la capa gratuita de Google. El tiempo de respuesta del webhook es de 800ms a 2 segundos, aceptable para un formulario de contacto.</p>
+<p>Lo más valioso fue el aprendizaje: entender que no siempre necesitás una arquitectura compleja. A veces la solución más simple y barata es la correcta.</p>
+
+<h2>Cuándo usar este approach y cuándo no</h2>
+<p>Este patrón funciona bien para formularios de contacto, cotizadores, registros de leads o cualquier caso donde el volumen es bajo (menos de 100 submissions por día) y no necesitás autenticación ni relaciones entre datos.</p>
+<p>No lo uses si necesitás queries complejas, transacciones, autenticación de usuarios o más de 1000 operaciones diarias. Para esos casos, un backend real en Railway o Render con PostgreSQL es la opción correcta.</p>
+`
+  },
+  {
     id: 'fitness-data-integrity-refactor',
     title: 'Data Integrity & ML: Saneando 11,600 registros con Python',
     excerpt: 'Cómo transformar un dataset con 89% de ruido en un motor de predicción de Churn veraz mediante técnicas de auditoría y clustering.',
