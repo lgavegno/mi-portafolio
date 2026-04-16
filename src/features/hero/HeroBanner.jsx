@@ -89,11 +89,11 @@ const HeroBanner = () => {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, ease: "easeOut" }}
-                      className="text-[56px] md:text-[72px] lg:text-[72px] font-display font-extrabold tracking-tight leading-none flex flex-wrap gap-0"
+                      className="whitespace-nowrap leading-none mb-4"
                     >
-                      <span className="font-display font-extrabold tracking-tight text-slate-100">ON</span>
+                      <span className="font-display font-extrabold text-5xl md:text-6xl lg:text-7xl text-slate-100">ON</span>
                       <span
-                        className="font-display font-extrabold tracking-tight"
+                        className="font-display font-extrabold text-5xl md:text-6xl lg:text-7xl"
                         style={{
                           background: 'linear-gradient(135deg, #22d3ee, #818cf8)',
                           WebkitBackgroundClip: 'text',
@@ -103,7 +103,7 @@ const HeroBanner = () => {
                       >
                         GE
                       </span>
-                      <span className="font-display font-extrabold tracking-tight text-slate-100">VAG</span>
+                      <span className="font-display font-extrabold text-5xl md:text-6xl lg:text-7xl text-slate-100">VAG</span>
                     </motion.h1>
 
                     {/* Role Subtitle */}
@@ -188,16 +188,11 @@ const HeroBanner = () => {
               variants={fadeInUp}
               className="hidden lg:flex items-center justify-center h-full min-h-[400px] max-h-[500px] p-8"
             >
-              {/* Cyan frame container with glow and float */}
+              {/* Wireframe float animation */}
               <motion.div
-                className="relative p-6 border rounded-sm scale-90"
-                style={{
-                  borderColor: 'rgba(0, 255, 255, 0.4)',
-                  boxShadow: '0 0 15px rgba(0, 255, 255, 0.3)',
-                }}
+                className="relative"
                 animate={{
-                  y: [0, -10, 0],
-                  rotateZ: [0, 1, 0, -1, 0],
+                  y: [0, -12, 0],
                 }}
                 transition={{
                   duration: 6,
