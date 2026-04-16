@@ -205,7 +205,7 @@ const BlogPostDetail = () => {
                         <p className="text-slate-400 text-sm mb-4">Escribime y te aviso cuando publique contenido nuevo.</p>
                         <a
                             href="/#contacto"
-                            className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-blue-600 transition-colors font-bold py-2 rounded-lg text-sm"
+                            className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-blue-600 transition-colors font-bold py-2 rounded-lg text-sm text-white"
                         >
                             Contactarme →
                         </a>
