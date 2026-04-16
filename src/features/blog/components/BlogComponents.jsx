@@ -72,20 +72,16 @@ export const Sidebar = () => {
     return (
         <aside className="lg:col-span-4 space-y-12">
             <div className="p-8 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                <h3 className="text-xl font-bold mb-4">Weekly Insights</h3>
+                <h3 className="text-xl font-bold mb-4">¿Querés estar al tanto?</h3>
                 <p className="text-slate-600 dark:text-slate-400 text-sm mb-6">
-                    Recibe tips de Data Engineering y Performance directamente en tu inbox.
+                    Escribime y te aviso cuando publique contenido nuevo.
                 </p>
-                <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
-                    <input
-                        className="w-full bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-700 rounded-lg focus:ring-primary focus:border-primary px-4 py-2 outline-none text-sm transition-all"
-                        placeholder="tu@email.com"
-                        type="email"
-                    />
-                    <button className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-2 rounded-lg transition-colors">
-                        Suscribirme
-                    </button>
-                </form>
+                <a
+                    href="/#contacto"
+                    className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold py-2 rounded-lg transition-colors"
+                >
+                    Contactarme →
+                </a>
             </div>
             <div>
                 <h3 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6 flex items-center gap-2">
