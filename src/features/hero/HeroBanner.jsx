@@ -68,7 +68,7 @@ const HeroBanner = () => {
                 </video>
 
                 {/* Dark overlay for text legibility on mobile */}
-                <div className="absolute inset-0 -z-10 bg-black/40 lg:hidden pointer-events-none" />
+                <div className="absolute inset-0 -z-10 bg-slate-900/80 lg:hidden pointer-events-none" />
 
                 {/* Block 1: Top (Badge & Title & Subtitle) */}
                 <div className="pt-8 px-6 lg:p-0 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
@@ -91,9 +91,9 @@ const HeroBanner = () => {
                       transition={{ duration: 0.4, ease: "easeOut" }}
                       className="whitespace-nowrap leading-none mb-4"
                     >
-                      <span className="font-display font-extrabold text-5xl md:text-6xl lg:text-7xl text-slate-100">ON</span>
+                      <span className="font-display font-extrabold text-[36px] sm:text-5xl md:text-6xl lg:text-7xl text-slate-100">ON</span>
                       <span
-                        className="font-display font-extrabold text-5xl md:text-6xl lg:text-7xl"
+                        className="font-display font-extrabold text-[36px] sm:text-5xl md:text-6xl lg:text-7xl"
                         style={{
                           background: 'linear-gradient(135deg, #22d3ee, #818cf8)',
                           WebkitBackgroundClip: 'text',
@@ -103,7 +103,7 @@ const HeroBanner = () => {
                       >
                         GE
                       </span>
-                      <span className="font-display font-extrabold text-5xl md:text-6xl lg:text-7xl text-slate-100">VAG</span>
+                      <span className="font-display font-extrabold text-[36px] sm:text-5xl md:text-6xl lg:text-7xl text-slate-100">VAG</span>
                     </motion.h1>
 
                     {/* Role Subtitle */}
