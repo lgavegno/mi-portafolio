@@ -5,7 +5,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FiLayers, FiMail, FiDownload } from 'react-icons/fi';
 import { fadeInUp, staggerContainer } from '../../config/motionConfig';
-import GlowButton from '../../components/ui/GlowButton';
 
 import TechnicalTicker from '../../components/TechnicalTicker';
 
@@ -24,15 +23,21 @@ const HeroBanner = () => {
   return (
     <section
       id="inicio"
-      className="relative min-h-screen flex flex-col bg-obsidian overflow-hidden"
+      className="relative min-h-screen flex flex-col bg-gradient-to-br from-[#080c14] via-[#0d1520] to-[#061018] overflow-hidden"
     >
-      {/* Subtle grid background */}
+      {/* Glow cyan top-left */}
       <div
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full pointer-events-none"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,255,255,0.1) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(0,255,255,0.1) 1px, transparent 1px)`,
-          backgroundSize: '50px 50px'
+          background: 'radial-gradient(circle, rgba(0,188,212,0.12) 0%, transparent 70%)'
+        }}
+      />
+
+      {/* Glow indigo bottom-right */}
+      <div
+        className="absolute -bottom-32 right-24 w-[400px] h-[400px] rounded-full pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)'
         }}
       />
 
@@ -65,16 +70,40 @@ const HeroBanner = () => {
                 {/* Dark overlay for text legibility on mobile */}
                 <div className="absolute inset-0 -z-10 bg-black/40 lg:hidden pointer-events-none" />
 
-                {/* Block 1: Top (Title & Subtitle) */}
+                {/* Block 1: Top (Badge & Title & Subtitle) */}
                 <div className="pt-8 px-6 lg:p-0 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-                  <div className="space-y-4">
+                  <div className="space-y-6">
+                    {/* Badge Disponible */}
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                      className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/8 border border-cyan-500/20 text-cyan-400 text-xs font-medium tracking-widest uppercase"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                      Disponible para proyectos
+                    </motion.div>
+
+                    {/* Title ONGEVAG with gradient on GE */}
                     <motion.h1
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, ease: "easeOut" }}
-                      className="text-6xl md:text-7xl lg:text-8xl font-display font-bold text-white tracking-tighter leading-none"
+                      className="text-[56px] md:text-[72px] lg:text-[72px] font-display font-extrabold tracking-tight leading-none flex flex-wrap gap-0"
                     >
-                      ONGEVAG
+                      <span className="font-display font-extrabold tracking-tight text-slate-100">ON</span>
+                      <span
+                        className="font-display font-extrabold tracking-tight"
+                        style={{
+                          background: 'linear-gradient(135deg, #22d3ee, #818cf8)',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundClip: 'text',
+                        }}
+                      >
+                        GE
+                      </span>
+                      <span className="font-display font-extrabold tracking-tight text-slate-100">VAG</span>
                     </motion.h1>
 
                     {/* Role Subtitle */}
@@ -82,20 +111,19 @@ const HeroBanner = () => {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.1, duration: 0.4 }}
-                      className="text-lg md:text-xl lg:text-2xl font-light tracking-wide"
-                      style={{ color: 'rgb(0, 255, 255)' }}
+                      className="text-lg md:text-xl lg:text-2xl font-light tracking-wide text-slate-300"
                     >
                       Software Developer · Data & Systems Enthusiast
                     </motion.p>
                   </div>
                 </div>
 
-                {/* Block 2: Bottom (Description & Buttons) */}
+                {/* Block 2: Bottom (Description & Buttons & Stats) */}
                 <div className="pb-12 px-6 lg:p-0 space-y-8 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
                   {/* Description */}
                   <motion.p
                     variants={fadeInUp}
-                    className="text-gray-200 font-normal text-base md:text-lg lg:text-xl leading-relaxed max-w-xl lg:mt-6 max-lg:drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
+                    className="text-slate-300 font-normal text-base md:text-lg lg:text-xl leading-relaxed max-w-xl lg:mt-6 max-lg:drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
                   >
                     Diseño y desarrollo proyectos de software y análisis de datos.
                   </motion.p>
@@ -105,31 +133,51 @@ const HeroBanner = () => {
                     variants={fadeInUp}
                     className="flex flex-col sm:flex-row gap-4"
                   >
-                    <GlowButton
-                      variant="primary"
+                    {/* Primary Button - Ver Proyectos */}
+                    <button
                       onClick={scrollToProjects}
-                      icon={<FiLayers />}
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white text-sm font-medium transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5"
+                      style={{
+                        background: 'linear-gradient(135deg, #06b6d4, #818cf8)'
+                      }}
                     >
+                      <FiLayers />
                       Ver proyectos
-                    </GlowButton>
+                    </button>
 
-                    <GlowButton
-                      variant="secondary"
+                    {/* Secondary Button - Contactar */}
+                    <button
                       onClick={scrollToContact}
-                      icon={<FiMail />}
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-slate-300 text-sm font-medium border border-white/10 hover:border-cyan-400/40 hover:text-cyan-400 transition-all duration-200 bg-transparent"
                     >
+                      <FiMail />
                       Contactar
-                    </GlowButton>
+                    </button>
 
-                    <GlowButton
-                      variant="secondary"
+                    {/* Download CV Button - Mobile Only */}
+                    <a
                       href="/CV_LeandroGavegno-04-26.pdf"
                       download="CV_LeandroGavegno-04-26.pdf"
-                      icon={<FiDownload />}
-                      className="lg:hidden"
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-slate-300 text-sm font-medium border border-white/10 hover:border-cyan-400/40 hover:text-cyan-400 transition-all duration-200 bg-transparent lg:hidden"
                     >
+                      <FiDownload />
                       Descargar CV
-                    </GlowButton>
+                    </a>
+                  </motion.div>
+
+                  {/* Stats */}
+                  <motion.div
+                    variants={fadeInUp}
+                    className="flex gap-8 pt-7 border-t border-white/[0.06]"
+                  >
+                    <div>
+                      <div className="font-display text-xl font-bold text-slate-100">4+</div>
+                      <div className="text-[11px] text-slate-500 uppercase tracking-widest mt-0.5">Proyectos</div>
+                    </div>
+                    <div>
+                      <div className="font-display text-xl font-bold text-slate-100">PyME</div>
+                      <div className="text-[11px] text-slate-500 uppercase tracking-widest mt-0.5">Foco</div>
+                    </div>
                   </motion.div>
                 </div>
               </div>
