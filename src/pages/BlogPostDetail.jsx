@@ -140,6 +140,10 @@ const BlogPostDetail = () => {
                             [&_hr]:my-12 [&_hr]:border-slate-200 [&_hr]:dark:border-slate-800
                             [&_img]:rounded-xl [&_img]:shadow-lg [&_img]:my-8 [&_img]:w-full
                             [&_div.bg-slate-50]:text-lg [&_div.bg-slate-50]:lg:text-xl
+                            [&_pre]:overflow-x-auto [&_pre]:max-w-full [&_pre]:rounded-lg [&_pre]:bg-slate-900 [&_pre]:border [&_pre]:border-slate-700 [&_pre]:p-4 [&_pre]:my-4 [&_pre]:text-sm
+                            [&_code]:font-mono [&_code]:text-sm [&_code]:break-words
+                            [&_pre_code]:break-normal [&_pre_code]:whitespace-pre
+                            [&_table]:overflow-x-auto [&_table]:block [&_table]:max-w-full
                         "
                         dangerouslySetInnerHTML={{ __html: sanitizedContent }}
                     />
@@ -168,6 +172,18 @@ const BlogPostDetail = () => {
                                 </span>
                             ))}
                         </div>
+                    </div>
+
+                    {/* Share en mobile — visible solo en mobile */}
+                    <div className="flex lg:hidden items-center justify-between pt-6 mt-6 border-t border-slate-700">
+                        <span className="text-sm text-slate-400 font-medium">
+                            ¿Te fue útil? Compartilo
+                        </span>
+                        <ShareButton
+                            url={`https://www.ongevag.com/blog/${post.slug}`}
+                            title={post.title}
+                            description={post.excerpt}
+                        />
                     </div>
                 </div>
 
