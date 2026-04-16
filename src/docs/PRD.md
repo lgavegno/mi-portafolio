@@ -38,7 +38,7 @@ Portfolio profesional que valida la capacidad técnica de Leandro Gavegno como d
 
 | Feature | Ruta | Descripción | Estado |
 |---------|------|-------------|--------|
-| **Hero Banner** | `/` | Presentación impactante con geometrías 3D (desktop) / video optimizado (mobile) | ✅ Producción |
+| **Hero Banner** | `/` | Particle system + geometría 3D flotante + badge "Disponible" + stats | ✅ Producción (v2.3.0) |
 | **About** | `/` (sección) | Descripción de Leandro y Ongevag Studio | ✅ Producción |
 | **Skills Grid** | `/` (sección) | Grid de tecnologías: React, Python, Data Science, etc. | ✅ Producción |
 | **Servicios** | `/` (sección) | Carrusel 3D de servicios ofrecidos | ✅ Producción |
@@ -126,6 +126,13 @@ VITE_EMAILJS_PUBLIC_KEY=...        # API key pública EmailJS
 
 **Estado:** En documentación y restructuración de contenido
 
+### Completados (v2.3.0)
+- [x] **Rediseño visual hero** — Particle system + geometría 3D + badge + stats
+  - Eliminado video de fondo
+  - Integrado ParticleBackground canvas animado
+  - Actualización: gradientes, tipografía responsive, botones pill style
+
+### En progreso
 - [ ] **Remover** proyecto Fitness App (Java legacy) del portfolio
   - **Nota:** Será REEMPLAZADO por nuevo análisis más reciente
   - **Ubicación:** `src/data/projects.js` línea 5-23

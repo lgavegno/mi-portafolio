@@ -4,6 +4,27 @@ Historial de cambios del proyecto Ongevag Studio Portfolio. Formato: [Keep a Cha
 
 ---
 
+## [2.3.0] — Abril 2026
+
+### Added
+- ParticleBackground.jsx — sistema de partículas canvas con conexiones dinámicas, respeta prefers-reduced-motion
+- Badge animado "Disponible para proyectos" en hero
+- Stats hero: 4+ Proyectos / PyME Foco
+- Fuente DM Sans cargada via Google Fonts
+
+### Changed
+- Hero fondo: negro puro → gradiente slate profundo con glows cyan e índigo
+- Título ONGEVAG: gradiente cyan→indigo en letras "GE", responsive text-[36px]→7xl
+- Botones hero: rectangulares → pill style con gradiente
+- Logo header: imagen .webp → SVG inline adaptativo al fondo oscuro
+- WireframeGeometry: liberada del marco cuadrado con borde
+
+### Removed
+- Video de fondo (public/videos/ongevagDesign.mp4) — reemplazado por ParticleBackground
+- og-image.jpg de public/ — meta tag actualizada
+
+---
+
 ## [Unreleased] — Sprint SDD Foundation — Abril 2026
 
 ### Added

@@ -152,6 +152,16 @@ Definidas en `src/index.css` (componentes reutilizables):
 | **.glow-cyan** | Cyan glow box-shadow | **ONGEVAG cyan glow principal** |
 | **.gradient-border** | Animated border gradient | Borders animados cobalt→mint |
 
+### Gradientes del Hero (v2.3.0)
+
+| Token | Gradient | Uso |
+|-------|----------|-----|
+| **Fondo Hero** | `bg-gradient-to-br from-[#080c14] via-[#0d1520] to-[#061018]` | Contenedor principal HeroBanner.jsx |
+| **Título ONGEVAG (GE)** | `linear-gradient(135deg, #22d3ee, #818cf8)` | Letras "GE" de título principal |
+| **Botón Primario** | `linear-gradient(135deg, #06b6d4, #818cf8)` | Botón "Ver proyectos" |
+| **Glow Cyan Top-Left** | `radial-gradient(circle, rgba(0,188,212,0.12) 0%, transparent 70%)` | Elemento decorativo top-left |
+| **Glow Indigo Bottom-Right** | `radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)` | Elemento decorativo bottom-right |
+
 ### Backdrop Blur
 
 | Token | Valor | Uso |
