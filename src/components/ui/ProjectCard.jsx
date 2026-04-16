@@ -42,15 +42,12 @@ const ProjectCard = ({
 
   const currentStatus = statusConfig[status] || statusConfig['in-progress'];
 
-  const handleClick = (e) => {
-    // Si el clic fue en un enlace externo (si lo hubiera dentro de la card) o botón específico, no navegar
-    if (e.target.closest('a') || e.target.closest('button')) return;
-
+  const handleClick = () => {
     vibrate();
-    if (id) {
-      navigate(`/proyecto/${id}`);
-    } else if (link) {
+    if (link) {
       window.open(link, '_blank', 'noopener,noreferrer');
+    } else if (id) {
+      navigate(`/proyecto/${id}`);
     }
   };
 
@@ -137,9 +134,21 @@ const ProjectCard = ({
           </div>
         )}
 
-        <div className="mt-auto">
-          {/* Stack tecnológico */}
-          <div className="flex flex-wrap gap-2 mb-6">
+        <div className="mt-auto flex flex-col gap-3">
+          {/* Bloque de progreso */}
+          {progress > 0 && (
+            <div className="w-full">
+              <ProgressBar
+                progress={progress}
+                label={progressLabel}
+                variant={progress >= 75 ? 'success' : 'default'}
+                size="sm"
+              />
+            </div>
+          )}
+
+          {/* Bloque de acciones (stack tecnológico) */}
+          <div className="flex flex-wrap gap-2 items-center">
             {stack.map((tech) => (
               <span
                 key={tech}
@@ -148,34 +157,17 @@ const ProjectCard = ({
                 {tech}
               </span>
             ))}
+            {link && (
+              <span className="ml-auto text-xs text-gray-500 group-hover:text-cyan-institutional transition-colors flex items-center gap-1">
+                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+                Visitar
+              </span>
+            )}
           </div>
-
-          {/* Barra de progreso */}
-          {progress > 0 && (
-            <ProgressBar
-              progress={progress}
-              label={progressLabel}
-              variant={progress >= 75 ? 'success' : 'default'}
-              size="sm"
-            />
-          )}
         </div>
 
-        {link && (
-          <motion.a
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="absolute bottom-6 right-6 inline-flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium text-gray-400 hover:text-white bg-white/5 hover:bg-cobalt-500/10 border border-white/10 hover:border-cobalt-400/30 transition-all"
-            whileHover={{ x: 2 }}
-          >
-            {linkLabel || 'Ver proyecto'}
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </motion.a>
-        )}
       </div>
 
       <motion.div
