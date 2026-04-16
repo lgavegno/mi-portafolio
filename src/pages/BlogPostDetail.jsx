@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { FiArrowLeft, FiClock, FiCalendar, FiShare2, FiHeart } from 'react-icons/fi';
+import { FiArrowLeft, FiClock, FiCalendar, FiHeart } from 'react-icons/fi';
 import { MdLightbulb } from 'react-icons/md';
 import DOMPurify from 'dompurify';
 import { blogPosts } from '../features/blog/data/blogData';
@@ -139,9 +139,13 @@ const BlogPostDetail = () => {
                             <FiHeart className="text-xl" />
                             <span className="text-[10px] font-bold">24</span>
                         </button>
-                        <button className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-blue-500 transition-colors flex items-center justify-center">
-                            <FiShare2 />
-                        </button>
+                        <div className="scale-75 origin-top">
+                            <ShareButton
+                                url={`https://ongevag.com/blog/${post.slug}`}
+                                title={post.title}
+                                description={post.excerpt}
+                            />
+                        </div>
                     </div>
                 </div>
 
