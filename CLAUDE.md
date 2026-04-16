@@ -128,6 +128,9 @@ No romper sin entender:
 | src/components/ParticleBackground.jsx | Canvas animado de fondo con partículas y conexiones | Usa ResizeObserver y requestAnimationFrame; NO usar React.lazy |
 | src/components/WireframeGeometry.jsx | Geometría 3D flotante (desktop only) | Lazy loaded; tiene animación de flotación |
 | src/config/motionConfig.js | Variantes de animación Framer Motion reutilizables | Usado en fadeInUp, staggerContainer, glassCard |
+| public/favicon.svg | Ícono del nodo Ongevag | Aparece en tabs del navegador |
+| public/og-image.svg | Imagen 1200x630 para social sharing | Usado por LinkedIn, Twitter, etc. en previews |
+| vercel.json | Rewrites SPA routing | **CRÍTICO:** Sin esto todas las rutas directas dan 404 |
 
 ---
 
@@ -185,6 +188,14 @@ El proyecto rechaza la estructura tradicional por "tipos" (components/hooks/util
 - Incluye plugins para React Hooks y React Refresh
 - Ejecutar `npm run lint` antes de commits
 
+### Qué NO hacer
+
+- **No eliminar `vercel.json`** — sin él todas las rutas directas dan 404 en producción
+- **No eliminar `public/og-image.svg`** — LinkedIn y Twitter usan este archivo para previews en redes sociales
+- **No importar `ParticleBackground` con `React.lazy`** — debe cargar con el hero para evitar flash blanco
+- **No agregar TypeScript** — decisión de arquitectura documentada en ADR-002
+- **No commitear `.env`** — credenciales de EmailJS nunca en Git
+
 ---
 
 ## Deployment
@@ -192,6 +203,21 @@ El proyecto rechaza la estructura tradicional por "tipos" (components/hooks/util
 **Plataforma:** Vercel
 **Trigger:** Cada push a `main` o `develop`
 **CI/CD:** Automático — build + preview URLs
+
+---
+
+## Dónde está cada cosa
+
+| Elemento | Ubicación | Descripción |
+|----------|-----------|-------------|
+| Favicon del sitio | `public/favicon.svg` | Ícono del nodo, aparece en tabs del navegador |
+| og:image para redes | `public/og-image.svg` | Imagen 1200x630 para previews en LinkedIn, Twitter |
+| Config de rutas Vercel | `vercel.json` | Rewrites SPA; crítico para evitar 404 en rutas directas |
+| Partículas del hero | `src/components/ParticleBackground.jsx` | Canvas animado con conexiones dinámicas |
+| Geometría 3D hero | `src/components/WireframeGeometry.jsx` | Figuras 3D flotantes (desktop only) |
+| Botón compartir | `src/components/ui/ShareButton.jsx` | LinkedIn, WhatsApp, Email, copiar link |
+| Posts del blog | `src/features/blog/data/blogData.js` | Array de posts con contenido HTML inline |
+| Información de proyectos | `src/data/projects.js` | Array de proyectos con descripción, stack, links |
 
 ---
 
