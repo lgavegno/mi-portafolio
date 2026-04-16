@@ -7,6 +7,7 @@ import { FiLayers, FiMail, FiDownload } from 'react-icons/fi';
 import { fadeInUp, staggerContainer } from '../../config/motionConfig';
 
 import TechnicalTicker from '../../components/TechnicalTicker';
+import ParticleBackground from '../../components/ParticleBackground';
 
 // Lazy loading del componente pesado 3D
 const WireframeGeometry = React.lazy(() => import('../../components/WireframeGeometry'));
@@ -25,6 +26,9 @@ const HeroBanner = () => {
       id="inicio"
       className="relative min-h-screen flex flex-col bg-gradient-to-br from-[#080c14] via-[#0d1520] to-[#061018] overflow-hidden"
     >
+      {/* Particle Background Animation */}
+      <ParticleBackground />
+
       {/* Glow cyan top-left */}
       <div
         className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full pointer-events-none"
@@ -55,21 +59,6 @@ const HeroBanner = () => {
             <motion.div variants={fadeInUp} className="w-full lg:space-y-8 text-left">
               {/* Main Container - Split Layout for Mobile */}
               <div className="relative flex flex-col justify-between min-h-[75vh] lg:min-h-auto lg:block lg:space-y-8">
-                {/* Mobile Background Video */}
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                  className="absolute inset-0 w-full h-full object-cover -z-10 lg:hidden opacity-60 pointer-events-none"
-                >
-                  <source src="/videos/ongevagDesign.mp4" type="video/mp4" />
-                </video>
-
-                {/* Dark overlay for text legibility on mobile */}
-                <div className="absolute inset-0 -z-10 bg-slate-900/80 lg:hidden pointer-events-none" />
-
                 {/* Block 1: Top (Badge & Title & Subtitle) */}
                 <div className="pt-8 px-6 lg:p-0 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
                   <div className="space-y-6">
