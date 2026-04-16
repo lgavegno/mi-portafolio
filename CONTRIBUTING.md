@@ -21,6 +21,23 @@ develop     ← integración. Todas las features mergean acá primero
 feature/*   ← trabajo nuevo (feat/fix/content/docs)
 ```
 
+## ⚠️ Regla crítica — Nunca commitear directo a main
+
+Claude Code y cualquier colaborador **SIEMPRE debe:**
+
+1. **Verificar la rama activa antes de commitear:** `git branch`
+2. **Si está en `main` → hacer checkout a la feature branch:** `git checkout develop && git checkout -b fix/nombre`
+3. **Nunca usar `git push origin fix/branch:main`** — esto bypasea la integración
+4. **Flujo obligatorio:** `feature/*` → `develop` → `main`
+
+**Si un commit llega a `main` por error:**
+```bash
+git checkout develop
+git merge main
+git push origin develop
+# (sincronizar develop con main para no perder los cambios)
+```
+
 ## Flujo correcto
 
 ```bash

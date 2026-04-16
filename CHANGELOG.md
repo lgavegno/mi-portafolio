@@ -4,6 +4,29 @@ Historial de cambios del proyecto Ongevag Studio Portfolio. Formato: [Keep a Cha
 
 ---
 
+## [2.4.0] — Abril 2026
+
+### Added
+- favicon.svg — ícono del nodo Ongevag en tabs del navegador
+- og-image.svg 1200x630 para previews en redes sociales (LinkedIn, Twitter, etc.)
+- ShareButton visible en mobile al pie de cada post del blog
+- vercel.json con rewrites para SPA routing (fix 404 en rutas directas)
+- src/docs/MOD-02-HERO.md — spec completo del módulo hero
+
+### Changed
+- BlogPostDetail: bloques de código con `overflow-x-auto` y estilos responsive en mobile
+- BlogPostDetail: tablas con scroll horizontal en mobile
+- Botón "Contactarme" en blog: agregado `text-white` para mejor contraste
+- Fuente tipográfica: DM Sans integrada al sistema
+
+### Removed
+- Bloque autor "Gemini AI / IA Collaborator" de BlogPostDetail
+- Import `gemini-avatar.webp` eliminado del proyecto
+- Archivo `src/assets/gemini-avatar.webp`
+- Botones sociales sin funcionalidad (<> >_) del blog
+
+---
+
 ## [2.3.0] — Abril 2026
 
 ### Added

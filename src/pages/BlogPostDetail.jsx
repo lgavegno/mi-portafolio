@@ -6,7 +6,6 @@ import DOMPurify from 'dompurify';
 import { blogPosts } from '../features/blog/data/blogData';
 import ShareButton from '../components/ui/ShareButton';
 import BlogMetaTags from '../components/BlogMetaTags';
-import geminiAvatar from '../assets/gemini-avatar.webp';
 
 const BlogPostDetail = () => {
     const { slug } = useParams();
@@ -54,7 +53,6 @@ const BlogPostDetail = () => {
                 slug={post.slug}
                 imageUrl={post.image}
                 publishDate={post.date}
-                author="Gemini AI"
             />
             <article className="min-h-screen pt-12 pb-20">
             {/* Header / Hero del Post */}
@@ -83,30 +81,6 @@ const BlogPostDetail = () => {
                     <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold text-slate-900 dark:text-white leading-tight mb-8">
                         {post.title}
                     </h1>
-
-                    {/* Autor Gemini AI */}
-                    <div className="flex flex-col md:flex-row items-center gap-4 border-t border-b border-slate-200 dark:border-slate-800 py-6">
-                        <div className="relative">
-                            <img
-                                src={geminiAvatar}
-                                alt="Gemini AI"
-                                loading="lazy"
-                                className="w-12 h-12 rounded-full border-2 border-primary/30 p-0.5 object-cover"
-                            />
-                            <div className="absolute -bottom-1 -right-1 bg-primary text-[10px] text-white px-1.5 py-0.5 rounded-full font-bold shadow-sm">
-                                AI
-                            </div>
-                        </div>
-                        <div className="text-center md:text-left">
-                            <h4 className="font-bold text-slate-900 dark:text-white flex items-center justify-center md:justify-start gap-2">
-                                Gemini AI
-                                <span className="px-2 py-0.5 rounded text-[10px] bg-gradient-to-r from-blue-500 to-green-400 text-white font-bold uppercase tracking-wider">
-                                    IA Collaborator
-                                </span>
-                            </h4>
-                            <p className="text-xs text-slate-500 dark:text-slate-400">Co-created with advanced reasoning models</p>
-                        </div>
-                    </div>
                 </header>
             </div>
 
@@ -166,6 +140,10 @@ const BlogPostDetail = () => {
                             [&_hr]:my-12 [&_hr]:border-slate-200 [&_hr]:dark:border-slate-800
                             [&_img]:rounded-xl [&_img]:shadow-lg [&_img]:my-8 [&_img]:w-full
                             [&_div.bg-slate-50]:text-lg [&_div.bg-slate-50]:lg:text-xl
+                            [&_pre]:overflow-x-auto [&_pre]:max-w-full [&_pre]:rounded-lg [&_pre]:bg-slate-900 [&_pre]:border [&_pre]:border-slate-700 [&_pre]:p-4 [&_pre]:my-4 [&_pre]:text-sm
+                            [&_code]:font-mono [&_code]:text-sm [&_code]:break-words
+                            [&_pre_code]:break-normal [&_pre_code]:whitespace-pre
+                            [&_table]:overflow-x-auto [&_table]:block [&_table]:max-w-full
                         "
                         dangerouslySetInnerHTML={{ __html: sanitizedContent }}
                     />
@@ -194,6 +172,18 @@ const BlogPostDetail = () => {
                                 </span>
                             ))}
                         </div>
+                    </div>
+
+                    {/* Share en mobile — visible solo en mobile */}
+                    <div className="flex lg:hidden items-center justify-between pt-6 mt-6 border-t border-slate-700">
+                        <span className="text-sm text-slate-400 font-medium">
+                            ¿Te fue útil? Compartilo
+                        </span>
+                        <ShareButton
+                            url={`https://www.ongevag.com/blog/${post.slug}`}
+                            title={post.title}
+                            description={post.excerpt}
+                        />
                     </div>
                 </div>
 
