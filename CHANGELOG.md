@@ -4,6 +4,20 @@ Historial de cambios del proyecto Ongevag Studio Portfolio. Formato: [Keep a Cha
 
 ---
 
+## [2.4.2] — Abril 2026
+
+### Removed
+- Botón "Descargar CV" del header desktop
+- Botón "Descargar CV" del hero mobile (lg:hidden)
+- Archivo PDF `CV_LeandroGavegno-04-26.pdf` del repositorio
+- FiDownload icon import de HeroBanner
+
+### Changed
+- Hero CTA buttons: ahora solo "Ver Proyectos" y "Contactar" (mobile + desktop)
+- Header: perfil de LinkedIn como punto de contacto principal en lugar del CV
+
+---
+
 ## [2.4.0] — Abril 2026
 
 ### Added

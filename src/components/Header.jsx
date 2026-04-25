@@ -132,16 +132,6 @@ const Header = ({ isOpen, setIsOpen }) => {
               </Link>
             ))}
 
-            {/* Resume Download */}
-            <a
-              href="/CV_LeandroGavegno-04-26.pdf"
-              download="CV_LeandroGavegno-04-26.pdf"
-              target="_self"
-              className="ml-4 border border-gray-700 text-gray-300 hover:text-cyan-institutional hover:border-cyan-institutional px-3 py-1.5 rounded-sm text-xs transition-all"
-            >
-              Descargar CV
-            </a>
-
             {/* CTA Button */}
             <Link
               to="/"

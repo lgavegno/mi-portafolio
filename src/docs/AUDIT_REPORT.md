@@ -67,7 +67,6 @@ Node.js:               v18+ (recomendado en README)
 ```
 mi-portafolio/
 ├── public/
-│   ├── CV_LeandroGavegno-04-26.pdf
 │   └── videos/
 │
 ├── src/                          (3.1 MB)

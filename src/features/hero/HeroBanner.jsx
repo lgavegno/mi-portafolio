@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FiLayers, FiMail, FiDownload } from 'react-icons/fi';
+import { FiLayers, FiMail } from 'react-icons/fi';
 import { fadeInUp, staggerContainer } from '../../config/motionConfig';
 
 import TechnicalTicker from '../../components/TechnicalTicker';
@@ -152,16 +152,6 @@ const HeroBanner = () => {
                       <FiMail />
                       Contactar
                     </button>
-
-                    {/* Download CV Button - Mobile Only */}
-                    <a
-                      href="/CV_LeandroGavegno-04-26.pdf"
-                      download="CV_LeandroGavegno-04-26.pdf"
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-slate-300 text-sm font-medium border border-white/10 hover:border-cyan-400/40 hover:text-cyan-400 transition-all duration-200 bg-transparent lg:hidden"
-                    >
-                      <FiDownload />
-                      Descargar CV
-                    </a>
                   </motion.div>
 
                   {/* Stats */}
