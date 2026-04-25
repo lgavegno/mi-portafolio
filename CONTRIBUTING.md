@@ -82,13 +82,6 @@ git push origin main
 3. El contenido es HTML inline (no Markdown) — ver posts existentes como ejemplo
 4. Commit: `content: agregar post [título]`
 
-## Cómo actualizar el CV
-
-1. Renombrar el nuevo PDF como `CV_LeandroGavegno-[MM-DD].pdf`
-2. Reemplazar `public/CV_LeandroGavegno-[MM-DD].pdf`
-3. Actualizar referencias en `src/features/hero/HeroBanner.jsx` y `src/components/Header.jsx`
-4. Commit: `content: actualizar CV [mes año]`
-
 ## Reglas de código
 
 ### Stack & Arquitectura
