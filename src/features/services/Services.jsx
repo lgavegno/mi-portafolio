@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { FiCode, FiLayout, FiTool, FiCpu, FiTarget, FiMonitor, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { FiLayout, FiTool, FiCpu, FiMonitor, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { fadeInUp, staggerContainer, glassCard } from '../../config/motionConfig';
 import { useVibrate } from '../../hooks/useVibrate';
 import './Services3DCarousel.css';
@@ -14,40 +14,28 @@ const Services = () => {
 
   const services = [
     {
-      title: "Limpieza de Datos",
-      description: "Preparo y estructuro datasets crudos. Utilizo SQL y Python para eliminar inconsistencias y dejar los datos listos para su exploración.",
-      icon: FiCode,
+      title: "Sitios Web",
+      description: "Diseño y desarrollo sitios web para comercios locales en WordPress. Incluye dominio, SSL, diseño responsive y optimización básica para buscadores.",
+      icon: FiMonitor,
+      gradient: "from-cyan-400 to-cyan-600"
+    },
+    {
+      title: "Tiendas Online",
+      description: "E-commerce en Tienda Nube o WooCommerce. Configuración completa, integración con MercadoPago y gestión de productos lista para vender.",
+      icon: FiLayout,
       gradient: "from-cobalt-500 to-cobalt-600"
     },
     {
-      title: "Automatización Simple",
-      description: "Optimización de flujos de trabajo. Desarrollo scripts en Python para automatizar tareas repetitivas y minimizar errores manuales.",
+      title: "Apps de Escritorio",
+      description: "Herramientas de gestión para PyMEs que funcionan sin internet. Inventario, presupuestos y reportes adaptados al negocio.",
       icon: FiCpu,
       gradient: "from-mint-400 to-mint-500"
     },
     {
-      title: "Análisis de Tendencias",
-      description: "Identificación de patrones clave. Analizo datos históricos para reportar métricas operativas que apoyen la toma de decisiones diarias.",
-      icon: FiTarget,
-      gradient: "from-amber-400 to-orange-500"
-    },
-    {
-      title: "Visualización de Datos",
-      description: "Comunicación visual de hallazgos. Estoy profundizando en Power BI para crear tableros claros que faciliten la lectura de indicadores.",
+      title: "Automatización Excel",
+      description: "Macros VBA, dashboards con KPIs y formularios automatizados para reemplazar procesos manuales y reducir errores en el día a día.",
       icon: FiTool,
-      gradient: "from-purple-400 to-purple-600"
-    },
-    {
-      title: "Análisis Exploratorio",
-      description: "Revisión inicial de información. Examino datasets nuevos para detectar patrones básicos, posibles inconsistencias y comprender su calidad.",
-      icon: FiLayout,
-      gradient: "from-blue-400 to-indigo-500"
-    },
-    {
-      title: "Diseño Web",
-      description: "Sitios web personales, portfolios y tiendas online. Desarrollo en WordPress con plugins premium o Tienda Nube para e-commerce. Diseño responsive, optimizado para conversión.",
-      icon: FiMonitor,
-      gradient: "from-cyan-400 to-cyan-600"
+      gradient: "from-amber-400 to-orange-500"
     }
   ];
 
@@ -114,7 +102,7 @@ const Services = () => {
             variants={fadeInUp}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cobalt-500/10 border border-cobalt-400/20 text-cobalt-300 text-sm font-medium mb-6"
           >
-            <FiCode className="w-4 h-4" />
+            <FiMonitor className="w-4 h-4" />
             Qué hago
           </motion.span>
           <motion.h2
