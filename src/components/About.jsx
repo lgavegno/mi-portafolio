@@ -52,20 +52,32 @@ const About = () => {
 
                                 <div className="space-y-6 text-slate-300 text-lg leading-relaxed whitespace-pre-line">
                                     <p>
-                                        ¡Hola! Soy estudiante avanzado de la Tecnicatura Universitaria en Programación en la UTN (FRRA)
-                                        con un interés creciente en el análisis de datos y la automatización de procesos.
-                                        Mi perfil combina conocimientos en entornos administrativos y operativos
-                                        con una base técnica en programación, trabajando con SQL y Python para el procesamiento y análisis de datos,
-                                        y con conocimientos en Java y React aplicados al desarrollo de soluciones.
+                                        Hola, soy Leandro — estudiante avanzado de la Tecnicatura
+                                        Universitaria en Programación en la UTN FRRA y desarrollador
+                                        independiente.
                                     </p>
                                     <p>
-                                        Mi enfoque está en organizar y preparar información para su análisis.
-                                        Gracias a mi trayectoria en sectores como el automotriz y el agroindustrial,
-                                        comprendo la importancia de la correcta carga, validación y control de datos operativos.
+                                        Me dedico a construir herramientas digitales para pequeños
+                                        comercios: sitios web en WordPress y Tienda Nube. Así como
+                                        también aplicaciones de escritorio para gestión interna.
                                     </p>
                                     <p>
-                                        Actualmente estoy profundizando en PowerBI para la creación de visualizaciones claras y continúo desarrollando mis habilidades técnicas para resolver problemas reales
-                                        mediante el análisis y la exploración de datos.
+                                        Actualmente desarrollo OmniStock, un sistema de inventario
+                                        desktop para PyMEs, y tengo experiencia real entregando
+                                        proyectos a clientes — como la tienda online de Faro Art Shop,
+                                        hoy en producción en{' '}
+                                        <a
+                                            href="https://faroartshop.com"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                                        >
+                                            faroartshop.com
+                                        </a>.
+                                    </p>
+                                    <p>
+                                        Si necesitás una herramienta que resuelva un problema concreto
+                                        en tu negocio, puedo ayudarte.
                                     </p>
                                 </div>
                             </div>
