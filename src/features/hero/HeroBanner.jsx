@@ -70,7 +70,7 @@ const HeroBanner = () => {
                       className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/8 border border-cyan-500/20 text-cyan-400 text-xs font-medium tracking-widest uppercase"
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-                      Abierto a oportunidades
+                      Desarrollador Independiente
                     </motion.div>
 
                     {/* Title ONGEVAG with gradient on GE */}
@@ -102,7 +102,7 @@ const HeroBanner = () => {
                       transition={{ delay: 0.1, duration: 0.4 }}
                       className="text-lg md:text-xl lg:text-2xl font-light tracking-wide text-slate-300"
                     >
-                      Análisis de Datos
+                      Desarrollo de Software
                     </motion.p>
 
                     {/* Stack Subtitle */}
@@ -112,7 +112,7 @@ const HeroBanner = () => {
                       transition={{ delay: 0.2, duration: 0.4 }}
                       className="text-sm md:text-base text-slate-400 font-light tracking-wide"
                     >
-                      SQL Server · Excel · Power BI en formación
+                      WordPress · Tienda Nube · Desktop Apps
                     </motion.p>
                   </div>
                 </div>
@@ -124,7 +124,7 @@ const HeroBanner = () => {
                     variants={fadeInUp}
                     className="text-slate-300 font-normal text-base md:text-lg lg:text-xl leading-relaxed max-w-xl lg:mt-6 max-lg:drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
                   >
-                    Transformo datos en decisiones para pequeños negocios.
+                    Construyo herramientas digitales para pequeños comercios.
                   </motion.p>
 
                   {/* CTA Buttons */}
