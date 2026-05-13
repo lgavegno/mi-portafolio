@@ -1,0 +1,109 @@
+@startuml Blog_Navigation
+!theme plain
+skinparam backgroundColor #f5f5f5
+skinparam sequence {
+  LifelineBorderColor #333
+  ParticipantBorderColor #333
+  ParticipantBackgroundColor #e8f4f8
+  ArrowColor #333
+  GroupBorderColor #666
+}
+
+actor User as user
+participant "React Router\n(Navigation)" as router
+participant "BlogLayout\n(Component)" as layout
+participant "BlogIndex\n(Lazy)" as index
+participant "blogData.js\n(Static data)" as data
+participant "BlogPostDetail\n(Lazy)" as detail
+participant "Framer Motion\n(Animation)" as motion
+participant "Suspense\n(Fallback)" as suspense
+
+autonumber
+
+== Navigation to /blog ==
+user -> router: Click "Blog" link
+activate router
+
+router -> layout: Match /blog route
+router -> suspense: Wrap BlogIndex in Suspense
+activate suspense
+
+suspense -> suspense: Show Skeleton loading
+suspense -> index: Lazy load BlogIndex.js
+
+activate index
+index -> data: Fetch blogData.js
+activate data
+data --> index: [Array of posts]
+deactivate data
+
+index -> index: Map posts to BlogCard components
+
+suspense -> index: Component ready
+deactivate suspense
+
+router -> layout: Render BlogLayout
+activate layout
+
+layout -> motion: Apply fadeInUp animation
+activate motion
+motion -> index: Animate section entry
+
+index -> user: Display blog index with cards
+deactivate motion
+
+deactivate index
+deactivate layout
+
+== Viewing Blog Index ==
+user -> user: Scroll through posts\nRead titles, excerpts, dates
+
+== Navigation to /blog/:slug ==
+user -> router: Click specific post card
+deactivate router
+
+activate router
+router -> detail: Match /blog/:slug route
+router -> suspense: Wrap BlogPostDetail in Suspense
+
+activate suspense
+suspense -> suspense: Show Skeleton loading
+suspense -> detail: Lazy load BlogPostDetail.js
+
+activate detail
+detail -> data: Find post in blogData by slug
+activate data
+data --> detail: Post object {title, content, date, ...}
+deactivate data
+
+detail -> detail: Sanitize HTML with DOMPurify
+detail -> detail: Render post content
+
+suspense -> detail: Component ready
+deactivate suspense
+
+router -> motion: Trigger route transition animation
+activate motion
+motion -> detail: Fade and slide animation
+
+detail -> user: Display full post content\nwith ShareButton
+deactivate motion
+
+deactivate detail
+deactivate router
+
+== User Interactions on Post ==
+user -> detail: Scroll through post
+detail -> detail: Images lazy-loaded
+detail -> user: Display image gallery
+
+alt User clicks ShareButton
+  detail -> user: Show share options:\n- LinkedIn\n- WhatsApp\n- Email\n- Copy URL
+else User clicks Next/Previous
+  detail -> router: Navigate to next post\n(e.g., /blog/another-post)
+  router -> detail: Render new post
+  detail -> motion: Animate transition
+  motion -> user: Display new post
+end
+
+@enduml

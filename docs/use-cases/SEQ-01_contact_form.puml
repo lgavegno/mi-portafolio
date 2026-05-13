@@ -1,0 +1,104 @@
+@startuml Contact_Form_Submission
+!theme plain
+skinparam backgroundColor #f5f5f5
+skinparam sequence {
+  LifelineBorderColor #333
+  ParticipantBorderColor #333
+  ParticipantBackgroundColor #e8f4f8
+  ArrowColor #333
+  GroupBorderColor #666
+}
+
+actor User as user
+participant "Contact.jsx\n(Component)" as contact
+participant "useFormState\n(Hook)" as state
+participant "validateForm()\n(Validator)" as validator
+participant "EmailJS\nService" as emailjs
+participant "Toast\nNotification" as toast
+
+autonumber
+
+== Preconditions ==
+user -> contact: Contact form visible\n(fields empty, IDLE state)
+activate contact
+
+== User Input ==
+user -> contact: Type name "Juan"
+activate state
+contact -> state: setFormData({...})
+state -> state: Update name field
+deactivate state
+
+user -> contact: Type email "juan@example.com"
+activate state
+contact -> state: setFormData({...})
+state -> state: Update email field
+deactivate state
+
+user -> contact: Type message "Quiero contratar..."
+activate state
+contact -> state: setFormData({...})
+state -> state: Update message field
+deactivate state
+
+== Validation & Submission ==
+user -> contact: Click "Enviar" button
+activate contact
+
+contact -> validator: validateForm()
+activate validator
+validator -> validator: Check name (len > 0)
+validator -> validator: Check email (regex)
+validator -> validator: Check message (len >= 10)
+
+alt Valid
+  validator --> contact: return true
+  deactivate validator
+
+  contact -> state: setStatus(SENDING)
+  state -> state: isSubmitting = true
+
+  contact -> contact: Show loading spinner
+
+  contact -> emailjs: emailjs.send(\n  serviceId,\n  templateId,\n  {from_name, from_email, message},\n  publicKey\n)
+  activate emailjs
+
+  emailjs -> emailjs: Validate credentials
+  emailjs -> emailjs: Build email template
+  emailjs -> emailjs: Send via SMTP
+
+  emailjs --> contact: Response 200 OK
+  deactivate emailjs
+
+  contact -> state: setStatus(SUCCESS)
+  contact -> state: setFormData({...empty...})
+  contact -> contact: Call vibrateSuccess(50ms)
+
+  contact -> toast: Show success toast
+  activate toast
+  toast -> user: "✓ Email enviado correctamente"
+  deactivate toast
+
+else Invalid
+  validator --> contact: return false
+  deactivate validator
+
+  alt Email validation fails
+    contact -> state: setStatus(ERROR)
+    contact -> state: setErrorMessage(\n  "Email inválido"\n)
+  else Message too short
+    contact -> state: setStatus(ERROR)
+    contact -> state: setErrorMessage(\n  "Mensaje muy corto"\n)
+  end
+
+  contact -> contact: Call vibrateError(100ms)
+  contact -> contact: Show error inline
+
+end
+
+deactivate contact
+
+== User continues ==
+user -> contact: Can edit form or retry
+
+@enduml

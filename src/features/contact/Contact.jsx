@@ -6,6 +6,7 @@ import emailjs from '@emailjs/browser'
 import { fadeInUp, staggerContainer } from '../../config/motionConfig'
 import Button from '../../components/ui/Button'
 import { useVibrate } from '../../hooks/useVibrate'
+import { validateForm, getValidationError } from './validateForm'
 
 // Estados del formulario
 const FORM_STATUS = {
@@ -46,18 +47,11 @@ const Contact = () => {
     vibrateFocus()
   }
 
-  // Validación simple
-  const validateForm = () => {
-    if (!formData.name.trim()) {
-      setErrorMessage('Por favor, ingresa tu nombre')
-      return false
-    }
-    if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      setErrorMessage('Por favor, ingresa un email válido')
-      return false
-    }
-    if (!formData.message.trim()) {
-      setErrorMessage('Por favor, escribe un mensaje')
+  // Validación del formulario
+  const handleValidateForm = () => {
+    const error = getValidationError(formData)
+    if (error) {
+      setErrorMessage(error)
       return false
     }
     return true
@@ -74,7 +68,7 @@ const Contact = () => {
     if (isSubmitting) return;
 
     // IMPORTANT: Validate FIRST (before any state changes that could break Safari user activation)
-    if (!validateForm()) {
+    if (!handleValidateForm()) {
       setStatus(FORM_STATUS.ERROR);
       vibrateError();
       return;
