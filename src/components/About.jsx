@@ -8,7 +8,7 @@ const About = () => {
     const [activeTab, setActiveTab] = useState('formacion');
 
     return (
-        <section id="sobre-mi" className="py-20 relative bg-slate-950 overflow-hidden">
+        <section className="py-20 relative bg-slate-950 overflow-hidden">
             {/* Background Elements for depth */}
             <div className="absolute top-0 right-0 w-1/3 h-full bg-cobalt-500/5 blur-3xl rounded-l-full pointer-events-none" />
 

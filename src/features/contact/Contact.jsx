@@ -1,11 +1,12 @@
 // src/features/contact/Contact.jsx
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FiSend, FiMail, FiUser, FiMessageSquare, FiCheck, FiAlertCircle } from 'react-icons/fi'
+import { FiSend, FiMail, FiUser, FiMessageSquare, FiCheck, FiAlertCircle, FiBriefcase, FiClock } from 'react-icons/fi'
 import emailjs from '@emailjs/browser'
 import { fadeInUp, staggerContainer } from '../../config/motionConfig'
 import Button from '../../components/ui/Button'
 import { useVibrate } from '../../hooks/useVibrate'
+import { validateForm } from './validateForm'
 
 // Estados del formulario
 const FORM_STATUS = {
@@ -19,6 +20,7 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    projectType: '',
     message: ''
   })
   const [status, setStatus] = useState(FORM_STATUS.IDLE)
@@ -46,18 +48,13 @@ const Contact = () => {
     vibrateFocus()
   }
 
-  // Validación simple
-  const validateForm = () => {
-    if (!formData.name.trim()) {
-      setErrorMessage('Por favor, ingresa tu nombre')
-      return false
-    }
-    if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      setErrorMessage('Por favor, ingresa un email válido')
-      return false
-    }
-    if (!formData.message.trim()) {
-      setErrorMessage('Por favor, escribe un mensaje')
+  // Validación del formulario
+  const handleValidateForm = () => {
+    const { isValid, errors } = validateForm(formData)
+    if (!isValid) {
+      // Show first error encountered
+      const firstError = Object.values(errors)[0]
+      setErrorMessage(firstError)
       return false
     }
     return true
@@ -74,7 +71,7 @@ const Contact = () => {
     if (isSubmitting) return;
 
     // IMPORTANT: Validate FIRST (before any state changes that could break Safari user activation)
-    if (!validateForm()) {
+    if (!handleValidateForm()) {
       setStatus(FORM_STATUS.ERROR);
       vibrateError();
       return;
@@ -96,6 +93,7 @@ const Contact = () => {
         {
           from_name: formData.name,
           from_email: formData.email,
+          project_type: formData.projectType,
           message: formData.message,
           to_email: 'lgavegno@gmail.com'
         },
@@ -105,7 +103,7 @@ const Contact = () => {
       // Éxito
       setStatus(FORM_STATUS.SUCCESS);
       vibrateSuccess();
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ name: '', email: '', projectType: '', message: '' });
 
       // Volver a estado idle después de 5 segundos
       setTimeout(() => {
@@ -224,6 +222,31 @@ const Contact = () => {
                 </div>
               </div>
 
+              {/* Project type field */}
+              <div className="relative">
+                <label htmlFor="projectType" className="block text-sm font-medium text-gray-300 mb-2">
+                  Tipo de Proyecto
+                </label>
+                <div className="relative">
+                  <FiBriefcase className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5 pointer-events-none z-10" />
+                  <select
+                    id="projectType"
+                    name="projectType"
+                    value={formData.projectType}
+                    onChange={handleChange}
+                    onFocus={handleFocus}
+                    className={`${inputClasses} appearance-none cursor-pointer`}
+                    required
+                  >
+                    <option value="" disabled className="bg-slate-900">Selecciona un tipo</option>
+                    <option value="Software a Medida" className="bg-slate-900">Software a Medida</option>
+                    <option value="E-commerce" className="bg-slate-900">E-commerce</option>
+                    <option value="Análisis de Datos" className="bg-slate-900">Análisis de Datos</option>
+                    <option value="Consultoría Técnica" className="bg-slate-900">Consultoría Técnica</option>
+                  </select>
+                </div>
+              </div>
+
               {/* Message field */}
               <div className="relative">
                 <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
@@ -281,7 +304,7 @@ const Contact = () => {
               </AnimatePresence>
 
               {/* Submit button */}
-              <div className="pt-4">
+              <div className="pt-4 space-y-3">
                 <Button
                   type="button"
                   onClick={handleSubmit}
@@ -297,6 +320,10 @@ const Contact = () => {
                   {status === FORM_STATUS.SUCCESS && '¡Enviado!'}
                   {(status === FORM_STATUS.IDLE || status === FORM_STATUS.ERROR) && !isSubmitting && 'Enviar mensaje'}
                 </Button>
+                <p className="flex items-center justify-center gap-1.5 text-xs text-gray-500">
+                  <FiClock className="w-3.5 h-3.5" />
+                  Tiempo de respuesta: &lt; 24hs (Horario ART)
+                </p>
               </div>
             </form>
           </motion.div>

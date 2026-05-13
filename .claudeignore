@@ -1,0 +1,96 @@
+# .claudeignore — Excluir del contexto AI lo que no aporta valor
+# Reduce token usage y mejora claridad del contexto
+
+## Dependencias y gestor de paquetes
+node_modules/
+package-lock.json
+.npm/
+.yarn/
+
+## Build & compilados
+dist/
+build/
+*.bundle.js
+*.min.js
+*.min.css
+
+## Entorno local
+.env
+.env.local
+.env.*.local
+.env.production.local
+.env.development.local
+
+## Base de datos local (si aplica)
+*.db
+*.sqlite
+*.sqlite3
+*.sql.dump
+
+## Archivos de IDE / Editor
+.vscode/
+.idea/
+*.suo
+*.sln
+*.swp
+*.swc
+*.swo
+*~
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+
+## Logs y archivos temporales
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+*.tmp
+.cache/
+
+## Testing (coverage reports, no necesarios en contexto)
+coverage/
+.nyc_output/
+
+## Build temporales
+.next/
+.nuxt/
+.cache/
+.vuepress/dist/
+.serverless/
+dist/
+
+## Archivos depreciados o históricos
+CODEBASE_CONTEXT.md       # Deprecado: usar CONTEXTO_PROYECTO_COMPLETO.md
+ARCHITECTURE.md           # Deprecado: consolidado en ADRs
+TECHNICAL_GUIDE.md        # Deprecado: consolidado en CLAUDE.md
+PROJECT_LOG.md            # Deprecado: consolidado en BITACORA_TECNICA.md
+
+## Archivos muy grandes (assets)
+*.mp4
+*.mov
+*.avi
+*.webm
+*.zip
+*.tar.gz
+*.rar
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+
+## Lock files (si se desea evitar análisis de transitividad)
+# Descomentar si necesario:
+# pnpm-lock.yaml
+# yarn.lock
+# Cargo.lock
+
+## Directorios específicos del proyecto
+.git/
+.github/
+.gitignore
+.gitattributes

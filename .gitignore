@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Testing
+coverage
+.nyc_output
+
 # Environment variables
 .env
 .env.local

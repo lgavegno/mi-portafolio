@@ -14,26 +14,26 @@ const Services = () => {
 
   const services = [
     {
-      title: "Sitios Web",
-      description: "Diseño y desarrollo sitios web para comercios locales en WordPress. Incluye dominio, SSL, diseño responsive y optimización básica para buscadores.",
+      title: "Desarrollo Web de Alto Rendimiento",
+      description: "Aplicaciones web con React, Vite y Next.js. Arquitectura limpia, code splitting, Core Web Vitals optimizados y rendimiento medible desde el primer deploy.",
       icon: FiMonitor,
       gradient: "from-cyan-400 to-cyan-600"
     },
     {
-      title: "Tiendas Online",
-      description: "E-commerce en Tienda Nube o WooCommerce. Configuración completa, integración con MercadoPago y gestión de productos lista para vender.",
+      title: "E-commerce Escalable & Integraciones API",
+      description: "Tiendas online a medida con arquitectura headless. Integración con pasarelas de pago, sistemas de inventario y APIs de terceros sin depender de plataformas genéricas.",
       icon: FiLayout,
       gradient: "from-cobalt-500 to-cobalt-600"
     },
     {
-      title: "Apps de Escritorio",
-      description: "Herramientas de gestión para PyMEs que funcionan sin internet. Inventario, presupuestos y reportes adaptados al negocio.",
+      title: "Software de Gestión a Medida",
+      description: "Herramientas internas para PyMEs: módulos de inventario, presupuestos, reportes y flujos de trabajo diseñados exactamente según los procesos del negocio.",
       icon: FiCpu,
       gradient: "from-mint-400 to-mint-500"
     },
     {
-      title: "Automatización Excel",
-      description: "Macros VBA, dashboards con KPIs y formularios automatizados para reemplazar procesos manuales y reducir errores en el día a día.",
+      title: "Automatización & Análisis de Datos",
+      description: "Pipelines de datos, dashboards con KPIs en tiempo real y automatización de procesos manuales para reducir errores operativos y liberar tiempo de tu equipo.",
       icon: FiTool,
       gradient: "from-amber-400 to-orange-500"
     }

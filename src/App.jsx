@@ -43,7 +43,7 @@ const HomeSections = () => (
       <HeroBanner />
     </AnimatedSection>
 
-    <AnimatedSection id="about">
+    <AnimatedSection id="sobre-mi">
       <About />
     </AnimatedSection>
 
