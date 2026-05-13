@@ -2,7 +2,7 @@
 // Unit tests for Contact form validation logic
 
 import { describe, it, expect } from 'vitest'
-import { validateForm, getValidationError } from '../validateForm'
+import { validateForm } from '../validateForm'
 
 describe('Contact Form Validation', () => {
   describe('validateForm - Happy Path', () => {
@@ -14,7 +14,13 @@ describe('Contact Form Validation', () => {
       }
 
       const result = validateForm(validData)
-      expect(result).toBe(true)
+      expect(result.isValid).toBe(true)
+      expect(result.errors).toEqual({})
+      expect(result.data).toEqual({
+        name: 'Juan García',
+        email: 'juan@example.com',
+        message: 'Quiero contratar tus servicios para mi empresa'
+      })
     })
 
     it('should accept minimal valid data', () => {
@@ -25,7 +31,9 @@ describe('Contact Form Validation', () => {
       }
 
       const result = validateForm(minimalData)
-      expect(result).toBe(true)
+      expect(result.isValid).toBe(true)
+      expect(result.errors).toEqual({})
+      expect(result.data.name).toBe('J')
     })
 
     it('should accept email with special characters (before @)', () => {
@@ -36,7 +44,8 @@ describe('Contact Form Validation', () => {
       }
 
       const result = validateForm(data)
-      expect(result).toBe(true)
+      expect(result.isValid).toBe(true)
+      expect(result.errors).toEqual({})
     })
 
     it('should accept message with special characters and newlines', () => {
@@ -47,7 +56,8 @@ describe('Contact Form Validation', () => {
       }
 
       const result = validateForm(data)
-      expect(result).toBe(true)
+      expect(result.isValid).toBe(true)
+      expect(result.errors).toEqual({})
     })
   })
 
@@ -60,9 +70,8 @@ describe('Contact Form Validation', () => {
       }
 
       const result = validateForm(data)
-      const error = getValidationError(data)
-      expect(result).toBe(false)
-      expect(error).toBe('Por favor, ingresa tu nombre')
+      expect(result.isValid).toBe(false)
+      expect(result.errors.name).toBe('Por favor, ingresa tu nombre')
     })
 
     it('should reject name with only whitespace', () => {
@@ -73,9 +82,8 @@ describe('Contact Form Validation', () => {
       }
 
       const result = validateForm(data)
-      const error = getValidationError(data)
-      expect(result).toBe(false)
-      expect(error).toBe('Por favor, ingresa tu nombre')
+      expect(result.isValid).toBe(false)
+      expect(result.errors.name).toBe('Por favor, ingresa tu nombre')
     })
 
     it('should reject name with tabs and newlines', () => {
@@ -86,7 +94,8 @@ describe('Contact Form Validation', () => {
       }
 
       const result = validateForm(data)
-      expect(result).toBe(false)
+      expect(result.isValid).toBe(false)
+      expect(result.errors.name).toBeDefined()
     })
 
     it('should trim whitespace from name before validating', () => {
@@ -97,7 +106,8 @@ describe('Contact Form Validation', () => {
       }
 
       const result = validateForm(data)
-      expect(result).toBe(true)
+      expect(result.isValid).toBe(true)
+      expect(result.data.name).toBe('Juan')
     })
   })
 
@@ -110,9 +120,8 @@ describe('Contact Form Validation', () => {
       }
 
       const result = validateForm(data)
-      const error = getValidationError(data)
-      expect(result).toBe(false)
-      expect(error).toBe('Por favor, ingresa un email válido')
+      expect(result.isValid).toBe(false)
+      expect(result.errors.email).toBe('Por favor, ingresa un email válido')
     })
 
     it('should reject email without @', () => {
@@ -123,9 +132,8 @@ describe('Contact Form Validation', () => {
       }
 
       const result = validateForm(data)
-      const error = getValidationError(data)
-      expect(result).toBe(false)
-      expect(error).toBe('Por favor, ingresa un email válido')
+      expect(result.isValid).toBe(false)
+      expect(result.errors.email).toBe('Por favor, ingresa un email válido')
     })
 
     it('should reject email without domain extension', () => {
@@ -136,7 +144,8 @@ describe('Contact Form Validation', () => {
       }
 
       const result = validateForm(data)
-      expect(result).toBe(false)
+      expect(result.isValid).toBe(false)
+      expect(result.errors.email).toBeDefined()
     })
 
     it('should reject email with multiple @ symbols', () => {
@@ -147,7 +156,8 @@ describe('Contact Form Validation', () => {
       }
 
       const result = validateForm(data)
-      expect(result).toBe(false)
+      expect(result.isValid).toBe(false)
+      expect(result.errors.email).toBeDefined()
     })
 
     it('should reject email with spaces', () => {
@@ -158,7 +168,8 @@ describe('Contact Form Validation', () => {
       }
 
       const result = validateForm(data)
-      expect(result).toBe(false)
+      expect(result.isValid).toBe(false)
+      expect(result.errors.email).toBeDefined()
     })
 
     it('should accept valid emails with subdomains', () => {
@@ -175,7 +186,8 @@ describe('Contact Form Validation', () => {
           email,
           message: 'Message'
         }
-        expect(validateForm(data)).toBe(true)
+        const result = validateForm(data)
+        expect(result.isValid).toBe(true)
       })
     })
 
@@ -187,7 +199,8 @@ describe('Contact Form Validation', () => {
       }
 
       const result = validateForm(data)
-      expect(result).toBe(true)
+      expect(result.isValid).toBe(true)
+      expect(result.data.email).toBe('test@example.com')
     })
   })
 
@@ -200,9 +213,8 @@ describe('Contact Form Validation', () => {
       }
 
       const result = validateForm(data)
-      const error = getValidationError(data)
-      expect(result).toBe(false)
-      expect(error).toBe('Por favor, escribe un mensaje')
+      expect(result.isValid).toBe(false)
+      expect(result.errors.message).toBe('Por favor, escribe un mensaje')
     })
 
     it('should reject message with only whitespace', () => {
@@ -213,7 +225,8 @@ describe('Contact Form Validation', () => {
       }
 
       const result = validateForm(data)
-      expect(result).toBe(false)
+      expect(result.isValid).toBe(false)
+      expect(result.errors.message).toBeDefined()
     })
 
     it('should trim whitespace from message before validating', () => {
@@ -224,7 +237,8 @@ describe('Contact Form Validation', () => {
       }
 
       const result = validateForm(data)
-      expect(result).toBe(true)
+      expect(result.isValid).toBe(true)
+      expect(result.data.message).toBe('Quiero contratar servicios')
     })
 
     it('should accept messages with minimal length', () => {
@@ -235,11 +249,11 @@ describe('Contact Form Validation', () => {
       }
 
       const result = validateForm(data)
-      expect(result).toBe(true)
+      expect(result.isValid).toBe(true)
     })
 
     it('should accept very long messages', () => {
-      const longMessage = 'A'.repeat(1000) // 1000 characters
+      const longMessage = 'A'.repeat(1000)
       const data = {
         name: 'Juan',
         email: 'test@example.com',
@@ -247,42 +261,46 @@ describe('Contact Form Validation', () => {
       }
 
       const result = validateForm(data)
-      expect(result).toBe(true)
+      expect(result.isValid).toBe(true)
     })
   })
 
   describe('validateForm - Error Priority', () => {
-    it('should check name before email', () => {
+    it('should include name error when empty', () => {
       const data = {
         name: '',
         email: 'invalid-email',
         message: 'Message'
       }
 
-      const error = getValidationError(data)
-      expect(error).toBe('Por favor, ingresa tu nombre')
+      const result = validateForm(data)
+      expect(result.errors.name).toBe('Por favor, ingresa tu nombre')
     })
 
-    it('should check email before message', () => {
+    it('should include email error when invalid', () => {
       const data = {
         name: 'Juan',
         email: 'invalid-email',
         message: ''
       }
 
-      const error = getValidationError(data)
-      expect(error).toBe('Por favor, ingresa un email válido')
+      const result = validateForm(data)
+      expect(result.errors.email).toBe('Por favor, ingresa un email válido')
+      expect(result.errors.message).toBe('Por favor, escribe un mensaje')
     })
 
-    it('should return name error when all fields are empty', () => {
+    it('should return all errors when multiple fields are invalid', () => {
       const data = {
         name: '',
         email: '',
         message: ''
       }
 
-      const error = getValidationError(data)
-      expect(error).toContain('nombre')
+      const result = validateForm(data)
+      expect(result.isValid).toBe(false)
+      expect(result.errors.name).toBeDefined()
+      expect(result.errors.email).toBeDefined()
+      expect(result.errors.message).toBeDefined()
     })
   })
 
@@ -300,7 +318,8 @@ describe('Contact Form Validation', () => {
         message: 'Quiero automatizar mi proceso'
       }
 
-      expect(validateForm(data)).toBe(true)
+      const result = validateForm(data)
+      expect(result.isValid).toBe(true)
     })
 
     it('should handle unicode characters in message', () => {
@@ -310,17 +329,18 @@ describe('Contact Form Validation', () => {
         message: 'Necesito ayuda con análisis de datos: estadísticas, gráficos, etc.'
       }
 
-      expect(validateForm(data)).toBe(true)
+      const result = validateForm(data)
+      expect(result.isValid).toBe(true)
     })
 
     it('should accept emails from different country TLDs', () => {
       const validEmails = [
-        'test@example.com',    // .com
-        'test@example.ar',     // .ar (Argentina)
-        'test@example.mx',     // .mx (Mexico)
-        'test@example.es',     // .es (Spain)
-        'test@example.io',     // .io
-        'test@example.museum', // long TLD
+        'test@example.com',
+        'test@example.ar',
+        'test@example.mx',
+        'test@example.es',
+        'test@example.io',
+        'test@example.museum'
       ]
 
       validEmails.forEach(email => {
@@ -329,7 +349,8 @@ describe('Contact Form Validation', () => {
           email,
           message: 'Message'
         }
-        expect(validateForm(data)).toBe(true)
+        const result = validateForm(data)
+        expect(result.isValid).toBe(true)
       })
     })
   })

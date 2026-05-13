@@ -105,15 +105,7 @@ const HeroBanner = () => {
                       Desarrollo de Software
                     </motion.p>
 
-                    {/* Stack Subtitle */}
-                    <motion.p
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.2, duration: 0.4 }}
-                      className="text-sm md:text-base text-slate-400 font-light tracking-wide"
-                    >
-                      WordPress · Tienda Nube · Desktop Apps
-                    </motion.p>
+            
                   </div>
                 </div>
 

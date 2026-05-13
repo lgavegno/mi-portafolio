@@ -6,7 +6,7 @@ import emailjs from '@emailjs/browser'
 import { fadeInUp, staggerContainer } from '../../config/motionConfig'
 import Button from '../../components/ui/Button'
 import { useVibrate } from '../../hooks/useVibrate'
-import { validateForm, getValidationError } from './validateForm'
+import { validateForm } from './validateForm'
 
 // Estados del formulario
 const FORM_STATUS = {
@@ -49,9 +49,11 @@ const Contact = () => {
 
   // Validación del formulario
   const handleValidateForm = () => {
-    const error = getValidationError(formData)
-    if (error) {
-      setErrorMessage(error)
+    const { isValid, errors } = validateForm(formData)
+    if (!isValid) {
+      // Show first error encountered
+      const firstError = Object.values(errors)[0]
+      setErrorMessage(firstError)
       return false
     }
     return true
