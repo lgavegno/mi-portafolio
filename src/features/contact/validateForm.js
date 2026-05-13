@@ -26,13 +26,14 @@ export const validateForm = (data) => {
     return {
       isValid: false,
       errors: { form: 'Datos de formulario inválidos' },
-      data: { name: '', email: '', message: '' }
+      data: { name: '', email: '', projectType: '', message: '' }
     }
   }
 
   const normalizedData = {
     name: (data.name || '').trim(),
     email: (data.email || '').trim(),
+    projectType: (data.projectType || '').trim(),
     message: (data.message || '').trim()
   }
 
@@ -42,6 +43,10 @@ export const validateForm = (data) => {
 
   if (!emailRegex.test(normalizedData.email)) {
     errors.email = 'Por favor, ingresa un email válido'
+  }
+
+  if (normalizedData.projectType.length === 0) {
+    errors.projectType = 'Por favor, selecciona el tipo de proyecto'
   }
 
   if (normalizedData.message.length === 0) {
