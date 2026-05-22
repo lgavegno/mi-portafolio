@@ -14,26 +14,26 @@ const Services = () => {
 
   const services = [
     {
-      title: "Desarrollo Web de Alto Rendimiento",
-      description: "Aplicaciones web con React, Vite y Next.js. Arquitectura limpia, code splitting, Core Web Vitals optimizados y rendimiento medible desde el primer deploy.",
+      title: "Sitios web y presencia digital",
+      description: "Sitios web funcionales con código limpio y documentado. Cada proyecto tiene su especificación técnica, decisiones registradas y un proceso de desarrollo ordenado.",
       icon: FiMonitor,
       gradient: "from-cyan-400 to-cyan-600"
     },
     {
-      title: "E-commerce Escalable & Integraciones API",
-      description: "Tiendas online a medida con arquitectura headless. Integración con pasarelas de pago, sistemas de inventario y APIs de terceros sin depender de plataformas genéricas.",
+      title: "Tiendas online",
+      description: "Configuración y puesta en marcha de tiendas en plataformas como Tienda Nube. Dominio propio, pasarela de pago y fichas de producto optimizadas.",
       icon: FiLayout,
       gradient: "from-cobalt-500 to-cobalt-600"
     },
     {
-      title: "Software de Gestión a Medida",
-      description: "Herramientas internas para PyMEs: módulos de inventario, presupuestos, reportes y flujos de trabajo diseñados exactamente según los procesos del negocio.",
+      title: "Herramientas digitales simples",
+      description: "Formularios, planillas automatizadas y pequeñas aplicaciones para ordenar la información de tu negocio.",
       icon: FiCpu,
       gradient: "from-mint-400 to-mint-500"
     },
     {
-      title: "Automatización & Análisis de Datos",
-      description: "Pipelines de datos, dashboards con KPIs en tiempo real y automatización de procesos manuales para reducir errores operativos y liberar tiempo de tu equipo.",
+      title: "Automatización con IA",
+      description: "Uso herramientas de inteligencia artificial para automatizar tareas repetitivas y sacar más provecho de la información que ya tenés.",
       icon: FiTool,
       gradient: "from-amber-400 to-orange-500"
     }
