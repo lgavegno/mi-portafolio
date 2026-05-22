@@ -52,20 +52,19 @@ const About = () => {
 
                                 <div className="space-y-6 text-slate-300 text-lg leading-relaxed whitespace-pre-line">
                                     <p>
-                                        Hola, soy Leandro — estudiante avanzado de la Tecnicatura
-                                        Universitaria en Programación en la UTN FRRA y desarrollador
+                                        Hola, soy Leandro — estudiante de la Tecnicatura
+                                        Universitaria en Programación en UTN FRRA y desarrollador
                                         independiente.
                                     </p>
                                     <p>
-                                        Me dedico a construir herramientas digitales para pequeños
-                                        comercios: sitios web en WordPress y Tienda Nube. Así como
-                                        también aplicaciones de escritorio para gestión interna.
+                                        Construyo herramientas digitales: aplicaciones de escritorio,
+                                        sitios web y automatizaciones.
                                     </p>
                                     <p>
                                         Actualmente desarrollo OmniStock, un sistema de inventario
-                                        desktop para PyMEs, y tengo experiencia real entregando
-                                        proyectos a clientes — como la tienda online de Faro Art Shop,
-                                        hoy en producción en{' '}
+                                        desktop para PyMEs. Tengo experiencia entregando proyectos
+                                        reales — como la tienda online de Faro Art Shop, hoy en
+                                        producción en{' '}
                                         <a
                                             href="https://faroartshop.com"
                                             target="_blank"
@@ -76,8 +75,8 @@ const About = () => {
                                         </a>.
                                     </p>
                                     <p>
-                                        Si necesitás una herramienta que resuelva un problema concreto
-                                        en tu negocio, puedo ayudarte.
+                                        Si tenés un problema concreto en tu negocio y creés que una
+                                        herramienta puede ayudar, con gusto lo charlamos.
                                     </p>
                                 </div>
                             </div>
