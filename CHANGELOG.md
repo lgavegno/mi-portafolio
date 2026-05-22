@@ -1,6 +1,6 @@
 # CHANGELOG
 
-Historial de cambios del proyecto Ongevag Studio Portfolio. Formato: [Keep a Changelog](https://keepachangelog.com).
+Historial de cambios del proyecto Ongevag Portfolio. Formato: [Keep a Changelog](https://keepachangelog.com).
 
 ---
 

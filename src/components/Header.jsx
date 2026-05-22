@@ -101,7 +101,7 @@ const Header = ({ isOpen, setIsOpen }) => {
                   <span className="font-display font-bold text-base
                     text-white tracking-tight">Ongevag</span>
                   <span className="text-[10px] text-slate-500
-                    tracking-widest uppercase">Studio</span>
+                    tracking-widest uppercase">Dev</span>
                 </div>
               </div>
             </motion.div>

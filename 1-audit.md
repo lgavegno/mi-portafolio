@@ -1,4 +1,4 @@
-# 🔍 Professional Audit: Ongevag Studio Portfolio
+# 🔍 Professional Audit: Ongevag Portfolio
 **Version 1.0 — Comprehensive UX/UI/Business Analysis**
 **Date:** 2026-05-13
 **Scope:** Full-stack website structure, design, UX, technical implementation, business conversion
@@ -9,7 +9,7 @@
 
 **Audit Score: 7.2/10**
 
-Ongevag Studio is a **technically sophisticated portfolio** built on React 19 + Vite with premium design polish (3D animations, glass-morphism, particle effects). The site successfully communicates technical expertise and showcases impressive project diversity (ML, desktop apps, e-commerce).
+Ongevag is a **technically sophisticated portfolio** built on React 19 + Vite with premium design polish (3D animations, glass-morphism, particle effects). The site successfully communicates technical expertise and showcases impressive project diversity (ML, desktop apps, e-commerce).
 
 However, **business and conversion fundamentals have critical gaps** that undermine lead generation effectiveness. The most glaring issue: **no WhatsApp integration** despite targeting PyMEs in Argentina (where WhatsApp is the primary B2B communication channel). Supporting problems include missing pricing, weak trust signals, and positioning ambiguity.
 
@@ -22,7 +22,7 @@ However, **business and conversion fundamentals have critical gaps** that underm
 ### ✅ Page & Section Inventory
 
 **Primary Navigation (Header):**
-- Logo + brand ("Ongevag Studio")
+- Logo + brand ("Ongevag")
 - Desktop nav: Inicio, Sobre Mí, Proyectos, Qué hago, Blog
 - Mobile hamburger menu (responsive)
 - Primary CTA: "Contacto" button (cyan gradient)
@@ -233,7 +233,7 @@ Neutrals:
 
 **What does a visitor understand immediately?**
 
-1. **Brand Identity:** ✅ "Ongevag Studio" with node logo is prominent
+1. **Brand Identity:** ✅ "Ongevag" with node logo is prominent
 2. **Value Proposition:** ✅ Clear tagline: "Desarrollo de Software"
 3. **Call-to-Action:** ✅ Two CTAs visible without scroll:
    - Primary: "Ver proyectos" (cyan button)
@@ -612,7 +612,7 @@ Service #1 (Sitios Web) mentions "WordPress" but your portfolio showcases **Reac
 
 | Element | Status | Quality |
 |---------|--------|---------|
-| Title tag | ✅ Present | "Ongevag Studio — Desarrollo Web & IA para PyMEs" (good) |
+| Title tag | ✅ Present | "Ongevag — Desarrollo Web & IA para PyMEs" (good) |
 | Meta description | ✅ Present | "Portfolio profesional de Leandro Gavegno — Desarrollo web, automatización con IA..." (good) |
 | H1 tag | ✅ Present | Implicit in hero (ONGEVAG as design, not semantic H1) ⚠️ Missing semantic H1 |
 | Open Graph tags | ✅ Present | og:title, og:description, og:image (complete) ✅ |
@@ -636,7 +636,7 @@ Service #1 (Sitios Web) mentions "WordPress" but your portfolio showcases **Reac
 
 ```html
 ✅ GOOD:
-<title>Ongevag Studio — Desarrollo Web & IA para PyMEs</title>
+<title>Ongevag — Desarrollo Web & IA para PyMEs</title>
 <meta name="description" content="Portfolio profesional...">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://www.ongevag.com/og-image.svg">

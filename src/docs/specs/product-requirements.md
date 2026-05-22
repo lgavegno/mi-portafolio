@@ -1,4 +1,4 @@
-# PRD — Portfolio Leandro Gavegno / Ongevag Studio
+# PRD — Portfolio Leandro Gavegno / Ongevag
 
 **Versión:** 2.1
 **Fecha:** 10 de Abril de 2026
@@ -30,7 +30,7 @@ Portfolio profesional que valida la capacidad técnica de Leandro Gavegno como d
 | Generar consultas de clientes | ≥ 2 contactos/mes via formulario | Sin datos (sin analytics integrado) |
 | Demostrar capacidad técnica | Proyectos reales con links/demos funcionales | ✅ Parcial (4 proyectos, 1 con GitHub link activo) |
 | Posicionamiento SEO | Aparecer en búsquedas "desarrollador web Rafaela" | ❌ Sin SEO técnico (sin meta tags, robots.txt, sitemap) |
-| Coherencia de marca | Visual alineado a identidad Ongevag Studio | ✅ Implementado (logo, colores, tipografía consistentes) |
+| Coherencia de marca | Visual alineado a identidad Ongevag | ✅ Implementado (logo, colores, tipografía consistentes) |
 
 ---
 
@@ -39,7 +39,7 @@ Portfolio profesional que valida la capacidad técnica de Leandro Gavegno como d
 | Feature | Ruta | Descripción | Estado |
 |---------|------|-------------|--------|
 | **Hero Banner** | `/` | Particle system + geometría 3D flotante + badge "Disponible" + stats | ✅ v2.4.0 |
-| **About** | `/` (sección) | Descripción de Leandro y Ongevag Studio | ✅ Producción |
+| **About** | `/` (sección) | Descripción de Leandro y Ongevag | ✅ Producción |
 | **Skills Grid** | `/` (sección) | Grid de tecnologías: React, Python, Data Science, etc. | ✅ Producción |
 | **Servicios** | `/` (sección) | Carrusel 3D de servicios ofrecidos | ✅ Producción |
 | **Works (Proyectos)** | `/` (sección) | Grid de proyectos destacados con filtrado por categoría | ✅ Producción |
@@ -211,10 +211,10 @@ VITE_EMAILJS_PUBLIC_KEY=...        # API key pública EmailJS
 ## 13. Contacto & Escalación
 
 **Owner:** Leandro Gavegno (lgavegno@gmail.com)
-**Brand:** Ongevag Studio (Rafaela, Santa Fe, Argentina)
+**Brand:** Ongevag (Rafaela, Santa Fe, Argentina)
 **Repo:** https://github.com/lgavegno/mi-portafolio
 **Deployment:** Vercel (auto CI/CD desde main/develop)
 
 ---
 
-**© 2026 Ongevag Studio — Built for Scalability**
+**© 2026 Ongevag — Built for Scalability**

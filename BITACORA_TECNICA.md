@@ -1,4 +1,4 @@
-# Bitácora Técnica — Ongevag Studio Portfolio
+# Bitácora Técnica — Ongevag Portfolio
 
 > **Regla:** Nunca editar entradas pasadas. Agregar nuevas sesiones al inicio.
 > Cada entrada es un snapshot inmutable del trabajo realizado.

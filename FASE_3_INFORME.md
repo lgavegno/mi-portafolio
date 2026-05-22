@@ -383,6 +383,6 @@ src/__tests__/setup.js  [✅ from Phase 2]
 ---
 
 *Documento generado por: Implementación SDD Fase 3 (2026-05-13)*
-*Proyecto: Ongevag Studio Portfolio*
+*Proyecto: Ongevag Portfolio*
 *UC: UC-01 Contact Form Submission*
 *Coverage Target: 70% (Phase 2-3), 85% (Phase 4)*

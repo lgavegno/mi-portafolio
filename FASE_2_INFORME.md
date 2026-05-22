@@ -321,5 +321,5 @@ Entregar: PR con tests + coverage report.
 ---
 
 *Documento generado por: Auditoría SDD Senior (2026-05-13)*
-*Repositorio: Ongevag Studio Portfolio*
+*Repositorio: Ongevag Portfolio*
 *Stack: React 19 + Vite 6.3.5 + Vitest*

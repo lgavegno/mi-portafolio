@@ -28,7 +28,7 @@ const BlogMetaTags = ({
       <meta property="og:image" content={fullImageUrl} />
       <meta property="og:image:alt" content={title} />
       <meta property="og:url" content={canonicalUrl} />
-      <meta property="og:site_name" content="Ongevag Studio" />
+      <meta property="og:site_name" content="Ongevag" />
 
       {/* Twitter Card Tags */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -45,7 +45,7 @@ const BlogMetaTags = ({
       )}
 
       {/* Page Title */}
-      <title>{title} | Opgevag Studio</title>
+      <title>{title} | Ongevag</title>
 
       {/* Schema.org JSON-LD */}
       <script type="application/ld+json">

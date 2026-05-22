@@ -7,7 +7,7 @@
 
 ## 1. Project Summary
 
-**Nombre:** Ongevag Studio Portfolio
+**Nombre:** Ongevag Portfolio
 **Descripción:** Landing page + blog SPA para captar clientes PyMEs (desarrollo web, IA, e-commerce)
 **Stakeholders:**
 - Leandro Gavegno (propietario, freelance)

@@ -1,4 +1,4 @@
-# Contexto Proyecto Completo — Ongevag Studio Portfolio
+# Contexto Proyecto Completo — Ongevag Portfolio
 
 > **Propósito:** Snapshot del estado actual. Copiar este bloque al iniciar cada sesión nueva.
 > Regenerar después de cada hito importante.
@@ -19,7 +19,7 @@
 
 ## Resumen Técnico
 
-**Nombre:** Ongevag Studio Portfolio
+**Nombre:** Ongevag Portfolio
 **Propósito:** Landing page + blog para captar clientes PyMEs
 **Stack:** React 19.1.0 + Vite 6.3.5 + Tailwind CSS 3.3.0
 **Arquitectura:** Feature-Based (DDD Light) — 6 features independientes
@@ -84,7 +84,7 @@
 ### Copiar esto literalmente en próxima sesión:
 
 ```
-Estoy trabajando en Ongevag Studio Portfolio, un landing page + blog
+Estoy trabajando en Ongevag Portfolio, un landing page + blog
 en React 19 + Vite para captar clientes PyMEs.
 
 Stack: JavaScript/React/Vite, arquitectura feature-based (DDD Light),

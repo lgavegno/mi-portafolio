@@ -1,7 +1,7 @@
-# CLAUDE.md — Portfolio Leandro Gavegno (Ongevag Studio)
+# CLAUDE.md — Portfolio Leandro Gavegno (Ongevag)
 
 ## Propósito
-Portfolio profesional de Leandro Gavegno, desarrollador freelance bajo la marca **Ongevag Studio** (Rafaela, Santa Fe, Argentina). Objetivo: captar clientes PyMEs para servicios de desarrollo web, automatización con IA y tiendas online.
+Portfolio profesional de Leandro Gavegno, desarrollador freelance bajo la marca **Ongevag** (Rafaela, Santa Fe, Argentina). Objetivo: captar clientes PyMEs para servicios de desarrollo web, automatización con IA y tiendas online.
 
 Stack: React 19 + Vite con arquitectura Feature-Based (DDD Light).
 
@@ -247,4 +247,4 @@ El proyecto rechaza la estructura tradicional por "tipos" (components/hooks/util
 
 ## Contacto & Legal
 
-© 2026 Ongevag Studio — Built for Scalability
+© 2026 Ongevag — Built for Scalability

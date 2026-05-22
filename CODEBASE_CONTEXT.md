@@ -1,7 +1,7 @@
 # CODEBASE_CONTEXT.md — Comprehensive Codebase Reference
 
 **Generated:** April 2026  
-**Project:** Ongevag Studio Portfolio (Leandro Gavegno)  
+**Project:** Ongevag Portfolio (Leandro Gavegno)  
 **Version:** v2.2  
 **Stack:** React 19 + Vite 6.3.5 + Tailwind CSS 3.3.0
 
@@ -13,7 +13,7 @@ This document provides a comprehensive reference for the entire codebase structu
 
 ### Project Purpose
 
-Professional portfolio for Leandro Gavegno (Ongevag Studio), a freelance developer based in Rafaela, Santa Fe, Argentina. The portfolio showcases technical capabilities to attract SMB clients for web development, AI automation, and online store services.
+Professional portfolio for Leandro Gavegno (Ongevag), a freelance developer based in Rafaela, Santa Fe, Argentina. The portfolio showcases technical capabilities to attract SMB clients for web development, AI automation, and online store services.
 
 ### Key Architectural Decisions
 
@@ -627,7 +627,7 @@ npm run lint         # ESLint check
 ## Contact & Support
 
 **Owner:** Leandro Gavegno (lgavegno@gmail.com)  
-**Brand:** Ongevag Studio (Rafaela, Santa Fe, Argentina)  
+**Brand:** Ongevag (Rafaela, Santa Fe, Argentina)  
 **Repository:** https://github.com/lgavegno/mi-portafolio
 
 ---

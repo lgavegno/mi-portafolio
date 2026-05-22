@@ -260,4 +260,4 @@ Canvas FPS: 60fps
 
 ---
 
-**Mantenedor:** Leandro Gavegno | **Proyecto:** Ongevag Studio Portfolio | **Branch:** feat/hero-redesign
+**Mantenedor:** Leandro Gavegno | **Proyecto:** Ongevag Portfolio | **Branch:** feat/hero-redesign
