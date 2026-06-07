@@ -15,11 +15,11 @@ const Header = ({ isOpen, setIsOpen }) => {
   const { t } = useLocale();
 
   const navLinks = [
-    { label: t('nav.inicio'),   id: 'inicio'    },
-    { label: t('nav.about'),    id: 'sobre-mi'  },
-    { label: t('nav.projects'), id: 'proyectos' },
-    { label: t('nav.services'), id: 'que-hago'  },
-    { label: t('nav.blog'),     id: 'blog'      },
+    { label: t.common.nav.inicio,   id: 'inicio'    },
+    { label: t.common.nav.about,    id: 'sobre-mi'  },
+    { label: t.common.nav.projects, id: 'proyectos' },
+    { label: t.common.nav.services, id: 'que-hago'  },
+    { label: t.common.nav.blog,     id: 'blog'      },
   ];
 
   useEffect(() => {
@@ -157,7 +157,7 @@ const Header = ({ isOpen, setIsOpen }) => {
                   e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(0, 255, 255, 0.3)';
                 }}
               >
-                {t('nav.contact')}
+                {t.common.nav.contact}
               </motion.div>
             </Link>
           </div>
@@ -227,7 +227,7 @@ const Header = ({ isOpen, setIsOpen }) => {
                     className="px-4 py-3 rounded-xl text-center text-black font-semibold touch-manipulation cursor-pointer"
                     style={{ background: 'linear-gradient(to right, rgb(0, 255, 255), rgba(0, 255, 255, 0.9))' }}
                   >
-                    {t('nav.contactMobile')}
+                    {t.common.nav.contactMobile}
                   </motion.div>
                 </Link>
               </div>

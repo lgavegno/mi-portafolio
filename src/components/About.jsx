@@ -3,8 +3,10 @@ import { motion } from 'framer-motion';
 import { FaGraduationCap, FaBriefcase } from 'react-icons/fa';
 import profileImage from '../assets/profile-about.webp';
 import { fadeInUp, staggerContainer } from '../config/motionConfig';
+import { useLocale } from '../hooks/useLocale';
 
 const About = () => {
+    const { t } = useLocale();
     const [activeTab, setActiveTab] = useState('formacion');
 
     return (
@@ -47,25 +49,18 @@ const About = () => {
                         >
                             <div className="space-y-6">
                                 <h2 className="text-3xl md:text-5xl font-bold text-white mb-8">
-                                    Sobre <span className="text-mint-400">Mí</span>
+                                    {t.about.headingPrefix} <span className="text-mint-400">{t.about.headingHighlight}</span>
                                 </h2>
 
                                 <div className="space-y-6 text-slate-300 text-lg leading-relaxed whitespace-pre-line">
                                     <p>
-                                        Hola, soy Leandro — estudiante avanzado de la Tecnicatura
-                                        Universitaria en Programación en la UTN FRRA y desarrollador
-                                        independiente.
+                                        {t.about.p1}
                                     </p>
                                     <p>
-                                        Me dedico a construir herramientas digitales para pequeños
-                                        comercios: sitios web en WordPress y Tienda Nube. Así como
-                                        también aplicaciones de escritorio para gestión interna.
+                                        {t.about.p2}
                                     </p>
                                     <p>
-                                        Actualmente desarrollo OmniStock, un sistema de inventario
-                                        desktop para PyMEs, y tengo experiencia real entregando
-                                        proyectos a clientes — como la tienda online de Faro Art Shop,
-                                        hoy en producción en{' '}
+                                        {t.about.p3Before}{' '}
                                         <a
                                             href="https://faroartshop.com"
                                             target="_blank"
@@ -73,11 +68,10 @@ const About = () => {
                                             className="text-cyan-400 hover:text-cyan-300 transition-colors"
                                         >
                                             faroartshop.com
-                                        </a>.
+                                        </a>{t.about.p3After}
                                     </p>
                                     <p>
-                                        Si necesitás una herramienta que resuelva un problema concreto
-                                        en tu negocio, puedo ayudarte.
+                                        {t.about.p4}
                                     </p>
                                 </div>
                             </div>
@@ -98,7 +92,7 @@ const About = () => {
                                                     : 'bg-transparent text-slate-400 border-slate-600 hover:border-slate-400'
                                                 }`}
                                         >
-                                            <FaGraduationCap className="inline mr-2" /> Formación académica
+                                            <FaGraduationCap className="inline mr-2" /> {t.about.tabs.formacion}
                                         </button>
                                         <button
                                             onClick={() => setActiveTab('cursos')}
@@ -108,7 +102,7 @@ const About = () => {
                                                     : 'bg-transparent text-slate-400 border-slate-600 hover:border-slate-400'
                                                 }`}
                                         >
-                                            <FaGraduationCap className="inline mr-2" /> Cursos y certificaciones
+                                            <FaGraduationCap className="inline mr-2" /> {t.about.tabs.cursos}
                                         </button>
                                     </div>
 
@@ -119,7 +113,7 @@ const About = () => {
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.25 }}
                                         >
-                                            <p className="text-xs text-slate-500 mb-3">← deslizá para ver más</p>
+                                            <p className="text-xs text-slate-500 mb-3">{t.about.scrollHint}</p>
                                             <div className="flex gap-4 overflow-x-auto scroll-smooth pb-3"
                                                  style={{ scrollSnapType: 'x mandatory', scrollbarWidth: 'none' }}>
 
@@ -186,7 +180,7 @@ const About = () => {
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.25 }}
                                         >
-                                            <p className="text-xs text-slate-500 mb-3">← deslizá para ver más</p>
+                                            <p className="text-xs text-slate-500 mb-3">{t.about.scrollHint}</p>
                                             <div className="flex gap-4 overflow-x-auto scroll-smooth pb-3"
                                                  style={{ scrollSnapType: 'x mandatory', scrollbarWidth: 'none' }}>
 
@@ -242,10 +236,10 @@ const About = () => {
                                         <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-institutional/10 blur-2xl rounded-full -translate-y-1/2 translate-x-1/2 group-hover:bg-cyan-institutional/20 transition-colors" />
 
                                         <h3 className="text-lg text-white font-bold mb-4 relative z-10 flex items-center gap-2">
-                                            Herramientas de IA y Asistencia al Desarrollo
+                                            {t.about.ai.title}
                                         </h3>
                                         <p className="text-base text-slate-300 leading-relaxed relative z-10">
-                                            Metodología de trabajo potenciada por modelos de lenguaje avanzados para optimización de código, generación de documentación técnica y resolución eficiente de problemas complejos.
+                                            {t.about.ai.description}
                                         </p>
                                     </motion.div>
 
@@ -258,10 +252,10 @@ const About = () => {
                                             <div className="w-10 h-10 rounded-lg bg-cobalt-400/10 flex items-center justify-center text-cobalt-400">
                                                 <FaBriefcase className="w-5 h-5" />
                                             </div>
-                                            <h3 className="text-lg text-white font-semibold">Trayectoria</h3>
+                                            <h3 className="text-lg text-white font-semibold">{t.about.trayectoria.title}</h3>
                                         </div>
                                         <p className="text-base text-slate-400 leading-relaxed">
-                                            +10 años de experiencia en gestión operativa y administrativa, aportando una visión sistémica a los desafíos de negocio.
+                                            {t.about.trayectoria.description}
                                         </p>
                                     </motion.div>
                                 </div>
