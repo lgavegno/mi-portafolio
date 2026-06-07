@@ -4,22 +4,23 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { useVibrate } from '../hooks/useVibrate';
+import { useLocale } from '../hooks/useLocale';
 import LangSwitcher from './ui/LangSwitcher';
-
-const navLinks = [
-  { label: 'Inicio', id: 'inicio' },
-  { label: 'Sobre Mí', id: 'sobre-mi' },
-  { label: 'Proyectos', id: 'proyectos' },
-  { label: 'Qué hago', id: 'que-hago' },
-  { label: 'Blog', id: 'blog' },
-
-];
 
 const Header = ({ isOpen, setIsOpen }) => {
   // const [isOpen, setIsOpen] = useState(false); // Managed by parent
   const [scrolled, setScrolled] = useState(false);
   const vibrate = useVibrate(10);
   const location = useLocation();
+  const { t } = useLocale();
+
+  const navLinks = [
+    { label: t('nav.inicio'),   id: 'inicio'    },
+    { label: t('nav.about'),    id: 'sobre-mi'  },
+    { label: t('nav.projects'), id: 'proyectos' },
+    { label: t('nav.services'), id: 'que-hago'  },
+    { label: t('nav.blog'),     id: 'blog'      },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -156,7 +157,7 @@ const Header = ({ isOpen, setIsOpen }) => {
                   e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(0, 255, 255, 0.3)';
                 }}
               >
-                Contacto
+                {t('nav.contact')}
               </motion.div>
             </Link>
           </div>
@@ -226,7 +227,7 @@ const Header = ({ isOpen, setIsOpen }) => {
                     className="px-4 py-3 rounded-xl text-center text-black font-semibold touch-manipulation cursor-pointer"
                     style={{ background: 'linear-gradient(to right, rgb(0, 255, 255), rgba(0, 255, 255, 0.9))' }}
                   >
-                    Hablemos
+                    {t('nav.contactMobile')}
                   </motion.div>
                 </Link>
               </div>
