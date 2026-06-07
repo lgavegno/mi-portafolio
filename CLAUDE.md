@@ -59,7 +59,7 @@ VITE_EMAILJS_PUBLIC_KEY=...    # Public key (required)
 | FEATURE | Status | Location | Owner |
 |---------|--------|----------|-------|
 | FEATURE-00_PROJECT_SETUP | ✅ Active | `docs/specs/FEATURE-00/` | — |
-| FEATURE-01_I18N_ROUTING | ⏳ Planned | `docs/specs/FEATURE-01/` | (ADR-006..011) |
+| FEATURE-01_I18N_ROUTING | 🔄 In Progress | `docs/specs/FEATURE-01/` | (ADR-006..011) |
 | FEATURE-02_SEO_METATAGS | ⏳ Planned | `docs/specs/FEATURE-02/` | — |
 | FEATURE-03_AEO_SCHEMA | ⏳ Planned | `docs/specs/FEATURE-03/` | — |
 | FEATURE-04_HERO_ANIMATION | ✅ Active | `docs/specs/FEATURE-04/` | HeroBanner.jsx |

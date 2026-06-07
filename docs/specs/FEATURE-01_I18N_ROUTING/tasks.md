@@ -231,3 +231,29 @@ npm run lint
 - ❌ No tocar src/ fuera de los archivos listados
 - ❌ No agregar dependencias externas
 - ❌ No localStorage
+
+---
+
+## Task Execution Log
+
+### T-07 — LangSwitcher component ✅ DONE
+- Commits: e78994b, e697e46, 8678106
+- Entregables: LangSwitcher.jsx en src/components/ui/
+
+### T-08 — Migrate components to useLocale ✅ DONE
+- Commits: a1e16e1, cc8f6eb, b17f743, feat(i18n): migrate HeroBanner/Services/Works/Contact
+- Componentes migrados: HeroBanner, Services, Works, Contact, Header, Footer, About
+- Locale files creados: en/about.js, es/about.js
+- Bug corregido: Header usaba t() como función → corregido a t.common.nav.*
+- Deuda técnica: LocaleProvider expone t como objeto plano (no función).
+  Si se requiere sintaxis t('clave') en el futuro → refactorizar LocaleProvider.
+- Pendiente promovido: Blog empty state → T-09
+
+### T-09 — Blog i18n completo ⏳ PLANNED
+- Scope:
+  - [ ] Empty state UI cuando blogPosts = []
+  - [ ] BlogComponents.jsx — migrar strings hardcodeados
+  - [ ] BlogLayout.jsx — migrar a useLocale()
+  - [ ] locale-aware data routing (BlogIndex consume blogData por locale)
+  - [ ] blogData.es.js — definir estrategia (traducir o redirigir a EN)
+- Prerequisito: decisión sobre blogData.es.js antes de implementar
