@@ -1,12 +1,12 @@
 // src/layouts/MainLayout.jsx
 import React, { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, Outlet } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Header, Footer } from '../components'
 import PageTransition from '../components/ui/PageTransition'
 import BackToTop from '../components/ui/BackToTop'
 
-const MainLayout = ({ children }) => {
+const MainLayout = () => {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
@@ -48,7 +48,7 @@ const MainLayout = ({ children }) => {
         transition={{ duration: 0.3 }}
       >
         <PageTransition>
-          {children}
+          <Outlet />
         </PageTransition>
       </motion.main>
 

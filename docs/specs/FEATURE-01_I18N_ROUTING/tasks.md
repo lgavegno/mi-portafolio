@@ -12,7 +12,7 @@
 |------|-------------|--------|
 | T-01 | ADR Documentation | ✅ Completo — commiteado |
 | T-02 | Locale Files UI Strings | ✅ Completo — commiteado (c9aa944) |
-| T-03 | Locale-Keyed Data Files | ⏳ Pendiente |
+| T-03 | Locale-Keyed Data Files | ✅ Completo — commiteado |
 | T-04 | LocaleContext + useLocale Hook | ⏳ Pendiente |
 | T-05 | App.jsx Route Refactor | ⏳ Pendiente |
 | T-06 | vercel.json Rewrite Rules | ⏳ Pendiente |
