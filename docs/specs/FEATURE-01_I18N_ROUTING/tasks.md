@@ -262,14 +262,19 @@ npm run lint
 - Pendiente del plan original promovido a T-09:
   "Agregar banner en /es/blog cuando blogData.es.js está vacío" (spec.md Edge Cases)
 
-### T-09 — Blog i18n + Empty State ⏳ PLANNED
-- Origen: ítem pendiente de T-08 + hallazgos del diagnóstico de /es/blog
-- Scope (expandido respecto al plan original):
-  - [ ] Empty state UI en BlogIndex cuando blogPosts = [] (spec FR-009)
-  - [ ] BlogComponents.jsx — migrar strings hardcodeados en español
-  - [ ] BlogLayout.jsx — migrar a useLocale()
-  - [ ] BlogIndex.jsx — locale-aware data import (blogData.en.js / blogData.es.js)
-  - [ ] blogData.es.js — estrategia: array vacío + redirect a /blog con banner EN-only
-- Prerequisito: confirmar que blogData.en.js y blogData.es.js existen y tienen
-  estructura correcta (T-03 del plan original debería haberlos creado)
-- Referencia spec: Edge Cases → "Blog posts without ES equivalent" + FR-009
+### T-09 — Blog i18n + Layout Refactor ⏳ PLANNED
+- Origen: ítem pendiente de T-08 + hallazgos diagnóstico /es/blog
+- Decisión de arquitectura: BlogLayout.jsx se reemplaza por MainLayout del
+  portfolio (Header + Footer existentes). Elimina deuda: localStorage de tema,
+  logo "DEVLOG" placeholder, footer duplicado con strings ES hardcodeados.
+- Scope completo:
+  - [ ] Reemplazar BlogLayout.jsx por layout basado en Header/Footer del portfolio
+  - [ ] BlogIndex.jsx — agregar useLocale() + locale-aware import de blogData
+  - [ ] BlogIndex.jsx — early return con banner EN-only cuando locale === 'es'
+  - [ ] BlogComponents.jsx — migrar strings hardcodeados (Sidebar, PostGrid, FeaturedPost)
+  - [ ] Crear src/locales/en/blog.js y src/locales/es/blog.js
+  - [ ] Registrar módulo blog en LocaleProvider
+- Estrategia blogData.es.js: array vacío permanente — blog es EN-only.
+  /es/blog muestra banner con link a /blog. No traducir posts (contenido, no ingeniería).
+- Referencia spec: FR-009, FR-005, Edge Cases → "Blog posts without ES equivalent"
+- Prerequisito: blogData.en.js y blogData.es.js ya existen (T-03 ✅)
