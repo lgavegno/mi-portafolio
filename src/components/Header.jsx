@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { useVibrate } from '../hooks/useVibrate';
-import LangSwitcher from './LangSwitcher';
+import LangSwitcher from './ui/LangSwitcher';
 
 const navLinks = [
   { label: 'Inicio', id: 'inicio' },
