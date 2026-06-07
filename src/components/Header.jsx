@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { useVibrate } from '../hooks/useVibrate';
+import LangSwitcher from './LangSwitcher';
 
 const navLinks = [
   { label: 'Inicio', id: 'inicio' },
@@ -132,6 +133,8 @@ const Header = ({ isOpen, setIsOpen }) => {
               </Link>
             ))}
 
+            <LangSwitcher />
+
             {/* CTA Button */}
             <Link
               to="/"
@@ -200,6 +203,15 @@ const Header = ({ isOpen, setIsOpen }) => {
                     </motion.div>
                   </Link>
                 ))}
+
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: navLinks.length * 0.05 }}
+                  className="px-4 py-3"
+                >
+                  <LangSwitcher />
+                </motion.div>
 
                 <Link
                   to="/"
