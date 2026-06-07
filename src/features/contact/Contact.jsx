@@ -6,6 +6,7 @@ import emailjs from '@emailjs/browser'
 import { fadeInUp, staggerContainer } from '../../config/motionConfig'
 import Button from '../../components/ui/Button'
 import { useVibrate } from '../../hooks/useVibrate'
+import { useLocale } from '../../hooks/useLocale'
 import { validateForm } from './validateForm'
 
 // Estados del formulario
@@ -17,6 +18,8 @@ const FORM_STATUS = {
 }
 
 const Contact = () => {
+  const { t } = useLocale()
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -115,7 +118,7 @@ const Contact = () => {
       console.error('EmailJS Error:', error);
 
       setStatus(FORM_STATUS.ERROR);
-      setErrorMessage('Error al enviar el mensaje. Por favor, intenta de nuevo.');
+      setErrorMessage(t.contact.messages.errorDefault);
       vibrateError();
 
       // Reset submit flag after 3 seconds to allow retry
@@ -155,13 +158,13 @@ const Contact = () => {
           <motion.div variants={fadeInUp} className="text-center mb-12">
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cobalt-500/10 border border-cobalt-500/20 text-cobalt-400 text-sm font-medium mb-6">
               <FiMail className="w-4 h-4" />
-              Contacto
+              {t.contact.badge}
             </span>
             <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-              ¿Hablamos?
+              {t.contact.title}
             </h2>
             <p className="text-gray-400 text-xl max-w-2xl mx-auto">
-              Si necesitas ayuda con análisis de datos o automatización de procesos, estaré encantado de conversar contigo.
+              {t.contact.description}
             </p>
           </motion.div>
 
@@ -181,7 +184,7 @@ const Contact = () => {
               {/* Name field */}
               <div className="relative">
                 <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                  Nombre
+                  {t.contact.form.labels.name}
                 </label>
                 <div className="relative">
                   <FiUser className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5" />
@@ -193,7 +196,7 @@ const Contact = () => {
                     onChange={handleChange}
                     onFocus={handleFocus}
                     className={inputClasses}
-                    placeholder="Tu nombre"
+                    placeholder={t.contact.form.placeholders.name}
                     maxLength={100}
                     required
                   />
@@ -203,7 +206,7 @@ const Contact = () => {
               {/* Email field */}
               <div className="relative">
                 <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                  Email
+                  {t.contact.form.labels.email}
                 </label>
                 <div className="relative">
                   <FiMail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5" />
@@ -215,7 +218,7 @@ const Contact = () => {
                     onChange={handleChange}
                     onFocus={handleFocus}
                     className={inputClasses}
-                    placeholder="tu@email.com"
+                    placeholder={t.contact.form.placeholders.email}
                     maxLength={150}
                     required
                   />
@@ -225,7 +228,7 @@ const Contact = () => {
               {/* Project type field */}
               <div className="relative">
                 <label htmlFor="projectType" className="block text-sm font-medium text-gray-300 mb-2">
-                  Tipo de Proyecto
+                  {t.contact.form.labels.projectType}
                 </label>
                 <div className="relative">
                   <FiBriefcase className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5 pointer-events-none z-10" />
@@ -238,11 +241,10 @@ const Contact = () => {
                     className={`${inputClasses} appearance-none cursor-pointer`}
                     required
                   >
-                    <option value="" disabled className="bg-slate-900">Selecciona un tipo</option>
-                    <option value="Software a Medida" className="bg-slate-900">Software a Medida</option>
-                    <option value="E-commerce" className="bg-slate-900">E-commerce</option>
-                    <option value="Análisis de Datos" className="bg-slate-900">Análisis de Datos</option>
-                    <option value="Consultoría Técnica" className="bg-slate-900">Consultoría Técnica</option>
+                    <option value="" disabled className="bg-slate-900">{t.contact.form.placeholders.projectType}</option>
+                    {t.contact.form.projectTypes.map((type) => (
+                      <option key={type} value={type} className="bg-slate-900">{type}</option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -250,7 +252,7 @@ const Contact = () => {
               {/* Message field */}
               <div className="relative">
                 <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                  Mensaje
+                  {t.contact.form.labels.message}
                 </label>
                 <div className="relative">
                   <FiMessageSquare className="absolute left-4 top-4 text-gray-500 w-5 h-5" />
@@ -262,7 +264,7 @@ const Contact = () => {
                     onChange={handleChange}
                     onFocus={handleFocus}
                     className={`${inputClasses} resize-none`}
-                    placeholder="Cuéntame sobre tu proyecto..."
+                    placeholder={t.contact.form.placeholders.message}
                     maxLength={2000}
                     required
                   />
@@ -282,8 +284,8 @@ const Contact = () => {
                       <FiCheck className="w-5 h-5 text-mint-400" />
                     </div>
                     <div>
-                      <p className="text-mint-400 font-medium">¡Mensaje enviado con éxito!</p>
-                      <p className="text-mint-400/70 text-sm">Te responderé lo antes posible.</p>
+                      <p className="text-mint-400 font-medium">{t.contact.messages.successTitle}</p>
+                      <p className="text-mint-400/70 text-sm">{t.contact.messages.successDescription}</p>
                     </div>
                   </motion.div>
                 )}
@@ -316,13 +318,13 @@ const Contact = () => {
                   iconPosition="right"
                   className="w-full cursor-pointer"
                 >
-                  {(status === FORM_STATUS.SENDING || isSubmitting) && 'Enviando...'}
-                  {status === FORM_STATUS.SUCCESS && '¡Enviado!'}
-                  {(status === FORM_STATUS.IDLE || status === FORM_STATUS.ERROR) && !isSubmitting && 'Enviar mensaje'}
+                  {(status === FORM_STATUS.SENDING || isSubmitting) && t.contact.buttons.submitting}
+                  {status === FORM_STATUS.SUCCESS && t.contact.buttons.success}
+                  {(status === FORM_STATUS.IDLE || status === FORM_STATUS.ERROR) && !isSubmitting && t.contact.buttons.submit}
                 </Button>
                 <p className="flex items-center justify-center gap-1.5 text-xs text-gray-500">
                   <FiClock className="w-3.5 h-3.5" />
-                  Tiempo de respuesta: &lt; 24hs (Horario ART)
+                  {t.contact.messages.responseTime}
                 </p>
               </div>
             </form>

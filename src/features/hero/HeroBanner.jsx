@@ -5,6 +5,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FiLayers, FiMail } from 'react-icons/fi';
 import { fadeInUp, staggerContainer } from '../../config/motionConfig';
+import { useLocale } from '../../hooks/useLocale';
 
 import TechnicalTicker from '../../components/TechnicalTicker';
 import ParticleBackground from '../../components/ParticleBackground';
@@ -13,6 +14,8 @@ import ParticleBackground from '../../components/ParticleBackground';
 const WireframeGeometry = React.lazy(() => import('../../components/WireframeGeometry'));
 
 const HeroBanner = () => {
+  const { t } = useLocale();
+
   const scrollToProjects = () => {
     document.getElementById('proyectos')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -70,7 +73,7 @@ const HeroBanner = () => {
                       className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/8 border border-cyan-500/20 text-cyan-400 text-xs font-medium tracking-widest uppercase"
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-                      Desarrollador Independiente
+                      {t.hero.badge}
                     </motion.div>
 
                     {/* Title ONGEVAG with gradient on GE */}
@@ -102,10 +105,9 @@ const HeroBanner = () => {
                       transition={{ delay: 0.1, duration: 0.4 }}
                       className="text-lg md:text-xl lg:text-2xl font-light tracking-wide text-slate-300"
                     >
-                      Desarrollo de Software
+                      {t.hero.role}
                     </motion.p>
 
-            
                   </div>
                 </div>
 
@@ -116,7 +118,7 @@ const HeroBanner = () => {
                     variants={fadeInUp}
                     className="text-slate-300 font-normal text-base md:text-lg lg:text-xl leading-relaxed max-w-xl lg:mt-6 max-lg:drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
                   >
-                    Construyo herramientas digitales para pequeños comercios.
+                    {t.hero.description}
                   </motion.p>
 
                   {/* CTA Buttons */}
@@ -133,7 +135,7 @@ const HeroBanner = () => {
                       }}
                     >
                       <FiLayers />
-                      Ver proyectos
+                      {t.hero.cta.projects}
                     </button>
 
                     {/* Secondary Button - Contactar */}
@@ -142,7 +144,7 @@ const HeroBanner = () => {
                       className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-slate-300 text-sm font-medium border border-white/10 hover:border-cyan-400/40 hover:text-cyan-400 transition-all duration-200 bg-transparent"
                     >
                       <FiMail />
-                      Contactar
+                      {t.hero.cta.contact}
                     </button>
                   </motion.div>
 
@@ -153,11 +155,11 @@ const HeroBanner = () => {
                   >
                     <div>
                       <div className="font-display text-xl font-bold text-slate-100">4+</div>
-                      <div className="text-[11px] text-slate-500 uppercase tracking-widest mt-0.5">Proyectos</div>
+                      <div className="text-[11px] text-slate-500 uppercase tracking-widest mt-0.5">{t.hero.stats.projectsLabel}</div>
                     </div>
                     <div>
                       <div className="font-display text-xl font-bold text-slate-100">PyME</div>
-                      <div className="text-[11px] text-slate-500 uppercase tracking-widest mt-0.5">Foco</div>
+                      <div className="text-[11px] text-slate-500 uppercase tracking-widest mt-0.5">{t.hero.stats.focus}</div>
                     </div>
                   </motion.div>
                 </div>
