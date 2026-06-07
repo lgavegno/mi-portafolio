@@ -236,24 +236,40 @@ npm run lint
 
 ## Task Execution Log
 
-### T-07 — LangSwitcher component ✅ DONE
+### T-07 — LangSwitcher Component ✅ DONE
 - Commits: e78994b, e697e46, 8678106
 - Entregables: LangSwitcher.jsx en src/components/ui/
+- Header.jsx integrado: LangSwitcher posicionado después de nav links, antes de CTA
+- Path-awareness verificada en todas las rutas
 
-### T-08 — Migrate components to useLocale ✅ DONE
-- Commits: a1e16e1, cc8f6eb, b17f743, feat(i18n): migrate HeroBanner/Services/Works/Contact
-- Componentes migrados: HeroBanner, Services, Works, Contact, Header, Footer, About
-- Locale files creados: en/about.js, es/about.js
-- Bug corregido: Header usaba t() como función → corregido a t.common.nav.*
-- Deuda técnica: LocaleProvider expone t como objeto plano (no función).
-  Si se requiere sintaxis t('clave') en el futuro → refactorizar LocaleProvider.
-- Pendiente promovido: Blog empty state → T-09
+### T-08 — Feature Component Migration ✅ DONE
+- Commits: a1e16e1, cc8f6eb, b17f743, 71d6522
+- Componentes migrados (per plan.md Phase C T-08):
+  - src/features/hero/HeroBanner.jsx → t.hero.*
+  - src/features/services/Services.jsx → t.services.*
+  - src/features/works/Works.jsx → t.works.*
+  - src/features/contact/Contact.jsx → t.contact.*
+  - src/components/Header.jsx → t.common.nav.*
+  - src/components/Footer.jsx → t.common.footer.*
+  - src/components/About.jsx → t.about.* (componente no listado en plan original)
+- Locale files creados fuera de plan original:
+  - src/locales/en/about.js
+  - src/locales/es/about.js
+- Bug detectado y corregido: Header.jsx usaba t('nav.*') como función
+  → corregido a t.common.nav.* (objeto plano, consistente con LocaleProvider)
+- Deuda técnica registrada: LocaleProvider expone t como objeto plano (no función).
+  Si se requiere sintaxis t('clave.anidada') en el futuro → refactorizar LocaleProvider.
+- Pendiente del plan original promovido a T-09:
+  "Agregar banner en /es/blog cuando blogData.es.js está vacío" (spec.md Edge Cases)
 
-### T-09 — Blog i18n completo ⏳ PLANNED
-- Scope:
-  - [ ] Empty state UI cuando blogPosts = []
-  - [ ] BlogComponents.jsx — migrar strings hardcodeados
+### T-09 — Blog i18n + Empty State ⏳ PLANNED
+- Origen: ítem pendiente de T-08 + hallazgos del diagnóstico de /es/blog
+- Scope (expandido respecto al plan original):
+  - [ ] Empty state UI en BlogIndex cuando blogPosts = [] (spec FR-009)
+  - [ ] BlogComponents.jsx — migrar strings hardcodeados en español
   - [ ] BlogLayout.jsx — migrar a useLocale()
-  - [ ] locale-aware data routing (BlogIndex consume blogData por locale)
-  - [ ] blogData.es.js — definir estrategia (traducir o redirigir a EN)
-- Prerequisito: decisión sobre blogData.es.js antes de implementar
+  - [ ] BlogIndex.jsx — locale-aware data import (blogData.en.js / blogData.es.js)
+  - [ ] blogData.es.js — estrategia: array vacío + redirect a /blog con banner EN-only
+- Prerequisito: confirmar que blogData.en.js y blogData.es.js existen y tienen
+  estructura correcta (T-03 del plan original debería haberlos creado)
+- Referencia spec: Edge Cases → "Blog posts without ES equivalent" + FR-009
