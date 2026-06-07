@@ -2,29 +2,24 @@
 import React, { lazy, Suspense } from 'react'
 import { Analytics } from '@vercel/analytics/react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Routes, Route, useLocation, Outlet } from 'react-router-dom'
+import { Routes, Route, Outlet, useLocation } from 'react-router-dom'
 import MainLayout from './layouts/MainLayout'
-import BlogLayout from './layouts/BlogLayout' // New Layout
+import BlogLayout from './layouts/BlogLayout'
+import { LocaleProvider } from './context/LocaleProvider'
 import { SkeletonPage } from './components/ui/Skeleton'
 import { pageTransition } from './config/motionConfig'
 import BlogPostDetail from './pages/BlogPostDetail'
-import BlogIndex from './pages/BlogIndex' // New Page
+import BlogIndex from './pages/BlogIndex'
 import ProjectDetail from './pages/ProjectDetail'
 
-// Lazy loading de secciones para code splitting
 import HeroBanner from './features/hero/HeroBanner'
-// Lazy loading de secciones para code splitting
-// HeroBanner importado estáticamente para mejorar LCP
-// const HeroBanner = lazy(() => import('./features/hero/HeroBanner'))
 const About = lazy(() => import('./components/About'))
 const Services = lazy(() => import('./features/services/Services'))
 const Works = lazy(() => import('./features/works/Works'))
-// BlogPreview might still be used in Home, keeping it.
 const BlogPreview = lazy(() => import('./features/blog/components/BlogPreview'))
 const Contact = lazy(() => import('./features/contact/Contact'))
 const SkillsGrid = lazy(() => import('./components/SkillsGrid'))
 
-// Wrapper con animación para cada sección
 const AnimatedSection = ({ children, id }) => (
   <motion.div
     id={id}
@@ -71,18 +66,21 @@ const HomeSections = () => (
   </>
 )
 
-// Wrapper component for MainLayout to use in Route element
-const MainLayoutWrapper = () => (
-  <MainLayout>
-    <Outlet />
-  </MainLayout>
-);
+const LocaleLayout = () => {
+  const location = useLocation();
+  const locale = location.pathname.startsWith('/es') ? 'es' : 'en';
+
+  return (
+    <LocaleProvider locale={locale}>
+      <Outlet />
+    </LocaleProvider>
+  );
+};
 
 function App() {
   const location = useLocation();
 
   React.useEffect(() => {
-    // Strategic Prefetching: Load Blog chunk when user is idle/viewing Hero
     const prefetchBlog = async () => {
       try {
         await import('./pages/BlogIndex');
@@ -92,7 +90,6 @@ function App() {
       }
     };
 
-    // Delay to prioritize LCP
     const timer = setTimeout(prefetchBlog, 3000);
     return () => clearTimeout(timer);
   }, []);
@@ -102,16 +99,24 @@ function App() {
       <AnimatePresence mode="wait">
         <Suspense fallback={<SkeletonPage />}>
           <Routes location={location} key={location.pathname}>
-            {/* Main Site Routes */}
-            <Route element={<MainLayoutWrapper />}>
-              <Route path="/" element={<HomeSections />} />
-              <Route path="/proyecto/:id" element={<ProjectDetail />} />
-            </Route>
+            <Route element={<LocaleLayout />}>
+              <Route path="/" element={<MainLayout />}>
+                <Route index element={<HomeSections />} />
+                <Route path="proyecto/:id" element={<ProjectDetail />} />
+                <Route path="blog" element={<BlogLayout />}>
+                  <Route index element={<BlogIndex />} />
+                  <Route path=":slug" element={<BlogPostDetail />} />
+                </Route>
+              </Route>
 
-            {/* Blog Routes */}
-            <Route path="/blog" element={<BlogLayout />}>
-              <Route index element={<BlogIndex />} />
-              <Route path=":slug" element={<BlogPostDetail />} />
+              <Route path="/es" element={<MainLayout />}>
+                <Route index element={<HomeSections />} />
+                <Route path="proyecto/:id" element={<ProjectDetail />} />
+                <Route path="blog" element={<BlogLayout />}>
+                  <Route index element={<BlogIndex />} />
+                  <Route path=":slug" element={<BlogPostDetail />} />
+                </Route>
+              </Route>
             </Route>
           </Routes>
         </Suspense>
