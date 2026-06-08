@@ -1,4 +1,4 @@
-# DESIGN_TOKENS.md — Sistema de Diseño Ongevag Studio
+# DESIGN_TOKENS.md — Sistema de Diseño Ongevag
 
 **Última actualización:** 10 de Abril de 2026
 
@@ -406,4 +406,4 @@ import { fadeInUp, glassCard, staggerContainer } from '@/config/motionConfig'
 
 ---
 
-**Mantenedor:** Leandro Gavegno | **Proyecto:** Ongevag Studio Portfolio | **Stack:** React 19 + Vite + Tailwind 3.3
+**Mantenedor:** Leandro Gavegno | **Proyecto:** Ongevag Portfolio | **Stack:** React 19 + Vite + Tailwind 3.3

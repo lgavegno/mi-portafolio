@@ -413,7 +413,7 @@ Si el "Shai-Hulud Worm" existiera, típicamente:
 
 ### Veredicto Final
 
-El portfolio profesional de **Leandro Gavegno** (Ongevag Studio) está verificado como **SEGURO** para producción.
+El portfolio profesional de **Leandro Gavegno** (Ongevag) está verificado como **SEGURO** para producción.
 
 No se detectó:
 - ❌ Malware "Shai-Hulud Worm"

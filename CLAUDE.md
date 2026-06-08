@@ -1,6 +1,6 @@
-# CLAUDE.md — Ongevag Studio Portfolio
-**Current Phase:** Post-Auditoría SDD — Consolidación de documentación (PASO 6)  
-**Last Updated:** 2026-06-05
+# CLAUDE.md — Portfolio ONGEVAG
+**Current Phase:** FEATURE-02_SEO_METATAGS — Planned  
+**Last Updated:** 2026-06-08
 
 ## Propósito
 Portfolio SPA React 19 + Vite (feature-based DDD Light) para captar clientes PyMEs.
@@ -19,12 +19,16 @@ npm run test      # Tests (Vitest + React Testing Library)
 ## Estructura
 ```
 src/
-├── components/     # UI Kit global (Button, Header, Skeleton, etc.)
-├── features/       # Módulos (hero, blog, contact, services, works, analytics)
-├── layouts/        # MainLayout, BlogLayout
-├── pages/          # Rutas: / | /blog | /blog/:slug | /proyecto/:id
-├── hooks/          # Custom hooks
-├── data/           # projects.js, blogData.js
+├── components/     # UI Kit global (Header, Footer, About, SkillsGrid, etc.)
+├── context/        # LocaleProvider, LocaleContext
+├── features/       # Módulos (hero, blog, contact, services, works)
+├── hooks/          # useLocale, useVibrate
+├── layouts/        # MainLayout, BlogLayout (wrapper mínimo)
+├── locales/        # en/ y es/ — locale files por módulo
+│   ├── en/         # common, hero, services, works, contact, about, blog
+│   └── es/         # espejo exacto de en/
+├── pages/          # Rutas: / | /en | /blog | /en/blog | /proyecto/:id
+├── data/           # projects.en.js, projects.es.js (slugs inmutables)
 └── config/         # motionConfig.js
 ```
 
@@ -34,14 +38,6 @@ VITE_EMAILJS_SERVICE_ID=...    # Email service ID
 VITE_EMAILJS_TEMPLATE_ID=...   # Email template
 VITE_EMAILJS_PUBLIC_KEY=...    # Public key (required)
 ```
-
-## Critical Files — Don't Break
-| File | Reason |
-|------|--------|
-| `src/components/ParticleBackground.jsx` | Canvas animation; NO React.lazy |
-| `vercel.json` | SPA routing rewrites (404 without it) |
-| `public/og-image.svg` | Social sharing (1200x630) |
-| `tailwind.config.js` | Custom colors (cyan, cobalt, mint) |
 
 ## Architecture: Feature-Based (DDD Light)
 - **components/** — UI Kit (Button, Header, Footer, etc.) — reusable, agnostic
@@ -58,8 +54,8 @@ VITE_EMAILJS_PUBLIC_KEY=...    # Public key (required)
 ## Module Index (SDD)
 | FEATURE | Status | Location | Owner |
 |---------|--------|----------|-------|
-| FEATURE-00_PROJECT_SETUP | ✅ Active | `docs/specs/FEATURE-00/` | — |
-| FEATURE-01_I18N_ROUTING | 🔄 In Progress | `docs/specs/FEATURE-01/` | (ADR-006..011) |
+| FEATURE-00_PROJECT_SETUP | ✅ Done | `docs/specs/FEATURE-00/` | — |
+| FEATURE-01_I18N_ROUTING | ✅ Done | `docs/specs/FEATURE-01/` | ADR-006..011 |
 | FEATURE-02_SEO_METATAGS | ⏳ Planned | `docs/specs/FEATURE-02/` | — |
 | FEATURE-03_AEO_SCHEMA | ⏳ Planned | `docs/specs/FEATURE-03/` | — |
 | FEATURE-04_HERO_ANIMATION | ✅ Active | `docs/specs/FEATURE-04/` | HeroBanner.jsx |
@@ -67,6 +63,23 @@ VITE_EMAILJS_PUBLIC_KEY=...    # Public key (required)
 
 ## ADRs Documented
 ADR-001 (Vite) | ADR-002 (JS no TS) | ADR-003 (EmailJS) | ADR-004 (Feature-based) | ADR-005 (Vitest) | ADR-006..011 (i18n)
+
+## i18n Architecture (FEATURE-01 — DONE)
+- `/` → ES por defecto (canónico) | `/en` → EN completo
+- `LocaleProvider` + `useLocale()` — nunca importar locale files directamente en componentes
+- `t` es objeto plano: acceso `t.modulo.clave` (NO función)
+- Blog EN-only: `blogData.es.js = []` — `/blog` muestra banner con link a `/en/blog`
+- Switcher ES|EN path-aware en Header — cambia TODO sin excepciones
+- Deuda: LocaleProvider como objeto plano — si se requiere `t('clave')` → refactorizar
+
+## Critical Files — Don't Break
+| File | Reason |
+|------|--------|
+| `src/components/ParticleBackground.jsx` | Canvas animation; NO React.lazy |
+| `src/context/LocaleProvider.jsx` | i18n core — cambios rompen toda la app |
+| `vercel.json` | SPA routing catch-all `/(.*) → index.html` |
+| `public/og-image.svg` | Social sharing (1200x630) |
+| `tailwind.config.js` | Custom colors (cyan, cobalt, mint) |
 
 ## Key Doc Map
 - `docs/SDD_MASTER.md` — Central index + module registry

@@ -89,4 +89,4 @@ npm run dev
 La infraestructura está definida para un despliegue continuo en **Vercel**. Cada push a `main` o `develop` dispara validaciones automáticas y construye una nueva versión inmutable.
 
 ---
-© 2026 Ongevag Studio - Built for Scalability.
+© 2026 Ongevag - Built for Scalability.
