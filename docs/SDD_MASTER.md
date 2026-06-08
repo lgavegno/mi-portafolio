@@ -80,7 +80,7 @@
 | ID | Feature | Responsabilidad | Estado | Location | Links |
 |----|---------|-----------------|--------|----------|-------|
 | **FEATURE-00** | Project Setup | Sistema overview, architecture, PRD, audit, codebase map | ✅ Active | `docs/specs/FEATURE-00/` | [spec](./specs/FEATURE-00/mod-00_overview.md) |
-| **FEATURE-01** | i18n Routing | URL-based locale (ADR-006..011), EN root, ES prefix | ⏳ Planned | `docs/specs/FEATURE-01/` | [ADRs](./adr/) |
+| **FEATURE-01** | i18n Routing | URL-based locale (ADR-006..011), ES default at `/`, EN at `/en` | ✅ Done | `docs/specs/FEATURE-01/` | [tasks](./specs/FEATURE-01_I18N_ROUTING/tasks.md) |
 | **FEATURE-02** | SEO Meta Tags | Dynamic meta tags, og:image, hreflang, canonical | ⏳ Planned | `docs/specs/FEATURE-02/` | — |
 | **FEATURE-03** | AEO Schema | Schema.org JSON-LD, structured data for AI engines | ⏳ Planned | `docs/specs/FEATURE-03/` | — |
 | **FEATURE-04** | Hero Animation | Hero banner, ParticleBackground, WireframeGeometry, design system | ✅ Active | `docs/specs/FEATURE-04/` | [design-tokens](./specs/FEATURE-04/design-tokens.md) |
@@ -159,7 +159,7 @@
 | **[ADR-004](./adr/ADR-004.md)** | Feature-based architecture (DDD Light) | ✅ Accepted | docs/adr/ |
 | **[ADR-005](./adr/ADR-005.md)** | Testing Framework: Vitest + React Testing Library | ✅ Proposed (Phase 2) | docs/adr/ |
 | **[ADR-006](./adr/ADR-006.md)** | URL-Based i18n Over Client-Side Toggle | ✅ Accepted | docs/adr/ |
-| **[ADR-007](./adr/ADR-007.md)** | English as Canonical Locale | ✅ Accepted | docs/adr/ |
+| **[ADR-007](./adr/ADR-007.md)** | Spanish as Default Canonical Locale (revised 2026-06-08) | ✅ Accepted | docs/adr/ |
 | **[ADR-010](./adr/ADR-010.md)** | No External i18n Library (plain JS) | ✅ Accepted | docs/adr/ |
 | **[ADR-011](./adr/ADR-011.md)** | URL as Single Source of Truth (Locale) | ✅ Accepted | docs/adr/ |
 
@@ -279,5 +279,5 @@ docs/
     └── SEQ-04_code_splitting.puml
 ```
 
-**Last updated:** 2026-06-05 (SDD Consolidation Phase 1)
-**Next review:** After Phase 2 (Testing + FEATURE-01 completion)
+**Last updated:** 2026-06-08 (FEATURE-01 i18n complete)
+**Next review:** After FEATURE-02 (SEO Meta Tags)
