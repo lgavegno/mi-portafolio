@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { featuredProjects } from '../data/projects';
 import { fadeInUp, staggerContainer } from '../config/motionConfig';
 import { useLocale } from '../hooks/useLocale';
@@ -28,7 +29,36 @@ const ProjectDetail = () => {
         );
     }
 
+    const truncateText = (text, maxLen) =>
+        text && text.length > maxLen ? text.slice(0, maxLen - 3) + '...' : text;
+
+    const description = project.shortDescription || project.description;
+    const pageUrl = `https://www.ongevag.com/proyecto/${project.id}`;
+    const pageUrlEs = `https://www.ongevag.com/es/proyecto/${project.id}`;
+    const fallbackImage = 'https://www.ongevag.com/og-image.png';
+    const ogImage = typeof project.image === 'string' && project.image.startsWith('http')
+        ? project.image
+        : fallbackImage;
+
     return (
+        <>
+        <Helmet>
+            <title>{project.title} — Ongevag Works</title>
+            <meta name="description" content={truncateText(description, 155)} />
+
+            <meta property="og:title" content={project.title} />
+            <meta property="og:description" content={truncateText(description, 155)} />
+            <meta property="og:image" content={ogImage} />
+            <meta property="og:url" content={pageUrl} />
+            <meta property="og:type" content="article" />
+            <meta property="og:locale" content="en_US" />
+
+            <link rel="alternate" hreflang="en" href={pageUrl} />
+            <link rel="alternate" hreflang="es" href={pageUrlEs} />
+            <link rel="alternate" hreflang="x-default" href={pageUrl} />
+
+            <link rel="canonical" href={pageUrl} />
+        </Helmet>
         <motion.main
             initial="initial"
             animate="animate"
@@ -205,6 +235,7 @@ const ProjectDetail = () => {
                 </div>
             </div>
         </motion.main>
+        </>
     );
 };
 
