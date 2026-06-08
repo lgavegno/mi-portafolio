@@ -5,6 +5,140 @@
 
 ---
 
+## 2026-06-05 — Sesión 4: Fase 2 SDD — Consolidación de Documentación
+
+**Sesión:** 4 | **Fase:** SDD Consolidation (Phase 1 continuation) | **Duración:** ~2h | **Branch:** main
+
+### Lo que se hizo
+
+**PASO 1: Crear estructura de carpetas objetivo**
+- ✅ Creadas 7 carpetas principales en `docs/specs/`
+- ✅ Creada carpeta `docs/adr/` para consolidación de ADRs
+- ✅ Estructura lista: FEATURE-00 a FEATURE-05 + _templates/
+
+**PASO 2: Mover ADRs a docs/adr/**
+- ✅ Copiados 9 ADRs desde `src/docs/adr/` → `docs/adr/`
+- ✅ ADR-001 a ADR-007, ADR-010, ADR-011
+- ✅ `src/docs/adr/` sigue existiendo (sin eliminar por restricción Fase 2)
+
+**PASO 3: Crear templates genéricos (SDD standard)**
+- ✅ Creados 3 templates en `docs/specs/_templates/`:
+  - `spec-template.md` — Especificación de features
+  - `plan-template.md` — Plan de implementación
+  - `tasks-template.md` — Desglose de tareas atómicas
+
+**PASO 4: Dejar FEATURE-01_I18N_ROUTING vacío**
+- ✅ Carpeta creada y lista para que usuario agregue spec.md + plan.md manualmente
+
+**PASO 5: Migrar archivos de src/docs/ → docs/specs/FEATURE-XX/**
+- ✅ `01-hero-engine.md` → `FEATURE-04/`
+- ✅ `02-projects-logic.md` → `FEATURE-05/projects-logic.md`
+- ✅ `03-hero-optimization.md` → `FEATURE-04/`
+- ✅ `component-tree.md` → `FEATURE-00/`
+- ✅ `design-tokens.md` → `FEATURE-04/`
+- ✅ `performance-audit.md` → `FEATURE-04/performance.md`
+- ✅ `product-requirements.md` → `FEATURE-00/prd.md`
+- ✅ `security-audit-base.md` → `FEATURE-00/audit.md`
+- ✅ `CODEBASE_CONTEXT.md` (raíz) → `FEATURE-00/codebase-context.md`
+- ✅ `docs/MOD-00_overview.md` → `FEATURE-00/mod-00_overview.md`
+- **Total: 10 archivos migrados y reorganizados**
+
+**PASO 6: Actualizar CLAUDE.md**
+- ✅ Comprimido de 250 líneas → 79 líneas (mantiene 9 campos obligatorios)
+- ✅ Agregado: `Current Phase` = "Post-Auditoría SDD — Consolidación"
+- ✅ Agregado: `Module Index` con FEATURE-00 a FEATURE-05 y status
+- ✅ Agregado: `ADRs Documented` — lista de 9 decisiones
+- ✅ Agregado: `Key Doc Map` — referencias a SDD_MASTER y UCs
+- ✅ Actualizado: Performance metrics (LCP, CLS, FID targets)
+
+**PASO 7: Actualizar docs/SDD_MASTER.md**
+- ✅ Module Registry: Cambio MOD-XX → FEATURE-XX
+- ✅ Todos los 9 ADRs ahora centralizados en `docs/adr/`
+- ✅ Phase 1 documentada: "Foundation & SDD Consolidation"
+- ✅ Agregado: Appendix con mapa visual de documentación SDD
+- ✅ Links actualizados: src/docs/ → docs/specs/FEATURE-XX/
+
+**PASO 8: Agregar entrada BITACORA_TECNICA.md (este archivo)**
+- ✅ Entrada creada con desglose de 8 pasos completados
+
+### Decisiones tomadas (con justificación)
+
+| Decisión | Rationale |
+|----------|-----------|
+| **Mantener gaps ADR-008, ADR-009** | Se documentarán en Features 002 y 003 (decisión del usuario) |
+| **Renombrar MOD-XX → FEATURE-XX** | Alineación con estándar SDD (FEATURE-based, no MODULE-based) |
+| **NO eliminar CODEBASE_CONTEXT.md** | Mover a FEATURE-00 para máxima reusabilidad (por decisión usuario) |
+| **Crear 3 templates genéricos** | Facilita creación consistente de specs/plans/tasks en futuras features |
+| **Dejar FEATURE-01 vacío** | Usuario lo completa manualmente con spec.md + plan.md |
+
+### Problemas encontrados y cómo se resolvieron
+
+| Problema | Solución | Estado |
+|----------|----------|--------|
+| No había templates en proyecto | Creados 3 templates genéricos (spec/plan/tasks) basados en SDD estándar | ✅ Resuelto |
+| Documentación muy dispersa (src/docs/ + docs/ + raíz) | Consolidada en docs/specs/FEATURE-XX/ con estructura clara | ✅ Resuelto |
+| CLAUDE.md demasiado largo (250 líneas) | Comprimido a 79 líneas manteniendo 9 campos obligatorios | ✅ Resuelto |
+| Module Registry inconsistente (MOD-XX vs FEATURE-XX) | Estandarizado a FEATURE-XX en SDD_MASTER | ✅ Resuelto |
+
+### Próximos pasos (con prioridad)
+
+| Prioridad | Tarea | Sesión | Impacto |
+|-----------|-------|--------|---------|
+| **CRÍTICA** | Usuario: Agregar spec.md + plan.md a FEATURE-01_I18N_ROUTING | Manual | Desbloquea Feature 001 implementation |
+| **CRÍTICA** | Validar que build sigue sin errores: `npm run build` | 4.5 | Verificar que no hay breakage |
+| **ALTA** | Crear MOD-01, MOD-02, etc. para features activas (si aplica) | 5+ | Documentación de módulos |
+| **ALTA** | Ejecutar primer test: `npm run test:coverage` | 5 | Medir coverage inicial |
+| **MEDIA** | Eliminar archivos legacy en `src/docs/` (opcional, cleanup) | 6+ | Evitar confusión (solo si es seguro) |
+
+### Cambios en estructura (mapeo visual)
+
+**Antes (disperso):**
+```
+src/docs/adr/          ← ADRs
+src/docs/features/     ← Documentación de features
+src/docs/specs/        ← Especificaciones
+docs/                  ← SDD_MASTER, MOD-00_overview
+raíz/                  ← CLAUDE.md, CODEBASE_CONTEXT.md
+```
+
+**Después (consolidado):**
+```
+docs/
+├── adr/                              ← 9 ADRs (fuente única)
+├── specs/
+│   ├── _templates/                   ← Blueprints reutilizables
+│   ├── FEATURE-00_PROJECT_SETUP/     ← PRD, audit, component-tree
+│   ├── FEATURE-01_I18N_ROUTING/      ← (vacío, en progreso)
+│   ├── FEATURE-02_SEO_METATAGS/      ← (vacío, planificado)
+│   ├── FEATURE-03_AEO_SCHEMA/        ← (vacío, planificado)
+│   ├── FEATURE-04_HERO_ANIMATION/    ← design-tokens, performance
+│   └── FEATURE-05_PROJECT_MGMT/      ← projects-logic
+├── use-cases/                        ← 4 UCs + 3 SEQ diagrams
+├── SDD_MASTER.md                     ← Central index (actualizado)
+└── MOD-00_overview.md                ← Legacy (dentro de FEATURE-00)
+
+raíz/
+├── CLAUDE.md                         ← Contexto AI (actualizado)
+├── BITACORA_TECNICA.md               ← Esta entrada (nuevo)
+└── CONTEXTO_PROYECTO_COMPLETO.md     ← Para onboarding (desactualizado)
+```
+
+### Verificaciones realizadas
+
+- ✅ `ls -la docs/specs/` — todas las carpetas existen
+- ✅ `ls -la docs/adr/` — 9 ADRs presentes
+- ✅ `wc -l CLAUDE.md` — 79 líneas (dentro de 120 máximo)
+- ✅ `grep "FEATURE-"` docs/SDD_MASTER.md — todos los FEATURE-XX referenciados
+- ✅ Todos los archivos copiados, ninguno eliminado (respeto restricción Fase 2)
+
+### Deuda técnica identificada (para después)
+
+1. **`src/docs/` es legacy** — Ahora es `docs/` la fuente única. Considerar eliminar src/docs/ después de validación
+2. **CONTEXTO_PROYECTO_COMPLETO.md** — Desactualizado desde 2026-05-13, debe regenerarse
+3. **Hacer FEATURE-01 spec + plan** — User la agrega, luego se incluye en próxima auditoría
+
+---
+
 ## 2026-05-13 — Sesión 3: Implementación Tests UC-01
 
 **Sesión:** 3 | **Fase:** Implementación de Tests | **Duración aprox.:** 1.5h

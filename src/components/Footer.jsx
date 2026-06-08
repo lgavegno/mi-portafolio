@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { FaGithub, FaLinkedin, FaEnvelope, FaHeart } from 'react-icons/fa'
 import { useVibrate } from '../hooks/useVibrate'
+import { useLocale } from '../hooks/useLocale'
 
 const socialLinks = [
   { href: 'https://github.com/lgavegno', icon: FaGithub, label: 'GitHub' },
@@ -16,6 +17,7 @@ const Footer = () => {
   const vibrateLight = useVibrate(5)
   const location = useLocation()
   const navigate = useNavigate()
+  const { t } = useLocale()
 
   const handleLinkClick = (e, link) => {
     vibrateLight()
@@ -47,9 +49,9 @@ const Footer = () => {
             viewport={{ once: true }}
             className="text-center max-w-2xl"
           >
-            <h3 className="text-xl font-bold text-white mb-4">Sobre mí</h3>
+            <h3 className="text-xl font-bold text-white mb-4">{t.common.footer.about}</h3>
             <p className="text-gray-400">
-              Perfil técnico-analítico en formación, enfocado en el análisis de datos y el desarrollo de soluciones prácticas mediante la programación.
+              {t.common.footer.description}
             </p>
           </motion.div>
 
@@ -99,7 +101,7 @@ const Footer = () => {
             className="text-center"
           >
             <p className="text-gray-500 text-sm">
-              © {currentYear} Leandro Gavegno — Aprendizaje continuo en tecnología y análisis
+              {t.common.footer.copyright.replace('{year}', currentYear)}
             </p>
           </motion.div>
         </div>

@@ -1,13 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FiExternalLink, FiGithub, FiFolder } from 'react-icons/fi';
-import { fadeInUp, staggerContainer, glassCard } from '../../config/motionConfig';
-import { allProjects } from '../../data/projects';
+import { fadeInUp, staggerContainer } from '../../config/motionConfig';
+import { allProjects as projectsEN } from '../../data/projects.en';
+import { allProjects as projectsES } from '../../data/projects.es';
+import { useLocale } from '../../hooks/useLocale';
 import ProjectCard from '../../components/ui/ProjectCard';
 
 const Works = () => {
-  // Proyectos adicionales para mostrar en grid
-  const displayProjects = [...allProjects];
+  const { t, locale } = useLocale();
+  const projects = locale === 'es' ? projectsES : projectsEN;
 
   return (
     <section className="w-full relative overflow-hidden bg-obsidian py-24">
@@ -28,13 +30,13 @@ const Works = () => {
           <motion.div variants={fadeInUp} className="text-center mb-16">
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-institutional/10 border border-cyan-institutional/20 text-cyan-institutional text-sm font-medium mb-6">
               <FiFolder className="w-4 h-4" />
-              Portafolio
+              {t.works.badge}
             </span>
             <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-              Proyectos de aprendizaje
+              {t.works.title}
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              Una selección de proyectos que reflejan mi aprendizaje y exploración en el análisis de datos y desarrollo de soluciones técnicas.
+              {t.works.description}
             </p>
           </motion.div>
 
@@ -43,7 +45,7 @@ const Works = () => {
             variants={fadeInUp}
             className="grid grid-cols-1 md:grid-cols-2 gap-6"
           >
-            {displayProjects.map((project, index) => (
+            {projects.map((project, index) => (
               <ProjectCard
                 key={project.id}
                 id={project.id}
@@ -83,7 +85,7 @@ const Works = () => {
               "
             >
               <FiGithub className="w-5 h-5" />
-              Ver más proyectos en GitHub
+              {t.works.cta.github}
               <FiExternalLink className="w-4 h-4" />
             </motion.a>
           </motion.div>

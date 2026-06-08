@@ -3,41 +3,30 @@ import { motion } from 'framer-motion';
 import { FiLayout, FiTool, FiCpu, FiMonitor, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { fadeInUp, staggerContainer, glassCard } from '../../config/motionConfig';
 import { useVibrate } from '../../hooks/useVibrate';
+import { useLocale } from '../../hooks/useLocale';
 import './Services3DCarousel.css';
 
 const Services = () => {
+  const { t } = useLocale();
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef(null);
   const autoRotateInterval = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
   const vibrateLight = useVibrate(5);
 
-  const services = [
-    {
-      title: "Sitios web y presencia digital",
-      description: "Sitios web funcionales con código limpio y documentado. Cada proyecto tiene su especificación técnica, decisiones registradas y un proceso de desarrollo ordenado.",
-      icon: FiMonitor,
-      gradient: "from-cyan-400 to-cyan-600"
-    },
-    {
-      title: "Tiendas online",
-      description: "Configuración y puesta en marcha de tiendas en plataformas como Tienda Nube. Dominio propio, pasarela de pago y fichas de producto optimizadas.",
-      icon: FiLayout,
-      gradient: "from-cobalt-500 to-cobalt-600"
-    },
-    {
-      title: "Herramientas digitales simples",
-      description: "Formularios, planillas automatizadas y pequeñas aplicaciones para ordenar la información de tu negocio.",
-      icon: FiCpu,
-      gradient: "from-mint-400 to-mint-500"
-    },
-    {
-      title: "Automatización con IA",
-      description: "Uso herramientas de inteligencia artificial para automatizar tareas repetitivas y sacar más provecho de la información que ya tenés.",
-      icon: FiTool,
-      gradient: "from-amber-400 to-orange-500"
-    }
+  const iconArray = [FiMonitor, FiLayout, FiCpu, FiTool];
+  const gradientArray = [
+    "from-cyan-400 to-cyan-600",
+    "from-cobalt-500 to-cobalt-600",
+    "from-mint-400 to-mint-500",
+    "from-amber-400 to-orange-500"
   ];
+
+  const services = t.services.services.map((service, index) => ({
+    ...service,
+    icon: iconArray[index],
+    gradient: gradientArray[index]
+  }));
 
   // Auto-rotate functionality
   useEffect(() => {
@@ -103,13 +92,13 @@ const Services = () => {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cobalt-500/10 border border-cobalt-400/20 text-cobalt-300 text-sm font-medium mb-6"
           >
             <FiMonitor className="w-4 h-4" />
-            Qué hago
+            {t.services.badge}
           </motion.span>
           <motion.h2
             variants={fadeInUp}
             className="text-4xl sm:text-5xl font-bold text-white"
           >
-            ¿En qué puedo ayudarte?
+            {t.services.title}
           </motion.h2>
         </motion.div>
 
@@ -159,7 +148,7 @@ const Services = () => {
             whileTap={{ scale: 0.9 }}
             className="carousel-nav prev glass touch-manipulation select-none"
             onClick={handlePrev}
-            aria-label="Anterior"
+            aria-label={t.services.carousel.prev}
           >
             <FiChevronLeft className="w-6 h-6" />
           </motion.button>
@@ -168,7 +157,7 @@ const Services = () => {
             whileTap={{ scale: 0.9 }}
             className="carousel-nav next glass touch-manipulation select-none"
             onClick={handleNext}
-            aria-label="Siguiente"
+            aria-label={t.services.carousel.next}
           >
             <FiChevronRight className="w-6 h-6" />
           </motion.button>
@@ -189,7 +178,7 @@ const Services = () => {
                   : 'bg-white/20 hover:bg-white/40 active:bg-white/60'
                 }
               `}
-              aria-label={`Ir al servicio ${index + 1}`}
+              aria-label={`${t.services.carousel.serviceIndicator} ${index + 1}`}
             />
           ))}
         </div>

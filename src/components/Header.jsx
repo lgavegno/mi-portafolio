@@ -4,21 +4,23 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { useVibrate } from '../hooks/useVibrate';
-
-const navLinks = [
-  { label: 'Inicio', id: 'inicio' },
-  { label: 'Sobre Mí', id: 'sobre-mi' },
-  { label: 'Proyectos', id: 'proyectos' },
-  { label: 'Qué hago', id: 'que-hago' },
-  { label: 'Blog', id: 'blog' },
-
-];
+import { useLocale } from '../hooks/useLocale';
+import LangSwitcher from './ui/LangSwitcher';
 
 const Header = ({ isOpen, setIsOpen }) => {
   // const [isOpen, setIsOpen] = useState(false); // Managed by parent
   const [scrolled, setScrolled] = useState(false);
   const vibrate = useVibrate(10);
   const location = useLocation();
+  const { t } = useLocale();
+
+  const navLinks = [
+    { label: t.common.nav.inicio,   id: 'inicio'    },
+    { label: t.common.nav.about,    id: 'sobre-mi'  },
+    { label: t.common.nav.projects, id: 'proyectos' },
+    { label: t.common.nav.services, id: 'que-hago'  },
+    { label: t.common.nav.blog,     id: 'blog'      },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -132,6 +134,8 @@ const Header = ({ isOpen, setIsOpen }) => {
               </Link>
             ))}
 
+            <LangSwitcher />
+
             {/* CTA Button */}
             <Link
               to="/"
@@ -153,7 +157,7 @@ const Header = ({ isOpen, setIsOpen }) => {
                   e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(0, 255, 255, 0.3)';
                 }}
               >
-                Contacto
+                {t.common.nav.contact}
               </motion.div>
             </Link>
           </div>
@@ -201,6 +205,15 @@ const Header = ({ isOpen, setIsOpen }) => {
                   </Link>
                 ))}
 
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: navLinks.length * 0.05 }}
+                  className="px-4 py-3"
+                >
+                  <LangSwitcher />
+                </motion.div>
+
                 <Link
                   to="/"
                   state={{ scrollTo: 'contacto' }}
@@ -214,7 +227,7 @@ const Header = ({ isOpen, setIsOpen }) => {
                     className="px-4 py-3 rounded-xl text-center text-black font-semibold touch-manipulation cursor-pointer"
                     style={{ background: 'linear-gradient(to right, rgb(0, 255, 255), rgba(0, 255, 255, 0.9))' }}
                   >
-                    Hablemos
+                    {t.common.nav.contactMobile}
                   </motion.div>
                 </Link>
               </div>
