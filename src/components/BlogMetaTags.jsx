@@ -1,6 +1,9 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
+const truncateText = (text, maxLen) =>
+  text && text.length > maxLen ? text.slice(0, maxLen - 3) + '...' : text;
+
 const BlogMetaTags = ({
   title,
   description,
@@ -9,34 +12,41 @@ const BlogMetaTags = ({
   publishDate,
   author = 'Leandro Gavegno'
 }) => {
-  const baseUrl = 'https://ongevag.vercel.app';
-  const canonicalUrl = `${baseUrl}/blog/${slug}`;
-  const fullImageUrl = imageUrl?.startsWith('http') ? imageUrl : `${baseUrl}${imageUrl}`;
+  const baseUrl = 'https://www.ongevag.com';
+  const canonicalUrl = `${baseUrl}/en/blog/${slug}`;
+  const fallbackImage = `${baseUrl}/og-image.png`;
+  const fullImageUrl = imageUrl?.startsWith('http') ? imageUrl : fallbackImage;
+  const truncatedDescription = truncateText(description, 155);
 
   return (
     <Helmet>
-      {/* Basic Meta Tags */}
-      <meta name="description" content={description} />
+      <title>{title} — Ongevag Blog</title>
+      <meta name="description" content={truncatedDescription} />
       <meta name="author" content={author} />
       <meta name="robots" content="index, follow" />
       <link rel="canonical" href={canonicalUrl} />
 
-      {/* Open Graph Tags */}
+      {/* Open Graph Dynamic */}
       <meta property="og:type" content="article" />
       <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
+      <meta property="og:description" content={truncatedDescription} />
       <meta property="og:image" content={fullImageUrl} />
       <meta property="og:image:alt" content={title} />
       <meta property="og:url" content={canonicalUrl} />
+      <meta property="og:locale" content="en_US" />
       <meta property="og:site_name" content="Ongevag" />
 
-      {/* Twitter Card Tags */}
+      {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
+      <meta name="twitter:description" content={truncatedDescription} />
       <meta name="twitter:image" content={fullImageUrl} />
 
-      {/* Article-Specific Meta Tags */}
+      {/* hreflang Bidireccional */}
+      <link rel="alternate" hreflang="en" href={canonicalUrl} />
+      <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+
+      {/* Article-Specific */}
       {publishDate && (
         <>
           <meta property="article:published_time" content={publishDate} />
@@ -44,21 +54,15 @@ const BlogMetaTags = ({
         </>
       )}
 
-      {/* Page Title */}
-      <title>{title} | Ongevag</title>
-
       {/* Schema.org JSON-LD */}
       <script type="application/ld+json">
         {JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'BlogPosting',
           headline: title,
-          description: description,
+          description: truncatedDescription,
           image: fullImageUrl,
-          author: {
-            '@type': 'Person',
-            name: author
-          },
+          author: { '@type': 'Person', name: author },
           datePublished: publishDate,
           url: canonicalUrl
         })}
