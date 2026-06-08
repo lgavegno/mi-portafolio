@@ -6,6 +6,10 @@ import { render, screen, fireEvent, waitFor, within } from '@testing-library/rea
 import userEvent from '@testing-library/user-event'
 import Contact from '../Contact'
 import emailjs from '@emailjs/browser'
+import { LocaleProvider } from '../../../context/LocaleProvider'
+
+const renderWithLocale = (ui, locale = 'es') =>
+  render(<LocaleProvider locale={locale}>{ui}</LocaleProvider>)
 
 // Mock EmailJS
 vi.mock('@emailjs/browser')
@@ -29,7 +33,7 @@ describe('Contact Form Component', () => {
 
   describe('Rendering', () => {
     it('should render contact form with all fields', () => {
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       expect(screen.getByLabelText(/nombre/i)).toBeInTheDocument()
       expect(screen.getByLabelText(/email/i)).toBeInTheDocument()
@@ -38,7 +42,7 @@ describe('Contact Form Component', () => {
     })
 
     it('should render with correct input types and attributes', () => {
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       const nameInput = screen.getByLabelText(/nombre/i)
       const emailInput = screen.getByLabelText(/email/i)
@@ -52,7 +56,7 @@ describe('Contact Form Component', () => {
     })
 
     it('should render with correct placeholder text', () => {
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       expect(screen.getByPlaceholderText(/tu nombre/i)).toBeInTheDocument()
       expect(screen.getByPlaceholderText(/tu@email.com/i)).toBeInTheDocument()
@@ -60,7 +64,7 @@ describe('Contact Form Component', () => {
     })
 
     it('should have labels properly associated with inputs', () => {
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       const nameInput = screen.getByLabelText(/nombre/i)
       const emailInput = screen.getByLabelText(/email/i)
@@ -75,7 +79,7 @@ describe('Contact Form Component', () => {
   describe('Form Input Handling', () => {
     it('should update form data when user types in name field', async () => {
       const user = userEvent.setup()
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       const nameInput = screen.getByLabelText(/nombre/i)
       await user.type(nameInput, 'Juan García')
@@ -85,7 +89,7 @@ describe('Contact Form Component', () => {
 
     it('should update form data when user types in email field', async () => {
       const user = userEvent.setup()
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       const emailInput = screen.getByLabelText(/email/i)
       await user.type(emailInput, 'juan@example.com')
@@ -95,7 +99,7 @@ describe('Contact Form Component', () => {
 
     it('should update form data when user types in message field', async () => {
       const user = userEvent.setup()
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       const messageInput = screen.getByLabelText(/mensaje/i)
       await user.type(messageInput, 'Quiero contratar tus servicios')
@@ -105,7 +109,7 @@ describe('Contact Form Component', () => {
 
     it('should clear error when user starts typing after validation error', async () => {
       const user = userEvent.setup()
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       const emailInput = screen.getByLabelText(/email/i)
       const submitButton = screen.getByRole('button', { name: /enviar/i })
@@ -127,7 +131,7 @@ describe('Contact Form Component', () => {
   describe('Form Validation - Happy Path', () => {
     it('should submit form with valid data', async () => {
       const user = userEvent.setup()
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       const nameInput = screen.getByLabelText(/nombre/i)
       const emailInput = screen.getByLabelText(/email/i)
@@ -150,7 +154,7 @@ describe('Contact Form Component', () => {
 
     it('should call emailjs.send with correct parameters', async () => {
       const user = userEvent.setup()
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       const nameInput = screen.getByLabelText(/nombre/i)
       const emailInput = screen.getByLabelText(/email/i)
@@ -185,7 +189,7 @@ describe('Contact Form Component', () => {
       const user = userEvent.setup()
       emailjs.send.mockImplementation(() => new Promise(resolve => setTimeout(resolve, 1000)))
 
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       const nameInput = screen.getByLabelText(/nombre/i)
       const emailInput = screen.getByLabelText(/email/i)
@@ -203,7 +207,7 @@ describe('Contact Form Component', () => {
 
     it('should clear form after successful submission', async () => {
       const user = userEvent.setup()
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       const nameInput = screen.getByLabelText(/nombre/i)
       const emailInput = screen.getByLabelText(/email/i)
@@ -231,7 +235,7 @@ describe('Contact Form Component', () => {
   describe('Form Validation - Errors', () => {
     it('should show error when submitting with empty name', async () => {
       const user = userEvent.setup()
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       const emailInput = screen.getByLabelText(/email/i)
       const messageInput = screen.getByLabelText(/mensaje/i)
@@ -249,7 +253,7 @@ describe('Contact Form Component', () => {
 
     it('should show error when submitting with invalid email', async () => {
       const user = userEvent.setup()
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       const nameInput = screen.getByLabelText(/nombre/i)
       const emailInput = screen.getByLabelText(/email/i)
@@ -269,7 +273,7 @@ describe('Contact Form Component', () => {
 
     it('should show error when submitting with empty message', async () => {
       const user = userEvent.setup()
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       const nameInput = screen.getByLabelText(/nombre/i)
       const emailInput = screen.getByLabelText(/email/i)
@@ -289,7 +293,7 @@ describe('Contact Form Component', () => {
       const user = userEvent.setup()
       emailjs.send.mockRejectedValue(new Error('Network error'))
 
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       const nameInput = screen.getByLabelText(/nombre/i)
       const emailInput = screen.getByLabelText(/email/i)
@@ -308,7 +312,7 @@ describe('Contact Form Component', () => {
 
     it('should prevent multiple submissions (anti-spam)', async () => {
       const user = userEvent.setup()
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       const nameInput = screen.getByLabelText(/nombre/i)
       const emailInput = screen.getByLabelText(/email/i)
@@ -334,7 +338,7 @@ describe('Contact Form Component', () => {
   describe('UI States', () => {
     it('should show success message with success icon', async () => {
       const user = userEvent.setup()
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       const nameInput = screen.getByLabelText(/nombre/i)
       const emailInput = screen.getByLabelText(/email/i)
@@ -354,7 +358,7 @@ describe('Contact Form Component', () => {
 
     it('should show error message with error icon', async () => {
       const user = userEvent.setup()
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       const submitButton = screen.getByRole('button', { name: /enviar/i })
       await user.click(submitButton)
@@ -368,7 +372,7 @@ describe('Contact Form Component', () => {
       const user = userEvent.setup()
       emailjs.send.mockImplementation(() => new Promise(resolve => setTimeout(resolve, 500)))
 
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       const nameInput = screen.getByLabelText(/nombre/i)
       const emailInput = screen.getByLabelText(/email/i)
@@ -389,7 +393,7 @@ describe('Contact Form Component', () => {
 
     it('should update button text to "¡Enviado!" on success', async () => {
       const user = userEvent.setup()
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       const nameInput = screen.getByLabelText(/nombre/i)
       const emailInput = screen.getByLabelText(/email/i)
@@ -409,14 +413,14 @@ describe('Contact Form Component', () => {
 
   describe('Accessibility', () => {
     it('should have proper semantic HTML structure', () => {
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       // Should have form element
       expect(screen.getByRole('form', { hidden: true }) || screen.getByRole('button')).toBeInTheDocument()
     })
 
     it('should have proper labels for all inputs', () => {
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       expect(screen.getByLabelText(/nombre/i)).toBeInTheDocument()
       expect(screen.getByLabelText(/email/i)).toBeInTheDocument()
@@ -424,7 +428,7 @@ describe('Contact Form Component', () => {
     })
 
     it('should have required attribute on inputs', () => {
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       expect(screen.getByLabelText(/nombre/i)).toHaveAttribute('required')
       expect(screen.getByLabelText(/email/i)).toHaveAttribute('required')
@@ -433,7 +437,7 @@ describe('Contact Form Component', () => {
 
     it('should be keyboard navigable', async () => {
       const user = userEvent.setup()
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       const nameInput = screen.getByLabelText(/nombre/i)
       const emailInput = screen.getByLabelText(/email/i)
@@ -456,14 +460,14 @@ describe('Contact Form Component', () => {
   describe('Performance', () => {
     it('should render within reasonable time', () => {
       const startTime = performance.now()
-      render(<Contact />)
+      renderWithLocale(<Contact />)
       const endTime = performance.now()
 
       expect(endTime - startTime).toBeLessThan(1000) // Should render in < 1 second
     })
 
     it('should not have memory leaks on unmount', () => {
-      const { unmount } = render(<Contact />)
+      const { unmount } = render(<LocaleProvider locale="es"><Contact /></LocaleProvider>)
       expect(() => unmount()).not.toThrow()
     })
   })
@@ -471,7 +475,7 @@ describe('Contact Form Component', () => {
   describe('Edge Cases', () => {
     it('should handle form with whitespace-only inputs', async () => {
       const user = userEvent.setup()
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       const nameInput = screen.getByLabelText(/nombre/i)
       const submitButton = screen.getByRole('button', { name: /enviar/i })
@@ -486,7 +490,7 @@ describe('Contact Form Component', () => {
 
     it('should handle unicode characters in input', async () => {
       const user = userEvent.setup()
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       const nameInput = screen.getByLabelText(/nombre/i)
       const emailInput = screen.getByLabelText(/email/i)
@@ -505,7 +509,7 @@ describe('Contact Form Component', () => {
 
     it('should handle very long input values', async () => {
       const user = userEvent.setup()
-      render(<Contact />)
+      renderWithLocale(<Contact />)
 
       const nameInput = screen.getByLabelText(/nombre/i)
       const messageInput = screen.getByLabelText(/mensaje/i)
