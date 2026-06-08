@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FiCalendar, FiClock, FiArrowRight } from 'react-icons/fi';
+import { useLocale } from '../../../hooks/useLocale';
 
 export const CategoryFilter = ({ categories, selectedCategory, onSelectCategory }) => {
     return (
@@ -22,8 +23,8 @@ export const CategoryFilter = ({ categories, selectedCategory, onSelectCategory 
 };
 
 export const FeaturedPost = ({ post }) => {
+    const { t } = useLocale();
     if (!post) return null;
-
     return (
         <div className="lg:col-span-8 group cursor-pointer">
             <Link to={`/blog/${post.slug}`}>
@@ -36,7 +37,7 @@ export const FeaturedPost = ({ post }) => {
                     <div className="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent flex items-end p-8">
                         <div>
                             <span className="bg-primary px-3 py-1 rounded text-xs font-bold text-white mb-4 inline-block uppercase tracking-wider">
-                                Featured Post
+                                {t.blog.featuredLabel}
                             </span>
                             <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight">
                                 {post.title}
@@ -49,7 +50,7 @@ export const FeaturedPost = ({ post }) => {
                         <FiCalendar className="text-base" /> {post.date}
                     </span>
                     <span className="flex items-center gap-1">
-                        <FiClock className="text-base" /> {post.readTime} min read
+                        <FiClock className="text-base" /> {post.readTime} {t.blog.minRead}
                     </span>
                 </div>
                 <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
@@ -61,7 +62,7 @@ export const FeaturedPost = ({ post }) => {
                     ))}
                 </div>
                 <span className="inline-flex items-center gap-2 text-primary font-bold hover:underline decoration-2 underline-offset-4">
-                    Read Full Story <FiArrowRight />
+                    {t.blog.readFullStory} <FiArrowRight />
                 </span>
             </Link>
         </div>
@@ -69,24 +70,25 @@ export const FeaturedPost = ({ post }) => {
 };
 
 export const Sidebar = () => {
+    const { t } = useLocale();
     return (
         <aside className="lg:col-span-4 space-y-12">
             <div className="p-8 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                <h3 className="text-xl font-bold mb-4">¿Querés estar al tanto?</h3>
+                <h3 className="text-xl font-bold mb-4">{t.blog.sidebar.title}</h3>
                 <p className="text-slate-600 dark:text-slate-400 text-sm mb-6">
-                    Escribime y te aviso cuando publique contenido nuevo.
+                    {t.blog.sidebar.description}
                 </p>
                 <a
                     href="/#contacto"
                     className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold py-2 rounded-lg transition-colors"
                 >
-                    Contactarme →
+                    {t.blog.sidebar.cta}
                 </a>
             </div>
             <div>
                 <h3 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6 flex items-center gap-2">
                     <span className="w-8 h-[1px] bg-slate-300 dark:bg-slate-700"></span>
-                    Lo más leído
+                    {t.blog.sidebar.mostRead}
                 </h3>
                 <div className="space-y-6">
                     {/* Dummy data for now as per template */}
@@ -118,10 +120,11 @@ export const Sidebar = () => {
 };
 
 export const PostGrid = ({ posts }) => {
+    const { t } = useLocale();
     return (
         <section className="mb-12">
             <div className="flex justify-between items-center mb-8">
-                <h2 className="text-2xl font-bold">Últimas Publicaciones</h2>
+                <h2 className="text-2xl font-bold">{t.blog.postGrid.heading}</h2>
                 <div className="h-[1px] flex-grow mx-8 bg-slate-200 dark:bg-slate-800"></div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -144,7 +147,7 @@ export const PostGrid = ({ posts }) => {
                                 <div className="flex items-center gap-2 mb-2 text-xs text-slate-500">
                                     <span>{post.date}</span>
                                     <span>•</span>
-                                    <span>{post.readTime} min read</span>
+                                    <span>{post.readTime} {t.blog.minRead}</span>
                                 </div>
                                 <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors leading-tight">
                                     {post.title}

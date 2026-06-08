@@ -6,9 +6,11 @@ import DOMPurify from 'dompurify';
 import { blogPosts } from '../features/blog/data/blogData';
 import ShareButton from '../components/ui/ShareButton';
 import BlogMetaTags from '../components/BlogMetaTags';
+import { useLocale } from '../hooks/useLocale';
 
 const BlogPostDetail = () => {
     const { slug } = useParams();
+    const { t } = useLocale();
     const post = blogPosts.find(p => p.slug === slug);
     const relatedPosts = blogPosts.filter(p => p.slug !== slug).slice(0, 3);
 
@@ -25,9 +27,9 @@ const BlogPostDetail = () => {
     if (!post) {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center text-white">
-                <h2 className="text-2xl font-bold mb-4">Artículo no encontrado</h2>
+                <h2 className="text-2xl font-bold mb-4">{t.blog.detail.notFound}</h2>
                 <Link to="/blog" className="text-primary hover:text-blue-400 flex items-center gap-2">
-                    <FiArrowLeft /> Volver al Blog
+                    <FiArrowLeft /> {t.blog.detail.backToBlog}
                 </Link>
             </div>
         );
@@ -62,7 +64,7 @@ const BlogPostDetail = () => {
                     className="inline-flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors mb-8 group font-medium"
                 >
                     <FiArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-                    Volver al Blog
+                    {t.blog.detail.backToBlog}
                 </Link>
 
                 <header className="max-w-4xl mx-auto md:mx-0 text-center md:text-left">
@@ -74,7 +76,7 @@ const BlogPostDetail = () => {
                             <FiCalendar /> {post.date}
                         </span>
                         <span className="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-sm">
-                            <FiClock /> {post.readTime} min de lectura
+                            <FiClock /> {post.readTime} {t.blog.detail.minRead}
                         </span>
                     </div>
 
@@ -152,19 +154,16 @@ const BlogPostDetail = () => {
                     <div className="mt-16 p-8 rounded-2xl bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 border border-slate-200 dark:border-slate-700">
                         <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                             <MdLightbulb className="text-primary text-2xl" />
-                            Flujo de Trabajo Sugerido
+                            {t.blog.detail.workflowTitle}
                         </h3>
                         <ol className="list-decimal list-inside space-y-3 text-slate-600 dark:text-slate-300">
-                            <li>Analiza los requisitos primero.</li>
-                            <li>Diseña la solución en papel o pizarra.</li>
-                            <li>Implementa el MVP (Producto Mínimo Viable).</li>
-                            <li>Itera basándote en feedback real.</li>
+                            {t.blog.detail.workflowSteps.map((step, i) => <li key={i}>{step}</li>)}
                         </ol>
                     </div>
 
                     {/* Footer Post */}
                     <div className="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800">
-                        <h4 className="font-bold text-slate-900 dark:text-white mb-4">Etiquetas</h4>
+                        <h4 className="font-bold text-slate-900 dark:text-white mb-4">{t.blog.detail.tags}</h4>
                         <div className="flex flex-wrap gap-2">
                             {post.tags.map(tag => (
                                 <span key={tag} className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-sm rounded-full">
@@ -177,7 +176,7 @@ const BlogPostDetail = () => {
                     {/* Share en mobile — visible solo en mobile */}
                     <div className="flex lg:hidden items-center justify-between pt-6 mt-6 border-t border-slate-700">
                         <span className="text-sm text-slate-400 font-medium">
-                            ¿Te fue útil? Compartilo
+                            {t.blog.detail.sharePrompt}
                         </span>
                         <ShareButton
                             url={`https://www.ongevag.com/blog/${post.slug}`}
@@ -191,20 +190,20 @@ const BlogPostDetail = () => {
                 <aside className="lg:col-span-3 space-y-8 text-center md:text-left">
                     {/* Contact CTA */}
                     <div className="p-6 rounded-2xl bg-slate-900 text-white shadow-xl">
-                        <h3 className="font-bold text-lg mb-2">¿Querés estar al tanto?</h3>
-                        <p className="text-slate-400 text-sm mb-4">Escribime y te aviso cuando publique contenido nuevo.</p>
+                        <h3 className="font-bold text-lg mb-2">{t.blog.detail.contactTitle}</h3>
+                        <p className="text-slate-400 text-sm mb-4">{t.blog.detail.contactDescription}</p>
                         <a
                             href="/#contacto"
                             className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-blue-600 transition-colors font-bold py-2 rounded-lg text-sm text-white"
                         >
-                            Contactarme →
+                            {t.blog.detail.contactCta}
                         </a>
                     </div>
 
                     {/* Recommended Articles */}
                     <div>
                         <h3 className="font-bold text-slate-900 dark:text-white text-sm uppercase tracking-wider mb-6">
-                            Recomendados
+                            {t.blog.detail.recommended}
                         </h3>
                         <div className="space-y-6">
                             {relatedPosts.map(p => (
