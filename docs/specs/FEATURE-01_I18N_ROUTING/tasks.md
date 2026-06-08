@@ -262,19 +262,15 @@ npm run lint
 - Pendiente del plan original promovido a T-09:
   "Agregar banner en /es/blog cuando blogData.es.js está vacío" (spec.md Edge Cases)
 
-### T-09 — Blog i18n + Layout Refactor ⏳ PLANNED
-- Origen: ítem pendiente de T-08 + hallazgos diagnóstico /es/blog
-- Decisión de arquitectura: BlogLayout.jsx se reemplaza por MainLayout del
-  portfolio (Header + Footer existentes). Elimina deuda: localStorage de tema,
-  logo "DEVLOG" placeholder, footer duplicado con strings ES hardcodeados.
-- Scope completo:
-  - [ ] Reemplazar BlogLayout.jsx por layout basado en Header/Footer del portfolio
-  - [ ] BlogIndex.jsx — agregar useLocale() + locale-aware import de blogData
-  - [ ] BlogIndex.jsx — early return con banner EN-only cuando locale === 'es'
-  - [ ] BlogComponents.jsx — migrar strings hardcodeados (Sidebar, PostGrid, FeaturedPost)
-  - [ ] Crear src/locales/en/blog.js y src/locales/es/blog.js
-  - [ ] Registrar módulo blog en LocaleProvider
-- Estrategia blogData.es.js: array vacío permanente — blog es EN-only.
-  /es/blog muestra banner con link a /blog. No traducir posts (contenido, no ingeniería).
-- Referencia spec: FR-009, FR-005, Edge Cases → "Blog posts without ES equivalent"
-- Prerequisito: blogData.en.js y blogData.es.js ya existen (T-03 ✅)
+### T-09 — Blog i18n + Layout Refactor ✅ DONE
+- Commits: d84b74e, d24628c
+- Archivos creados: src/locales/en/blog.js, src/locales/es/blog.js
+- Módulo blog registrado en LocaleProvider
+- BlogIndex.jsx: locale-aware import (blogData.en.js / blogData.es.js),
+  early return con banner EN-only cuando locale === 'es' && blogPosts.length === 0
+- BlogComponents.jsx: FeaturedPost, Sidebar, PostGrid migrados a t.blog.*
+- BlogLayout.jsx: reemplazado por wrapper mínimo — eliminados nav, footer,
+  localStorage, theme toggle (107 líneas → 12 líneas)
+- BlogPostDetail.jsx: 13 strings migrados a t.blog.detail.*
+- Deuda técnica: BlogPostDetail importa blogData.js monolítico (no locale-aware)
+  Blog es EN-only — aceptado por decisión de spec.
