@@ -5,7 +5,9 @@ import { FiBookOpen, FiArrowRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { fadeInUp, staggerContainer } from '../../../config/motionConfig';
 import BlogCard from './BlogCard';
-import { blogPosts } from '../data/blogData';
+import { useLocale } from '../../../hooks/useLocale';
+import { blogPosts as blogPostsEs } from '../data/blogData.es';
+import { blogPosts as blogPostsEn } from '../data/blogData.en';
 
 const BlogPreview = ({
   limit = 3,
@@ -13,7 +15,8 @@ const BlogPreview = ({
   showHeader = true,
   className = ''
 }) => {
-  const posts = blogPosts.slice(0, limit);
+  const { locale, t } = useLocale();
+  const posts = (locale === 'en' ? blogPostsEn : blogPostsEs).slice(0, limit);
 
   if (variant === 'compact') {
     return (
@@ -31,13 +34,13 @@ const BlogPreview = ({
           >
             <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider flex items-center gap-2">
               <FiBookOpen className="w-4 h-4" />
-              Últimos artículos
+              {t.blog.preview.latestArticles}
             </h3>
             <Link
-              to="/blog"
+              to={locale === 'en' ? '/en/blog' : '/blog'}
               className="text-xs text-cyan-institutional hover:text-cyan-institutional/80 flex items-center gap-1"
             >
-              Ver todos
+              {t.blog.preview.seeAll}
               <FiArrowRight className="w-3 h-3" />
             </Link>
           </motion.div>
@@ -76,11 +79,11 @@ const BlogPreview = ({
                 Blog
               </span>
               <h2 className="text-3xl font-bold text-white">
-                Últimos artículos
+                {t.blog.preview.latestArticles}
               </h2>
             </div>
             <Link
-              to="/blog"
+              to={locale === 'en' ? '/en/blog' : '/blog'}
               className="
                 hidden sm:flex items-center gap-2
                 px-5 py-2.5 rounded-xl
@@ -90,7 +93,7 @@ const BlogPreview = ({
                 transition-colors
               "
             >
-              Ver todos
+              {t.blog.preview.seeAll}
               <FiArrowRight className="w-4 h-4" />
             </Link>
           </motion.div>
@@ -130,10 +133,10 @@ const BlogPreview = ({
             Blog
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Compartiendo conocimiento
+            {t.blog.preview.heading}
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Artículos técnicos sobre desarrollo, arquitectura y optimización de sistemas.
+            {t.blog.preview.subheading}
           </p>
         </motion.div>
       )}
@@ -157,7 +160,7 @@ const BlogPreview = ({
         className="text-center mt-12"
       >
         <Link
-          to="/blog"
+          to={locale === 'en' ? '/en/blog' : '/blog'}
           className="
             inline-flex items-center gap-3
             px-8 py-4 rounded-xl
@@ -169,7 +172,7 @@ const BlogPreview = ({
           "
         >
           <FiBookOpen className="w-5 h-5" />
-          Ver todos los artículos
+          {t.blog.preview.seeAllArticles}
           <FiArrowRight className="w-4 h-4" />
         </Link>
       </motion.div>

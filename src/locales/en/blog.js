@@ -38,4 +38,12 @@ export default {
     contactDescription: 'Message me and I\'ll let you know when I publish new content.',
     contactCta: 'Contact me →',
   },
+  preview: {
+    badge: 'Blog',
+    latestArticles: 'Latest Articles',
+    seeAll: 'See All',
+    seeAllArticles: 'See All Articles',
+    heading: 'Sharing Knowledge',
+    subheading: 'Technical articles on development, architecture and systems optimization.',
+  },
 };
