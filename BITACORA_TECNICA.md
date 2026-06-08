@@ -301,3 +301,10 @@ raíz/
 - La deuda técnica (tests) no es negligencia, es deuda deliberada; es **HOY** cuando se liquida.
 - Recomendación: Después de implementar tests para UC-01, revisar code coverage y ajustar targets.
 - Git: No olvidar agregar `/coverage/` a `.gitignore` y commitear `.env.example` mejorado.
+
+## FEATURE-02: SEO Meta Tags (2026-06-08)
+- Sitemap manual reemplazado por scripts/generate-sitemap.js (auto en build)
+- Dominio canónico: https://www.ongevag.com (eliminado ongevag.vercel.app)
+- 27 URLs generadas: home EN/ES, blog EN/ES, posts ×6, proyectos ×5 EN/ES
+- IDs de proyectos hardcodeados en script — actualizar al agregar proyectos
+- Deuda técnica original (sitemap manual): RESUELTA en sprint
