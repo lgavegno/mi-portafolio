@@ -13,11 +13,21 @@
 | T-01 | ADR Documentation | ✅ Completo — commiteado |
 | T-02 | Locale Files UI Strings | ✅ Completo — commiteado (c9aa944) |
 | T-03 | Locale-Keyed Data Files | ✅ Completo — commiteado |
-| T-04 | LocaleContext + useLocale Hook | ⏳ Pendiente |
-| T-05 | App.jsx Route Refactor | ⏳ Pendiente |
-| T-06 | vercel.json Rewrite Rules | ⏳ Pendiente |
-| T-07 | LangSwitcher Component | ⏳ Pendiente |
-| T-08 | Feature Component Migration | ⏳ Pendiente |
+| T-04 | LocaleContext + useLocale Hook | ✅ Completo |
+| T-05 | App.jsx Route Refactor | ✅ Completo |
+| T-06 | vercel.json Rewrite Rules | ✅ Completo |
+| T-07 | LangSwitcher Component | ✅ Completo — commiteado |
+| T-08 | Feature Component Migration | ✅ Completo — commiteado |
+| T-09 | Blog i18n + Layout Refactor | ✅ Completo — commiteado |
+
+Pendiente verificación en Vercel preview (CA-001 a CA-005, CA-007, CA-008):
+- CA-001: curl / → <html lang="en"> + English title
+- CA-002: /es renderiza en español
+- CA-003: slugs inmutables
+- CA-004: no localStorage post-switch
+- CA-005: F5 en /es/* → no 404 en Vercel
+- CA-007: LangSwitcher path-awareness todas las rutas
+- CA-008: npm run test — useLocale() unit test
 
 ---
 
