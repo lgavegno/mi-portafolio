@@ -284,3 +284,32 @@ npm run lint
 - BlogPostDetail.jsx: 13 strings migrados a t.blog.detail.*
 - Deuda técnica: BlogPostDetail importa blogData.js monolítico (no locale-aware)
   Blog es EN-only — aceptado por decisión de spec.
+
+### fix/blog-locale-strings — Post-merge fixes ✅ DONE
+- Branch: fix/blog-locale-strings → develop → main
+- Commits: 29b2064, 6f3d9ff, e03043a, 49f3d2d, 74736d3, 32f1944
+- Motivo: bugs detectados post-merge + decisión de cambio de locale default
+
+#### Cambios arquitectónicos:
+- ADR-007 revisado: ES como locale canónico en `/` (antes EN)
+- App.jsx: `/es` → `/en` como ruta alternativa
+- LangSwitcher: lógica invertida — ES activo por defecto, EN en `/en/*`
+- vercel.json: sin cambios (catch-all ya cubre `/en/*`)
+
+#### Componentes migrados (no cubiertos en T-08/T-09):
+- BlogPreview.jsx → t.blog.preview.* + locale-aware import blogData
+- ProjectDetail.jsx → t.works.project.* (9 strings)
+- SkillsGrid.jsx → t.works.techStackSection
+
+#### Imports corregidos:
+- BlogPostDetail.jsx: blogData → blogData.es
+- blog/index.js: blogData → blogData.es
+
+#### Locale keys agregadas:
+- es/blog.js + en/blog.js: sección preview (7 keys)
+- es/works.js + en/works.js: sección project (9 keys) + techStackSection
+
+#### Estado final verificado:
+- grep ES strings → solo comentarios JSX (no texto visible)
+- npm run test → 57 pass (14 Contact pre-existentes failing)
+- main mergeado ✅ — Vercel deploy activo
