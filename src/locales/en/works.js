@@ -5,4 +5,16 @@ export default {
   cta: {
     github: 'View More Projects on GitHub',
   },
+  project: {
+    notFound: 'Project not found',
+    goBack: 'Go back',
+    back: 'Back',
+    imageUnavailable: 'Image not available',
+    methodology: 'Applied Methodology',
+    results: 'Results & Impact',
+    techStack: 'Tech Stack',
+    viewGithub: 'View on GitHub',
+    viewNotion: 'Notion Documentation',
+  },
+  techStackSection: 'Tech Stack',
 };

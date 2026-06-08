@@ -3,10 +3,12 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { featuredProjects } from '../data/projects';
 import { fadeInUp, staggerContainer } from '../config/motionConfig';
+import { useLocale } from '../hooks/useLocale';
 
 const ProjectDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
+    const { t } = useLocale();
 
     const project = featuredProjects.find((p) => p.id === id);
 
@@ -14,12 +16,12 @@ const ProjectDetail = () => {
         return (
             <div className="min-h-screen flex items-center justify-center bg-obsidian text-white">
                 <div className="text-center">
-                    <h2 className="text-4xl font-bold mb-4">Proyecto no encontrado</h2>
+                    <h2 className="text-4xl font-bold mb-4">{t.works.project.notFound}</h2>
                     <button
                         onClick={() => navigate(-1)}
                         className="text-cyan-institutional hover:underline"
                     >
-                        Volver atrás
+                        {t.works.project.goBack}
                     </button>
                 </div>
             </div>
@@ -41,7 +43,7 @@ const ProjectDetail = () => {
                     <svg className="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
-                    Volver
+                    {t.works.project.back}
                 </motion.button>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -59,7 +61,7 @@ const ProjectDetail = () => {
                                 />
                             ) : (
                                 <div className="w-full h-full flex items-center justify-center bg-white/5 text-gray-500">
-                                    <span className="text-lg">Imagen no disponible</span>
+                                    <span className="text-lg">{t.works.project.imageUnavailable}</span>
                                 </div>
                             )}
                             <div className="absolute inset-0 bg-gradient-to-t from-obsidian/60 to-transparent" />
@@ -83,7 +85,7 @@ const ProjectDetail = () => {
                             <motion.section variants={fadeInUp} className="space-y-6">
                                 <h2 className="text-2xl font-bold text-cyan-institutional uppercase tracking-[0.2em] flex items-center gap-3">
                                     <span className="w-2.5 h-2.5 bg-cyan-institutional rounded-full" />
-                                    Metodología aplicada
+                                    {t.works.project.methodology}
                                 </h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                     {project.methodology.map((item, index) => (
@@ -103,7 +105,7 @@ const ProjectDetail = () => {
                             <motion.section variants={fadeInUp} className="space-y-6">
                                 <h2 className="text-2xl font-bold text-mint-400 uppercase tracking-[0.2em] flex items-center gap-3">
                                     <span className="w-2.5 h-2.5 bg-mint-400 rounded-full" />
-                                    Resultados & Impacto
+                                    {t.works.project.results}
                                 </h2>
                                 <div className="space-y-6">
                                     {project.results.map((result, index) => (
@@ -154,7 +156,7 @@ const ProjectDetail = () => {
                                 <svg className="w-6 h-6 text-cyan-institutional" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
                                 </svg>
-                                Stack Tecnológico
+                                {t.works.project.techStack}
                             </h3>
                             <div className="flex flex-wrap gap-3">
                                 {project.stack.map((tech) => (
@@ -175,7 +177,7 @@ const ProjectDetail = () => {
                                         rel="noopener noreferrer"
                                         className="flex items-center justify-center gap-2 w-full py-4 rounded-xl bg-cyan-institutional text-black text-base font-bold hover:bg-cyan-institutional/80 transition-all hover:scale-[1.02] active:scale-[0.98]"
                                     >
-                                        Ver en GitHub
+                                        {t.works.project.viewGithub}
                                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                                         </svg>
@@ -191,7 +193,7 @@ const ProjectDetail = () => {
                                         rel="noopener noreferrer"
                                         className="flex items-center justify-center gap-2 w-full py-4 rounded-xl bg-white/10 text-white text-base font-bold border border-white/20 hover:bg-white/20 transition-all hover:scale-[1.02] active:scale-[0.98]"
                                     >
-                                        Documentación en Notion
+                                        {t.works.project.viewNotion}
                                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5S19.832 5.477 21 6.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                                         </svg>

@@ -18,7 +18,7 @@ The portfolio currently serves a single language (Spanish) with no URL-based loc
 
 This feature establishes the routing and data architecture that every subsequent feature (SEO tags, AEO schema, LangSwitcher UI) depends on.
 
-**Business constraint:** English is the canonical language and default route (`/`). Spanish is the secondary locale (`/es`). This is not a toggle — it is a structural routing decision with SEO consequences.
+**Business constraint:** Spanish is the canonical language and default route (`/`). English is the secondary locale (`/en`). This is not a toggle — it is a structural routing decision with SEO consequences.
 
 ---
 

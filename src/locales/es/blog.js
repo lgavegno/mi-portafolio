@@ -38,4 +38,12 @@ export default {
     contactDescription: 'Escribime y te aviso cuando publique contenido nuevo.',
     contactCta: 'Contactarme →',
   },
+  preview: {
+    badge: 'Blog',
+    latestArticles: 'Últimos artículos',
+    seeAll: 'Ver todos',
+    seeAllArticles: 'Ver todos los artículos',
+    heading: 'Compartiendo conocimiento',
+    subheading: 'Artículos técnicos sobre desarrollo, arquitectura y optimización de sistemas.',
+  },
 };

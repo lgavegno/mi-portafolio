@@ -68,7 +68,7 @@ const HomeSections = () => (
 
 const LocaleLayout = () => {
   const location = useLocation();
-  const locale = location.pathname.startsWith('/es') ? 'es' : 'en';
+  const locale = location.pathname.startsWith('/en') ? 'en' : 'es';
 
   return (
     <LocaleProvider locale={locale}>
@@ -109,7 +109,7 @@ function App() {
                 </Route>
               </Route>
 
-              <Route path="/es" element={<MainLayout />}>
+              <Route path="/en" element={<MainLayout />}>
                 <Route index element={<HomeSections />} />
                 <Route path="proyecto/:id" element={<ProjectDetail />} />
                 <Route path="blog" element={<BlogLayout />}>
