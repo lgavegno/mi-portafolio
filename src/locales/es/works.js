@@ -16,4 +16,5 @@ export default {
     viewGithub: 'Ver en GitHub',
     viewNotion: 'Documentación en Notion',
   },
+  techStackSection: 'Stack Tecnológico',
 };

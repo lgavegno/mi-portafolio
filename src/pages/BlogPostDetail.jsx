@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { FiArrowLeft, FiClock, FiCalendar, FiHeart } from 'react-icons/fi';
 import { MdLightbulb } from 'react-icons/md';
 import DOMPurify from 'dompurify';
-import { blogPosts } from '../features/blog/data/blogData';
+import { blogPosts } from '../features/blog/data/blogData.es';
 import ShareButton from '../components/ui/ShareButton';
 import BlogMetaTags from '../components/BlogMetaTags';
 import { useLocale } from '../hooks/useLocale';

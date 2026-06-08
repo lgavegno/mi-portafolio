@@ -9,6 +9,7 @@ import {
 } from 'react-icons/fa';
 import { DiSqllite } from 'react-icons/di';
 import { fadeInUp, staggerContainer, springConfig } from '../config/motionConfig';
+import { useLocale } from '../hooks/useLocale';
 
 // Lista de tecnologías con sus iconos y colores
 // Orden solicitado: React, SQL, Java, Python, PowerBI, 365
@@ -97,6 +98,7 @@ const SkillCard = ({ skill, index }) => {
 
 // Componente principal
 const SkillsGrid = ({ className = '' }) => {
+    const { t } = useLocale();
     return (
         <section className={`w-full relative overflow-hidden py-24 md:py-32 lg:py-40 ${className}`}>
             {/* Background effects */}
@@ -126,7 +128,7 @@ const SkillsGrid = ({ className = '' }) => {
                             Tecnologías
                         </span>
                         <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-                            Stack Tecnológico
+                            {t.works.techStackSection}
                         </h2>
                         <p className="text-gray-400 text-lg max-w-2xl mx-auto">
                             Herramientas y tecnologías con las que trabajo para crear soluciones modernas y eficientes
