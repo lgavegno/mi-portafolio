@@ -3,6 +3,14 @@
 Historial de cambios del proyecto Ongevag Portfolio. Formato: [Keep a Changelog](https://keepachangelog.com).
 
 ---
+## [Unreleased] — 2026-06-08
+
+### Added
+- Blog ES: 6 posts traducidos al español en `blogData.es.js` (slugs inmutables)
+
+### Changed
+- ProjectCard: animación de entrada izquierda/derecha alternada por index (Framer Motion)
+- Works: grid wrapper cambiado de `motion.div` a `div` estático para stagger correcto
 
 ## [2.4.2] — Abril 2026
 

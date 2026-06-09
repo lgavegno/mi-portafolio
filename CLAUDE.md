@@ -1,6 +1,6 @@
 # CLAUDE.md — Portfolio ONGEVAG
 **Current Phase:** FEATURE-02_SEO_METATAGS — Planned  
-**Last Updated:** 2026-06-08
+**Last Updated:** 2026-06-08 (Blog ES completo, ProjectCard stagger animation)
 
 ## Propósito
 Portfolio SPA React 19 + Vite (feature-based DDD Light) para captar clientes PyMEs.

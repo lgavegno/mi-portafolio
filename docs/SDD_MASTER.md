@@ -87,6 +87,7 @@
 | **FEATURE-05** | Project Mgmt | Projects data schema, categories, assets, Works component | ✅ Active | `docs/specs/FEATURE-05/` | [projects-logic](./specs/FEATURE-05/projects-logic.md) |
 | **UI Kit** | Components | Button, Header, Footer, Skeleton (shared globals) | ✅ Done | `src/components/` | [src](../src/components/) |
 | **Config** | Config | Framer Motion variants, animation presets, tokens | ✅ Done | `src/config/` | [motionConfig](../src/config/motionConfig.js) |
+| **FEATURE-01** | i18n Routing | ... | ✅ Done + Blog ES completo | ...
 
 ---
 
@@ -281,3 +282,4 @@ docs/
 
 **Last updated:** 2026-06-08 (FEATURE-01 i18n complete)
 **Next review:** After FEATURE-02 (SEO Meta Tags)
+

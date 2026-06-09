@@ -5,6 +5,44 @@
 
 ---
 
+## Sesión — 2026-06-08
+
+### Estado inicial
+FEATURE-01 i18n completa. Blog ES vacío. ProjectCard sin animación de entrada.
+
+### Decisiones
+
+**DEC-XXX: Animación izquierda/derecha en ProjectCard**
+Motivo: efecto visual de entrada más dinámico que fade-up genérico.
+Implementación: `initial={{ x: index % 2 === 0 ? -60 : 60 }}` + `whileInView`.
+Se eliminó `variants={glassCard}` para evitar conflicto con initial inline.
+`whileHover/whileTap` pasaron de strings nombrados a objetos inline.
+
+**DEC-XXX: Blog ES con contenido real**
+Motivo: ADR-007 establece ES como canónico — blog vacío contradecía esa decisión.
+Acción: traducción de 6 posts EN → ES, slugs inmutables, estructura idéntica.
+
+### Problemas encontrados
+
+**PROB-XXX: staggerContainer anidado no propagaba animación**
+Causa: dos `staggerContainer` anidados — el interno arrancaba con `opacity: 0`
+y nunca propagaba el estado visible a los hijos.
+Resolución: grid wrapper cambiado a `div` estático. Stagger manual por `index * 0.15`.
+
+**PROB-XXX: whileHover/whileTap como strings sin variants**
+Causa: al sacar `variants={glassCard}`, los strings `"hover"` y `"tap"` 
+no resolvían a nada — Framer Motion lanzaba advertencia silenciosa.
+Resolución: reemplazados por objetos inline `{ y: -8, scale: 1.02 }` y `{ scale: 0.98 }`.
+
+### Ramas
+- `feature/card-stagger-animation` → mergeada a develop → main
+- `feature/blog-es-content` → mergeada a develop → main
+
+### Estado al cierre
+- Animación izquierda/derecha funcionando en ProjectCard
+- Blog ES con 6 posts en producción
+- `/blog` muestra contenido en español, `/en/blog` en inglés
+
 ## 2026-06-05 — Sesión 4: Fase 2 SDD — Consolidación de Documentación
 
 **Sesión:** 4 | **Fase:** SDD Consolidation (Phase 1 continuation) | **Duración:** ~2h | **Branch:** main
