@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { glassCard, springConfig } from '../../config/motionConfig';
+import { springConfig } from '../../config/motionConfig';
 import { useVibrate } from '../../hooks/useVibrate';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 import ProgressBar from './ProgressBar';
@@ -42,6 +42,11 @@ const ProjectCard = ({
 
   const currentStatus = statusConfig[status] || statusConfig['in-progress'];
 
+  const safeIndex = typeof index === 'number' ? index : 0;
+  const safeTransition = prefersReducedMotion
+    ? { duration: 0 }
+    : { type: 'spring', stiffness: 60, damping: 18, delay: safeIndex * 0.12 };
+
   const handleClick = () => {
     vibrate();
     if (link) {
@@ -53,13 +58,12 @@ const ProjectCard = ({
 
   return (
     <motion.article
-      variants={glassCard}
-      initial="hidden"
-      whileInView="visible"
-      whileHover={prefersReducedMotion ? {} : "hover"}
-      whileTap={prefersReducedMotion ? {} : "tap"}
+      initial={{ opacity: 0, x: safeIndex % 2 === 0 ? -60 : 60 }}
+      whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ delay: index * 0.1 }}
+      transition={safeTransition}
+      whileHover={prefersReducedMotion ? {} : { y: -8, scale: 1.02 }}
+      whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
       onClick={handleClick}
       className={`
         group relative cursor-pointer
