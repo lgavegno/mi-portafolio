@@ -29,7 +29,6 @@ const SkillCard = ({ skill, index }) => {
     return (
         <motion.div
             variants={fadeInUp}
-            custom={index}
             whileHover={{
                 y: -8,
                 scale: 1.05,
@@ -137,7 +136,7 @@ const SkillsGrid = ({ className = '' }) => {
 
                     {/* Skills Grid */}
                     <motion.div
-                        variants={fadeInUp}
+                        variants={staggerContainer}
                         className="
               grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6
               gap-6 md:gap-6 lg:gap-4

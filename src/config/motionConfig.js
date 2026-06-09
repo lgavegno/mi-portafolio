@@ -4,7 +4,7 @@ export const springConfig = {
   gentle: { type: "spring", stiffness: 120, damping: 18 },
   snappy: { type: "spring", stiffness: 280, damping: 25 },
   bouncy: { type: "spring", stiffness: 400, damping: 12 },
-  smooth: { type: "spring", stiffness: 80, damping: 20, mass: 0.5 },
+  smooth: { type: "spring", stiffness: 60, damping: 22, mass: 1.2 }, // Reducida rigidez y aumentada masa para mayor suavidad
 };
 
 export const durationConfig = {
@@ -20,7 +20,7 @@ export const fadeInUp = {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: springConfig.snappy
+    transition: springConfig.smooth // Cambiado de snappy a smooth para una entrada más lenta
   },
   exit: {
     opacity: 0,
@@ -42,8 +42,8 @@ export const staggerContainer = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.07,
-      delayChildren: 0.05,
+      staggerChildren: 0.25, // Aumentado de 0.12 a 0.25 para espaciar más la aparición de cada caja (250ms)
+      delayChildren: 0.1, // Breve espera antes de iniciar la secuencia
     }
   },
   exit: {
