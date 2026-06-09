@@ -25,6 +25,12 @@ const ProjectCard = ({
   const prefersReducedMotion = useReducedMotion();
   const navigate = useNavigate();
 
+  const safeIndex = Number.isFinite(Number(index)) ? Number(index) : 0;
+  const safeTransition = {
+    delay: safeIndex * 0.15,
+    ...(springConfig?.snappy ?? { type: 'spring', stiffness: 280, damping: 25 }),
+  };
+
   const statusConfig = {
     'in-progress': {
       label: 'En desarrollo',
@@ -53,13 +59,12 @@ const ProjectCard = ({
 
   return (
     <motion.article
-      variants={glassCard}
-      initial="hidden"
-      whileInView="visible"
-      whileHover={prefersReducedMotion ? {} : "hover"}
-      whileTap={prefersReducedMotion ? {} : "tap"}
+      initial={{ opacity: 0, x: safeIndex % 2 === 0 ? -60 : 60 }}
+      whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ delay: index * 0.1 }}
+      transition={safeTransition}
+      whileHover={prefersReducedMotion ? {} : { y: -8, scale: 1.02 }}
+      whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
       onClick={handleClick}
       className={`
         group relative cursor-pointer
