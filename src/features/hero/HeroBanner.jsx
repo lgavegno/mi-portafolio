@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FiLayers, FiMail } from 'react-icons/fi';
+import { FiLayers } from 'react-icons/fi';
 import { fadeInUp, staggerContainer } from '../../config/motionConfig';
 import { useLocale } from '../../hooks/useLocale';
 
@@ -13,15 +13,16 @@ import ParticleBackground from '../../components/ParticleBackground';
 // Lazy loading del componente pesado 3D
 const WireframeGeometry = React.lazy(() => import('../../components/WireframeGeometry'));
 
+const buttonVariants = {
+  hover: { scale: 1.03, transition: { duration: 0.2 } },
+  tap: { scale: 0.97 },
+};
+
 const HeroBanner = () => {
   const { t } = useLocale();
 
   const scrollToProjects = () => {
     document.getElementById('proyectos')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const scrollToContact = () => {
-    document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -138,14 +139,18 @@ const HeroBanner = () => {
                       {t.hero.cta.projects}
                     </button>
 
-                    {/* Secondary Button - Contactar */}
-                    <button
-                      onClick={scrollToContact}
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-slate-300 text-sm font-medium border border-white/10 hover:border-cyan-400/40 hover:text-cyan-400 transition-all duration-200 bg-transparent"
+                    {/* Secondary Button - Cotizar */}
+                    <motion.a
+                      href="https://lgavegno.github.io/generador-presupuestos/presupuestador/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      variants={buttonVariants}
+                      whileHover="hover"
+                      whileTap="tap"
+                      className="px-6 py-3 rounded-xl font-semibold text-sm bg-slate-100 text-slate-950 hover:bg-white hover:scale-[1.02] shadow-lg shadow-black/20 transition-all duration-300 flex items-center justify-center"
                     >
-                      <FiMail />
-                      {t.hero.cta.contact}
-                    </button>
+                      Cotizar Sitio Online
+                    </motion.a>
                   </motion.div>
 
                   {/* Stats */}
