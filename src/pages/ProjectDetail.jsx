@@ -1,6 +1,5 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { featuredProjects } from '../data/projects';
 import { fadeInUp, staggerContainer } from '../config/motionConfig';

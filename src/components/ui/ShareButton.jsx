@@ -1,6 +1,6 @@
 // src/components/ui/ShareButton.jsx
 import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { FiShare2, FiMail, FiCopy, FiCheck, FiLinkedin } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
 
@@ -86,7 +86,7 @@ const ShareButton = ({
                         url: url
                     });
                     setIsOpen(false);
-                } catch (err) {
+                } catch {
                     // Usuario canceló o error
 
                 }

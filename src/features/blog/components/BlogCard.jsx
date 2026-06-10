@@ -2,7 +2,6 @@
 // Card de artículo de blog con glassmorphism - ONGEVAG Identity
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FiClock, FiArrowRight, FiCalendar } from 'react-icons/fi';
 import { useVibrate } from '../../../hooks/useVibrate';
@@ -15,7 +14,6 @@ const BlogCard = ({
   date,
   slug,
   image,
-  index = 0,
   variant = 'default' // 'default' | 'compact' | 'featured'
 }) => {
   const vibrate = useVibrate(10);

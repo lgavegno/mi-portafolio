@@ -1,7 +1,6 @@
 // src/layouts/MainLayout.jsx
 import React, { useEffect } from 'react'
 import { useLocation, Outlet } from 'react-router-dom'
-import { motion } from 'framer-motion'
 import { Header, Footer } from '../components'
 import PageTransition from '../components/ui/PageTransition'
 import BackToTop from '../components/ui/BackToTop'

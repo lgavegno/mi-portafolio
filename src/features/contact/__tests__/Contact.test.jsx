@@ -1,8 +1,8 @@
 // src/features/contact/__tests__/Contact.test.jsx
 // Integration tests for Contact Form component
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import { render, screen, fireEvent, waitFor, within } from '@testing-library/react'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Contact from '../Contact'
 import emailjs from '@emailjs/browser'

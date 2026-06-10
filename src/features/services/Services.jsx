@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
 import { FiLayout, FiTool, FiCpu, FiMonitor, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import { fadeInUp, staggerContainer, glassCard } from '../../config/motionConfig';
+import { fadeInUp, staggerContainer } from '../../config/motionConfig';
 import { useVibrate } from '../../hooks/useVibrate';
 import { useLocale } from '../../hooks/useLocale';
 import './Services3DCarousel.css';

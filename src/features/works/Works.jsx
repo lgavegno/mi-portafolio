@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { FiExternalLink, FiGithub, FiFolder } from 'react-icons/fi';
 import { fadeInUp, staggerContainer } from '../../config/motionConfig';
 import { allProjects as projectsEN } from '../../data/projects.en';

@@ -1,5 +1,4 @@
 // src/components/SkillsGrid.jsx
-import { motion } from 'framer-motion';
 import {
     FaReact,
     FaPython,
@@ -23,7 +22,7 @@ const skills = [
 ];
 
 // Componente de tarjeta individual
-const SkillCard = ({ skill, index }) => {
+const SkillCard = ({ skill }) => {
     const Icon = skill.icon;
 
     return (
