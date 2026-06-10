@@ -2,7 +2,6 @@
 // Barra de progreso animada con Framer Motion
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { progressBar } from '../../config/motionConfig';
 
 const ProgressBar = ({

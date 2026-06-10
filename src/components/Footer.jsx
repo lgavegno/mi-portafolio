@@ -1,6 +1,5 @@
 // src/components/Footer.jsx
 import React from 'react'
-import { motion } from 'framer-motion'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { FaGithub, FaLinkedin, FaEnvelope, FaHeart } from 'react-icons/fa'
 import { useVibrate } from '../hooks/useVibrate'

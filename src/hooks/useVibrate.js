@@ -26,7 +26,7 @@ export const useVibrate = (pattern = 10) => {
     if (supportsVibration() && isTouchDevice()) {
       try {
         navigator.vibrate(pattern);
-      } catch (e) {
+      } catch {
         // Silently fail on browsers that block vibration
       }
     }

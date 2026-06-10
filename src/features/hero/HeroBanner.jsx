@@ -2,7 +2,6 @@
 // ONGEVAG Hero Banner - Institutional Fintech Design
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { FiLayers } from 'react-icons/fi';
 import { fadeInUp, staggerContainer } from '../../config/motionConfig';
 import { useLocale } from '../../hooks/useLocale';
@@ -24,6 +23,10 @@ const HeroBanner = () => {
 
   const scrollToProjects = () => {
     document.getElementById('proyectos')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const scrollToContact = () => {
+    document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (

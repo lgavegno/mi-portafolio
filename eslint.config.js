@@ -39,4 +39,18 @@ export default [
       },
     },
   },
+  // Test files need Vitest globals
+  {
+    files: ['src/**/__tests__/**/*.{js,jsx}', 'src/**/*.test.{js,jsx}', 'src/**/*.spec.{js,jsx}'],
+    languageOptions: {
+      globals: {
+        global: true,
+        beforeAll: true,
+        afterAll: true,
+        afterEach: true,
+        process: true,
+        expect: true,
+      },
+    },
+  },
 ]

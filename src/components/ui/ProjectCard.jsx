@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { springConfig } from '../../config/motionConfig';
 import { useVibrate } from '../../hooks/useVibrate';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
@@ -16,7 +15,6 @@ const ProjectCard = ({
   status = 'in-progress',
   image,
   link,
-  linkLabel,
   highlights = [], // Nueva prop añadida
   className = '',
   index = 0
