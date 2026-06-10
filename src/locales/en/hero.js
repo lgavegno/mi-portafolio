@@ -4,7 +4,7 @@ export default {
   description: 'I build digital tools for small businesses.',
   cta: {
     projects: 'View Projects',
-    contact: 'Get in Touch',
+    contact: 'Contact Me',
   },
   stats: {
     projectsCount: '4+',

@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FiLayers, FiMail } from 'react-icons/fi';
+import { FiLayers } from 'react-icons/fi';
 import { fadeInUp, staggerContainer } from '../../config/motionConfig';
 import { useLocale } from '../../hooks/useLocale';
 
@@ -12,6 +12,12 @@ import ParticleBackground from '../../components/ParticleBackground';
 
 // Lazy loading del componente pesado 3D
 const WireframeGeometry = React.lazy(() => import('../../components/WireframeGeometry'));
+
+const buttonVariants = {
+  idle: { scale: 1 },
+  hover: { scale: 1.05 },
+  tap: { scale: 0.97 },
+};
 
 const HeroBanner = () => {
   const { t } = useLocale();
@@ -139,13 +145,16 @@ const HeroBanner = () => {
                     </button>
 
                     {/* Secondary Button - Contactar */}
-                    <button
+                    <motion.button
                       onClick={scrollToContact}
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-slate-300 text-sm font-medium border border-white/10 hover:border-cyan-400/40 hover:text-cyan-400 transition-all duration-200 bg-transparent"
+                      variants={buttonVariants}
+                      initial="idle"
+                      whileHover="hover"
+                      whileTap="tap"
+                      className="px-8 py-4 rounded-full font-semibold text-white border border-white/20 hover:border-white/40 hover:bg-white/5 transition-colors duration-300"
                     >
-                      <FiMail />
                       {t.hero.cta.contact}
-                    </button>
+                    </motion.button>
                   </motion.div>
 
                   {/* Stats */}
