@@ -26,6 +26,10 @@ const HeroBanner = () => {
     document.getElementById('proyectos')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const scrollToContact = () => {
+    document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section
       id="inicio"
