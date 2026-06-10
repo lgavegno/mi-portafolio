@@ -4,16 +4,15 @@ import { Analytics } from '@vercel/analytics/react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Routes, Route, Outlet, useLocation } from 'react-router-dom'
 import MainLayout from './layouts/MainLayout'
-import BlogLayout from './layouts/BlogLayout'
 import { LocaleProvider } from './context/LocaleProvider'
 import { SkeletonPage } from './components/ui/Skeleton'
 import { pageTransition } from './config/motionConfig'
-import BlogPostDetail from './pages/BlogPostDetail'
-import BlogIndex from './pages/BlogIndex'
-import ProjectDetail from './pages/ProjectDetail'
-
 import HeroBanner from './features/hero/HeroBanner'
 const About = lazy(() => import('./components/About'))
+const BlogLayout = lazy(() => import('./layouts/BlogLayout'))
+const BlogIndex = lazy(() => import('./pages/BlogIndex'))
+const BlogPostDetail = lazy(() => import('./pages/BlogPostDetail'))
+const ProjectDetail = lazy(() => import('./pages/ProjectDetail'))
 const Services = lazy(() => import('./features/services/Services'))
 const Works = lazy(() => import('./features/works/Works'))
 const BlogPreview = lazy(() => import('./features/blog/components/BlogPreview'))
@@ -79,20 +78,6 @@ const LocaleLayout = () => {
 
 function App() {
   const location = useLocation();
-
-  React.useEffect(() => {
-    const prefetchBlog = async () => {
-      try {
-        await import('./pages/BlogIndex');
-        await import('./layouts/BlogLayout');
-      } catch (error) {
-        // Silent fail
-      }
-    };
-
-    const timer = setTimeout(prefetchBlog, 3000);
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <>
