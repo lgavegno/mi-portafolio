@@ -1,5 +1,6 @@
 // src/features/blog/components/BlogPreview.jsx
 import React from 'react';
+import { motion } from 'framer-motion';
 import { FiBookOpen, FiArrowRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { fadeInUp, staggerContainer } from '../../../config/motionConfig';

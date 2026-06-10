@@ -2,6 +2,7 @@
 // ONGEVAG Hero Banner - Institutional Fintech Design
 
 import React from 'react';
+import { motion } from 'framer-motion';
 import { FiLayers } from 'react-icons/fi';
 import { fadeInUp, staggerContainer } from '../../config/motionConfig';
 import { useLocale } from '../../hooks/useLocale';

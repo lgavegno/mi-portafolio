@@ -1,6 +1,6 @@
 // src/components/ui/ShareButton.jsx
 import { useState, useRef, useEffect } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FiShare2, FiMail, FiCopy, FiCheck, FiLinkedin } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
 

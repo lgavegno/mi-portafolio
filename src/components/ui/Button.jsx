@@ -2,6 +2,7 @@
 // Componente Button con micro-interacciones de dopamina
 
 import React from 'react';
+import { motion } from 'framer-motion';
 import { useVibrate } from '../../hooks/useVibrate';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 import { buttonVariants, springConfig } from '../../config/motionConfig';

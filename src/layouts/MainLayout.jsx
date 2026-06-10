@@ -1,9 +1,11 @@
 // src/layouts/MainLayout.jsx
+import { motion } from 'framer-motion';
 import React, { useEffect } from 'react'
 import { useLocation, Outlet } from 'react-router-dom'
 import { Header, Footer } from '../components'
 import PageTransition from '../components/ui/PageTransition'
 import BackToTop from '../components/ui/BackToTop'
+
 
 const MainLayout = () => {
   const location = useLocation();

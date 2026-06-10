@@ -8,6 +8,7 @@ import {
 } from 'react-icons/fa';
 import { DiSqllite } from 'react-icons/di';
 import { fadeInUp, staggerContainer, springConfig } from '../config/motionConfig';
+import { motion } from 'framer-motion';
 import { useLocale } from '../hooks/useLocale';
 
 // Lista de tecnologías con sus iconos y colores

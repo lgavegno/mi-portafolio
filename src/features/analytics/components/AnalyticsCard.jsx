@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { motion } from 'framer-motion';
 import { fadeInUp } from '../../../config/motionConfig';
 
 const AnalyticsCard = ({ title, children, className = '' }) => {

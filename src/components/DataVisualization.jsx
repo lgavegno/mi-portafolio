@@ -2,6 +2,7 @@
 // Abstract data network visualization for ONGEVAG brand
 
 import React, { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 
 const DataVisualization = () => {
     const canvasRef = useRef(null);

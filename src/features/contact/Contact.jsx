@@ -1,6 +1,6 @@
 // src/features/contact/Contact.jsx
 import React, { useState } from 'react'
-import { AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { FiSend, FiMail, FiUser, FiMessageSquare, FiCheck, FiAlertCircle, FiBriefcase, FiClock } from 'react-icons/fi'
 import emailjs from '@emailjs/browser'
 import { fadeInUp, staggerContainer } from '../../config/motionConfig'

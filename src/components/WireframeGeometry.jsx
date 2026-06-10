@@ -2,6 +2,7 @@
 // 3D Wireframe geometric figure with rotation and mouse interaction
 
 import React, { useRef, useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 const WireframeGeometry = () => {
     const containerRef = useRef(null);

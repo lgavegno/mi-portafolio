@@ -2,6 +2,7 @@
 // Componentes Skeleton para loading states
 
 import React from 'react';
+import { motion } from 'framer-motion';
 import { skeletonPulse } from '../../config/motionConfig';
 
 // Skeleton base con animación de pulso
