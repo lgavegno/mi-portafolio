@@ -14,7 +14,8 @@ import ParticleBackground from '../../components/ParticleBackground';
 const WireframeGeometry = React.lazy(() => import('../../components/WireframeGeometry'));
 
 const buttonVariants = {
-  hover: { scale: 1.03, transition: { duration: 0.2 } },
+  idle: { scale: 1 },
+  hover: { scale: 1.05 },
   tap: { scale: 0.97 },
 };
 
@@ -139,18 +140,17 @@ const HeroBanner = () => {
                       {t.hero.cta.projects}
                     </button>
 
-                    {/* Secondary Button - Cotizar */}
-                    <motion.a
-                      href="https://lgavegno.github.io/generador-presupuestos/presupuestador/"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    {/* Secondary Button - Contactar */}
+                    <motion.button
+                      onClick={scrollToContact}
                       variants={buttonVariants}
+                      initial="idle"
                       whileHover="hover"
                       whileTap="tap"
-                      className="px-6 py-3 rounded-xl font-semibold text-sm bg-slate-100 text-slate-950 hover:bg-white hover:scale-[1.02] shadow-lg shadow-black/20 transition-all duration-300 flex items-center justify-center"
+                      className="px-8 py-4 rounded-full font-semibold text-white border border-white/20 hover:border-white/40 hover:bg-white/5 transition-colors duration-300"
                     >
-                      Cotizar Sitio Online
-                    </motion.a>
+                      {t.hero.cta.contact}
+                    </motion.button>
                   </motion.div>
 
                   {/* Stats */}
