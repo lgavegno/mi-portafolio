@@ -3,6 +3,29 @@
 Historial de cambios del proyecto Ongevag Portfolio. Formato: [Keep a Changelog](https://keepachangelog.com).
 
 ---
+## [Unreleased] — 2026-06-09
+
+### Added
+- Blog ES: 6 posts traducidos al español en `blogData.es.js` (slugs inmutables)
+- SkillsGrid: animación stagger izquierda→derecha con Framer Motion
+- ESLint: regla `jsx-uses-vars` para reconocer `motion.` como uso válido
+- ESLint: globals de vitest configurados para archivos de test
+- vitest.config.js: fix `__dirname` en contexto ESM con `fileURLToPath`
+
+### Changed
+- ProjectCard: animación entrada izquierda/derecha alternada por index
+- Works: grid wrapper de `motion.div` a `div` estático para stagger correcto
+- App.jsx: 4 imports estáticos → lazy() — bundle 363KB→233KB (-35%)
+- motionConfig.js: staggerChildren 0.07 → 0.05 (más fluido)
+- Hero CTA secundario: restaurado a scroll interno `#contacto` con i18n EN/ES
+- react-router-dom: 7.11.0 → 7.17.0 (patch 9 CVEs)
+- dompurify: 3.3.3 → 3.4.8 (patch 4 CVEs XSS/Prototype Pollution)
+
+### Fixed
+- motion import faltante en 22 archivos JSX (ReferenceError en producción)
+- scrollToContact no definida en HeroBanner (ReferenceError en producción)
+- Imports duplicados de framer-motion consolidados en 5 archivos
+
 ## [Unreleased] — 2026-06-08
 
 ### Added

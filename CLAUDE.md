@@ -1,12 +1,12 @@
 # CLAUDE.md — Portfolio ONGEVAG
-**Current Phase:** FEATURE-02_SEO_METATAGS — Planned  
-**Last Updated:** 2026-06-08 (Blog ES completo, ProjectCard stagger animation)
+**Current Phase:** FEATURE-03_AEO_SCHEMA — In Progress  
+**Last Updated:** 2026-06-09
 
 ## Propósito
 Portfolio SPA React 19 + Vite (feature-based DDD Light) para captar clientes PyMEs.
 
 ## Stack
-React 19.1.0 | Vite 6.3.5 | Tailwind 3.3.0 | Framer Motion 12.23.12 | React Router 7.11.0 | EmailJS 4.4.1
+React 19.1.0 | Vite 6.3.5 | Tailwind 3.3.0 | Framer Motion 12.23.12 | React Router 7.17.0 | EmailJS 4.4.1 | DOMPurify 3.4.8
 
 ## Comandos
 ```bash
@@ -68,9 +68,15 @@ ADR-001 (Vite) | ADR-002 (JS no TS) | ADR-003 (EmailJS) | ADR-004 (Feature-based
 - `/` → ES por defecto (canónico) | `/en` → EN completo
 - `LocaleProvider` + `useLocale()` — nunca importar locale files directamente en componentes
 - `t` es objeto plano: acceso `t.modulo.clave` (NO función)
-- Blog EN-only: `blogData.es.js = []` — `/blog` muestra banner con link a `/en/blog`
+- Blog ES: `blogData.es.js` tiene 6 posts traducidos — `/blog` muestra contenido en español
 - Switcher ES|EN path-aware en Header — cambia TODO sin excepciones
 - Deuda: LocaleProvider como objeto plano — si se requiere `t('clave')` → refactorizar
+
+## Performance (actualizado 2026-06-09)
+- Bundle principal: 233KB (era 363KB) — reducción 35% con lazy() en 4 páginas
+- Code splitting: BlogIndex, BlogLayout, BlogPostDetail, ProjectDetail → lazy
+- Seguridad: dompurify@3.4.8, react-router-dom@7.17.0 — CVEs parcheados
+- ESLint: 0 errores (jsx-uses-vars rule agregada, vitest globals configurados)
 
 ## Critical Files — Don't Break
 | File | Reason |

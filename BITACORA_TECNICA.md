@@ -4,6 +4,56 @@
 > Cada entrada es un snapshot inmutable del trabajo realizado.
 
 ---
+## Sesión — 2026-06-09
+
+### Estado inicial
+Blog ES vacío. Bundle 363KB. CVEs activos en dompurify y react-router-dom.
+ESLint con 62 errores. motion importado sin usar en 18 archivos.
+
+### Decisiones
+
+**DEC: Lazy loading en 4 páginas**
+BlogIndex, BlogLayout, BlogPostDetail, ProjectDetail convertidos a lazy().
+Impacto: bundle 363KB → 233KB (-35%). Build time 9s → 4.5s (-50%).
+useEffect de prefetch eliminado (era no-op al tener imports estáticos).
+
+**DEC: Patch de CVEs críticos**
+dompurify 3.3.3 → 3.4.8 (4 CVEs: Prototype Pollution + XSS bypass).
+react-router-dom 7.11.0 → 7.17.0 (9 CVEs: XSS open redirect + DoS).
+Instalados con --legacy-peer-deps por conflicto con react-helmet-async@2.0.5.
+
+**DEC: ESLint configurado correctamente**
+Problema raíz: ESLint sin `react/jsx-uses-vars` no reconoce `<motion.div>`
+como uso de la variable `motion`. Solución: agregar eslint-plugin-react +
+regla jsx-uses-vars. vitest.config.js fix: fileURLToPath para __dirname en ESM.
+
+### Problemas encontrados
+
+**PROB: motion eliminado de 22 archivos por el linter**
+Síntoma: pantalla negra en producción — ReferenceError motion is not defined.
+Causa: prompt de limpieza de lint eliminó motion de imports sin verificar
+si se usaba via JSX member expression (<motion.div>).
+Resolución: grep masivo para detectar todos los archivos con motion. sin import,
+restaurar los 22 imports faltantes en un solo prompt con verificación Playwright.
+Lección: NUNCA eliminar imports sin correr npm run dev primero.
+
+**PROB: scrollToContact perdida en múltiples resets**
+Síntoma: ReferenceError scrollToContact is not defined en HeroBanner.
+Causa: función eliminada durante conflictos de merge y resets de git.
+Resolución: restaurar función dentro del componente antes del return.
+Lección: las funciones handler deben estar documentadas en el componente.
+
+**PROB: git reset --hard a commit sin scrollToContact**
+Causa: ae28309 es anterior al commit que agregó scrollToContact.
+Resolución: restaurar función manualmente después del reset.
+
+### Estado al cierre
+- Bundle: 233KB (era 363KB)
+- CVEs críticos: 0 en dompurify y react-router-dom
+- ESLint: 0 errores, 2 warnings aceptables en DataVisualization.jsx
+- motion imports: correctos en todos los archivos JSX
+- Producción: funcionando en ongevag.com
+- Rama: develop, main actualizado
 
 ## Sesión — 2026-06-08
 
