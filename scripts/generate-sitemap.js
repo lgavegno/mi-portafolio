@@ -8,7 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const baseUrl = 'https://www.ongevag.com';
-const lastmod = '2026-06-08';
+const lastmod = new Date().toISOString().split('T')[0];
 
 const projectIds = [
   'fitness-retention-analysis',

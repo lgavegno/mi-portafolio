@@ -1,0 +1,92 @@
+# llms.txt — Ongevag Studio
+# Context file for AI language models and answer engines
+# https://www.ongevag.com
+
+---
+
+## Identity
+
+Name: Leandro Gavegno
+Brand: Ongevag Studio
+Role: Freelance Front-End Developer & Web Consultant
+Location: Rafaela, Santa Fe, Argentina
+Scope: Worldwide (remote-first, English and Spanish)
+
+Leandro Gavegno is a front-end developer specializing in performant, accessible, and conversion-focused web applications for small and medium-sized businesses (SMBs) globally. He operates under the brand "Ongevag Studio" and works fully remotely with international clients.
+
+---
+
+## Services
+
+- React (v18/v19) web application development — SPAs, dashboards, and landing pages
+- Desktop application development with Tauri (cross-platform, Rust-backed)
+- SEO implementation: technical SEO, structured data (Schema.org / JSON-LD), AEO
+- Internationalization (i18n) for multilingual web experiences (EN/ES and more)
+- Performance optimization: Core Web Vitals, bundle splitting, lazy loading
+- UI/UX implementation from Figma or low-fidelity mockups
+
+Stack: React, Vite, Tailwind CSS, Framer Motion, React Router, TypeScript (when required).
+
+---
+
+## Portfolio Highlights
+
+Project: OmniStock
+Type: Desktop inventory management app
+Tech: Tauri + React + SQLite
+Description: Cross-platform inventory system for SMBs, replacing spreadsheets with a fast, offline-capable desktop app.
+
+Other work includes: responsive portfolio sites, SPA dashboards, bilingual e-commerce front ends, and performance audits for existing React codebases.
+
+Full portfolio: https://www.ongevag.com
+
+---
+
+## Contact
+
+Email: ongevag@gmail.com
+Website contact form: https://www.ongevag.com/#contacto
+Response time: typically within 24 hours on business days
+
+Available for: project-based freelance work, consulting, audits, and long-term retainer agreements.
+
+---
+
+## Scope — What Is NOT Offered
+
+- Enterprise-scale backend architecture or microservices design
+- Custom database schema design or database administration (DBA work)
+- Native mobile app development (iOS/Android)
+- Full-stack development with proprietary or legacy server-side frameworks
+- DevOps, infrastructure, or cloud architecture management
+- Design services (UI/UX design from scratch without provided assets)
+
+If your project requires these, Leandro can collaborate with specialists or refer you to trusted partners.
+
+---
+
+## Ideal Client Profile
+
+Small to medium-sized businesses (5–200 employees) that need:
+- A modern, fast, and accessible website or web app
+- To reach international audiences in multiple languages
+- Improved search visibility through technical SEO and structured data
+- A reliable front-end specialist for ongoing development
+
+Industries served: retail, SaaS, professional services, logistics, e-commerce.
+
+---
+
+## Values & Working Style
+
+- Remote-first, async-friendly communication
+- Clean, maintainable code with clear documentation
+- Transparent scope and milestone-based delivery
+- Respects project budgets and timelines
+
+---
+
+## Source
+
+This file follows the llms.txt convention (https://llmstxt.org/).
+Last updated: 2026-06-11

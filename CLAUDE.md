@@ -1,6 +1,6 @@
 # CLAUDE.md — Portfolio ONGEVAG
 **Current Phase:** FEATURE-03_AEO_SCHEMA — In Progress  
-**Last Updated:** 2026-06-09
+**Last Updated:** 2026-06-11
 
 ## Propósito
 Portfolio SPA React 19 + Vite (feature-based DDD Light) para captar clientes PyMEs.
@@ -57,7 +57,7 @@ VITE_EMAILJS_PUBLIC_KEY=...    # Public key (required)
 | FEATURE-00_PROJECT_SETUP | ✅ Done | `docs/specs/FEATURE-00/` | — |
 | FEATURE-01_I18N_ROUTING | ✅ Done | `docs/specs/FEATURE-01/` | ADR-006..011 |
 | FEATURE-02_SEO_METATAGS | ⏳ Planned | `docs/specs/FEATURE-02/` | — |
-| FEATURE-03_AEO_SCHEMA | ⏳ Planned | `docs/specs/FEATURE-03/` | — |
+| FEATURE-03_AEO_SCHEMA | 🔄 In Progress | `docs/specs/FEATURE-03_AEO_SCHEMA/` | spec.md, plan.md, task.md |
 | FEATURE-04_HERO_ANIMATION | ✅ Active | `docs/specs/FEATURE-04/` | HeroBanner.jsx |
 | FEATURE-05_PROJECT_MANAGEMENT | ✅ Active | `docs/specs/FEATURE-05/` | Works.jsx |
 

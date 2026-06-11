@@ -3,6 +3,19 @@
 Historial de cambios del proyecto Ongevag Portfolio. Formato: [Keep a Changelog](https://keepachangelog.com).
 
 ---
+## [Unreleased] — 2026-06-11
+
+### Added
+- `public/robots.txt`: reglas explícitas para GPTBot, ClaudeBot, PerplexityBot, Google-Extended; sitemap URL → `www.ongevag.com`
+- `public/llms.txt`: contexto estructurado para LLMs (7 secciones, inglés, conversión internacional)
+- `index.html`: JSON-LD `Organization`, `Person`, `ProfessionalService` (`areaServed: "Worldwide"`)
+- `ProjectDetail.jsx`: JSON-LD `SoftwareApplication` dinámico vía Helmet por cada proyecto
+- `Services.jsx`: JSON-LD `FAQPage` con 5 preguntas orientadas a conversión vía Helmet
+
+### Changed
+- `scripts/generate-sitemap.js`: `lastmod` ahora dinámico (`new Date()` en lugar de fecha hardcodeada)
+
+---
 ## [Unreleased] — 2026-06-09
 
 ### Added

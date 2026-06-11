@@ -4,6 +4,58 @@
 > Cada entrada es un snapshot inmutable del trabajo realizado.
 
 ---
+## Sesión — 2026-06-11 (FEATURE-03_AEO_SCHEMA)
+
+### Estado inicial
+robots.txt apuntaba a `occasionalvercel.app`, sin reglas explícitas para bots de IA.
+No existía llms.txt. Sin JSON-LD en ningún componente.
+
+### Decisiones
+
+**DEC: robots.txt — Bots de IA con permiso explícito**
+Agregadas secciones `User-agent` explícitas para GPTBot, ClaudeBot, PerplexityBot y
+Google-Extended con `Allow: /`. El `User-agent: *` ya permitía el acceso, pero la
+especificidad garantiza comportamiento correcto ante overrides futuros.
+Sitemap URL actualizada de `vercel.app` → `https://www.ongevag.com`.
+
+**DEC: llms.txt — Contexto para LLMs en inglés**
+Archivo creado con 7 secciones: Identity, Services, Portfolio, Contact, Scope Negative,
+Ideal Client Profile, Values. Orientado a conversión internacional.
+Scope negativo incluido (sin enterprise backend, sin DBA, sin mobile nativo) para
+filtrar leads no calificados directamente desde la indexación de IA.
+
+**DEC: Sitemap — lastmod dinámico**
+`generate-sitemap.js` actualizado para usar `new Date().toISOString().split('T')[0]`
+en lugar de fecha hardcodeada. Genera 27 URLs: 2 home + 2 blog + 12 posts + 1 lista
+proyectos + 10 proyectos. Se ejecuta automáticamente en `npm run build`.
+
+**DEC: JSON-LD estático en index.html — Organization + Person + ProfessionalService**
+Tres bloques `<script type="application/ld+json">` insertados antes del gtag.
+Usamos `@id` con fragmento URI para permitir referencia cruzada entre schemas
+(`Person.worksFor` → `Organization`, `ProfessionalService.provider` → `Person`).
+`ProfessionalService` elegido sobre `LocalBusiness` puro: tiene `areaServed:
+"Worldwide"` y `serviceType` array, permitiendo indexación global sin señales
+geográficas restrictivas (ADR-009).
+
+**DEC: SoftwareApplication en ProjectDetail.jsx**
+JSON-LD generado dinámicamente desde `project` data. `applicationCategory` derivado
+del campo `category` y del array `stack` (proyectos Tauri → `DesktopApplication`,
+resto → `WebApplication`). Precio `"0"` en `offers` para maximizar compatibilidad
+de validación con Schema.org Validator (strings como "Consultar" causan warnings).
+
+**DEC: FAQPage en Services.jsx**
+5 preguntas orientadas a conversión internacional. Preguntas elegidas por su
+impacto en intent de compra: tiempo de entrega, alcance internacional, stack,
+soporte post-launch, y pricing. FAQs alineadas con el contenido real del carousel.
+Helmet importado solo en Services.jsx (no en otros componentes del feature).
+
+### Resultados
+- Build limpio: `✓ built in 5.86s`, sin warnings nuevos
+- Sitemap: 27 URLs generadas con dominio canónico `www.ongevag.com`
+- JSON-LD: 5 schemas válidos (3 estáticos en index.html, 2 dinámicos vía Helmet)
+- Bundle size sin cambio significativo (JSON-LD tree-shaken en static, inline en runtime)
+
+---
 ## Sesión — 2026-06-09
 
 ### Estado inicial

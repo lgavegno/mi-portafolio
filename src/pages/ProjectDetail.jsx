@@ -34,6 +34,27 @@ const ProjectDetail = () => {
 
     const description = project.shortDescription || project.description;
     const pageUrl = `https://www.ongevag.com/proyecto/${project.id}`;
+
+    const appCategory = project.category === 'tools' || project.stack?.includes('Tauri')
+        ? 'DesktopApplication'
+        : project.category === 'ai-ml'
+        ? 'WebApplication'
+        : 'WebApplication';
+
+    const softwareAppSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: project.title,
+        description: truncateText(description, 300),
+        applicationCategory: appCategory,
+        operatingSystem: project.stack?.includes('Tauri') ? 'Windows, macOS, Linux' : 'Web',
+        url: pageUrl,
+        offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'USD',
+        },
+    };
     const pageUrlEs = `https://www.ongevag.com/es/proyecto/${project.id}`;
     const fallbackImage = 'https://www.ongevag.com/og-image.png';
     const ogImage = typeof project.image === 'string' && project.image.startsWith('http')
@@ -58,6 +79,7 @@ const ProjectDetail = () => {
             <link rel="alternate" hreflang="x-default" href={pageUrl} />
 
             <link rel="canonical" href={pageUrl} />
+            <script type="application/ld+json">{JSON.stringify(softwareAppSchema)}</script>
         </Helmet>
         <motion.main
             initial="initial"

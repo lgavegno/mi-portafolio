@@ -1,10 +1,58 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { FiLayout, FiTool, FiCpu, FiMonitor, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { fadeInUp, staggerContainer } from '../../config/motionConfig';
 import { useVibrate } from '../../hooks/useVibrate';
 import { useLocale } from '../../hooks/useLocale';
 import './Services3DCarousel.css';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is your typical project delivery time?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Timelines depend on scope: landing pages take 2–4 weeks, SPAs and management tools 4–8 weeks, and multi-feature platforms 6–12 weeks. Every project starts with a scoping call to define milestones and a clear calendar.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you work with international clients?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. I work fully remote with clients worldwide. All communication, documentation, and deliverables are available in English and Spanish. I operate across time zones and adapt to async or sync workflows.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What technologies do you specialize in?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'My core stack for web applications is React, Vite, Tailwind CSS, Framer Motion, and React Router. For cross-platform desktop apps I use Tauri (Rust). I also work with Google Apps Script, SQLite, Python, and Power BI for data and automation projects.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you provide post-launch support?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Post-launch support is available as a maintenance package covering bug fixes, minor feature additions, dependency updates, and performance monitoring. Support terms are agreed on per project.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does your pricing work?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Projects are quoted as fixed-price milestones after a free scoping call. This ensures clear scope, predictable budgets, and no surprise invoices. Hourly consulting is also available for audits and short-term advisory work.',
+      },
+    },
+  ],
+};
 
 const Services = () => {
   const { t } = useLocale();
@@ -72,6 +120,9 @@ const Services = () => {
 
   return (
     <section id="que-hago" className="w-full relative overflow-hidden bg-gradient-to-b from-slate-800 to-slate-900 text-white py-32 md:py-40 lg:py-48">
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+      </Helmet>
       {/* Background effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 -left-32 w-96 h-96 bg-cobalt-500/10 rounded-full filter blur-[128px]" />
