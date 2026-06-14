@@ -54,12 +54,12 @@ VITE_EMAILJS_PUBLIC_KEY=...    # Public key (required)
 ## Module Index (SDD)
 | FEATURE | Status | Location | Owner |
 |---------|--------|----------|-------|
-| FEATURE-00_PROJECT_SETUP | ✅ Done | `docs/specs/FEATURE-00/` | — |
-| FEATURE-01_I18N_ROUTING | ✅ Done | `docs/specs/FEATURE-01/` | ADR-006..011 |
-| FEATURE-02_SEO_METATAGS | ⏳ Planned | `docs/specs/FEATURE-02/` | — |
+| FEATURE-00_PROJECT_SETUP | ✅ Done | `docs/specs/FEATURE-00_PROJECT_SETUP/` | mod-00_overview.md |
+| FEATURE-01_I18N_ROUTING | ✅ Done | `docs/specs/FEATURE-01_I18N_ROUTING/` | ADR-006..011 |
+| FEATURE-02_SEO_METATAGS | ✅ Done | `docs/specs/FEATURE-02_SEO_METATAGS/` | spec.md, plan.md, task.md |
 | FEATURE-03_AEO_SCHEMA | 🔄 In Progress | `docs/specs/FEATURE-03_AEO_SCHEMA/` | spec.md, plan.md, task.md |
 | FEATURE-04_HERO_ANIMATION | ✅ Active | `docs/specs/FEATURE-04_HERO_ANIMATION/` | spec · plan · tasks |
-| FEATURE-05_PROJECT_MANAGEMENT | ✅ Active | `docs/specs/FEATURE-05/` | Works.jsx |
+| FEATURE-05_PROJECT_MANAGEMENT | ✅ Active | `docs/specs/FEATURE-05_PROJECT_MANAGEMENT/` | mod-05_project-management.md |
 
 ## ADRs Documented
 ADR-001 (Vite) | ADR-002 (JS no TS) | ADR-003 (EmailJS) | ADR-004 (Feature-based) | ADR-005 (Vitest) | ADR-006..011 (i18n)

@@ -79,12 +79,12 @@
 
 | ID | Feature | Responsabilidad | Estado | Location | Links |
 |----|---------|-----------------|--------|----------|-------|
-| **FEATURE-00** | Project Setup | Sistema overview, architecture, PRD, audit, codebase map | ✅ Active | `docs/specs/FEATURE-00/` | [spec](./specs/FEATURE-00/mod-00_overview.md) |
-| **FEATURE-01** | i18n Routing | URL-based locale (ADR-006..011), ES default at `/`, EN at `/en` | ✅ Done | `docs/specs/FEATURE-01/` | [tasks](./specs/FEATURE-01_I18N_ROUTING/tasks.md) |
+| **FEATURE-00** | Project Setup | Sistema overview, architecture, PRD, audit, codebase map | ✅ Active | `docs/specs/FEATURE-00_PROJECT_SETUP/` | [spec](./specs/FEATURE-00_PROJECT_SETUP/mod-00_overview.md) |
+| **FEATURE-01** | i18n Routing | URL-based locale (ADR-006..011), ES default at `/`, EN at `/en` | ✅ Done | `docs/specs/FEATURE-01_I18N_ROUTING/` | [tasks](./specs/FEATURE-01_I18N_ROUTING/tasks.md) |
 | **FEATURE-02** | SEO Meta Tags | Dynamic meta tags, og:image, hreflang, canonical | ✅ Done | `docs/specs/FEATURE-02_SEO_METATAGS/` | [spec](./specs/FEATURE-02_SEO_METATAGS/spec.md) · [plan](./specs/FEATURE-02_SEO_METATAGS/plan.md) |
 | **FEATURE-03** | AEO Schema | Schema.org JSON-LD, structured data for AI engines | 🔄 In Progress | `docs/specs/FEATURE-03_AEO_SCHEMA/` | [spec](./specs/FEATURE-03_AEO_SCHEMA/spec.md) · [plan](./specs/FEATURE-03_AEO_SCHEMA/plan.md) |
 | **FEATURE-04** | Hero Animation | Hero banner, ParticleBackground, WireframeGeometry, design system | ✅ Active | `docs/specs/FEATURE-04_HERO_ANIMATION/` | [spec](./specs/FEATURE-04_HERO_ANIMATION/spec.md) · [plan](./specs/FEATURE-04_HERO_ANIMATION/plan.md) · [tasks](./specs/FEATURE-04_HERO_ANIMATION/tasks.md) · [design-tokens](./specs/FEATURE-04_HERO_ANIMATION/design-tokens.md) |
-| **FEATURE-05** | Project Mgmt | Projects data schema, categories, assets, Works component | ✅ Active | `docs/specs/FEATURE-05/` | [projects-logic](./specs/FEATURE-05/projects-logic.md) |
+| **FEATURE-05** | Project Mgmt | Projects data schema, categories, assets, Works component | ✅ Active | `docs/specs/FEATURE-05_PROJECT_MANAGEMENT/` | [mod-05](./specs/FEATURE-05_PROJECT_MANAGEMENT/mod-05_project-management.md) |
 | **UI Kit** | Components | Button, Header, Footer, Skeleton (shared globals) | ✅ Done | `src/components/` | [src](../src/components/) |
 | **Config** | Config | Framer Motion variants, animation presets, tokens | ✅ Done | `src/config/` | [motionConfig](../src/config/motionConfig.js) |
 | **FEATURE-01** | i18n Routing | ... | ✅ Done + Blog ES completo | ...
