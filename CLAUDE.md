@@ -58,7 +58,7 @@ VITE_EMAILJS_PUBLIC_KEY=...    # Public key (required)
 | FEATURE-01_I18N_ROUTING | ✅ Done | `docs/specs/FEATURE-01/` | ADR-006..011 |
 | FEATURE-02_SEO_METATAGS | ⏳ Planned | `docs/specs/FEATURE-02/` | — |
 | FEATURE-03_AEO_SCHEMA | 🔄 In Progress | `docs/specs/FEATURE-03_AEO_SCHEMA/` | spec.md, plan.md, task.md |
-| FEATURE-04_HERO_ANIMATION | ✅ Active | `docs/specs/FEATURE-04/` | HeroBanner.jsx |
+| FEATURE-04_HERO_ANIMATION | ✅ Active | `docs/specs/FEATURE-04_HERO_ANIMATION/` | spec · plan · tasks |
 | FEATURE-05_PROJECT_MANAGEMENT | ✅ Active | `docs/specs/FEATURE-05/` | Works.jsx |
 
 ## ADRs Documented
@@ -82,6 +82,7 @@ ADR-001 (Vite) | ADR-002 (JS no TS) | ADR-003 (EmailJS) | ADR-004 (Feature-based
 | File | Reason |
 |------|--------|
 | `src/components/ParticleBackground.jsx` | Canvas animation; NO React.lazy |
+| `scrollToContact` (fn en `HeroBanner.jsx`) | CTA "Contactar" — su eliminación rompe scroll sin error visible |
 | `src/context/LocaleProvider.jsx` | i18n core — cambios rompen toda la app |
 | `vercel.json` | SPA routing catch-all `/(.*) → index.html` |
 | `public/og-image.svg` | Social sharing (1200x630) |

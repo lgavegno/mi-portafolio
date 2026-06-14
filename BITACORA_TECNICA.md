@@ -448,3 +448,61 @@ raíz/
 - 27 URLs generadas: home EN/ES, blog EN/ES, posts ×6, proyectos ×5 EN/ES
 - IDs de proyectos hardcodeados en script — actualizar al agregar proyectos
 - Deuda técnica original (sitemap manual): RESUELTA en sprint
+
+---
+
+## 2026-06-13 — FEATURE-04: Cierre Fase A (Documentación)
+
+**Tipo:** Documentación / Deuda técnica
+**Branch:** feature/hero-animation-audit
+**Fase completada:** A — Cierre Documental
+
+### Qué se hizo
+- `spec.md` consolidado desde 5 archivos dispersos (hecho el 2026-06-05, registrado ahora)
+- `plan.md` creado: 4 fases (A–D), 6h estimadas, riesgos y DoD por componente
+- `tasks.md` creado: T-01 a T-16 con subtareas, checklists de auditoría y plantillas de BITACORA
+- `SDD_MASTER.md` actualizado: paths corregidos, links a spec/plan/tasks, status FEATURE-02/03 actualizados
+
+### Archivos creados/modificados
+| Archivo | Acción |
+|---------|--------|
+| `docs/specs/FEATURE-04_HERO_ANIMATION/plan.md` | Creado |
+| `docs/specs/FEATURE-04_HERO_ANIMATION/tasks.md` | Creado |
+| `docs/SDD_MASTER.md` | Actualizado (paths + links + fecha) |
+
+### Deuda resuelta
+- Documentación FEATURE-04 estaba dispersa en archivos sin estructura SDD
+- Path incorrecto `FEATURE-04/` → corregido a `FEATURE-04_HERO_ANIMATION/`
+
+### Próximo paso
+Ejecutar Fase B: auditoría de código vs. spec (T-04 a T-08)
+Archivos a revisar: `ParticleBackground.jsx`, `HeroBanner.jsx`, `motionConfig.js`, `WireframeGeometry.jsx`
+
+---
+
+## 2026-06-13 — FEATURE-04: Fase B — Auditoría de Código
+
+**Tipo:** Auditoría código vs. spec
+**Branch:** develop
+**Fases completadas:** A + B + C
+
+### Resultado general
+3 drifts intencionales encontrados en `motionConfig.js`. Sin drift funcional. Sin correcciones de código — los cambios eran deliberados y ya estaban comentados en el código.
+
+### Tabla de drift
+
+| Archivo | Punto | Valor en spec | Valor real | Acción |
+|---------|-------|--------------|------------|--------|
+| `motionConfig.js` | `fadeInUp.transition` | `springConfig.snappy` | `springConfig.smooth` | Sin corrección — cambio intencional documentado en código |
+| `motionConfig.js` | `staggerContainer.staggerChildren` | `0.07` | `0.25` | Sin corrección — cambio intencional documentado en código |
+| `motionConfig.js` | `staggerContainer.delayChildren` | `0.05` | `0.1` | Sin corrección — cambio intencional documentado en código |
+| `HeroBanner.jsx` | Suspense `fallback` | `null` | `<div className="w-64 h-64" />` | Sin corrección — mejora layout stability |
+| `tasks.md` checklist | CTA "Ver proyectos" llama | `scrollToContact` | `scrollToProjects` (correcto) | Error en spec corregido — código era correcto |
+
+### Guardrails implementados (Fase C)
+- `scrollToContact`: comentario defensivo agregado en `HeroBanner.jsx` + entrada en `CLAUDE.md §Critical Files`
+- ESLint / motion imports: comentario de guardrail en `HeroBanner.jsx` imports; `react/jsx-uses-vars: 'error'` ya activo en `eslint.config.js` L29
+- spec.md §7: subsección "Puntos Frágiles — No Romper" agregada con tabla de valores reales post-auditoría
+
+### Próximo paso
+Fase D: QA manual (T-12 checklist visual, T-13 Lighthouse, T-14 smoke mobile) — requiere browser

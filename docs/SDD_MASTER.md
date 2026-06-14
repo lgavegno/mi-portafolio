@@ -81,9 +81,9 @@
 |----|---------|-----------------|--------|----------|-------|
 | **FEATURE-00** | Project Setup | Sistema overview, architecture, PRD, audit, codebase map | ✅ Active | `docs/specs/FEATURE-00/` | [spec](./specs/FEATURE-00/mod-00_overview.md) |
 | **FEATURE-01** | i18n Routing | URL-based locale (ADR-006..011), ES default at `/`, EN at `/en` | ✅ Done | `docs/specs/FEATURE-01/` | [tasks](./specs/FEATURE-01_I18N_ROUTING/tasks.md) |
-| **FEATURE-02** | SEO Meta Tags | Dynamic meta tags, og:image, hreflang, canonical | ⏳ Planned | `docs/specs/FEATURE-02/` | — |
-| **FEATURE-03** | AEO Schema | Schema.org JSON-LD, structured data for AI engines | ⏳ Planned | `docs/specs/FEATURE-03/` | — |
-| **FEATURE-04** | Hero Animation | Hero banner, ParticleBackground, WireframeGeometry, design system | ✅ Active | `docs/specs/FEATURE-04/` | [design-tokens](./specs/FEATURE-04/design-tokens.md) |
+| **FEATURE-02** | SEO Meta Tags | Dynamic meta tags, og:image, hreflang, canonical | ✅ Done | `docs/specs/FEATURE-02_SEO_METATAGS/` | [spec](./specs/FEATURE-02_SEO_METATAGS/spec.md) · [plan](./specs/FEATURE-02_SEO_METATAGS/plan.md) |
+| **FEATURE-03** | AEO Schema | Schema.org JSON-LD, structured data for AI engines | 🔄 In Progress | `docs/specs/FEATURE-03_AEO_SCHEMA/` | [spec](./specs/FEATURE-03_AEO_SCHEMA/spec.md) · [plan](./specs/FEATURE-03_AEO_SCHEMA/plan.md) |
+| **FEATURE-04** | Hero Animation | Hero banner, ParticleBackground, WireframeGeometry, design system | ✅ Active | `docs/specs/FEATURE-04_HERO_ANIMATION/` | [spec](./specs/FEATURE-04_HERO_ANIMATION/spec.md) · [plan](./specs/FEATURE-04_HERO_ANIMATION/plan.md) · [tasks](./specs/FEATURE-04_HERO_ANIMATION/tasks.md) · [design-tokens](./specs/FEATURE-04_HERO_ANIMATION/design-tokens.md) |
 | **FEATURE-05** | Project Mgmt | Projects data schema, categories, assets, Works component | ✅ Active | `docs/specs/FEATURE-05/` | [projects-logic](./specs/FEATURE-05/projects-logic.md) |
 | **UI Kit** | Components | Button, Header, Footer, Skeleton (shared globals) | ✅ Done | `src/components/` | [src](../src/components/) |
 | **Config** | Config | Framer Motion variants, animation presets, tokens | ✅ Done | `src/config/` | [motionConfig](../src/config/motionConfig.js) |
@@ -264,10 +264,11 @@ docs/
 │   ├── FEATURE-02_SEO_METATAGS/    ← (created, TBD)
 │   ├── FEATURE-03_AEO_SCHEMA/      ← (created, TBD)
 │   ├── FEATURE-04_HERO_ANIMATION/
-│   │   ├── 01-hero-engine.md
-│   │   ├── hero-optimization.md
-│   │   ├── design-tokens.md
-│   │   └── performance.md
+│   │   ├── spec.md              ← Fuente canónica (consolidado 2026-06-05)
+│   │   ├── plan.md              ← Plan de implementación (2026-06-13)
+│   │   ├── tasks.md             ← Desglose de tareas T-01..T-16 (2026-06-13)
+│   │   ├── design-tokens.md     ← Paleta, tipografía, animaciones
+│   │   └── mod-04_hero-animation.md  ← Legacy (referencia; no editar)
 │   └── FEATURE-05_PROJECT_MANAGEMENT/
 │       └── projects-logic.md
 └── use-cases/                 ← Behavior contracts
@@ -280,6 +281,6 @@ docs/
     └── SEQ-04_code_splitting.puml
 ```
 
-**Last updated:** 2026-06-08 (FEATURE-01 i18n complete)
-**Next review:** After FEATURE-02 (SEO Meta Tags)
+**Last updated:** 2026-06-13 (FEATURE-04 docs completos: spec + plan + tasks)
+**Next review:** After FEATURE-04 Fase B (auditoría de código)
 
