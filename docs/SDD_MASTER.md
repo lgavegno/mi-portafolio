@@ -84,7 +84,7 @@
 | **FEATURE-02** | SEO Meta Tags | Dynamic meta tags, og:image, hreflang, canonical | ✅ Done | `docs/specs/FEATURE-02_SEO_METATAGS/` | [spec](./specs/FEATURE-02_SEO_METATAGS/spec.md) · [plan](./specs/FEATURE-02_SEO_METATAGS/plan.md) |
 | **FEATURE-03** | AEO Schema | Schema.org JSON-LD, structured data for AI engines | 🔄 In Progress | `docs/specs/FEATURE-03_AEO_SCHEMA/` | [spec](./specs/FEATURE-03_AEO_SCHEMA/spec.md) · [plan](./specs/FEATURE-03_AEO_SCHEMA/plan.md) |
 | **FEATURE-04** | Hero Animation | Hero banner, ParticleBackground, WireframeGeometry, design system | ✅ Active | `docs/specs/FEATURE-04_HERO_ANIMATION/` | [spec](./specs/FEATURE-04_HERO_ANIMATION/spec.md) · [plan](./specs/FEATURE-04_HERO_ANIMATION/plan.md) · [tasks](./specs/FEATURE-04_HERO_ANIMATION/tasks.md) · [design-tokens](./specs/FEATURE-04_HERO_ANIMATION/design-tokens.md) |
-| **FEATURE-05** | Project Mgmt | Projects data schema, categories, assets, Works component | ✅ Active | `docs/specs/FEATURE-05_PROJECT_MANAGEMENT/` | [mod-05](./specs/FEATURE-05_PROJECT_MANAGEMENT/mod-05_project-management.md) |
+| **FEATURE-05** | Project Mgmt | Projects data schema, categories, assets, Works component | ✅ Done | `docs/specs/FEATURE-05_PROJECT_MANAGEMENT/` | [spec](./specs/FEATURE-05_PROJECT_MANAGEMENT/spec.md) · [plan](./specs/FEATURE-05_PROJECT_MANAGEMENT/plan.md) · [tasks](./specs/FEATURE-05_PROJECT_MANAGEMENT/tasks.md) |
 | **UI Kit** | Components | Button, Header, Footer, Skeleton (shared globals) | ✅ Done | `src/components/` | [src](../src/components/) |
 | **Config** | Config | Framer Motion variants, animation presets, tokens | ✅ Done | `src/config/` | [motionConfig](../src/config/motionConfig.js) |
 | **FEATURE-01** | i18n Routing | ... | ✅ Done + Blog ES completo | ...
@@ -270,7 +270,10 @@ docs/
 │   │   ├── design-tokens.md     ← Paleta, tipografía, animaciones
 │   │   └── mod-04_hero-animation.md  ← Legacy (referencia; no editar)
 │   └── FEATURE-05_PROJECT_MANAGEMENT/
-│       └── projects-logic.md
+│       ├── spec.md              ← Spec retroactiva (2026-06-13)
+│       ├── plan.md              ← Plan de implementación (2026-06-13)
+│       ├── tasks.md             ← Desglose de tareas T-01..T-11 (2026-06-13)
+│       └── mod-05_project-management.md  ← Legacy (referencia; no editar)
 └── use-cases/                 ← Behavior contracts
     ├── UC-01_contact_form_submission.md
     ├── UC-02_blog_navigation.md
@@ -281,6 +284,6 @@ docs/
     └── SEQ-04_code_splitting.puml
 ```
 
-**Last updated:** 2026-06-13 (FEATURE-04 docs completos: spec + plan + tasks)
-**Next review:** After FEATURE-04 Fase B (auditoría de código)
+**Last updated:** 2026-06-13 (FEATURE-05 docs completos: spec + plan + tasks — deuda documental liquidada)
+**Next review:** After FEATURE-03 completion (AEO Schema)
 

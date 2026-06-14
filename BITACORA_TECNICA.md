@@ -4,6 +4,55 @@
 > Cada entrada es un snapshot inmutable del trabajo realizado.
 
 ---
+
+## 2026-06-13 — FEATURE-05: Liquidación de Deuda Técnica Documental
+
+**Tipo:** Documentación retroactiva (deuda técnica)
+**Branch:** develop
+**Fases completadas:** A (auditoría) + B (generación SDD) + C (integración y cierre)
+
+### Qué se hizo
+
+- `spec.md` generado retroactivamente a partir de `mod-05_project-management.md` y código fuente verificado
+- `plan.md` creado: 3 fases (A–C), 1.5h estimadas, criterios DoD por fase
+- `tasks.md` creado: T-01 a T-11 con criterios de aceptación y tabla de tracking
+- `CLAUDE.md` actualizado: FEATURE-05 `✅ Active` → `✅ Done`, links actualizados
+- `SDD_MASTER.md` actualizado: Module Registry + Appendix con estructura real del directorio
+- Commit atómico en `develop`
+
+### Archivos creados/modificados
+
+| Archivo | Acción |
+|---------|--------|
+| `docs/specs/FEATURE-05_PROJECT_MANAGEMENT/spec.md` | Creado |
+| `docs/specs/FEATURE-05_PROJECT_MANAGEMENT/plan.md` | Creado |
+| `docs/specs/FEATURE-05_PROJECT_MANAGEMENT/tasks.md` | Creado |
+| `CLAUDE.md` | Actualizado (status FEATURE-05 + links) |
+| `docs/SDD_MASTER.md` | Actualizado (Module Registry + Appendix) |
+| `BITACORA_TECNICA.md` | Esta entrada |
+
+### Hallazgos de auditoría
+
+- Todos los IDs de proyecto son kebab-case únicos; progress/status coherentes en los 5 proyectos
+- `Works.jsx` no implementa filtrado por categoría en UI (DT-05-01) — `projectCategories` existe como infraestructura sin UI asociada
+- `ProjectDetail.jsx` usa `projects.js` base (ES) independientemente del locale (DT-05-02)
+- `fig_clusters_ai.webp` está en `.webp` en el código real; `mod-05` tenía referencia obsoleta a `.png`
+
+### Deuda técnica documentada (spec.md §7)
+
+| ID | Descripción |
+|----|-------------|
+| DT-05-01 | Filtrado por categoría no implementado en UI de Works.jsx |
+| DT-05-02 | ProjectDetail.jsx no es locale-aware para datos de proyecto |
+| DT-05-03 | `omnistock2.webp`, `faroart2.webp`, `generador2.webp` sin uso actual |
+
+### Referencias
+
+- [spec.md](./docs/specs/FEATURE-05_PROJECT_MANAGEMENT/spec.md)
+- [plan.md](./docs/specs/FEATURE-05_PROJECT_MANAGEMENT/plan.md)
+- [tasks.md](./docs/specs/FEATURE-05_PROJECT_MANAGEMENT/tasks.md)
+
+---
 ## Sesión — 2026-06-11 (FEATURE-03_AEO_SCHEMA)
 
 ### Estado inicial
