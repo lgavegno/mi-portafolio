@@ -82,12 +82,12 @@
 | **FEATURE-00** | Project Setup | Sistema overview, architecture, PRD, audit, codebase map | ✅ Active | `docs/specs/FEATURE-00_PROJECT_SETUP/` | [spec](./specs/FEATURE-00_PROJECT_SETUP/mod-00_overview.md) |
 | **FEATURE-01** | i18n Routing | URL-based locale (ADR-006..011), ES default at `/`, EN at `/en` | ✅ Done | `docs/specs/FEATURE-01_I18N_ROUTING/` | [tasks](./specs/FEATURE-01_I18N_ROUTING/tasks.md) |
 | **FEATURE-02** | SEO Meta Tags | Dynamic meta tags, og:image, hreflang, canonical | ✅ Done | `docs/specs/FEATURE-02_SEO_METATAGS/` | [spec](./specs/FEATURE-02_SEO_METATAGS/spec.md) · [plan](./specs/FEATURE-02_SEO_METATAGS/plan.md) |
-| **FEATURE-03** | AEO Schema | Schema.org JSON-LD, structured data for AI engines | 🔄 In Progress | `docs/specs/FEATURE-03_AEO_SCHEMA/` | [spec](./specs/FEATURE-03_AEO_SCHEMA/spec.md) · [plan](./specs/FEATURE-03_AEO_SCHEMA/plan.md) |
-| **FEATURE-04** | Hero Animation | Hero banner, ParticleBackground, WireframeGeometry, design system | ✅ Active | `docs/specs/FEATURE-04_HERO_ANIMATION/` | [spec](./specs/FEATURE-04_HERO_ANIMATION/spec.md) · [plan](./specs/FEATURE-04_HERO_ANIMATION/plan.md) · [tasks](./specs/FEATURE-04_HERO_ANIMATION/tasks.md) · [design-tokens](./specs/FEATURE-04_HERO_ANIMATION/design-tokens.md) |
+| **FEATURE-03** | AEO Schema | Schema.org JSON-LD, structured data for AI engines | ✅ Done | `docs/specs/FEATURE-03_AEO_SCHEMA/` | [spec](./specs/FEATURE-03_AEO_SCHEMA/spec.md) · [plan](./specs/FEATURE-03_AEO_SCHEMA/plan.md) · [tasks](./specs/FEATURE-03_AEO_SCHEMA/tasks.md) |
+| **FEATURE-04** | Hero Animation | Hero banner, ParticleBackground, WireframeGeometry, design system | 🔄 In Progress | `docs/specs/FEATURE-04_HERO_ANIMATION/` | [spec](./specs/FEATURE-04_HERO_ANIMATION/spec.md) · [plan](./specs/FEATURE-04_HERO_ANIMATION/plan.md) · [tasks](./specs/FEATURE-04_HERO_ANIMATION/tasks.md) · [design-tokens](./specs/FEATURE-04_HERO_ANIMATION/design-tokens.md) |
 | **FEATURE-05** | Project Mgmt | Projects data schema, categories, assets, Works component | ✅ Done | `docs/specs/FEATURE-05_PROJECT_MANAGEMENT/` | [spec](./specs/FEATURE-05_PROJECT_MANAGEMENT/spec.md) · [plan](./specs/FEATURE-05_PROJECT_MANAGEMENT/plan.md) · [tasks](./specs/FEATURE-05_PROJECT_MANAGEMENT/tasks.md) |
+| **FEATURE-06** | Partners Agencias | Landing page para agencias — propuesta de valor, testimonios, CTA | 🔄 In Progress | `docs/specs/FEATURE-06-PARTNERS_AGENCIAS/` | [spec](./specs/FEATURE-06-PARTNERS_AGENCIAS/spec.md) · [plan](./specs/FEATURE-06-PARTNERS_AGENCIAS/plan.md) · [tasks](./specs/FEATURE-06-PARTNERS_AGENCIAS/tasks.md) |
 | **UI Kit** | Components | Button, Header, Footer, Skeleton (shared globals) | ✅ Done | `src/components/` | [src](../src/components/) |
 | **Config** | Config | Framer Motion variants, animation presets, tokens | ✅ Done | `src/config/` | [motionConfig](../src/config/motionConfig.js) |
-| **FEATURE-01** | i18n Routing | ... | ✅ Done + Blog ES completo | ...
 
 ---
 
@@ -161,10 +161,10 @@
 | **[ADR-005](./adr/ADR-005.md)** | Testing Framework: Vitest + React Testing Library | ✅ Proposed (Phase 2) | docs/adr/ |
 | **[ADR-006](./adr/ADR-006.md)** | URL-Based i18n Over Client-Side Toggle | ✅ Accepted | docs/adr/ |
 | **[ADR-007](./adr/ADR-007.md)** | Spanish as Default Canonical Locale (revised 2026-06-08) | ✅ Accepted | docs/adr/ |
+| **[ADR-008](./adr/ADR-008.md)** | PNG Estático como og:image | ✅ Accepted | docs/adr/ |
+| **[ADR-009](./adr/ADR-009.md)** | Schema JSON-LD Global Sin Geolocalización Restrictiva | ✅ Accepted | docs/adr/ |
 | **[ADR-010](./adr/ADR-010.md)** | No External i18n Library (plain JS) | ✅ Accepted | docs/adr/ |
 | **[ADR-011](./adr/ADR-011.md)** | URL as Single Source of Truth (Locale) | ✅ Accepted | docs/adr/ |
-
-**Note:** ADR-008, ADR-009 = reserved for future decisions (Feature-002 & Feature-003)
 
 ---
 
@@ -256,13 +256,21 @@ docs/
 │   ├── _templates/            ← Blueprints: spec/plan/tasks templates
 │   ├── FEATURE-00_PROJECT_SETUP/
 │   │   ├── mod-00_overview.md
-│   │   ├── prd.md
-│   │   ├── audit.md
-│   │   ├── component-tree.md
-│   │   └── codebase-context.md
-│   ├── FEATURE-01_I18N_ROUTING/    ← (created, awaiting spec.md + plan.md)
-│   ├── FEATURE-02_SEO_METATAGS/    ← (created, TBD)
-│   ├── FEATURE-03_AEO_SCHEMA/      ← (created, TBD)
+│   │   └── prd.md
+│   ├── FEATURE-01_I18N_ROUTING/
+│   │   ├── spec.md
+│   │   ├── plan.md
+│   │   └── tasks.md
+│   ├── FEATURE-02_SEO_METATAGS/
+│   │   ├── mod-02_seo-metatags.md
+│   │   ├── spec.md
+│   │   ├── plan.md
+│   │   └── tasks.md
+│   ├── FEATURE-03_AEO_SCHEMA/      ← ✅ Done
+│   │   ├── mod-03_aeo-schema.md
+│   │   ├── spec.md
+│   │   ├── plan.md
+│   │   └── tasks.md
 │   ├── FEATURE-04_HERO_ANIMATION/
 │   │   ├── spec.md              ← Fuente canónica (consolidado 2026-06-05)
 │   │   ├── plan.md              ← Plan de implementación (2026-06-13)
@@ -284,6 +292,6 @@ docs/
     └── SEQ-04_code_splitting.puml
 ```
 
-**Last updated:** 2026-06-13 (FEATURE-05 docs completos: spec + plan + tasks — deuda documental liquidada)
-**Next review:** After FEATURE-03 completion (AEO Schema)
+**Last updated:** 2026-06-15 (Auditoría exhaustiva: FEATURE-03 marcado Done, FEATURE-06 registrado, ADR-008/009 agregados, duplicate row eliminada)
+**Next review:** After FEATURE-04 completion (Hero Animation — T-12 a T-16 pendientes)
 

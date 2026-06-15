@@ -5,6 +5,59 @@
 
 ---
 
+## 2026-06-15 — Auditoría Exhaustiva Documentación + Código
+
+**Tipo:** Auditoría (documentación + código + seguridad)
+**Branch:** audit/doc-code-2026-06
+**Ejecutado por:** Claude Code (claude-sonnet-4-6)
+
+### Hallazgos principales
+
+**Documentación:**
+- CLAUDE.md y SDD_MASTER.md tenían FEATURE-03 como "In Progress" cuando la implementación estaba completa
+- SDD_MASTER.md tenía nota incorrecta "ADR-008/009 reservados" — ambos existen
+- FEATURE-06-PARTNERS_AGENCIAS no estaba registrada en CLAUDE.md ni SDD_MASTER.md
+- Fila duplicada truncada de FEATURE-01 en SDD_MASTER.md
+- CONTRIBUTING.md no menciona `--legacy-peer-deps` (requerido por react-helmet-async@2.0.5 / React 19)
+
+**Código:**
+- **CRÍTICO:** `scripts/generate-sitemap.js` genera URLs inválidas: `/es`, `/es/blog`, `/es/blog/:slug`, `/es/proyecto/:id` — ninguna existe en el router. ES canónico está en `/` (no `/es`).
+- **ALTO:** 14 tests de `Contact.test.jsx` fallan. Causa: `validateForm.js` requiere `projectType` pero los tests no lo seleccionan. No es regresión de producción — tests desactualizados.
+- `ProjectDetail.jsx`: `og:locale` hardcodeado a `en_US` independientemente del locale real (DT-05-02 extendido).
+- `src/data/projects.js` legacy: solo lo usa `ProjectDetail.jsx` (parte de DT-05-02).
+- Assets sin uso: `omnistock2.webp`, `faroart2.webp`, `generador2.webp` (DT-05-03 confirmado).
+
+**Seguridad:**
+- `dompurify@3.4.8` → CVE GHSA-vxr8-fq34-vvx9 (HIGH) — fix: 3.4.9 disponible
+- `vitest@1.6.1` → CVE GHSA-5xrq-8626-4rwp (CRITICAL, dev only) — fix: upgrade a v3
+- `vite@6.3.5` → 2 CVEs (HIGH, build/dev only)
+- 24 vulnerabilidades totales (2 críticas, 11 altas, 7 medias, 4 bajas)
+
+**Estado baseline:**
+- Build: ✅ | Lint: 2 warnings | Tests: 14 failed / 57 passed | Bundle: 233KB
+
+### Correcciones aplicadas
+
+- `CLAUDE.md`: Current Phase → FEATURE-04_HERO_ANIMATION, Module Index actualizado (FEATURE-03 Done, FEATURE-06 agregado), ADRs listados explícitamente, referencia src/docs/adr/ eliminada
+- `docs/SDD_MASTER.md`: FEATURE-03 → ✅ Done, FEATURE-04 → 🔄 In Progress, FEATURE-06 agregado al registry, ADR-008/ADR-009 agregados a tabla, nota errónea eliminada, fila duplicada eliminada, Appendix actualizado con archivos reales
+- `docs/AUDIT_2026-06-15.md`: Informe generado
+
+### Pendiente de confirmación
+
+1. Corregir `scripts/generate-sitemap.js` — URLs ES rotas (CRÍTICO)
+2. Actualizar `Contact.test.jsx` — agregar `projectType` en tests de submit (ALTO)
+3. `npm install dompurify@3.4.9 --legacy-peer-deps` (ALTO, seguridad)
+4. Actualizar `CONTRIBUTING.md` con `--legacy-peer-deps` (MEDIO)
+5. `ProjectDetail.jsx`: locale-aware para og:locale (MEDIO)
+6. Eliminar assets sin uso: omnistock2, faroart2, generador2 (BAJO)
+7. Planificar upgrade Vitest 1.x → 3.x (SEGURIDAD)
+
+### Referencias
+
+- [AUDIT_2026-06-15.md](./docs/AUDIT_2026-06-15.md)
+
+---
+
 ## 2026-06-13 — FEATURE-05: Liquidación de Deuda Técnica Documental
 
 **Tipo:** Documentación retroactiva (deuda técnica)
