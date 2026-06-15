@@ -5,6 +5,38 @@
 
 ---
 
+## 2026-06-15 — Cierre PR Auditoría
+
+**Tipo:** Cierre de reparación post-auditoría
+**Branch:** audit/doc-code-2026-06
+**PR:** audit(2026-06-15): doc consistency, sitemap fix, test fix, CVE patch, dead assets
+**Commits:** 2bab08c | e89f242 | 5f1d328 | 2192473 | 22dcc14
+
+### Resultado final
+- Build: OK | Lint: OK (2 warnings pre-existentes DataVisualization.jsx) | Tests: 71/71
+- Bundle: 233KB (sin cambio)
+- Sitemap: 26 URLs correctas (era 27+ con rutas /es/ fantasma)
+- CVE dompurify parcheado: 3.4.8 → 3.4.9
+- Assets eliminados: 3 archivos .webp sin uso
+
+### Hallazgo técnico documentado — Button component
+
+El componente Button renderiza un `<Spinner>` SVG cuando `loading=true`, no el
+texto de children. `isSubmitting` permanece `true` por 5 segundos post-success
+(solo se resetea en `setTimeout`). Impacto en tests: assertions de `textContent`
+fallan siempre en estado SENDING y SUCCESS. Fix: usar `querySelector('svg')`
+para SENDING, `toBeDisabled()` + success message para SUCCESS.
+
+### Deuda técnica residual
+
+| ID | Descripción | Sprint |
+|----|-------------|--------|
+| CVE-vitest | vitest@1.6.1 CVSS 9.8 — upgrade separado | Próximo |
+| DT-05-02 | ProjectDetail no locale-aware | Feature separada |
+| ROUTE-02 | og:locale hardcoded | PR menor |
+
+---
+
 ## 2026-06-15 — Auditoría Exhaustiva Documentación + Código
 
 **Tipo:** Auditoría (documentación + código + seguridad)

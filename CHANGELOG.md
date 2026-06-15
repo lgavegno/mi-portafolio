@@ -3,7 +3,43 @@
 Historial de cambios del proyecto Ongevag Portfolio. Formato: [Keep a Changelog](https://keepachangelog.com).
 
 ---
-## [Unreleased] — 2026-06-11
+## [Unreleased]
+
+---
+
+## [2.5.1] — 2026-06-15
+
+### Fixed
+- generate-sitemap.js: eliminadas rutas fantasma /es/* (no existen en el router)
+  — sitemap regenerado con 26 URLs correctas: ES sin prefijo + EN con /en/
+- Contact.test.jsx: 14 tests fallando → 71/71 passing
+  — fillValidForm() helper con selectOptions() para projectType requerido
+  — emailjs.send: params corregidos (faltaba project_type)
+  — Button loading: tests actualizados para detectar `<Spinner>` SVG en lugar
+    de texto (Button renderiza SVG cuando loading=true, no children)
+- dompurify 3.4.8 → 3.4.9 (CVE HIGH: GHSA-vxr8-fq34-vvx9)
+
+### Changed
+- CLAUDE.md: Current Phase → FEATURE-04_HERO_ANIMATION, Module Index y ADRs
+  actualizados para reflejar estado real
+- docs/SDD_MASTER.md: FEATURE-03 Done, FEATURE-06 registrado, ADR-008/009
+  desreservados, paths corregidos
+
+### Removed
+- omnistock2.webp, faroart2.webp, generador2.webp (sin referencias en codebase)
+
+### Security
+- dompurify: 3.4.8 → 3.4.9
+
+### Deferred
+- vitest@1.6.1 CVE CVSS 9.8: upgrade bloqueado por compatibilidad React 19 —
+  sprint separado
+- DT-05-02: ProjectDetail locale-aware — feature separada
+- og:locale hardcoded — PR menor pendiente
+
+---
+
+## [2.5.0] — 2026-06-11
 
 ### Added
 - `public/robots.txt`: reglas explícitas para GPTBot, ClaudeBot, PerplexityBot, Google-Extended; sitemap URL → `www.ongevag.com`
@@ -11,14 +47,6 @@ Historial de cambios del proyecto Ongevag Portfolio. Formato: [Keep a Changelog]
 - `index.html`: JSON-LD `Organization`, `Person`, `ProfessionalService` (`areaServed: "Worldwide"`)
 - `ProjectDetail.jsx`: JSON-LD `SoftwareApplication` dinámico vía Helmet por cada proyecto
 - `Services.jsx`: JSON-LD `FAQPage` con 5 preguntas orientadas a conversión vía Helmet
-
-### Changed
-- `scripts/generate-sitemap.js`: `lastmod` ahora dinámico (`new Date()` en lugar de fecha hardcodeada)
-
----
-## [Unreleased] — 2026-06-09
-
-### Added
 - Blog ES: 6 posts traducidos al español en `blogData.es.js` (slugs inmutables)
 - SkillsGrid: animación stagger izquierda→derecha con Framer Motion
 - ESLint: regla `jsx-uses-vars` para reconocer `motion.` como uso válido
@@ -26,6 +54,7 @@ Historial de cambios del proyecto Ongevag Portfolio. Formato: [Keep a Changelog]
 - vitest.config.js: fix `__dirname` en contexto ESM con `fileURLToPath`
 
 ### Changed
+- `scripts/generate-sitemap.js`: `lastmod` ahora dinámico (`new Date()` en lugar de fecha hardcodeada)
 - ProjectCard: animación entrada izquierda/derecha alternada por index
 - Works: grid wrapper de `motion.div` a `div` estático para stagger correcto
 - App.jsx: 4 imports estáticos → lazy() — bundle 363KB→233KB (-35%)
@@ -38,15 +67,6 @@ Historial de cambios del proyecto Ongevag Portfolio. Formato: [Keep a Changelog]
 - motion import faltante en 22 archivos JSX (ReferenceError en producción)
 - scrollToContact no definida en HeroBanner (ReferenceError en producción)
 - Imports duplicados de framer-motion consolidados en 5 archivos
-
-## [Unreleased] — 2026-06-08
-
-### Added
-- Blog ES: 6 posts traducidos al español en `blogData.es.js` (slugs inmutables)
-
-### Changed
-- ProjectCard: animación de entrada izquierda/derecha alternada por index (Framer Motion)
-- Works: grid wrapper cambiado de `motion.div` a `div` estático para stagger correcto
 
 ## [2.4.2] — Abril 2026
 

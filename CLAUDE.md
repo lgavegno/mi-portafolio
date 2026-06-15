@@ -6,7 +6,7 @@
 Portfolio SPA React 19 + Vite (feature-based DDD Light) para captar clientes PyMEs.
 
 ## Stack
-React 19.1.0 | Vite 6.3.5 | Tailwind 3.3.0 | Framer Motion 12.23.12 | React Router 7.17.0 | EmailJS 4.4.1 | DOMPurify 3.4.8
+React 19.1.0 | Vite 6.3.5 | Tailwind 3.3.0 | Framer Motion 12.23.12 | React Router 7.17.0 | EmailJS 4.4.1 | DOMPurify 3.4.9
 
 ## Comandos
 ```bash
@@ -73,11 +73,12 @@ ADR-001 (Vite) | ADR-002 (JS no TS) | ADR-003 (EmailJS) | ADR-004 (Feature-based
 - Switcher ES|EN path-aware en Header — cambia TODO sin excepciones
 - Deuda: LocaleProvider como objeto plano — si se requiere `t('clave')` → refactorizar
 
-## Performance (actualizado 2026-06-09)
+## Performance (actualizado 2026-06-15)
 - Bundle principal: 233KB (era 363KB) — reducción 35% con lazy() en 4 páginas
 - Code splitting: BlogIndex, BlogLayout, BlogPostDetail, ProjectDetail → lazy
-- Seguridad: dompurify@3.4.8, react-router-dom@7.17.0 — CVEs parcheados
+- Seguridad: dompurify@3.4.9, react-router-dom@7.17.0 — CVEs parcheados
 - ESLint: 0 errores (jsx-uses-vars rule agregada, vitest globals configurados)
+- Tests: 71/71 passing (UC-01 Contact Form — suite completa)
 
 ## Critical Files — Don't Break
 | File | Reason |
@@ -88,6 +89,7 @@ ADR-001 (Vite) | ADR-002 (JS no TS) | ADR-003 (EmailJS) | ADR-004 (Feature-based
 | `vercel.json` | SPA routing catch-all `/(.*) → index.html` |
 | `public/og-image.svg` | Social sharing (1200x630) |
 | `tailwind.config.js` | Custom colors (cyan, cobalt, mint) |
+| `src/components/Button.jsx` | Renderiza `<Spinner>` SVG (no texto) cuando `loading=true` — assertions de tests deben usar `querySelector('svg')`, no `textContent` |
 
 ## Key Doc Map
 - `docs/SDD_MASTER.md` — Central index + module registry
