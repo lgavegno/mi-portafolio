@@ -11,6 +11,14 @@ import { LocaleProvider } from '../../../context/LocaleProvider'
 const renderWithLocale = (ui, locale = 'es') =>
   render(<LocaleProvider locale={locale}>{ui}</LocaleProvider>)
 
+// Helper: fills all required fields with valid data
+const fillValidForm = async (user) => {
+  await user.type(screen.getByLabelText(/nombre/i), 'Juan García')
+  await user.type(screen.getByLabelText(/email/i), 'juan@example.com')
+  await user.selectOptions(screen.getByLabelText(/tipo de proyecto/i), 'Software a Medida')
+  await user.type(screen.getByLabelText(/mensaje/i), 'Quiero automatizar mi negocio')
+}
+
 // Mock EmailJS
 vi.mock('@emailjs/browser')
 
@@ -133,20 +141,9 @@ describe('Contact Form Component', () => {
       const user = userEvent.setup()
       renderWithLocale(<Contact />)
 
-      const nameInput = screen.getByLabelText(/nombre/i)
-      const emailInput = screen.getByLabelText(/email/i)
-      const messageInput = screen.getByLabelText(/mensaje/i)
-      const submitButton = screen.getByRole('button', { name: /enviar/i })
+      await fillValidForm(user)
+      await user.click(screen.getByRole('button', { name: /enviar/i }))
 
-      // Fill form
-      await user.type(nameInput, 'Juan García')
-      await user.type(emailInput, 'juan@example.com')
-      await user.type(messageInput, 'Quiero automatizar mi negocio')
-
-      // Submit
-      await user.click(submitButton)
-
-      // Wait for success message
       await waitFor(() => {
         expect(screen.getByText(/mensaje enviado con éxito/i)).toBeInTheDocument()
       })
@@ -156,19 +153,16 @@ describe('Contact Form Component', () => {
       const user = userEvent.setup()
       renderWithLocale(<Contact />)
 
-      const nameInput = screen.getByLabelText(/nombre/i)
-      const emailInput = screen.getByLabelText(/email/i)
-      const messageInput = screen.getByLabelText(/mensaje/i)
-      const submitButton = screen.getByRole('button', { name: /enviar/i })
-
       const testName = 'Juan García'
       const testEmail = 'juan@example.com'
+      const testProjectType = 'Software a Medida'
       const testMessage = 'Quiero tus servicios'
 
-      await user.type(nameInput, testName)
-      await user.type(emailInput, testEmail)
-      await user.type(messageInput, testMessage)
-      await user.click(submitButton)
+      await user.type(screen.getByLabelText(/nombre/i), testName)
+      await user.type(screen.getByLabelText(/email/i), testEmail)
+      await user.selectOptions(screen.getByLabelText(/tipo de proyecto/i), testProjectType)
+      await user.type(screen.getByLabelText(/mensaje/i), testMessage)
+      await user.click(screen.getByRole('button', { name: /enviar/i }))
 
       await waitFor(() => {
         expect(emailjs.send).toHaveBeenCalledWith(
@@ -177,6 +171,7 @@ describe('Contact Form Component', () => {
           {
             from_name: testName,
             from_email: testEmail,
+            project_type: testProjectType,
             message: testMessage,
             to_email: 'lgavegno@gmail.com'
           },
@@ -187,22 +182,27 @@ describe('Contact Form Component', () => {
 
     it('should show loading state while sending', async () => {
       const user = userEvent.setup()
-      emailjs.send.mockImplementation(() => new Promise(resolve => setTimeout(resolve, 1000)))
+      // Use a pending promise to keep SENDING state visible
+      let resolveEmailjs
+      emailjs.send.mockImplementation(() => new Promise(resolve => { resolveEmailjs = resolve }))
 
       renderWithLocale(<Contact />)
 
-      const nameInput = screen.getByLabelText(/nombre/i)
-      const emailInput = screen.getByLabelText(/email/i)
-      const messageInput = screen.getByLabelText(/mensaje/i)
-      const submitButton = screen.getByRole('button', { name: /enviar/i })
+      await fillValidForm(user)
+      // Don't await — lets us observe intermediate SENDING state
+      const clickPromise = user.click(screen.getByRole('button', { name: /enviar/i }))
 
-      await user.type(nameInput, 'Test')
-      await user.type(emailInput, 'test@example.com')
-      await user.type(messageInput, 'Test message')
-      await user.click(submitButton)
+      // Wait for button to become disabled (SENDING state)
+      // Button renders a Spinner SVG (not text) when loading=true
+      await waitFor(() => {
+        const btn = screen.getByRole('button')
+        expect(btn).toBeDisabled()
+        expect(btn.querySelector('svg')).toBeTruthy()
+      })
 
-      expect(screen.getByText(/enviando/i)).toBeInTheDocument()
-      expect(submitButton).toBeDisabled()
+      // Cleanup
+      resolveEmailjs({ status: 200 })
+      await clickPromise
     })
 
     it('should clear form after successful submission', async () => {
@@ -212,13 +212,9 @@ describe('Contact Form Component', () => {
       const nameInput = screen.getByLabelText(/nombre/i)
       const emailInput = screen.getByLabelText(/email/i)
       const messageInput = screen.getByLabelText(/mensaje/i)
-      const submitButton = screen.getByRole('button', { name: /enviar/i })
 
-      // Fill and submit
-      await user.type(nameInput, 'Juan')
-      await user.type(emailInput, 'juan@example.com')
-      await user.type(messageInput, 'Message')
-      await user.click(submitButton)
+      await fillValidForm(user)
+      await user.click(screen.getByRole('button', { name: /enviar/i }))
 
       // Wait for success
       await waitFor(() => {
@@ -275,12 +271,12 @@ describe('Contact Form Component', () => {
       const user = userEvent.setup()
       renderWithLocale(<Contact />)
 
-      const nameInput = screen.getByLabelText(/nombre/i)
-      const emailInput = screen.getByLabelText(/email/i)
       const submitButton = screen.getByRole('button', { name: /enviar/i })
 
-      await user.type(nameInput, 'Juan')
-      await user.type(emailInput, 'juan@example.com')
+      // Fill name, email, and projectType — but NOT message
+      await user.type(screen.getByLabelText(/nombre/i), 'Juan')
+      await user.type(screen.getByLabelText(/email/i), 'juan@example.com')
+      await user.selectOptions(screen.getByLabelText(/tipo de proyecto/i), 'Software a Medida')
       await user.click(submitButton)
 
       await waitFor(() => {
@@ -295,15 +291,8 @@ describe('Contact Form Component', () => {
 
       renderWithLocale(<Contact />)
 
-      const nameInput = screen.getByLabelText(/nombre/i)
-      const emailInput = screen.getByLabelText(/email/i)
-      const messageInput = screen.getByLabelText(/mensaje/i)
-      const submitButton = screen.getByRole('button', { name: /enviar/i })
-
-      await user.type(nameInput, 'Juan')
-      await user.type(emailInput, 'juan@example.com')
-      await user.type(messageInput, 'Message')
-      await user.click(submitButton)
+      await fillValidForm(user)
+      await user.click(screen.getByRole('button', { name: /enviar/i }))
 
       await waitFor(() => {
         expect(screen.getByText(/error al enviar el mensaje/i)).toBeInTheDocument()
@@ -314,14 +303,9 @@ describe('Contact Form Component', () => {
       const user = userEvent.setup()
       renderWithLocale(<Contact />)
 
-      const nameInput = screen.getByLabelText(/nombre/i)
-      const emailInput = screen.getByLabelText(/email/i)
-      const messageInput = screen.getByLabelText(/mensaje/i)
       const submitButton = screen.getByRole('button', { name: /enviar/i })
 
-      await user.type(nameInput, 'Juan')
-      await user.type(emailInput, 'juan@example.com')
-      await user.type(messageInput, 'Message')
+      await fillValidForm(user)
 
       // Click multiple times
       await user.click(submitButton)
@@ -340,15 +324,8 @@ describe('Contact Form Component', () => {
       const user = userEvent.setup()
       renderWithLocale(<Contact />)
 
-      const nameInput = screen.getByLabelText(/nombre/i)
-      const emailInput = screen.getByLabelText(/email/i)
-      const messageInput = screen.getByLabelText(/mensaje/i)
-      const submitButton = screen.getByRole('button', { name: /enviar/i })
-
-      await user.type(nameInput, 'Juan')
-      await user.type(emailInput, 'juan@example.com')
-      await user.type(messageInput, 'Message')
-      await user.click(submitButton)
+      await fillValidForm(user)
+      await user.click(screen.getByRole('button', { name: /enviar/i }))
 
       await waitFor(() => {
         expect(screen.getByText(/mensaje enviado con éxito/i)).toBeInTheDocument()
@@ -370,43 +347,37 @@ describe('Contact Form Component', () => {
 
     it('should disable submit button during sending', async () => {
       const user = userEvent.setup()
-      emailjs.send.mockImplementation(() => new Promise(resolve => setTimeout(resolve, 500)))
+      // Keep send pending so we can assert the disabled state
+      let resolveEmailjs
+      emailjs.send.mockImplementation(() => new Promise(resolve => { resolveEmailjs = resolve }))
 
       renderWithLocale(<Contact />)
 
-      const nameInput = screen.getByLabelText(/nombre/i)
-      const emailInput = screen.getByLabelText(/email/i)
-      const messageInput = screen.getByLabelText(/mensaje/i)
-      const submitButton = screen.getByRole('button', { name: /enviar/i })
+      await fillValidForm(user)
+      const clickPromise = user.click(screen.getByRole('button', { name: /enviar/i }))
 
-      await user.type(nameInput, 'Juan')
-      await user.type(emailInput, 'juan@example.com')
-      await user.type(messageInput, 'Message')
-      await user.click(submitButton)
-
-      expect(submitButton).toBeDisabled()
-
+      // Button must be disabled while SENDING
       await waitFor(() => {
-        expect(submitButton).not.toBeDisabled()
-      }, { timeout: 1000 })
+        expect(screen.getByRole('button')).toBeDisabled()
+      })
+
+      // Resolve and cleanup
+      resolveEmailjs({ status: 200 })
+      await clickPromise
     })
 
-    it('should update button text to "¡Enviado!" on success', async () => {
+    it('should keep button disabled after successful submission', async () => {
       const user = userEvent.setup()
       renderWithLocale(<Contact />)
 
-      const nameInput = screen.getByLabelText(/nombre/i)
-      const emailInput = screen.getByLabelText(/email/i)
-      const messageInput = screen.getByLabelText(/mensaje/i)
-      const submitButton = screen.getByRole('button', { name: /enviar/i })
+      await fillValidForm(user)
+      await user.click(screen.getByRole('button', { name: /enviar/i }))
 
-      await user.type(nameInput, 'Juan')
-      await user.type(emailInput, 'juan@example.com')
-      await user.type(messageInput, 'Message')
-      await user.click(submitButton)
-
+      // On success: isSubmitting stays true for 5s, so button stays disabled with spinner
+      // The success state is communicated via the success message, not button text
       await waitFor(() => {
-        expect(screen.getByText(/¡Enviado!/)).toBeInTheDocument()
+        expect(screen.getByText(/mensaje enviado con éxito/i)).toBeInTheDocument()
+        expect(screen.getByRole('button')).toBeDisabled()
       })
     })
   })
@@ -415,8 +386,12 @@ describe('Contact Form Component', () => {
     it('should have proper semantic HTML structure', () => {
       renderWithLocale(<Contact />)
 
-      // Should have form element
-      expect(screen.getByRole('form', { hidden: true }) || screen.getByRole('button')).toBeInTheDocument()
+      // Form contains all required field roles and submit button
+      expect(screen.getByLabelText(/nombre/i)).toBeInTheDocument()
+      expect(screen.getByLabelText(/email/i)).toBeInTheDocument()
+      expect(screen.getByLabelText(/tipo de proyecto/i)).toBeInTheDocument()
+      expect(screen.getByLabelText(/mensaje/i)).toBeInTheDocument()
+      expect(screen.getByRole('button', { name: /enviar/i })).toBeInTheDocument()
     })
 
     it('should have proper labels for all inputs', () => {
@@ -441,18 +416,26 @@ describe('Contact Form Component', () => {
 
       const nameInput = screen.getByLabelText(/nombre/i)
       const emailInput = screen.getByLabelText(/email/i)
+      const projectTypeSelect = screen.getByLabelText(/tipo de proyecto/i)
       const submitButton = screen.getByRole('button', { name: /enviar/i })
 
       // Tab to first input
       await user.tab()
       expect(nameInput).toHaveFocus()
 
-      // Tab to next input
+      // Tab to email
       await user.tab()
       expect(emailInput).toHaveFocus()
 
+      // Tab to projectType select
+      await user.tab()
+      expect(projectTypeSelect).toHaveFocus()
+
+      // Tab to message textarea
+      await user.tab()
+
       // Tab to submit button
-      await user.tab({ shift: false }) // Skip message field for this test
+      await user.tab()
       expect(submitButton).toHaveFocus()
     })
   })
@@ -492,15 +475,11 @@ describe('Contact Form Component', () => {
       const user = userEvent.setup()
       renderWithLocale(<Contact />)
 
-      const nameInput = screen.getByLabelText(/nombre/i)
-      const emailInput = screen.getByLabelText(/email/i)
-      const messageInput = screen.getByLabelText(/mensaje/i)
-      const submitButton = screen.getByRole('button', { name: /enviar/i })
-
-      await user.type(nameInput, 'José García Martínez')
-      await user.type(emailInput, 'jose@example.com')
-      await user.type(messageInput, 'Necesito análisis de datos estadísticos')
-      await user.click(submitButton)
+      await user.type(screen.getByLabelText(/nombre/i), 'José García Martínez')
+      await user.type(screen.getByLabelText(/email/i), 'jose@example.com')
+      await user.selectOptions(screen.getByLabelText(/tipo de proyecto/i), 'Software a Medida')
+      await user.type(screen.getByLabelText(/mensaje/i), 'Necesito análisis de datos estadísticos')
+      await user.click(screen.getByRole('button', { name: /enviar/i }))
 
       await waitFor(() => {
         expect(screen.getByText(/mensaje enviado con éxito/i)).toBeInTheDocument()
@@ -511,18 +490,18 @@ describe('Contact Form Component', () => {
       const user = userEvent.setup()
       renderWithLocale(<Contact />)
 
+      // Use fireEvent.change for long values to avoid keystroke-per-keystroke timeout
+      const { fireEvent } = await import('@testing-library/react')
       const nameInput = screen.getByLabelText(/nombre/i)
-      const messageInput = screen.getByLabelText(/mensaje/i)
       const emailInput = screen.getByLabelText(/email/i)
-      const submitButton = screen.getByRole('button', { name: /enviar/i })
+      const messageInput = screen.getByLabelText(/mensaje/i)
 
-      const longName = 'A'.repeat(100) // maxLength="100"
-      const longMessage = 'B'.repeat(2000) // maxLength="2000"
+      fireEvent.change(nameInput, { target: { name: 'name', value: 'A'.repeat(100) } })
+      fireEvent.change(emailInput, { target: { name: 'email', value: 'test@example.com' } })
+      await user.selectOptions(screen.getByLabelText(/tipo de proyecto/i), 'Software a Medida')
+      fireEvent.change(messageInput, { target: { name: 'message', value: 'B'.repeat(2000) } })
 
-      await user.type(nameInput, longName)
-      await user.type(emailInput, 'test@example.com')
-      await user.type(messageInput, longMessage)
-      await user.click(submitButton)
+      await user.click(screen.getByRole('button', { name: /enviar/i }))
 
       await waitFor(() => {
         expect(emailjs.send).toHaveBeenCalled()
