@@ -52,6 +52,10 @@ function generateSitemap() {
     url('/', 'monthly', 0.9),
     url('/es', 'monthly', 0.9),
 
+    // Agencies
+    url('/agencias', 'monthly', 0.9),
+    url('/en/agencies', 'monthly', 0.9),
+
     // Blog lists
     url('/en/blog', 'weekly', 0.8),
     url('/es/blog', 'weekly', 0.8),
@@ -84,9 +88,9 @@ ${entries.join('\n\n')}
 
   const blogCount = blogSlugs.length;
   const projectCount = projectIds.length;
-  const total = 2 + 2 + blogCount * 2 + 1 + projectCount * 2;
+  const total = 2 + 2 + 2 + blogCount * 2 + 1 + projectCount * 2;
   console.log(`✓ Sitemap generated: ${outputPath}`);
-  console.log(`✓ URLs included: ${total} (2 home + 2 blog lists + ${blogCount * 2} posts + 1 projects list + ${projectCount * 2} projects)`);
+  console.log(`✓ URLs included: ${total} (2 home + 2 agencies + 2 blog lists + ${blogCount * 2} posts + 1 projects list + ${projectCount * 2} projects)`);
 }
 
 try {

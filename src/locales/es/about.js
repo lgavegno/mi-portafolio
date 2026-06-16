@@ -2,10 +2,10 @@ export default {
   headingPrefix: 'Sobre',
   headingHighlight: 'Mí',
   p1: 'Hola, soy Leandro — estudiante avanzado de la Tecnicatura Universitaria en Programación en la UTN FRRA y desarrollador independiente.',
-  p2: 'Me dedico a construir herramientas digitales para pequeños comercios: sitios web en WordPress y Tienda Nube. Así como también aplicaciones de escritorio para gestión interna.',
+  p2: 'Construyo sitios web con foco en diseño, performance y posicionamiento. Trabajo con clientes directos y como partner técnico de agencias que necesitan producción web de calidad para sus propios clientes.',
   p3Before: 'Actualmente desarrollo OmniStock, un sistema de inventario desktop para PyMEs, y tengo experiencia real entregando proyectos a clientes — como la tienda online de Faro Art Shop, hoy en producción en',
   p3After: '.',
-  p4: 'Si necesitás una herramienta que resuelva un problema concreto en tu negocio, puedo ayudarte.',
+  p4: 'Me interesa el detalle visual, la velocidad de carga y que los sitios aparezcan donde tienen que aparecer.',
   tabs: {
     formacion: 'Formación académica',
     cursos: 'Cursos y certificaciones',

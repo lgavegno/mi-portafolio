@@ -3,189 +3,203 @@
 
   <url>
     <loc>https://www.ongevag.com/</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://www.ongevag.com/es</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.ongevag.com/agencias</loc>
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.ongevag.com/en/agencies</loc>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://www.ongevag.com/en/blog</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.ongevag.com/es/blog</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.ongevag.com/en/blog/google-sheets-backend-serverless</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.ongevag.com/en/blog/fitness-data-integrity-refactor</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.ongevag.com/en/blog/python-para-data-analytics-guia</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.ongevag.com/en/blog/interpretacion-graficos-principio-pareto</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.ongevag.com/en/blog/react-vs-react-native-comparativa</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.ongevag.com/en/blog/guia-estadistica-data-analyst</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.ongevag.com/es/blog/google-sheets-backend-serverless</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.ongevag.com/es/blog/fitness-data-integrity-refactor</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.ongevag.com/es/blog/python-para-data-analytics-guia</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.ongevag.com/es/blog/interpretacion-graficos-principio-pareto</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.ongevag.com/es/blog/react-vs-react-native-comparativa</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.ongevag.com/es/blog/guia-estadistica-data-analyst</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.ongevag.com/proyecto</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.ongevag.com/proyecto/fitness-retention-analysis</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.ongevag.com/proyecto/omnistock</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.ongevag.com/proyecto/faro-art-shop</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.ongevag.com/proyecto/generador-presupuestos</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.ongevag.com/proyecto/form-invent</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.ongevag.com/es/proyecto/fitness-retention-analysis</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.ongevag.com/es/proyecto/omnistock</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.ongevag.com/es/proyecto/faro-art-shop</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.ongevag.com/es/proyecto/generador-presupuestos</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.ongevag.com/es/proyecto/form-invent</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

@@ -7,7 +7,7 @@
 ## Identity
 
 Name: Leandro Gavegno
-Brand: Ongevag Studio
+Brand: Ongevag
 Role: Freelance Front-End Developer & Web Consultant
 Location: Rafaela, Santa Fe, Argentina
 Scope: Worldwide (remote-first, English and Spanish)
