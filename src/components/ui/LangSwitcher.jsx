@@ -1,5 +1,12 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
+// Segmentos de ruta que difieren entre ES y EN
+const SEGMENT_ES_TO_EN = { agencias: 'agencies' };
+const SEGMENT_EN_TO_ES = { agencies: 'agencias' };
+
+const translateSegments = (pathname, map) =>
+  pathname.split('/').map(seg => map[seg] ?? seg).join('/');
+
 const LangSwitcher = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -10,18 +17,20 @@ const LangSwitcher = () => {
     let newPathname = location.pathname;
 
     if (targetLocale === 'en') {
-      // Navegar a EN: prepend /en si no existe
+      // Navegar a EN: prepend /en si no existe, luego traducir segmentos
       if (!newPathname.startsWith('/en')) {
         newPathname = '/en' + newPathname;
       }
+      newPathname = translateSegments(newPathname, SEGMENT_ES_TO_EN);
     } else {
-      // Navegar a ES: strip /en si existe
+      // Navegar a ES: strip /en si existe, luego traducir segmentos
       if (newPathname.startsWith('/en')) {
         newPathname = newPathname.slice(3);
         if (!newPathname.startsWith('/')) {
           newPathname = '/' + newPathname;
         }
       }
+      newPathname = translateSegments(newPathname, SEGMENT_EN_TO_ES);
     }
 
     window.scrollTo(0, 0);

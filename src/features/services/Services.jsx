@@ -55,7 +55,7 @@ const faqSchema = {
 };
 
 const Services = () => {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef(null);
   const autoRotateInterval = useRef(null);
@@ -232,6 +232,18 @@ const Services = () => {
               aria-label={`${t.services.carousel.serviceIndicator} ${index + 1}`}
             />
           ))}
+        </div>
+
+        <div className="border-t border-slate-700/60 pt-6 mt-8 text-center">
+          <span className="text-slate-400">
+            {locale === 'en' ? 'Are you from an agency? ' : '¿Sos de una agencia? '}
+          </span>
+          <a
+            href={locale === 'en' ? '/en/agencies' : '/agencias'}
+            className="text-sky-400 hover:text-sky-300 transition-colors"
+          >
+            {locale === 'en' ? '→ See agency proposal' : '→ Ver propuesta para agencias'}
+          </a>
         </div>
       </div>
     </section>

@@ -98,7 +98,7 @@ const Contact = () => {
           from_email: formData.email,
           project_type: formData.projectType,
           message: formData.message,
-          to_email: 'lgavegno@gmail.com'
+          to_email: import.meta.env.VITE_CONTACT_EMAIL
         },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
@@ -173,7 +173,7 @@ const Contact = () => {
             variants={fadeInUp}
             className="glass-card p-8"
           >
-            <form
+            <form aria-label="Formulario de contacto"
               onSubmit={(e) => {
                 if (e && e.preventDefault) e.preventDefault();
                 handleSubmit(e);

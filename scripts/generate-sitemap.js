@@ -35,9 +35,9 @@ function extractBlogSlugs() {
   }
 }
 
-function url(path, changefreq, priority) {
+function url(loc, changefreq, priority) {
   return `  <url>
-    <loc>${baseUrl}${path}</loc>
+    <loc>${baseUrl}${loc}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
@@ -51,6 +51,10 @@ function generateSitemap() {
     // Home — ES canonical (no prefix), EN (/en)
     url('/', 'monthly', 0.9),
     url('/en', 'monthly', 0.9),
+
+    // Agencies
+    url('/agencias', 'monthly', 0.9),
+    url('/en/agencies', 'monthly', 0.9),
 
     // Blog lists — ES (/blog), EN (/en/blog)
     url('/blog', 'weekly', 0.8),
@@ -81,9 +85,9 @@ ${entries.join('\n\n')}
 
   const blogCount = blogSlugs.length;
   const projectCount = projectIds.length;
-  const total = 2 + 2 + blogCount * 2 + projectCount * 2;
+  const total = 2 + 2 + 2 + blogCount * 2 + projectCount * 2;
   console.log(`✓ Sitemap generated: ${outputPath}`);
-  console.log(`✓ URLs included: ${total} (2 home + 2 blog lists + ${blogCount * 2} posts + ${projectCount * 2} projects)`);
+  console.log(`✓ URLs included: ${total} (2 home + 2 agencies + 2 blog lists + ${blogCount * 2} posts + ${projectCount * 2} projects)`);
 }
 
 try {
