@@ -16,6 +16,8 @@ export default {
     tagline: 'Studio',
   },
 
+  agenciasNav: 'For agencies',
+
   // Footer
   footer: {
     about: 'About Me',

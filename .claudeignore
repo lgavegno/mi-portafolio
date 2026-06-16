@@ -94,3 +94,6 @@ PROJECT_LOG.md            # Deprecado: consolidado en BITACORA_TECNICA.md
 .github/
 .gitignore
 .gitattributes
+
+## Archivos de contexto AI (no pertenecen al repo del proyecto)
+MEMORY.md

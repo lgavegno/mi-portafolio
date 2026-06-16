@@ -3,14 +3,90 @@
 Historial de cambios del proyecto Ongevag Portfolio. Formato: [Keep a Changelog](https://keepachangelog.com).
 
 ---
-## [Unreleased] — 2026-06-08
+## [Unreleased]
+
+---
+
+## [3.0.0] — 2026-06-16
 
 ### Added
-- Blog ES: 6 posts traducidos al español en `blogData.es.js` (slugs inmutables)
+- FEATURE-06: página /agencias y /en/agencies (partners y agencias)
+- FEATURE-06: stagger animation en ProjectCard al hacer scroll
+
+### Fixed
+- Rutas /es/* fantasma en sitemap (SEO crítico — Googlebot recibía 404s)
+- 14 tests fallando en Contact.test.jsx (causa raíz: projectType ausente en validateForm)
+- CVE HIGH dompurify@3.4.8 — actualizado
+- Eliminados 3 assets .webp sin referencias (faroart2, generador2, omnistock2)
+
+### Security
+- vitest actualizado de 1.6.1 a 4.1.9 — resuelve CVE CVSS 9.8
+
+### Chores
+- Eliminado MEMORY.md no autorizado generado por Claude Code
+- Actualizado .claudeignore para prevenir regeneración
+- Documentación actualizada: CLAUDE.md, SDD_MASTER, BITACORA, AUDIT_2026-06-15
+
+## [2.5.1] — 2026-06-15
+
+### Fixed
+- generate-sitemap.js: eliminadas rutas fantasma /es/* (no existen en el router)
+  — sitemap regenerado con 26 URLs correctas: ES sin prefijo + EN con /en/
+- Contact.test.jsx: 14 tests fallando → 71/71 passing
+  — fillValidForm() helper con selectOptions() para projectType requerido
+  — emailjs.send: params corregidos (faltaba project_type)
+  — Button loading: tests actualizados para detectar `<Spinner>` SVG en lugar
+    de texto (Button renderiza SVG cuando loading=true, no children)
+- dompurify 3.4.8 → 3.4.9 (CVE HIGH: GHSA-vxr8-fq34-vvx9)
 
 ### Changed
-- ProjectCard: animación de entrada izquierda/derecha alternada por index (Framer Motion)
-- Works: grid wrapper cambiado de `motion.div` a `div` estático para stagger correcto
+- CLAUDE.md: Current Phase → FEATURE-04_HERO_ANIMATION, Module Index y ADRs
+  actualizados para reflejar estado real
+- docs/SDD_MASTER.md: FEATURE-03 Done, FEATURE-06 registrado, ADR-008/009
+  desreservados, paths corregidos
+
+### Removed
+- omnistock2.webp, faroart2.webp, generador2.webp (sin referencias en codebase)
+
+### Security
+- dompurify: 3.4.8 → 3.4.9
+
+### Deferred
+- vitest@1.6.1 CVE CVSS 9.8: upgrade bloqueado por compatibilidad React 19 —
+  sprint separado
+- DT-05-02: ProjectDetail locale-aware — feature separada
+- og:locale hardcoded — PR menor pendiente
+
+---
+
+## [2.5.0] — 2026-06-11
+
+### Added
+- `public/robots.txt`: reglas explícitas para GPTBot, ClaudeBot, PerplexityBot, Google-Extended; sitemap URL → `www.ongevag.com`
+- `public/llms.txt`: contexto estructurado para LLMs (7 secciones, inglés, conversión internacional)
+- `index.html`: JSON-LD `Organization`, `Person`, `ProfessionalService` (`areaServed: "Worldwide"`)
+- `ProjectDetail.jsx`: JSON-LD `SoftwareApplication` dinámico vía Helmet por cada proyecto
+- `Services.jsx`: JSON-LD `FAQPage` con 5 preguntas orientadas a conversión vía Helmet
+- Blog ES: 6 posts traducidos al español en `blogData.es.js` (slugs inmutables)
+- SkillsGrid: animación stagger izquierda→derecha con Framer Motion
+- ESLint: regla `jsx-uses-vars` para reconocer `motion.` como uso válido
+- ESLint: globals de vitest configurados para archivos de test
+- vitest.config.js: fix `__dirname` en contexto ESM con `fileURLToPath`
+
+### Changed
+- `scripts/generate-sitemap.js`: `lastmod` ahora dinámico (`new Date()` en lugar de fecha hardcodeada)
+- ProjectCard: animación entrada izquierda/derecha alternada por index
+- Works: grid wrapper de `motion.div` a `div` estático para stagger correcto
+- App.jsx: 4 imports estáticos → lazy() — bundle 363KB→233KB (-35%)
+- motionConfig.js: staggerChildren 0.07 → 0.05 (más fluido)
+- Hero CTA secundario: restaurado a scroll interno `#contacto` con i18n EN/ES
+- react-router-dom: 7.11.0 → 7.17.0 (patch 9 CVEs)
+- dompurify: 3.3.3 → 3.4.8 (patch 4 CVEs XSS/Prototype Pollution)
+
+### Fixed
+- motion import faltante en 22 archivos JSX (ReferenceError en producción)
+- scrollToContact no definida en HeroBanner (ReferenceError en producción)
+- Imports duplicados de framer-motion consolidados en 5 archivos
 
 ## [2.4.2] — Abril 2026
 

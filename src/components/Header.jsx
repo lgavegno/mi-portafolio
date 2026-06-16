@@ -12,13 +12,14 @@ const Header = ({ isOpen, setIsOpen }) => {
   const [scrolled, setScrolled] = useState(false);
   const vibrate = useVibrate(10);
   const location = useLocation();
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
 
   const navLinks = [
     { label: t.common.nav.inicio,   id: 'inicio'    },
     { label: t.common.nav.about,    id: 'sobre-mi'  },
     { label: t.common.nav.projects, id: 'proyectos' },
     { label: t.common.nav.services, id: 'que-hago'  },
+    { label: t.common.agenciasNav,  href: locale === 'en' ? '/en/agencies' : '/agencias' },
     { label: t.common.nav.blog,     id: 'blog'      },
   ];
 
@@ -113,10 +114,13 @@ const Header = ({ isOpen, setIsOpen }) => {
           <div className="hidden md:flex items-center gap-2">
             {navLinks.map((link, index) => (
               <Link
-                key={link.id}
-                to="/"
-                state={{ scrollTo: link.id }}
-                onClick={(e) => handleNavClick(e, link.id)}
+                key={link.id ?? link.href}
+                to={link.href ?? '/'}
+                state={link.id ? { scrollTo: link.id } : undefined}
+                onClick={link.href
+                  ? () => { vibrate(); setIsOpen(false); }
+                  : (e) => handleNavClick(e, link.id)
+                }
               >
                 <motion.div
                   initial={{ opacity: 0, y: -20 }}
@@ -189,10 +193,13 @@ const Header = ({ isOpen, setIsOpen }) => {
               <div className="py-4 space-y-1 border-t border-white/10">
                 {navLinks.map((link, index) => (
                   <Link
-                    key={link.id}
-                    to="/"
-                    state={{ scrollTo: link.id }}
-                    onClick={(e) => handleNavClick(e, link.id)}
+                    key={link.id ?? link.href}
+                    to={link.href ?? '/'}
+                    state={link.id ? { scrollTo: link.id } : undefined}
+                    onClick={link.href
+                      ? () => { vibrate(); setIsOpen(false); }
+                      : (e) => handleNavClick(e, link.id)
+                    }
                   >
                     <motion.div
                       initial={{ opacity: 0, x: -20 }}

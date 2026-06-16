@@ -48,9 +48,7 @@ const MainLayout = () => {
         }}
         transition={{ duration: 0.3 }}
       >
-        <PageTransition>
-          <Outlet />
-        </PageTransition>
+        <Outlet />
       </motion.main>
 
       {/* Footer also gets blurred */}

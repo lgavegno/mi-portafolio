@@ -5,6 +5,242 @@
 
 ---
 
+## 2026-06-15 — Cierre PR Auditoría
+
+**Tipo:** Cierre de reparación post-auditoría
+**Branch:** audit/doc-code-2026-06
+**PR:** audit(2026-06-15): doc consistency, sitemap fix, test fix, CVE patch, dead assets
+**Commits:** 2bab08c | e89f242 | 5f1d328 | 2192473 | 22dcc14
+
+### Resultado final
+- Build: OK | Lint: OK (2 warnings pre-existentes DataVisualization.jsx) | Tests: 71/71
+- Bundle: 233KB (sin cambio)
+- Sitemap: 26 URLs correctas (era 27+ con rutas /es/ fantasma)
+- CVE dompurify parcheado: 3.4.8 → 3.4.9
+- Assets eliminados: 3 archivos .webp sin uso
+
+### Hallazgo técnico documentado — Button component
+
+El componente Button renderiza un `<Spinner>` SVG cuando `loading=true`, no el
+texto de children. `isSubmitting` permanece `true` por 5 segundos post-success
+(solo se resetea en `setTimeout`). Impacto en tests: assertions de `textContent`
+fallan siempre en estado SENDING y SUCCESS. Fix: usar `querySelector('svg')`
+para SENDING, `toBeDisabled()` + success message para SUCCESS.
+
+### Deuda técnica residual
+
+| ID | Descripción | Sprint |
+|----|-------------|--------|
+| CVE-vitest | vitest@1.6.1 CVSS 9.8 — upgrade separado | Próximo |
+| DT-05-02 | ProjectDetail no locale-aware | Feature separada |
+| ROUTE-02 | og:locale hardcoded | PR menor |
+
+---
+
+## 2026-06-15 — Auditoría Exhaustiva Documentación + Código
+
+**Tipo:** Auditoría (documentación + código + seguridad)
+**Branch:** audit/doc-code-2026-06
+**Ejecutado por:** Claude Code (claude-sonnet-4-6)
+
+### Hallazgos principales
+
+**Documentación:**
+- CLAUDE.md y SDD_MASTER.md tenían FEATURE-03 como "In Progress" cuando la implementación estaba completa
+- SDD_MASTER.md tenía nota incorrecta "ADR-008/009 reservados" — ambos existen
+- FEATURE-06-PARTNERS_AGENCIAS no estaba registrada en CLAUDE.md ni SDD_MASTER.md
+- Fila duplicada truncada de FEATURE-01 en SDD_MASTER.md
+- CONTRIBUTING.md no menciona `--legacy-peer-deps` (requerido por react-helmet-async@2.0.5 / React 19)
+
+**Código:**
+- **CRÍTICO:** `scripts/generate-sitemap.js` genera URLs inválidas: `/es`, `/es/blog`, `/es/blog/:slug`, `/es/proyecto/:id` — ninguna existe en el router. ES canónico está en `/` (no `/es`).
+- **ALTO:** 14 tests de `Contact.test.jsx` fallan. Causa: `validateForm.js` requiere `projectType` pero los tests no lo seleccionan. No es regresión de producción — tests desactualizados.
+- `ProjectDetail.jsx`: `og:locale` hardcodeado a `en_US` independientemente del locale real (DT-05-02 extendido).
+- `src/data/projects.js` legacy: solo lo usa `ProjectDetail.jsx` (parte de DT-05-02).
+- Assets sin uso: `omnistock2.webp`, `faroart2.webp`, `generador2.webp` (DT-05-03 confirmado).
+
+**Seguridad:**
+- `dompurify@3.4.8` → CVE GHSA-vxr8-fq34-vvx9 (HIGH) — fix: 3.4.9 disponible
+- `vitest@1.6.1` → CVE GHSA-5xrq-8626-4rwp (CRITICAL, dev only) — fix: upgrade a v3
+- `vite@6.3.5` → 2 CVEs (HIGH, build/dev only)
+- 24 vulnerabilidades totales (2 críticas, 11 altas, 7 medias, 4 bajas)
+
+**Estado baseline:**
+- Build: ✅ | Lint: 2 warnings | Tests: 14 failed / 57 passed | Bundle: 233KB
+
+### Correcciones aplicadas
+
+- `CLAUDE.md`: Current Phase → FEATURE-04_HERO_ANIMATION, Module Index actualizado (FEATURE-03 Done, FEATURE-06 agregado), ADRs listados explícitamente, referencia src/docs/adr/ eliminada
+- `docs/SDD_MASTER.md`: FEATURE-03 → ✅ Done, FEATURE-04 → 🔄 In Progress, FEATURE-06 agregado al registry, ADR-008/ADR-009 agregados a tabla, nota errónea eliminada, fila duplicada eliminada, Appendix actualizado con archivos reales
+- `docs/AUDIT_2026-06-15.md`: Informe generado
+
+### Pendiente de confirmación
+
+1. Corregir `scripts/generate-sitemap.js` — URLs ES rotas (CRÍTICO)
+2. Actualizar `Contact.test.jsx` — agregar `projectType` en tests de submit (ALTO)
+3. `npm install dompurify@3.4.9 --legacy-peer-deps` (ALTO, seguridad)
+4. Actualizar `CONTRIBUTING.md` con `--legacy-peer-deps` (MEDIO)
+5. `ProjectDetail.jsx`: locale-aware para og:locale (MEDIO)
+6. Eliminar assets sin uso: omnistock2, faroart2, generador2 (BAJO)
+7. Planificar upgrade Vitest 1.x → 3.x (SEGURIDAD)
+
+### Referencias
+
+- [AUDIT_2026-06-15.md](./docs/AUDIT_2026-06-15.md)
+
+---
+
+## 2026-06-13 — FEATURE-05: Liquidación de Deuda Técnica Documental
+
+**Tipo:** Documentación retroactiva (deuda técnica)
+**Branch:** develop
+**Fases completadas:** A (auditoría) + B (generación SDD) + C (integración y cierre)
+
+### Qué se hizo
+
+- `spec.md` generado retroactivamente a partir de `mod-05_project-management.md` y código fuente verificado
+- `plan.md` creado: 3 fases (A–C), 1.5h estimadas, criterios DoD por fase
+- `tasks.md` creado: T-01 a T-11 con criterios de aceptación y tabla de tracking
+- `CLAUDE.md` actualizado: FEATURE-05 `✅ Active` → `✅ Done`, links actualizados
+- `SDD_MASTER.md` actualizado: Module Registry + Appendix con estructura real del directorio
+- Commit atómico en `develop`
+
+### Archivos creados/modificados
+
+| Archivo | Acción |
+|---------|--------|
+| `docs/specs/FEATURE-05_PROJECT_MANAGEMENT/spec.md` | Creado |
+| `docs/specs/FEATURE-05_PROJECT_MANAGEMENT/plan.md` | Creado |
+| `docs/specs/FEATURE-05_PROJECT_MANAGEMENT/tasks.md` | Creado |
+| `CLAUDE.md` | Actualizado (status FEATURE-05 + links) |
+| `docs/SDD_MASTER.md` | Actualizado (Module Registry + Appendix) |
+| `BITACORA_TECNICA.md` | Esta entrada |
+
+### Hallazgos de auditoría
+
+- Todos los IDs de proyecto son kebab-case únicos; progress/status coherentes en los 5 proyectos
+- `Works.jsx` no implementa filtrado por categoría en UI (DT-05-01) — `projectCategories` existe como infraestructura sin UI asociada
+- `ProjectDetail.jsx` usa `projects.js` base (ES) independientemente del locale (DT-05-02)
+- `fig_clusters_ai.webp` está en `.webp` en el código real; `mod-05` tenía referencia obsoleta a `.png`
+
+### Deuda técnica documentada (spec.md §7)
+
+| ID | Descripción |
+|----|-------------|
+| DT-05-01 | Filtrado por categoría no implementado en UI de Works.jsx |
+| DT-05-02 | ProjectDetail.jsx no es locale-aware para datos de proyecto |
+| DT-05-03 | `omnistock2.webp`, `faroart2.webp`, `generador2.webp` sin uso actual |
+
+### Referencias
+
+- [spec.md](./docs/specs/FEATURE-05_PROJECT_MANAGEMENT/spec.md)
+- [plan.md](./docs/specs/FEATURE-05_PROJECT_MANAGEMENT/plan.md)
+- [tasks.md](./docs/specs/FEATURE-05_PROJECT_MANAGEMENT/tasks.md)
+
+---
+## Sesión — 2026-06-11 (FEATURE-03_AEO_SCHEMA)
+
+### Estado inicial
+robots.txt apuntaba a `occasionalvercel.app`, sin reglas explícitas para bots de IA.
+No existía llms.txt. Sin JSON-LD en ningún componente.
+
+### Decisiones
+
+**DEC: robots.txt — Bots de IA con permiso explícito**
+Agregadas secciones `User-agent` explícitas para GPTBot, ClaudeBot, PerplexityBot y
+Google-Extended con `Allow: /`. El `User-agent: *` ya permitía el acceso, pero la
+especificidad garantiza comportamiento correcto ante overrides futuros.
+Sitemap URL actualizada de `vercel.app` → `https://www.ongevag.com`.
+
+**DEC: llms.txt — Contexto para LLMs en inglés**
+Archivo creado con 7 secciones: Identity, Services, Portfolio, Contact, Scope Negative,
+Ideal Client Profile, Values. Orientado a conversión internacional.
+Scope negativo incluido (sin enterprise backend, sin DBA, sin mobile nativo) para
+filtrar leads no calificados directamente desde la indexación de IA.
+
+**DEC: Sitemap — lastmod dinámico**
+`generate-sitemap.js` actualizado para usar `new Date().toISOString().split('T')[0]`
+en lugar de fecha hardcodeada. Genera 27 URLs: 2 home + 2 blog + 12 posts + 1 lista
+proyectos + 10 proyectos. Se ejecuta automáticamente en `npm run build`.
+
+**DEC: JSON-LD estático en index.html — Organization + Person + ProfessionalService**
+Tres bloques `<script type="application/ld+json">` insertados antes del gtag.
+Usamos `@id` con fragmento URI para permitir referencia cruzada entre schemas
+(`Person.worksFor` → `Organization`, `ProfessionalService.provider` → `Person`).
+`ProfessionalService` elegido sobre `LocalBusiness` puro: tiene `areaServed:
+"Worldwide"` y `serviceType` array, permitiendo indexación global sin señales
+geográficas restrictivas (ADR-009).
+
+**DEC: SoftwareApplication en ProjectDetail.jsx**
+JSON-LD generado dinámicamente desde `project` data. `applicationCategory` derivado
+del campo `category` y del array `stack` (proyectos Tauri → `DesktopApplication`,
+resto → `WebApplication`). Precio `"0"` en `offers` para maximizar compatibilidad
+de validación con Schema.org Validator (strings como "Consultar" causan warnings).
+
+**DEC: FAQPage en Services.jsx**
+5 preguntas orientadas a conversión internacional. Preguntas elegidas por su
+impacto en intent de compra: tiempo de entrega, alcance internacional, stack,
+soporte post-launch, y pricing. FAQs alineadas con el contenido real del carousel.
+Helmet importado solo en Services.jsx (no en otros componentes del feature).
+
+### Resultados
+- Build limpio: `✓ built in 5.86s`, sin warnings nuevos
+- Sitemap: 27 URLs generadas con dominio canónico `www.ongevag.com`
+- JSON-LD: 5 schemas válidos (3 estáticos en index.html, 2 dinámicos vía Helmet)
+- Bundle size sin cambio significativo (JSON-LD tree-shaken en static, inline en runtime)
+
+---
+## Sesión — 2026-06-09
+
+### Estado inicial
+Blog ES vacío. Bundle 363KB. CVEs activos en dompurify y react-router-dom.
+ESLint con 62 errores. motion importado sin usar en 18 archivos.
+
+### Decisiones
+
+**DEC: Lazy loading en 4 páginas**
+BlogIndex, BlogLayout, BlogPostDetail, ProjectDetail convertidos a lazy().
+Impacto: bundle 363KB → 233KB (-35%). Build time 9s → 4.5s (-50%).
+useEffect de prefetch eliminado (era no-op al tener imports estáticos).
+
+**DEC: Patch de CVEs críticos**
+dompurify 3.3.3 → 3.4.8 (4 CVEs: Prototype Pollution + XSS bypass).
+react-router-dom 7.11.0 → 7.17.0 (9 CVEs: XSS open redirect + DoS).
+Instalados con --legacy-peer-deps por conflicto con react-helmet-async@2.0.5.
+
+**DEC: ESLint configurado correctamente**
+Problema raíz: ESLint sin `react/jsx-uses-vars` no reconoce `<motion.div>`
+como uso de la variable `motion`. Solución: agregar eslint-plugin-react +
+regla jsx-uses-vars. vitest.config.js fix: fileURLToPath para __dirname en ESM.
+
+### Problemas encontrados
+
+**PROB: motion eliminado de 22 archivos por el linter**
+Síntoma: pantalla negra en producción — ReferenceError motion is not defined.
+Causa: prompt de limpieza de lint eliminó motion de imports sin verificar
+si se usaba via JSX member expression (<motion.div>).
+Resolución: grep masivo para detectar todos los archivos con motion. sin import,
+restaurar los 22 imports faltantes en un solo prompt con verificación Playwright.
+Lección: NUNCA eliminar imports sin correr npm run dev primero.
+
+**PROB: scrollToContact perdida en múltiples resets**
+Síntoma: ReferenceError scrollToContact is not defined en HeroBanner.
+Causa: función eliminada durante conflictos de merge y resets de git.
+Resolución: restaurar función dentro del componente antes del return.
+Lección: las funciones handler deben estar documentadas en el componente.
+
+**PROB: git reset --hard a commit sin scrollToContact**
+Causa: ae28309 es anterior al commit que agregó scrollToContact.
+Resolución: restaurar función manualmente después del reset.
+
+### Estado al cierre
+- Bundle: 233KB (era 363KB)
+- CVEs críticos: 0 en dompurify y react-router-dom
+- ESLint: 0 errores, 2 warnings aceptables en DataVisualization.jsx
+- motion imports: correctos en todos los archivos JSX
+- Producción: funcionando en ongevag.com
+- Rama: develop, main actualizado
+
 ## Sesión — 2026-06-08
 
 ### Estado inicial
@@ -346,3 +582,61 @@ raíz/
 - 27 URLs generadas: home EN/ES, blog EN/ES, posts ×6, proyectos ×5 EN/ES
 - IDs de proyectos hardcodeados en script — actualizar al agregar proyectos
 - Deuda técnica original (sitemap manual): RESUELTA en sprint
+
+---
+
+## 2026-06-13 — FEATURE-04: Cierre Fase A (Documentación)
+
+**Tipo:** Documentación / Deuda técnica
+**Branch:** feature/hero-animation-audit
+**Fase completada:** A — Cierre Documental
+
+### Qué se hizo
+- `spec.md` consolidado desde 5 archivos dispersos (hecho el 2026-06-05, registrado ahora)
+- `plan.md` creado: 4 fases (A–D), 6h estimadas, riesgos y DoD por componente
+- `tasks.md` creado: T-01 a T-16 con subtareas, checklists de auditoría y plantillas de BITACORA
+- `SDD_MASTER.md` actualizado: paths corregidos, links a spec/plan/tasks, status FEATURE-02/03 actualizados
+
+### Archivos creados/modificados
+| Archivo | Acción |
+|---------|--------|
+| `docs/specs/FEATURE-04_HERO_ANIMATION/plan.md` | Creado |
+| `docs/specs/FEATURE-04_HERO_ANIMATION/tasks.md` | Creado |
+| `docs/SDD_MASTER.md` | Actualizado (paths + links + fecha) |
+
+### Deuda resuelta
+- Documentación FEATURE-04 estaba dispersa en archivos sin estructura SDD
+- Path incorrecto `FEATURE-04/` → corregido a `FEATURE-04_HERO_ANIMATION/`
+
+### Próximo paso
+Ejecutar Fase B: auditoría de código vs. spec (T-04 a T-08)
+Archivos a revisar: `ParticleBackground.jsx`, `HeroBanner.jsx`, `motionConfig.js`, `WireframeGeometry.jsx`
+
+---
+
+## 2026-06-13 — FEATURE-04: Fase B — Auditoría de Código
+
+**Tipo:** Auditoría código vs. spec
+**Branch:** develop
+**Fases completadas:** A + B + C
+
+### Resultado general
+3 drifts intencionales encontrados en `motionConfig.js`. Sin drift funcional. Sin correcciones de código — los cambios eran deliberados y ya estaban comentados en el código.
+
+### Tabla de drift
+
+| Archivo | Punto | Valor en spec | Valor real | Acción |
+|---------|-------|--------------|------------|--------|
+| `motionConfig.js` | `fadeInUp.transition` | `springConfig.snappy` | `springConfig.smooth` | Sin corrección — cambio intencional documentado en código |
+| `motionConfig.js` | `staggerContainer.staggerChildren` | `0.07` | `0.25` | Sin corrección — cambio intencional documentado en código |
+| `motionConfig.js` | `staggerContainer.delayChildren` | `0.05` | `0.1` | Sin corrección — cambio intencional documentado en código |
+| `HeroBanner.jsx` | Suspense `fallback` | `null` | `<div className="w-64 h-64" />` | Sin corrección — mejora layout stability |
+| `tasks.md` checklist | CTA "Ver proyectos" llama | `scrollToContact` | `scrollToProjects` (correcto) | Error en spec corregido — código era correcto |
+
+### Guardrails implementados (Fase C)
+- `scrollToContact`: comentario defensivo agregado en `HeroBanner.jsx` + entrada en `CLAUDE.md §Critical Files`
+- ESLint / motion imports: comentario de guardrail en `HeroBanner.jsx` imports; `react/jsx-uses-vars: 'error'` ya activo en `eslint.config.js` L29
+- spec.md §7: subsección "Puntos Frágiles — No Romper" agregada con tabla de valores reales post-auditoría
+
+### Próximo paso
+Fase D: QA manual (T-12 checklist visual, T-13 Lighthouse, T-14 smoke mobile) — requiere browser

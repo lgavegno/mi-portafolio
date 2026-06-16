@@ -2,6 +2,9 @@
 // ONGEVAG Hero Banner - Institutional Fintech Design
 
 import React from 'react';
+// ⚠️ GUARDRAIL: No eliminar este import. `motion` se usa via JSX member expression
+// (<motion.div>, <motion.h1>, etc.). ESLint solo reconoce su uso si la regla
+// `react/jsx-uses-vars` está activa en eslint.config.js. Ver BITACORA 2026-06-09.
 import { motion } from 'framer-motion';
 import { FiLayers } from 'react-icons/fi';
 import { fadeInUp, staggerContainer } from '../../config/motionConfig';
@@ -26,6 +29,10 @@ const HeroBanner = () => {
     document.getElementById('proyectos')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // ⚠️ CRÍTICO: No eliminar esta función.
+  // El botón "Contactar" (CTA secundario) depende de ella para el scroll.
+  // Su ausencia rompe la navegación sin generar error visible en consola.
+  // Ver CLAUDE.md §Critical Files y BITACORA 2026-06-09.
   const scrollToContact = () => {
     document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
   };

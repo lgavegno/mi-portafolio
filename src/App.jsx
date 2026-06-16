@@ -18,6 +18,8 @@ const Works = lazy(() => import('./features/works/Works'))
 const BlogPreview = lazy(() => import('./features/blog/components/BlogPreview'))
 const Contact = lazy(() => import('./features/contact/Contact'))
 const SkillsGrid = lazy(() => import('./components/SkillsGrid'))
+const AgenciasPage = lazy(() => import('./pages/AgenciasPage'))
+const AgenciesPageEN = lazy(() => import('./pages/AgenciesPageEN'))
 
 const AnimatedSection = ({ children, id }) => (
   <motion.div
@@ -83,11 +85,12 @@ function App() {
     <>
       <AnimatePresence mode="wait">
         <Suspense fallback={<SkeletonPage />}>
-          <Routes location={location} key={location.pathname}>
+          <Routes location={location}>
             <Route element={<LocaleLayout />}>
               <Route path="/" element={<MainLayout />}>
                 <Route index element={<HomeSections />} />
                 <Route path="proyecto/:id" element={<ProjectDetail />} />
+                <Route path="agencias" element={<AgenciasPage />} />
                 <Route path="blog" element={<BlogLayout />}>
                   <Route index element={<BlogIndex />} />
                   <Route path=":slug" element={<BlogPostDetail />} />
@@ -97,6 +100,7 @@ function App() {
               <Route path="/en" element={<MainLayout />}>
                 <Route index element={<HomeSections />} />
                 <Route path="proyecto/:id" element={<ProjectDetail />} />
+                <Route path="agencies" element={<AgenciesPageEN />} />
                 <Route path="blog" element={<BlogLayout />}>
                   <Route index element={<BlogIndex />} />
                   <Route path=":slug" element={<BlogPostDetail />} />

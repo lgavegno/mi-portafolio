@@ -1,5 +1,5 @@
 # Robots.txt for Ongevag Studio
-# https://ongevag.vercel.app
+# https://www.ongevag.com
 
 # Default rule for all bots
 User-agent: *
@@ -10,15 +10,28 @@ Disallow: *?sort=
 Disallow: *?filter=
 Crawl-delay: 1
 
-# Googlebot specific
+# Googlebot
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 0
 
-# Bingbot specific
+# Bingbot
 User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
 
+# AI Bots — explicit access for AEO indexing
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 # Sitemap
-Sitemap: https://ongevag.vercel.app/sitemap.xml
+Sitemap: https://www.ongevag.com/sitemap.xml

@@ -31,3 +31,4 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+lh-desktop.json
