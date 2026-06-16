@@ -21,7 +21,7 @@
   padding: 0;
 }
 
-/* Base halo under carousel - CYAN ONGEVAG */
+/* Base halo under carousel */
 .carousel-container::after {
   content: "";
   position: absolute;
@@ -30,7 +30,7 @@
   width: 70%;
   height: 120px;
   transform: translateX(-50%);
-  background: radial-gradient(ellipse at center, rgba(0, 255, 255, 0.15) 0%, rgba(0, 255, 255, 0.08) 35%, rgba(0, 0, 0, 0) 70%);
+  background: radial-gradient(ellipse at center, rgba(150, 182, 197, 0.2) 0%, rgba(150, 182, 197, 0.08) 35%, rgba(0, 0, 0, 0) 70%);
   filter: blur(18px);
   pointer-events: none;
   z-index: 0;
@@ -51,15 +51,8 @@
 
 /* Floating suspension effect */
 @keyframes float {
-
-  0%,
-  100% {
-    transform: translateZ(-250px) translateY(0px);
-  }
-
-  50% {
-    transform: translateZ(-250px) translateY(-20px);
-  }
+  0%, 100% { transform: translateZ(-250px) translateY(0px); }
+  50% { transform: translateZ(-250px) translateY(-20px); }
 }
 
 .carousel-track {
@@ -77,7 +70,7 @@
   margin-top: -260px;
   border-radius: 20px;
   padding: 1.5rem;
-  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 30px -5px rgba(44, 51, 64, 0.15);
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   backface-visibility: hidden;
   cursor: pointer;
@@ -86,7 +79,6 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  border: 2px solid rgba(255, 255, 255, 0.1);
   transform-style: preserve-3d;
   background: transparent !important;
   border: none !important;
@@ -113,90 +105,86 @@
   padding: 1.5rem;
 }
 
-/* Hide back card since we're not using flip anymore */
+/* Hide back card */
 .carousel-card-back {
   display: none;
 }
 
-/* Focus styles for accessibility - CYAN */
+/* Focus styles for accessibility */
 .carousel-card:focus-visible {
-  outline: 2px solid #00FFFF;
+  outline: 2px solid #96B6C5;
   outline-offset: 4px;
   border-radius: 22px;
   z-index: 10;
 }
 
-/* Card front panel styling - OBSIDIAN + CYAN */
+/* Card front panel styling */
 .carousel-card-front {
-  background: rgba(0, 0, 0, 0.95);
-  /* Obsidian black */
-  border: 2px solid #00FFFF;
-  /* Cyan ONGEVAG */
-  box-shadow: 0 0 0 1px rgba(0, 255, 255, 0.15) inset,
-    0 8px 24px rgba(0, 0, 0, 0.45),
-    0 0 28px rgba(0, 255, 255, 0.2);
+  background: linear-gradient(135deg, #EEE0C9, #ADC4CE);
+  border: 2px solid #96B6C5;
+  box-shadow:
+    0 8px 24px rgba(44, 51, 64, 0.12),
+    0 2px 8px rgba(150, 182, 197, 0.2);
   transition: all 0.3s ease-out;
 }
 
 .carousel-card:hover .carousel-card-front {
-  box-shadow: 0 0 0 1px rgba(0, 255, 255, 0.25) inset,
-    0 10px 30px rgba(0, 0, 0, 0.5),
-    0 0 40px rgba(0, 255, 255, 0.35);
+  background: linear-gradient(135deg, #ADC4CE, #96B6C5);
+  border: 2px solid #2C3340;
+  box-shadow:
+    0 12px 32px rgba(44, 51, 64, 0.18),
+    0 4px 12px rgba(150, 182, 197, 0.25);
   transform: translateZ(20px);
 }
 
-/* ===========================================
-   TYPOGRAPHY ISOLATION - Override Global 20px
-   =========================================== */
+/* Typography */
 .carousel-card-front .card-content {
-  color: #e5e7eb;
+  color: #2C3340;
 }
 
-.carousel-card-front .card-content>div:first-child {
-  color: #00FFFF;
-  /* Cyan icon */
-  filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.4));
+.carousel-card-front .card-content > div:first-child {
+  background: rgba(44, 51, 64, 0.12) !important;
+  color: #2C3340;
+  filter: none;
 }
 
 .carousel-card-front h3 {
-  color: #00FFFF;
-  /* Cyan title */
+  color: #2C3340;
   font-size: 1.5rem !important;
-  /* 24px - Override global */
   line-height: 1.2 !important;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: none;
   margin-bottom: 1rem;
   text-align: center;
 }
 
 .carousel-card-front p {
-  color: #cbd5e1;
+  color: #4B5563;
   font-size: 0.95rem !important;
-  /* ~15px - Override global */
   line-height: 1.4 !important;
 }
 
 .carousel-card-front .card-content button {
-  background: #00FFFF;
-  color: #000000;
+  background: #2C3340;
+  color: #F1F0E8;
   border-radius: 9999px;
-  box-shadow: 0 6px 18px rgba(0, 255, 255, 0.35);
+  box-shadow: 0 4px 12px rgba(44, 51, 64, 0.2);
 }
 
 .carousel-card-front .card-content button:hover {
-  box-shadow: 0 10px 28px rgba(0, 255, 255, 0.5);
+  background: #3d4a5c;
+  box-shadow: 0 8px 20px rgba(44, 51, 64, 0.3);
 }
 
-/* Card hover effects - CYAN GLOW */
+/* Card hover */
 .carousel-card:hover {
-  box-shadow: 0 0 30px 5px rgba(0, 255, 255, 0.3);
+  box-shadow: 0 8px 24px rgba(44, 51, 64, 0.15);
   transition: all 0.3s ease-out;
 }
 
-/* Card title styling */
+/* Card title */
 .carousel-card h3 {
-  color: #00FFFF;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  color: #2C3340;
+  text-shadow: none;
   transition: all 0.3s ease;
   text-align: center;
   margin-bottom: 1rem;
@@ -205,7 +193,8 @@
 }
 
 .carousel-card:hover h3 {
-  text-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+  color: #1a1f28;
+  text-shadow: none;
 }
 
 /* Card Content */
@@ -226,13 +215,12 @@
   line-height: 1.4 !important;
 }
 
-/* Card Content Hover Effect */
 .carousel-card:hover .card-content {
   transform: translateZ(40px) scale(1.03);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Navigation Buttons - CYAN */
+/* Navigation Buttons */
 .carousel-nav {
   position: absolute;
   top: 50%;
@@ -240,10 +228,10 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(241, 240, 232, 0.8);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: white;
+  border: 1px solid #ADC4CE;
+  color: #2C3340;
   font-size: 1.5rem;
   cursor: pointer;
   display: flex;
@@ -251,44 +239,26 @@
   justify-content: center;
   transition: all 0.3s ease;
   z-index: 100;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(44, 51, 64, 0.1);
 }
 
 .carousel-nav:hover {
-  background: rgba(0, 255, 255, 0.2);
+  background: #ADC4CE;
   transform: translateY(-50%) scale(1.1);
-  border-color: rgba(0, 255, 255, 0.5);
-  color: #00FFFF;
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+  border-color: #96B6C5;
+  color: #2C3340;
+  box-shadow: 0 6px 20px rgba(150, 182, 197, 0.3);
 }
 
-.carousel-nav.prev {
-  left: 20px;
-}
+.carousel-nav.prev { left: 20px; }
+.carousel-nav.next { right: 20px; }
 
-.carousel-nav.next {
-  right: 20px;
-}
-
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 1024px) {
-  .carousel-container {
-    height: 520px;
-  }
-
-  .carousel-card {
-    width: 300px;
-    height: 420px;
-  }
-
-  .carousel-card h3 {
-    font-size: 1.25rem !important;
-  }
-
-  .carousel-card p,
-  .card-content p {
-    font-size: 0.9rem !important;
-  }
+  .carousel-container { height: 520px; }
+  .carousel-card { width: 300px; height: 420px; }
+  .carousel-card h3 { font-size: 1.25rem !important; }
+  .carousel-card p, .card-content p { font-size: 0.9rem !important; }
 }
 
 @media (max-width: 768px) {
@@ -303,7 +273,6 @@
     overflow: visible;
     position: relative;
   }
-
   .carousel-card {
     width: 280px;
     height: 400px;
@@ -311,38 +280,14 @@
     margin-top: -200px;
     padding: 1.25rem;
   }
-
-  .carousel-card h3 {
-    font-size: 1.2rem !important;
-  }
-
-  .carousel-card p,
-  .card-content p {
-    font-size: 0.875rem !important;
-  }
-
-  .carousel-nav {
-    width: 40px;
-    height: 40px;
-    font-size: 1.2rem;
-  }
-
-  .carousel-nav.prev {
-    left: 5px;
-  }
-
-  .carousel-nav.next {
-    right: 5px;
-  }
-
-  .carousel-track {
-    width: 100%;
-    margin: 0 auto;
-    transform: translateZ(-250px) !important;
-  }
+  .carousel-card h3 { font-size: 1.2rem !important; }
+  .carousel-card p, .card-content p { font-size: 0.875rem !important; }
+  .carousel-nav { width: 40px; height: 40px; font-size: 1.2rem; }
+  .carousel-nav.prev { left: 5px; }
+  .carousel-nav.next { right: 5px; }
+  .carousel-track { width: 100%; margin: 0 auto; transform: translateZ(-250px) !important; }
 }
 
-/* Extra small devices */
 @media (max-width: 480px) {
   .carousel-card {
     width: 90vw;
@@ -351,37 +296,16 @@
     margin-top: -180px;
     padding: 1rem;
   }
-
-  .card-content h3 {
-    font-size: 1.1rem !important;
-  }
-
-  .card-content p {
-    font-size: 0.8rem !important;
-    margin-bottom: 1rem;
-    line-height: 1.3 !important;
-  }
-
-  .carousel-nav {
-    width: 32px;
-    height: 32px;
-    font-size: 1rem;
-  }
-
-  .carousel-track {
-    transform: translateZ(-180px) !important;
-  }
+  .card-content h3 { font-size: 1.1rem !important; }
+  .card-content p { font-size: 0.8rem !important; margin-bottom: 1rem; line-height: 1.3 !important; }
+  .carousel-nav { width: 32px; height: 32px; font-size: 1rem; }
+  .carousel-track { transform: translateZ(-180px) !important; }
 }
 
 /* Animation for auto-rotation */
 @keyframes rotateCarousel {
-  from {
-    transform: rotateY(0deg);
-  }
-
-  to {
-    transform: rotateY(360deg);
-  }
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
 }
 
 /* Pause animation on hover */

@@ -34,11 +34,10 @@ const Spinner = ({ className = '' }) => (
 // Estilos base por variante
 const variantStyles = {
   primary: `
-    bg-gradient-to-r from-cobalt-500 to-cobalt-600
-    hover:from-cobalt-400 hover:to-cobalt-500
-    text-white font-semibold
-    shadow-lg shadow-cobalt-500/25
-    hover:shadow-xl hover:shadow-cobalt-500/30
+    bg-[#2C3340] hover:bg-[#3d4a5c]
+    text-[#F1F0E8] font-semibold
+    shadow-lg shadow-[#2C3340]/25
+    hover:shadow-xl hover:shadow-[#2C3340]/30
     border-0
   `,
   secondary: `
@@ -51,7 +50,7 @@ const variantStyles = {
   ghost: `
     bg-transparent
     text-gray-300
-    hover:text-white
+    hover:text-[#F1F0E8]
     hover:bg-white/5
     font-medium
   `,
@@ -64,7 +63,7 @@ const variantStyles = {
   `,
   danger: `
     bg-gradient-to-r from-red-500 to-red-600
-    text-white font-semibold
+    text-[#F1F0E8] font-semibold
     shadow-lg shadow-red-500/25
     hover:shadow-xl hover:shadow-red-500/30
     border-0

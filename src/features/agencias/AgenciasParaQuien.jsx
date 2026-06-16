@@ -7,7 +7,7 @@ export default function AgenciasParaQuien() {
   const s = locale === 'en' ? t.agencies.paraQuien : t.agencias.paraQuien
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8">
+    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#EEE0C9]">
       <div className="max-w-6xl mx-auto">
         <motion.div
           variants={staggerContainer}
@@ -16,14 +16,14 @@ export default function AgenciasParaQuien() {
           viewport={viewportConfig}
         >
           <motion.h2
-            className="font-syne font-bold text-white text-3xl sm:text-4xl mb-6"
+            className="font-syne font-bold text-[#2C3340] text-3xl sm:text-4xl mb-6"
             variants={fadeInUp}
           >
             {s.titulo}
           </motion.h2>
 
           <motion.div
-            className="font-dm-sans text-slate-300 text-base leading-relaxed mb-10 max-w-2xl whitespace-pre-line"
+            className="font-dm-sans text-[#4B5563] text-base leading-relaxed mb-10 max-w-2xl whitespace-pre-line"
             variants={fadeInUp}
           >
             {s.cuerpo}
@@ -33,13 +33,13 @@ export default function AgenciasParaQuien() {
             {s.perfiles.map((perfil, i) => (
               <motion.li
                 key={i}
-                className="border-t border-slate-700/60 py-4 font-dm-sans text-slate-300 text-base"
+                className="border-t border-[rgba(150,182,197,0.35)] py-4 font-dm-sans text-[#4B5563] text-base"
                 variants={fadeInUp}
               >
                 {perfil}
               </motion.li>
             ))}
-            <li className="border-t border-slate-700/60" />
+            <li className="border-t border-[rgba(150,182,197,0.35)]" />
           </motion.ul>
         </motion.div>
       </div>

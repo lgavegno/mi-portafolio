@@ -64,40 +64,40 @@ const WireframeGeometry = () => {
                     className="absolute inset-0 w-full h-full"
                     viewBox="0 0 200 200"
                     style={{
-                        filter: 'drop-shadow(0 0 8px rgba(0, 255, 255, 0.6))',
+                        filter: 'drop-shadow(0 0 8px rgba(150, 182, 197, 0.5))',
                     }}
                 >
                     {/* Diamond outer frame */}
                     <path
                         d="M 100 20 L 180 100 L 100 180 L 20 100 Z"
                         fill="none"
-                        stroke="#00FFFF"
+                        stroke="#96B6C5"
                         strokeWidth="1.5"
                         opacity="0.8"
                     />
 
                     {/* Inner connecting lines */}
-                    <line x1="100" y1="20" x2="100" y2="100" stroke="#00FFFF" strokeWidth="1" opacity="0.6" />
-                    <line x1="180" y1="100" x2="100" y2="100" stroke="#00FFFF" strokeWidth="1" opacity="0.6" />
-                    <line x1="100" y1="180" x2="100" y2="100" stroke="#00FFFF" strokeWidth="1" opacity="0.6" />
-                    <line x1="20" y1="100" x2="100" y2="100" stroke="#00FFFF" strokeWidth="1" opacity="0.6" />
+                    <line x1="100" y1="20" x2="100" y2="100" stroke="#96B6C5" strokeWidth="1" opacity="0.6" />
+                    <line x1="180" y1="100" x2="100" y2="100" stroke="#96B6C5" strokeWidth="1" opacity="0.6" />
+                    <line x1="100" y1="180" x2="100" y2="100" stroke="#96B6C5" strokeWidth="1" opacity="0.6" />
+                    <line x1="20" y1="100" x2="100" y2="100" stroke="#96B6C5" strokeWidth="1" opacity="0.6" />
 
                     {/* Corner nodes */}
-                    <circle cx="100" cy="20" r="3" fill="#00FFFF" opacity="0.9">
+                    <circle cx="100" cy="20" r="3" fill="#96B6C5" opacity="0.9">
                         <animate attributeName="r" values="3;5;3" dur="2s" repeatCount="indefinite" />
                     </circle>
-                    <circle cx="180" cy="100" r="3" fill="#00FFFF" opacity="0.9">
+                    <circle cx="180" cy="100" r="3" fill="#96B6C5" opacity="0.9">
                         <animate attributeName="r" values="3;5;3" dur="2s" begin="0.5s" repeatCount="indefinite" />
                     </circle>
-                    <circle cx="100" cy="180" r="3" fill="#00FFFF" opacity="0.9">
+                    <circle cx="100" cy="180" r="3" fill="#96B6C5" opacity="0.9">
                         <animate attributeName="r" values="3;5;3" dur="2s" begin="1s" repeatCount="indefinite" />
                     </circle>
-                    <circle cx="20" cy="100" r="3" fill="#00FFFF" opacity="0.9">
+                    <circle cx="20" cy="100" r="3" fill="#96B6C5" opacity="0.9">
                         <animate attributeName="r" values="3;5;3" dur="2s" begin="1.5s" repeatCount="indefinite" />
                     </circle>
 
                     {/* Center node */}
-                    <circle cx="100" cy="100" r="5" fill="#00FFFF" opacity="1">
+                    <circle cx="100" cy="100" r="5" fill="#96B6C5" opacity="1">
                         <animate attributeName="r" values="5;8;5" dur="3s" repeatCount="indefinite" />
                     </circle>
 
@@ -107,7 +107,7 @@ const WireframeGeometry = () => {
                         cy="100"
                         r="40"
                         fill="none"
-                        stroke="#00FFFF"
+                        stroke="#96B6C5"
                         strokeWidth="1"
                         opacity="0.4"
                     />
@@ -119,7 +119,7 @@ const WireframeGeometry = () => {
                         rx="60"
                         ry="30"
                         fill="none"
-                        stroke="#00FFFF"
+                        stroke="#96B6C5"
                         strokeWidth="0.8"
                         opacity="0.3"
                         transform="rotate(45 100 100)"
@@ -130,7 +130,7 @@ const WireframeGeometry = () => {
                         rx="60"
                         ry="30"
                         fill="none"
-                        stroke="#00FFFF"
+                        stroke="#96B6C5"
                         strokeWidth="0.8"
                         opacity="0.3"
                         transform="rotate(-45 100 100)"

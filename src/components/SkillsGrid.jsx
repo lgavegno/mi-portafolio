@@ -39,9 +39,8 @@ const SkillCard = ({ skill }) => {
             className="
         group relative
         p-6 rounded-2xl
-        bg-white/5 backdrop-blur-md
-        border border-white/10
-        hover:bg-white/10 hover:border-cobalt-400/30
+        bg-white border border-[#ADC4CE]
+        hover:bg-[#EEE0C9] hover:border-[#96B6C5]
         transition-all duration-300
         cursor-pointer
         overflow-hidden
@@ -74,9 +73,7 @@ const SkillCard = ({ skill }) => {
                 {/* Skill name */}
                 <h3 className="
           text-sm font-semibold
-          bg-gradient-to-r from-cobalt-300 via-mint-400 to-cobalt-300
-          bg-clip-text text-transparent
-          group-hover:from-mint-400 group-hover:via-cobalt-300 group-hover:to-mint-400
+          text-[#2C3340]
           transition-all duration-300
         ">
                     {skill.name}
@@ -87,7 +84,7 @@ const SkillCard = ({ skill }) => {
             <div className="
         absolute bottom-0 left-1/2 -translate-x-1/2
         w-3/4 h-px
-        bg-gradient-to-r from-transparent via-mint-400/50 to-transparent
+        bg-gradient-to-r from-transparent via-[#96B6C5]/50 to-transparent
         opacity-0 group-hover:opacity-100
         transition-opacity duration-300
       " />
