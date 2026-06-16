@@ -7,7 +7,7 @@ export default function AgenciasProceso() {
   const s = locale === 'en' ? t.agencies.proceso : t.agencias.proceso
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8">
+    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#96B6C5]">
       <div className="max-w-6xl mx-auto">
         <motion.div
           variants={staggerContainer}
@@ -16,14 +16,14 @@ export default function AgenciasProceso() {
           viewport={viewportConfig}
         >
           <motion.h2
-            className="font-syne font-bold text-white text-3xl sm:text-4xl mb-12"
+            className="font-syne font-bold text-[#2C3340] text-3xl sm:text-4xl mb-12"
             variants={fadeInUp}
           >
             {s.titulo}
           </motion.h2>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-4 md:border-t md:border-slate-700"
+            className="grid grid-cols-1 md:grid-cols-4 md:border-t md:border-[rgba(44,51,64,0.15)]"
             variants={staggerContainer}
           >
             {s.pasos.map((paso, i) => (
@@ -31,20 +31,20 @@ export default function AgenciasProceso() {
                 key={i}
                 className={[
                   'pt-6 pb-6 px-6',
-                  'border-b border-slate-700 md:border-b-0',
+                  'border-b border-[rgba(44,51,64,0.15)] md:border-b-0',
                   i === s.pasos.length - 1 ? 'border-b-0' : '',
-                  'md:border-r md:border-slate-700',
+                  'md:border-r md:border-[rgba(44,51,64,0.15)]',
                   i === s.pasos.length - 1 ? 'md:border-r-0' : '',
                 ].join(' ')}
                 variants={fadeInUp}
               >
-                <p className="font-mono text-xs text-slate-500 tracking-widest mb-3">
+                <p className="font-mono text-xs text-[rgba(44,51,64,0.5)] tracking-widest mb-3">
                   {paso.numero}
                 </p>
-                <h3 className="font-syne font-bold text-white text-lg mb-2">
+                <h3 className="font-syne font-bold text-[#2C3340] text-lg mb-2">
                   {paso.titulo}
                 </h3>
-                <p className="font-dm-sans text-slate-400 text-sm leading-relaxed">
+                <p className="font-dm-sans text-[rgba(44,51,64,0.75)] text-sm leading-relaxed">
                   {paso.descripcion}
                 </p>
               </motion.div>

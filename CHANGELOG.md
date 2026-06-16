@@ -7,6 +7,33 @@ Historial de cambios del proyecto Ongevag Portfolio. Formato: [Keep a Changelog]
 
 ---
 
+## [3.1.0] — 2026-06-16
+
+### Added
+- EPIC-07: Rebrand Visual 2026 — migración completa a light mode
+- Paleta pastel B2B: cream (#F1F0E8), sand (#EEE0C9), mist-blue (#ADC4CE), steel-blue (#96B6C5), navy (#2C3340)
+- Página /agencias rediseñada con arquitectura de secciones alternadas claro/oscuro
+- ADR-012: documentación del rebrand visual
+
+### Changed
+- tailwind.config.js: paleta cobalt/mint/cyan → paleta rebrand 2026
+- Header, Footer, About, SkillsGrid, HeroBanner, Contact, Services migrados a light mode
+- AgenciasHero/ParaQuien/Colaboracion/Proceso/FAQ/CTAFinal: colores y secciones actualizadas
+- BlogPreview, BlogComponents, BlogPostDetail: textos invisibles corregidos
+
+### Removed
+- ParticleBackground eliminado de HeroBanner (performance + incompatibilidad visual light mode)
+- NeuralNetworkBackground.jsx, GlowButton.jsx, Card3DEffect.css, AnalyticsCard.jsx — archivos obsoletos
+- SECURITY_AUDIT_REPORT_2026_05_13.md — documento obsoleto
+
+### Security
+- Todos los textos CRÍTICOS con ratio < 2:1 corregidos (WCAG AA compliance)
+
+### Tech Debt
+- DT-08-01: Works.jsx — ProjectCard dark mode pendiente migración completa
+- DT-08-02: ProjectDetail.jsx — página completa pendiente migración
+- DT-08-03: Issues MEDIO del audit de contraste pendientes
+
 ## [3.0.0] — 2026-06-16
 
 ### Added

@@ -26,7 +26,7 @@ const BlogPostDetail = () => {
 
     if (!post) {
         return (
-            <div className="min-h-screen flex flex-col items-center justify-center text-white">
+            <div className="min-h-screen flex flex-col items-center justify-center text-[#2C3340]">
                 <h2 className="text-2xl font-bold mb-4">{t.blog.detail.notFound}</h2>
                 <Link to="/blog" className="text-primary hover:text-blue-400 flex items-center gap-2">
                     <FiArrowLeft /> {t.blog.detail.backToBlog}
@@ -61,7 +61,7 @@ const BlogPostDetail = () => {
             <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
                 <Link
                     to="/blog"
-                    className="inline-flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors mb-8 group font-medium"
+                    className="inline-flex items-center gap-2 text-slate-500 hover:text-primary transition-colors mb-8 group font-medium"
                 >
                     <FiArrowLeft className="group-hover:-translate-x-1 transition-transform" />
                     {t.blog.detail.backToBlog}
@@ -72,15 +72,15 @@ const BlogPostDetail = () => {
                         <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium border backdrop-blur-sm ${categoryColor}`}>
                             {post.category}
                         </span>
-                        <span className="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-sm">
+                        <span className="flex items-center gap-2 text-slate-500 text-sm">
                             <FiCalendar /> {post.date}
                         </span>
-                        <span className="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-sm">
+                        <span className="flex items-center gap-2 text-slate-500 text-sm">
                             <FiClock /> {post.readTime} {t.blog.detail.minRead}
                         </span>
                     </div>
 
-                    <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold text-slate-900 dark:text-white leading-tight mb-8">
+                    <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold text-slate-900 leading-tight mb-8">
                         {post.title}
                     </h1>
                 </header>
@@ -88,7 +88,7 @@ const BlogPostDetail = () => {
 
             {/* Hero Image */}
             <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-                <div className="relative aspect-video lg:aspect-[21/9] rounded-3xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-800/50 min-h-[200px] bg-slate-800">
+                <div className="relative aspect-video lg:aspect-[21/9] rounded-3xl overflow-hidden shadow-lg border border-slate-200 min-h-[200px] bg-[#EEE0C9]">
                     {post.image ? (
                         <img
                             src={post.image}
@@ -98,7 +98,7 @@ const BlogPostDetail = () => {
                             decoding="async"
                         />
                     ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
+                        <div className="w-full h-full bg-gradient-to-br from-[#EEE0C9] to-[#ADC4CE] flex items-center justify-center">
                             <span className="text-6xl">✨</span>
                         </div>
                     )}
@@ -111,7 +111,7 @@ const BlogPostDetail = () => {
                 {/* 1. Sticky Sidebar (Left) */}
                 <div className="hidden lg:block lg:col-span-1">
                     <div className="sticky top-32 flex flex-col items-center gap-6">
-                        <button className="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary hover:scale-110 transition-all flex items-center justify-center group flex-col gap-1">
+                        <button className="w-12 h-12 rounded-full bg-slate-100 text-slate-600 hover:text-primary hover:scale-110 transition-all flex items-center justify-center group flex-col gap-1">
                             <FiHeart className="text-xl" />
                             <span className="text-[10px] font-bold">24</span>
                         </button>
@@ -130,16 +130,16 @@ const BlogPostDetail = () => {
                     <div
                         className="
                             max-w-4xl mx-auto
-                            [&_h1]:text-4xl [&_h1]:lg:text-5xl [&_h1]:font-bold [&_h1]:text-slate-900 [&_h1]:dark:text-white [&_h1]:leading-tight [&_h1]:mb-8
-                            [&_h2]:text-2xl [&_h2]:lg:text-3xl [&_h2]:font-bold [&_h2]:text-slate-900 [&_h2]:dark:text-white [&_h2]:mt-12 [&_h2]:mb-8
-                            [&_h3]:text-xl [&_h3]:lg:text-2xl [&_h3]:font-bold [&_h3]:text-slate-900 [&_h3]:dark:text-white [&_h3]:mt-8 [&_h3]:mb-4
-                            [&_p]:text-lg [&_p]:lg:text-xl [&_p]:leading-loose [&_p]:text-slate-600 [&_p]:dark:text-slate-300 [&_p]:mb-6
-                            [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-6 [&_ul]:text-slate-600 [&_ul]:dark:text-slate-300
-                            [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-6 [&_ol]:text-slate-600 [&_ol]:dark:text-slate-300
+                            [&_h1]:text-4xl [&_h1]:lg:text-5xl [&_h1]:font-bold [&_h1]:text-slate-900 [&_h1]:leading-tight [&_h1]:mb-8
+                            [&_h2]:text-2xl [&_h2]:lg:text-3xl [&_h2]:font-bold [&_h2]:text-slate-900 [&_h2]:mt-12 [&_h2]:mb-8
+                            [&_h3]:text-xl [&_h3]:lg:text-2xl [&_h3]:font-bold [&_h3]:text-slate-900 [&_h3]:mt-8 [&_h3]:mb-4
+                            [&_p]:text-lg [&_p]:lg:text-xl [&_p]:leading-loose [&_p]:text-slate-600 [&_p]:mb-6
+                            [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-6 [&_ul]:text-slate-600
+                            [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-6 [&_ol]:text-slate-600
                             [&_li]:text-lg [&_li]:lg:text-xl [&_li]:mb-2
                             [&_a]:text-primary [&_a]:no-underline hover:[&_a]:underline
-                            [&_blockquote]:border-l-4 [&_blockquote]:border-primary [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-slate-700 [&_blockquote]:dark:text-slate-400 [&_blockquote]:my-8
-                            [&_hr]:my-12 [&_hr]:border-slate-200 [&_hr]:dark:border-slate-800
+                            [&_blockquote]:border-l-4 [&_blockquote]:border-primary [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-slate-700 [&_blockquote]:my-8
+                            [&_hr]:my-12 [&_hr]:border-slate-200
                             [&_img]:rounded-xl [&_img]:shadow-lg [&_img]:my-8 [&_img]:w-full
                             [&_div.bg-slate-50]:text-lg [&_div.bg-slate-50]:lg:text-xl
                             [&_pre]:overflow-x-auto [&_pre]:max-w-full [&_pre]:rounded-lg [&_pre]:bg-slate-900 [&_pre]:border [&_pre]:border-slate-700 [&_pre]:p-4 [&_pre]:my-4 [&_pre]:text-sm
@@ -151,22 +151,22 @@ const BlogPostDetail = () => {
                     />
 
                     {/* Bloque de Flujo de Trabajo Sugerido */}
-                    <div className="mt-16 p-8 rounded-2xl bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 border border-slate-200 dark:border-slate-700">
-                        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                    <div className="mt-16 p-8 rounded-2xl bg-[#EEE0C9]/60 border border-[#ADC4CE]/30">
+                        <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
                             <MdLightbulb className="text-primary text-2xl" />
                             {t.blog.detail.workflowTitle}
                         </h3>
-                        <ol className="list-decimal list-inside space-y-3 text-slate-600 dark:text-slate-300">
+                        <ol className="list-decimal list-inside space-y-3 text-slate-600">
                             {t.blog.detail.workflowSteps.map((step, i) => <li key={i}>{step}</li>)}
                         </ol>
                     </div>
 
                     {/* Footer Post */}
-                    <div className="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800">
-                        <h4 className="font-bold text-slate-900 dark:text-white mb-4">{t.blog.detail.tags}</h4>
+                    <div className="mt-12 pt-8 border-t border-slate-200">
+                        <h4 className="font-bold text-slate-900 mb-4">{t.blog.detail.tags}</h4>
                         <div className="flex flex-wrap gap-2">
                             {post.tags.map(tag => (
-                                <span key={tag} className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-sm rounded-full">
+                                <span key={tag} className="px-3 py-1 bg-slate-100 text-slate-600 text-sm rounded-full">
                                     #{tag}
                                 </span>
                             ))}
@@ -189,7 +189,7 @@ const BlogPostDetail = () => {
                 {/* 3. Right Widgets */}
                 <aside className="lg:col-span-3 space-y-8 text-center md:text-left">
                     {/* Contact CTA */}
-                    <div className="p-6 rounded-2xl bg-slate-900 text-white shadow-xl">
+                    <div className="p-6 rounded-2xl bg-[#2C3340] text-white shadow-xl">
                         <h3 className="font-bold text-lg mb-2">{t.blog.detail.contactTitle}</h3>
                         <p className="text-slate-400 text-sm mb-4">{t.blog.detail.contactDescription}</p>
                         <a
@@ -202,13 +202,13 @@ const BlogPostDetail = () => {
 
                     {/* Recommended Articles */}
                     <div>
-                        <h3 className="font-bold text-slate-900 dark:text-white text-sm uppercase tracking-wider mb-6">
+                        <h3 className="font-bold text-slate-900 text-sm uppercase tracking-wider mb-6">
                             {t.blog.detail.recommended}
                         </h3>
                         <div className="space-y-6">
                             {relatedPosts.map(p => (
                                 <Link key={p.id} to={`/blog/${p.slug}`} className="group flex gap-4">
-                                    <div className="w-20 h-20 min-h-[80px] rounded-lg bg-slate-200 dark:bg-slate-800 overflow-hidden flex-shrink-0">
+                                    <div className="w-20 h-20 min-h-[80px] rounded-lg bg-slate-200 overflow-hidden flex-shrink-0">
                                         {p.image ? (
                                             <img
                                                 src={p.image}
@@ -222,7 +222,7 @@ const BlogPostDetail = () => {
                                         )}
                                     </div>
                                     <div>
-                                        <h4 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors line-clamp-2">
+                                        <h4 className="text-sm font-bold text-slate-900 group-hover:text-primary transition-colors line-clamp-2">
                                             {p.title}
                                         </h4>
                                         <span className="text-xs text-slate-500 mt-1 block">{p.readTime} min read</span>

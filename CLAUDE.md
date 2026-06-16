@@ -1,6 +1,6 @@
 # CLAUDE.md — Portfolio ONGEVAG
-**Current Phase:** FEATURE-04_HERO_ANIMATION — In Progress (QA/PR pendientes)
-**Last Updated:** 2026-06-15
+**Current Phase:** epic/rebrand-2026 — ✅ Done | Próximo: Issues ALTO/MEDIO audit contraste
+**Last Updated:** 2026-06-16
 
 ## Propósito
 Portfolio SPA React 19 + Vite (feature-based DDD Light) para captar clientes PyMEs.
@@ -58,12 +58,13 @@ VITE_EMAILJS_PUBLIC_KEY=...    # Public key (required)
 | FEATURE-01_I18N_ROUTING | ✅ Done | `docs/specs/FEATURE-01_I18N_ROUTING/` | ADR-006..011 |
 | FEATURE-02_SEO_METATAGS | ✅ Done | `docs/specs/FEATURE-02_SEO_METATAGS/` | spec.md, plan.md, task.md |
 | FEATURE-03_AEO_SCHEMA | ✅ Done | `docs/specs/FEATURE-03_AEO_SCHEMA/` | spec.md, plan.md, tasks.md |
-| FEATURE-04_HERO_ANIMATION | 🔄 In Progress | `docs/specs/FEATURE-04_HERO_ANIMATION/` | spec · plan · tasks |
+| FEATURE-04_HERO_ANIMATION | ✅ Done | `docs/specs/FEATURE-04_HERO_ANIMATION/` | spec · plan · tasks |
 | FEATURE-05_PROJECT_MANAGEMENT | ✅ Done | `docs/specs/FEATURE-05_PROJECT_MANAGEMENT/` | spec.md · plan.md · tasks.md |
-| FEATURE-06_PARTNERS_AGENCIAS | 🔄 In Progress | `docs/specs/FEATURE-06-PARTNERS_AGENCIAS/` | spec.md · plan.md · tasks.md |
+| FEATURE-06_PARTNERS_AGENCIAS | ✅ Done | `docs/specs/FEATURE-06-PARTNERS_AGENCIAS/` | spec.md · plan.md · tasks.md |
+| EPIC-07_REBRAND_2026 | ✅ Done | `docs/specs/EPIC-rebrand-2026/` | spec.md · ADR-012 |
 
 ## ADRs Documented
-ADR-001 (Vite) | ADR-002 (JS no TS) | ADR-003 (EmailJS) | ADR-004 (Feature-based) | ADR-005 (Vitest) | ADR-006 (URL i18n) | ADR-007 (ES default) | ADR-008 (og:image PNG) | ADR-009 (JSON-LD global) | ADR-010 (No i18n lib) | ADR-011 (URL source of truth)
+ADR-001 (Vite) | ADR-002 (JS no TS) | ADR-003 (EmailJS) | ADR-004 (Feature-based) | ADR-005 (Vitest) | ADR-006 (URL i18n) | ADR-007 (ES default) | ADR-008 (og:image PNG) | ADR-009 (JSON-LD global) | ADR-010 (No i18n lib) | ADR-011 (URL source of truth) | ADR-012 (Rebrand Visual 2026)
 
 ## i18n Architecture (FEATURE-01 — DONE)
 - `/` → ES por defecto (canónico) | `/en` → EN completo
@@ -83,19 +84,19 @@ ADR-001 (Vite) | ADR-002 (JS no TS) | ADR-003 (EmailJS) | ADR-004 (Feature-based
 ## Critical Files — Don't Break
 | File | Reason |
 |------|--------|
-| `src/components/ParticleBackground.jsx` | Canvas animation; NO React.lazy |
+| `src/components/ParticleBackground.jsx` | Canvas animation; NO React.lazy — NOTA: eliminado de HeroBanner.jsx en rebrand (DT: reactivar si se vuelve a fondo oscuro) |
 | `scrollToContact` (fn en `HeroBanner.jsx`) | CTA "Contactar" — su eliminación rompe scroll sin error visible |
 | `src/context/LocaleProvider.jsx` | i18n core — cambios rompen toda la app |
 | `vercel.json` | SPA routing catch-all `/(.*) → index.html` |
 | `public/og-image.svg` | Social sharing (1200x630) |
-| `tailwind.config.js` | Custom colors (cyan, cobalt, mint) |
+| `tailwind.config.js` | Paleta rebrand 2026: cream/sand/mist-blue/steel-blue/navy (ver ADR-012) |
 | `src/components/Button.jsx` | Renderiza `<Spinner>` SVG (no texto) cuando `loading=true` — assertions de tests deben usar `querySelector('svg')`, no `textContent` |
 
 ## Key Doc Map
 - `docs/SDD_MASTER.md` — Central index + module registry
 - `docs/MOD-00_overview.md` — System vision
 - `docs/use-cases/` — UC-01 Contact, UC-02 Blog, UC-03 Projects, UC-04 Performance
-- `docs/adr/` — All architecture decisions (ADR-001 a ADR-011)
+- `docs/adr/` — All architecture decisions (ADR-001 a ADR-012)
 
 ## Deployment
 **Platform:** Vercel | **Trigger:** Push to `main` / `develop` | **Build:** ~30s

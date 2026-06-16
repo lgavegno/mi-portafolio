@@ -39,9 +39,8 @@ const SkillCard = ({ skill }) => {
             className="
         group relative
         p-6 rounded-2xl
-        bg-white/5 backdrop-blur-md
-        border border-white/10
-        hover:bg-white/10 hover:border-cobalt-400/30
+        bg-white border border-[#ADC4CE]
+        hover:bg-[#EEE0C9] hover:border-[#96B6C5]
         transition-all duration-300
         cursor-pointer
         overflow-hidden
@@ -74,9 +73,7 @@ const SkillCard = ({ skill }) => {
                 {/* Skill name */}
                 <h3 className="
           text-sm font-semibold
-          bg-gradient-to-r from-cobalt-300 via-mint-400 to-cobalt-300
-          bg-clip-text text-transparent
-          group-hover:from-mint-400 group-hover:via-cobalt-300 group-hover:to-mint-400
+          text-[#2C3340]
           transition-all duration-300
         ">
                     {skill.name}
@@ -87,7 +84,7 @@ const SkillCard = ({ skill }) => {
             <div className="
         absolute bottom-0 left-1/2 -translate-x-1/2
         w-3/4 h-px
-        bg-gradient-to-r from-transparent via-mint-400/50 to-transparent
+        bg-gradient-to-r from-transparent via-[#96B6C5]/50 to-transparent
         opacity-0 group-hover:opacity-100
         transition-opacity duration-300
       " />
@@ -102,8 +99,8 @@ const SkillsGrid = ({ className = '' }) => {
         <section className={`w-full relative overflow-hidden py-24 md:py-32 lg:py-40 ${className}`}>
             {/* Background effects */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-1/4 -left-32 w-96 h-96 bg-cobalt-500/10 rounded-full filter blur-[128px]" />
-                <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-mint-400/5 rounded-full filter blur-[128px]" />
+                <div className="absolute top-1/4 -left-32 w-96 h-96 bg-[#ADC4CE]/10 rounded-full filter blur-[128px]" />
+                <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-[#96B6C5]/5 rounded-full filter blur-[128px]" />
             </div>
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -116,20 +113,20 @@ const SkillsGrid = ({ className = '' }) => {
                     {/* Header */}
                     <motion.div variants={fadeInUp} className="text-center mb-12">
                         <span className="
-              inline-flex items-center gap-2 
-              px-4 py-2 rounded-full 
-              bg-gradient-to-r from-cobalt-500/15 to-mint-400/10
-              border border-cobalt-400/30
+              inline-flex items-center gap-2
+              px-4 py-2 rounded-full
+              bg-[#ADC4CE]/20
+              border border-[#96B6C5]/40
               backdrop-blur-sm
-              text-cobalt-300 text-sm font-medium mb-6
+              text-[#2C3340]/70 text-sm font-medium mb-6
             ">
                             <span className="w-2 h-2 rounded-full bg-mint-400 animate-pulse" />
                             Tecnologías
                         </span>
-                        <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+                        <h2 className="text-4xl sm:text-5xl font-bold text-[#2C3340] mb-4">
                             {t.works.techStackSection}
                         </h2>
-                        <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                        <p className="text-[#4B5563] text-lg max-w-2xl mx-auto">
                             Herramientas y tecnologías con las que trabajo para crear soluciones modernas y eficientes
                         </p>
                     </motion.div>

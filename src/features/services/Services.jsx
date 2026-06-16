@@ -64,9 +64,9 @@ const Services = () => {
 
   const iconArray = [FiMonitor, FiLayout, FiCpu, FiTool];
   const gradientArray = [
-    "from-cyan-400 to-cyan-600",
-    "from-cobalt-500 to-cobalt-600",
-    "from-mint-400 to-mint-500",
+    "from-[#96B6C5] to-[#ADC4CE]",
+    "from-[#ADC4CE] to-[#96B6C5]",
+    "from-[#ADC4CE] to-[#96B6C5]",
     "from-amber-400 to-orange-500"
   ];
 
@@ -119,14 +119,14 @@ const Services = () => {
   };
 
   return (
-    <section id="que-hago" className="w-full relative overflow-hidden bg-gradient-to-b from-slate-800 to-slate-900 text-white py-32 md:py-40 lg:py-48">
+    <section id="que-hago" className="w-full relative overflow-hidden bg-gradient-to-b from-[#2C3340] to-[#1a1f28] text-[#F1F0E8] py-32 md:py-40 lg:py-48">
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
       {/* Background effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-cobalt-500/10 rounded-full filter blur-[128px]" />
-        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-mint-400/5 rounded-full filter blur-[128px]" />
+        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-[#ADC4CE]/5 rounded-full filter blur-[128px]" />
+        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-[#96B6C5]/3 rounded-full filter blur-[128px]" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -147,7 +147,7 @@ const Services = () => {
           </motion.span>
           <motion.h2
             variants={fadeInUp}
-            className="text-4xl sm:text-5xl font-bold text-white"
+            className="text-4xl sm:text-5xl font-bold text-[#F1F0E8]"
           >
             {t.services.title}
           </motion.h2>
@@ -170,13 +170,13 @@ const Services = () => {
                 >
                   <div className="carousel-card-inner" style={{ transformStyle: 'preserve-3d' }}>
                     {/* CARA FRONTAL */}
-                    <div className={`carousel-card-front backface-hidden bg-gradient-to-br ${service.gradient} border border-white/5 backdrop-blur-md`}>
+                    <div className={`carousel-card-front backface-hidden bg-gradient-to-br ${service.gradient} border border-[#2C3340]/20`}>
                       <div className="card-content">
                         <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-6">
-                          <IconComponent className="w-8 h-8 text-white" />
+                          <IconComponent className="w-8 h-8 text-[#2C3340]" />
                         </div>
-                        <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 text-white">{service.title}</h3>
-                        <p className="text-white/80 md:text-xl mb-6">{service.description}</p>
+                        <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 text-[#2C3340]">{service.title}</h3>
+                        <p className="text-[#2C3340]/80 md:text-xl mb-6">{service.description}</p>
 
                       </div>
                     </div>
@@ -226,7 +226,7 @@ const Services = () => {
                 touch-manipulation select-none
                 ${index === currentIndex
                   ? 'w-8 bg-cobalt-400'
-                  : 'bg-white/20 hover:bg-white/40 active:bg-white/60'
+                  : 'bg-[#F1F0E8]/20 hover:bg-[#F1F0E8]/40 active:bg-[#F1F0E8]/60'
                 }
               `}
               aria-label={`${t.services.carousel.serviceIndicator} ${index + 1}`}
@@ -234,8 +234,8 @@ const Services = () => {
           ))}
         </div>
 
-        <div className="border-t border-slate-700/60 pt-6 mt-8 text-center">
-          <span className="text-slate-400">
+        <div className="border-t border-[#ADC4CE]/30 pt-6 mt-8 text-center">
+          <span className="text-[#ADC4CE]">
             {locale === 'en' ? 'Are you from an agency? ' : '¿Sos de una agencia? '}
           </span>
           <a

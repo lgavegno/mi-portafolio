@@ -35,7 +35,7 @@ const MainLayout = () => {
   }, [location]);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-gray-100 overflow-x-hidden relative">
+    <div className="min-h-screen bg-[#F1F0E8] text-[#2C3340] overflow-x-hidden relative">
       <Header isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />
 
       {/* Content wrapper with blur effect */}

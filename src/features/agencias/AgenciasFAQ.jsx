@@ -18,7 +18,7 @@ export default function AgenciasFAQ() {
   }
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8">
+    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#EEE0C9]">
       <div className="max-w-3xl mx-auto">
         <motion.div
           variants={staggerContainer}
@@ -27,7 +27,7 @@ export default function AgenciasFAQ() {
           viewport={viewportConfig}
         >
           <motion.h2
-            className="font-syne font-bold text-white text-3xl sm:text-4xl mb-10"
+            className="font-syne font-bold text-[#2C3340] text-3xl sm:text-4xl mb-10"
             variants={fadeInUp}
           >
             {s.titulo}
@@ -35,19 +35,19 @@ export default function AgenciasFAQ() {
 
           <motion.div variants={staggerContainer}>
             {s.items.map((item, i) => (
-              <motion.div key={i} className="border-t border-slate-700" variants={fadeInUp}>
+              <motion.div key={i} className="border-t border-[rgba(150,182,197,0.4)]" variants={fadeInUp}>
                 <button
                   type="button"
                   onClick={() => handleToggle(i)}
                   className="w-full text-left py-5 flex items-center justify-between gap-4"
                   aria-expanded={openIndex === i}
                 >
-                  <span className="font-syne font-semibold text-white text-base">
+                  <span className="font-syne font-semibold text-[#2C3340] text-base">
                     {item.pregunta}
                   </span>
                   <FiChevronDown
                     size={18}
-                    className={`text-slate-400 flex-shrink-0 transition-transform duration-200 ${
+                    className={`text-[#96B6C5] flex-shrink-0 transition-transform duration-200 ${
                       openIndex === i ? 'rotate-180' : ''
                     }`}
                   />
@@ -56,7 +56,7 @@ export default function AgenciasFAQ() {
                 <AnimatePresence initial={false}>
                   {openIndex === i && (
                     <motion.p
-                      className="font-dm-sans text-slate-400 text-sm leading-relaxed pb-5"
+                      className="font-dm-sans text-[#4B5563] text-sm leading-relaxed pb-5"
                       initial={{ opacity: 0, y: -4 }}
                       animate={{ opacity: 1, y: 0, transition: durationConfig.normal }}
                       exit={{ opacity: 0, y: -4, transition: durationConfig.fast }}
@@ -67,7 +67,7 @@ export default function AgenciasFAQ() {
                 </AnimatePresence>
               </motion.div>
             ))}
-            <div className="border-t border-slate-700" />
+            <div className="border-t border-[rgba(150,182,197,0.4)]" />
           </motion.div>
         </motion.div>
       </div>

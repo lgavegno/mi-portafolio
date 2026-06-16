@@ -11,7 +11,6 @@ import { fadeInUp, staggerContainer } from '../../config/motionConfig';
 import { useLocale } from '../../hooks/useLocale';
 
 import TechnicalTicker from '../../components/TechnicalTicker';
-import ParticleBackground from '../../components/ParticleBackground';
 
 // Lazy loading del componente pesado 3D
 const WireframeGeometry = React.lazy(() => import('../../components/WireframeGeometry'));
@@ -40,16 +39,13 @@ const HeroBanner = () => {
   return (
     <section
       id="inicio"
-      className="relative min-h-screen flex flex-col bg-gradient-to-br from-[#080c14] via-[#0d1520] to-[#061018] overflow-hidden"
+      className="relative min-h-screen flex flex-col bg-[#EEE0C9] overflow-hidden"
     >
-      {/* Particle Background Animation */}
-      <ParticleBackground />
-
       {/* Glow cyan top-left */}
       <div
         className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, rgba(0,188,212,0.12) 0%, transparent 70%)'
+          background: 'radial-gradient(circle, rgba(150,182,197,0.25) 0%, transparent 70%)'
         }}
       />
 
@@ -57,7 +53,7 @@ const HeroBanner = () => {
       <div
         className="absolute -bottom-32 right-24 w-[400px] h-[400px] rounded-full pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)'
+          background: 'radial-gradient(circle, rgba(173,196,206,0.20) 0%, transparent 70%)'
         }}
       />
 
@@ -76,16 +72,16 @@ const HeroBanner = () => {
               {/* Main Container - Split Layout for Mobile */}
               <div className="relative flex flex-col justify-between min-h-[75vh] lg:min-h-auto lg:block lg:space-y-8">
                 {/* Block 1: Top (Badge & Title & Subtitle) */}
-                <div className="pt-8 px-6 lg:p-0 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+                <div className="pt-8 px-6 lg:p-0">
                   <div className="space-y-6">
                     {/* Badge Disponible */}
                     <motion.div
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, ease: "easeOut" }}
-                      className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/8 border border-cyan-500/20 text-cyan-400 text-xs font-medium tracking-widest uppercase"
+                      className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ADC4CE]/30 border border-[#96B6C5]/40 text-[#2C3340] text-xs font-medium tracking-widest uppercase"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#96B6C5] animate-pulse" />
                       {t.hero.badge}
                     </motion.div>
 
@@ -96,11 +92,11 @@ const HeroBanner = () => {
                       transition={{ duration: 0.4, ease: "easeOut" }}
                       className="whitespace-nowrap leading-none mb-4"
                     >
-                      <span className="font-display font-extrabold text-[36px] sm:text-5xl md:text-6xl lg:text-7xl text-slate-100">ON</span>
+                      <span className="font-display font-extrabold text-[36px] sm:text-5xl md:text-6xl lg:text-7xl text-[#2C3340]">ON</span>
                       <span
                         className="font-display font-extrabold text-[36px] sm:text-5xl md:text-6xl lg:text-7xl"
                         style={{
-                          background: 'linear-gradient(135deg, #22d3ee, #818cf8)',
+                          background: 'linear-gradient(135deg, #96B6C5, #ADC4CE)',
                           WebkitBackgroundClip: 'text',
                           WebkitTextFillColor: 'transparent',
                           backgroundClip: 'text',
@@ -108,7 +104,7 @@ const HeroBanner = () => {
                       >
                         GE
                       </span>
-                      <span className="font-display font-extrabold text-[36px] sm:text-5xl md:text-6xl lg:text-7xl text-slate-100">VAG</span>
+                      <span className="font-display font-extrabold text-[36px] sm:text-5xl md:text-6xl lg:text-7xl text-[#2C3340]">VAG</span>
                     </motion.h1>
 
                     {/* Role Subtitle */}
@@ -116,7 +112,7 @@ const HeroBanner = () => {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.1, duration: 0.4 }}
-                      className="text-lg md:text-xl lg:text-2xl font-light tracking-wide text-slate-300"
+                      className="text-lg md:text-xl lg:text-2xl font-light tracking-wide text-[#4B5563]"
                     >
                       {t.hero.role}
                     </motion.p>
@@ -125,11 +121,11 @@ const HeroBanner = () => {
                 </div>
 
                 {/* Block 2: Bottom (Description & Buttons & Stats) */}
-                <div className="pb-12 px-6 lg:p-0 space-y-8 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+                <div className="pb-12 px-6 lg:p-0 space-y-8">
                   {/* Description */}
                   <motion.p
                     variants={fadeInUp}
-                    className="text-slate-300 font-normal text-base md:text-lg lg:text-xl leading-relaxed max-w-xl lg:mt-6 max-lg:drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
+                    className="text-[#4B5563] font-normal text-base md:text-lg lg:text-xl leading-relaxed max-w-xl lg:mt-6"
                   >
                     {t.hero.description}
                   </motion.p>
@@ -144,7 +140,7 @@ const HeroBanner = () => {
                       onClick={scrollToProjects}
                       className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white text-sm font-medium transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5"
                       style={{
-                        background: 'linear-gradient(135deg, #06b6d4, #818cf8)'
+                        background: '#2C3340'
                       }}
                     >
                       <FiLayers />
@@ -158,7 +154,7 @@ const HeroBanner = () => {
                       initial="idle"
                       whileHover="hover"
                       whileTap="tap"
-                      className="px-8 py-4 rounded-full font-semibold text-white border border-white/20 hover:border-white/40 hover:bg-white/5 transition-colors duration-300"
+                      className="px-8 py-4 rounded-full font-semibold text-[#2C3340] border border-[#96B6C5] hover:border-[#ADC4CE] hover:bg-[#ADC4CE]/20 transition-colors duration-300"
                     >
                       {t.hero.cta.contact}
                     </motion.button>
@@ -167,15 +163,15 @@ const HeroBanner = () => {
                   {/* Stats */}
                   <motion.div
                     variants={fadeInUp}
-                    className="flex gap-8 pt-7 border-t border-white/[0.06]"
+                    className="flex gap-8 pt-7 border-t border-[#ADC4CE]/40"
                   >
                     <div>
-                      <div className="font-display text-xl font-bold text-slate-100">4+</div>
-                      <div className="text-[11px] text-slate-500 uppercase tracking-widest mt-0.5">{t.hero.stats.projectsLabel}</div>
+                      <div className="font-display text-xl font-bold text-[#2C3340]">4+</div>
+                      <div className="text-[11px] text-[#96B6C5] uppercase tracking-widest mt-0.5">{t.hero.stats.projectsLabel}</div>
                     </div>
                     <div>
-                      <div className="font-display text-xl font-bold text-slate-100">PyME</div>
-                      <div className="text-[11px] text-slate-500 uppercase tracking-widest mt-0.5">{t.hero.stats.focus}</div>
+                      <div className="font-display text-xl font-bold text-[#2C3340]">PyME</div>
+                      <div className="text-[11px] text-[#96B6C5] uppercase tracking-widest mt-0.5">{t.hero.stats.focus}</div>
                     </div>
                   </motion.div>
                 </div>

@@ -7,7 +7,7 @@ export default function AgenciasColaboracion() {
   const s = locale === 'en' ? t.agencies.colaboracion : t.agencias.colaboracion
 
   return (
-    <section id="colaboracion" className="py-16 px-4 sm:px-6 lg:px-8">
+    <section id="colaboracion" className="py-16 px-4 sm:px-6 lg:px-8 bg-[#F1F0E8]">
       <div className="max-w-6xl mx-auto">
         <motion.div
           variants={staggerContainer}
@@ -16,14 +16,14 @@ export default function AgenciasColaboracion() {
           viewport={viewportConfig}
         >
           <motion.h2
-            className="font-syne font-bold text-white text-3xl sm:text-4xl mb-4"
+            className="font-syne font-bold text-[#2C3340] text-3xl sm:text-4xl mb-4"
             variants={fadeInUp}
           >
             {s.titulo}
           </motion.h2>
 
           <motion.p
-            className="font-dm-sans text-slate-300 text-base leading-relaxed mb-12 max-w-2xl"
+            className="font-dm-sans text-[#4B5563] text-base leading-relaxed mb-12 max-w-2xl"
             variants={fadeInUp}
           >
             {s.intro}
@@ -35,7 +35,7 @@ export default function AgenciasColaboracion() {
           >
             {s.modelos.map((modelo, i) => (
               <motion.div key={i} variants={fadeInUp}>
-                <h3 className="font-syne font-bold text-white text-lg mb-6">
+                <h3 className="font-syne font-bold text-[#2C3340] text-lg mb-6">
                   {modelo.tipo}
                 </h3>
 
@@ -43,14 +43,14 @@ export default function AgenciasColaboracion() {
                   {modelo.pasos.map((paso, j) => (
                     <li
                       key={j}
-                      className="border-l-2 border-[#0EA5E9] pl-4 font-dm-sans text-slate-300 text-sm leading-relaxed"
+                      className={`border-l-2 pl-4 font-dm-sans text-[#4B5563] text-sm leading-relaxed ${['border-[#96B6C5]', 'border-[#ADC4CE]', 'border-[#EEE0C9]'][i] ?? 'border-[#96B6C5]'}`}
                     >
                       {paso}
                     </li>
                   ))}
                 </ol>
 
-                <p className="font-dm-sans text-sky-400 text-sm font-medium leading-relaxed">
+                <p className="font-dm-sans text-[#96B6C5] text-sm font-medium leading-relaxed">
                   {modelo.resultado}
                 </p>
               </motion.div>

@@ -18,11 +18,11 @@ export default function AgenciasHero() {
   const headline = h.headline.split('\n')
 
   return (
-    <section className="pt-28 pb-16 px-4 sm:px-6 lg:px-8">
+    <section className="pt-28 pb-16 px-4 sm:px-6 lg:px-8 bg-[#2C3340]">
       <div className="max-w-6xl mx-auto">
         <div className="">
           <div className="max-w-2xl">
-            <h1 className="font-syne font-bold text-white text-4xl sm:text-5xl lg:text-6xl leading-tight mb-6">
+            <h1 className="font-syne font-bold text-[#F1F0E8] text-4xl sm:text-5xl lg:text-6xl leading-tight mb-6">
               {headline.map((line, i) => (
                 <span key={i}>
                   {line}
@@ -31,7 +31,7 @@ export default function AgenciasHero() {
               ))}
             </h1>
 
-            <p className="font-dm-sans text-slate-300 text-lg leading-relaxed mb-8 max-w-xl">
+            <p className="font-dm-sans text-[rgba(241,240,232,0.65)] text-lg leading-relaxed mb-8 max-w-xl">
               {h.subheadline}
             </p>
 
@@ -39,14 +39,14 @@ export default function AgenciasHero() {
               <a
                 href={MAILTO_URL}
                 onClick={handleEmailClick}
-                className="inline-flex items-center justify-center gap-2 bg-sky-500 hover:bg-sky-400 text-white font-syne font-semibold px-6 py-3 rounded-lg transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-[#EEE0C9] hover:bg-[#F1F0E8] text-[#2C3340] font-syne font-semibold px-6 py-3 rounded-lg transition-colors"
               >
                 <FiMail size={18} />
                 {h.ctaPrimario}
               </a>
               <a
                 href="#colaboracion"
-                className="inline-flex items-center justify-center gap-2 border border-slate-600 hover:border-slate-400 text-slate-300 hover:text-white font-syne font-semibold px-6 py-3 rounded-lg transition-colors"
+                className="inline-flex items-center justify-center gap-2 border border-[rgba(150,182,197,0.4)] hover:border-[#ADC4CE] text-[#ADC4CE] hover:text-[#F1F0E8] font-syne font-semibold px-6 py-3 rounded-lg transition-colors"
               >
                 {h.ctaSecundario}
               </a>

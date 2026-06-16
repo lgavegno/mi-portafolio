@@ -74,11 +74,11 @@ const BlogPreview = ({
             className="flex items-center justify-between mb-8"
           >
             <div>
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-institutional/10 border border-cyan-institutional/20 text-cyan-institutional text-sm font-medium mb-4">
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#ADC4CE]/20 border border-[#96B6C5]/30 text-[#2C3340] text-sm font-medium mb-4">
                 <FiBookOpen className="w-4 h-4" />
                 Blog
               </span>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-[#2C3340]">
                 {t.blog.preview.latestArticles}
               </h2>
             </div>
@@ -87,9 +87,9 @@ const BlogPreview = ({
               className="
                 hidden sm:flex items-center gap-2
                 px-5 py-2.5 rounded-xl
-                bg-white/5 border border-cyan-institutional/10
-                text-gray-300 hover:text-white
-                hover:border-cyan-institutional/40
+                bg-transparent border border-[#ADC4CE]/30
+                text-[#4B5563] hover:text-[#2C3340]
+                hover:border-[#96B6C5]/50
                 transition-colors
               "
             >
@@ -128,14 +128,14 @@ const BlogPreview = ({
           variants={fadeInUp}
           className="text-center mb-12"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-institutional/10 border border-cyan-institutional/20 text-cyan-institutional text-sm font-medium mb-6">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#ADC4CE]/20 border border-[#96B6C5]/30 text-[#2C3340] text-sm font-medium mb-6">
             <FiBookOpen className="w-4 h-4" />
             Blog
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#2C3340] mb-4">
             {t.blog.preview.heading}
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-[#4B5563] text-lg max-w-2xl mx-auto">
             {t.blog.preview.subheading}
           </p>
         </motion.div>
@@ -164,9 +164,9 @@ const BlogPreview = ({
           className="
             inline-flex items-center gap-3
             px-8 py-4 rounded-xl
-            bg-white/5 border border-cyan-institutional/10
-            text-gray-300 hover:text-white
-            hover:border-cyan-institutional/40 hover:bg-cyan-institutional/5
+            bg-transparent border border-[#ADC4CE]/30
+            text-[#4B5563] hover:text-[#2C3340]
+            hover:border-[#96B6C5]/50 hover:bg-[#ADC4CE]/10
             transition-all duration-300
             font-medium
           "
