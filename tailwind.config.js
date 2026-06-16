@@ -8,60 +8,57 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#3b82f6", // Vibrant blue for accent
-        "background-light": "#f8fafc",
-        "background-dark": "#0f172a",
-        "card-dark": "#1e293b",
-        // ONGEVAG Brand Colors
-        obsidian: "#000000", // Pure black background
-        // Paleta 2025: Deep Cobalt + Slate Grey + Spring Mint
+        primary: "#2C3340",
+        "background-light": "#F1F0E8",
+        "background-dark": "#2C3340",
+        "card-dark": "#EEE0C9",
+        obsidian: "#2C3340",
         cobalt: {
-          50: '#e6f0ff',
-          100: '#b3d1ff',
-          200: '#80b3ff',
-          300: '#4d94ff',
-          400: '#1a75ff',
-          500: '#0047AB', // Primary Deep Cobalt
-          600: '#003d91',
-          700: '#003377',
-          800: '#00295d',
-          900: '#001f43',
+          50: '#F1F0E8',
+          100: '#EEE0C9',
+          200: '#ADC4CE',
+          300: '#96B6C5',
+          400: '#7A9EAF',
+          500: '#2C3340',
+          600: '#263039',
+          700: '#202832',
+          800: '#1A202A',
+          900: '#141820',
         },
         slate: {
-          850: '#1a2332', // Custom intermediate
-          950: '#0d1117', // Darker than default
+          850: '#ADC4CE',
+          950: '#96B6C5',
         },
         mint: {
-          50: '#edfff5',
-          100: '#d5ffe6',
-          200: '#aeffce',
-          300: '#70ffab',
-          400: '#2BFF88', // Spring Mint accent
-          500: '#00e676',
-          600: '#00c853',
-          700: '#00a844',
-          800: '#008837',
-          900: '#00682a',
+          50: '#F1F0E8',
+          100: '#EEE0C9',
+          200: '#e0d4b8',
+          300: '#ADC4CE',
+          400: '#96B6C5',
+          500: '#7A9EAF',
+          600: '#6B8E9F',
+          700: '#5C7E8F',
+          800: '#4D6E7F',
+          900: '#3E5E6F',
         },
         cyan: {
-          institutional: '#00FFFF', // ONGEVAG primary cyan
-          glow: '#00FFFF',
-          50: '#ecfeff',
-          100: '#cffafe',
-          200: '#a5f3fc',
-          300: '#67e8f9',
-          400: '#22d3ee',
-          500: '#00FFFF',
-          600: '#00d9d9',
-          700: '#00b3b3',
-          800: '#008c8c',
-          900: '#006666',
+          institutional: '#96B6C5',
+          glow: '#ADC4CE',
+          50: '#F1F0E8',
+          100: '#EEE0C9',
+          200: '#e0d4b8',
+          300: '#ADC4CE',
+          400: '#96B6C5',
+          500: '#7A9EAF',
+          600: '#6B8E9F',
+          700: '#5C7E8F',
+          800: '#4D6E7F',
+          900: '#3E5E6F',
         },
-        // Accent colors
         accent: {
-          lime: '#d3fd01', // Original accent (keeping for compatibility)
-          purple: '#8b5cf6',
-          cyan: '#06b6d4',
+          lime: '#ADC4CE',
+          purple: '#96B6C5',
+          cyan: '#7A9EAF',
         }
       },
       fontFamily: {
@@ -75,9 +72,7 @@ module.exports = {
         'wider': '0.05em',
         'widest': '0.1em',
       },
-      backdropBlur: {
-        xs: '2px',
-      },
+      backdropBlur: { xs: '2px' },
       animation: {
         'gradient': 'gradient 8s ease infinite',
         'float': 'float 6s ease-in-out infinite',
@@ -115,13 +110,13 @@ module.exports = {
         'glow': '0 0 25px -5px',
         'glow-lg': '0 0 50px -12px',
         'inner-glow': 'inset 0 0 20px 0',
-        'cyan-glow': '0 0 20px rgba(0, 255, 255, 0.5)',
-        'cyan-glow-lg': '0 0 40px rgba(0, 255, 255, 0.7)',
+        'cyan-glow': '0 0 20px rgba(150, 182, 197, 0.35)',
+        'cyan-glow-lg': '0 0 40px rgba(150, 182, 197, 0.45)',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'glass': 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
+        'glass': 'linear-gradient(135deg, rgba(238,224,201,0.15) 0%, rgba(238,224,201,0.05) 100%)',
       },
     },
   },

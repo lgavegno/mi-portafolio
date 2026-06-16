@@ -50,7 +50,7 @@ const ParticleBackground = () => {
 
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(34, 211, 238, ${p.alpha})`
+        ctx.fillStyle = `rgba(150, 182, 197, ${p.alpha})`
         ctx.fill()
       })
 
@@ -64,7 +64,7 @@ const ParticleBackground = () => {
             ctx.beginPath()
             ctx.moveTo(particles[i].x, particles[i].y)
             ctx.lineTo(particles[j].x, particles[j].y)
-            ctx.strokeStyle = `rgba(34, 211, 238, ${0.08 * (1 - dist / 120)})`
+            ctx.strokeStyle = `rgba(150, 182, 197, ${0.12 * (1 - dist / 120)})`
             ctx.lineWidth = 0.5
             ctx.stroke()
           }
@@ -92,7 +92,7 @@ const ParticleBackground = () => {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ opacity: 0.6 }}
+      style={{ opacity: 0.5 }}
     />
   )
 }

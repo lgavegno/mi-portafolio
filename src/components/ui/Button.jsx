@@ -34,11 +34,10 @@ const Spinner = ({ className = '' }) => (
 // Estilos base por variante
 const variantStyles = {
   primary: `
-    bg-gradient-to-r from-cobalt-500 to-cobalt-600
-    hover:from-cobalt-400 hover:to-cobalt-500
-    text-white font-semibold
-    shadow-lg shadow-cobalt-500/25
-    hover:shadow-xl hover:shadow-cobalt-500/30
+    bg-[#2C3340] hover:bg-[#3d4a5c]
+    text-[#F1F0E8] font-semibold
+    shadow-lg shadow-[#2C3340]/25
+    hover:shadow-xl hover:shadow-[#2C3340]/30
     border-0
   `,
   secondary: `
@@ -51,29 +50,29 @@ const variantStyles = {
   ghost: `
     bg-transparent
     text-gray-300
-    hover:text-white
+    hover:text-[#F1F0E8]
     hover:bg-white/5
     font-medium
   `,
   accent: `
-    bg-gradient-to-r from-mint-400 to-mint-500
-    text-slate-900 font-bold
-    shadow-lg shadow-mint-400/25
-    hover:shadow-xl hover:shadow-mint-400/30
+    bg-[#EEE0C9]
+    text-[#2C3340] font-bold
+    shadow-lg shadow-[rgba(238,224,201,0.25)]
+    hover:shadow-xl hover:shadow-[rgba(238,224,201,0.35)]
     border-0
   `,
   danger: `
     bg-gradient-to-r from-red-500 to-red-600
-    text-white font-semibold
+    text-[#F1F0E8] font-semibold
     shadow-lg shadow-red-500/25
     hover:shadow-xl hover:shadow-red-500/30
     border-0
   `,
   success: `
-    bg-gradient-to-r from-mint-400 to-mint-500
-    text-slate-900 font-bold
-    shadow-lg shadow-mint-400/25
-    hover:shadow-xl hover:shadow-mint-400/30
+    bg-[#EEE0C9]
+    text-[#2C3340] font-bold
+    shadow-lg shadow-[rgba(238,224,201,0.25)]
+    hover:shadow-xl hover:shadow-[rgba(238,224,201,0.35)]
     border-0
   `
 };
@@ -127,7 +126,7 @@ const Button = ({
       className={`
         relative inline-flex items-center justify-center gap-2
         transition-colors duration-200
-        focus:outline-none focus:ring-2 focus:ring-cobalt-400 focus:ring-offset-2 focus:ring-offset-slate-900
+        focus:outline-none focus:ring-2 focus:ring-[#ADC4CE] focus:ring-offset-2 focus:ring-offset-[#2C3340]
         disabled:opacity-50 disabled:cursor-not-allowed
         overflow-hidden touch-manipulation
         ${variantStyles[variant]}
@@ -161,7 +160,7 @@ const Button = ({
       {/* Contenido del botón */}
       <span className="relative z-10 flex items-center gap-2">
         {loading ? (
-          <Spinner className={variant === 'accent' ? 'text-slate-900' : 'text-current'} />
+          <Spinner className={variant === 'accent' ? 'text-[#2C3340]' : 'text-current'} />
         ) : (
           <>
             {icon && iconPosition === 'left' && (

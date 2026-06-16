@@ -36,9 +36,9 @@ const Footer = () => {
   }
 
   return (
-    <footer className="relative bg-slate-950 border-t border-white/5">
+    <footer className="relative bg-[#2C3340] border-t border-[#ADC4CE]/15">
       {/* Gradient line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cobalt-500/50 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#96B6C5]/40 to-transparent" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-col items-center gap-8">
@@ -49,8 +49,8 @@ const Footer = () => {
             viewport={{ once: true }}
             className="text-center max-w-2xl"
           >
-            <h3 className="text-xl font-bold text-white mb-4">{t.common.footer.about}</h3>
-            <p className="text-gray-400">
+            <h3 className="text-xl font-bold text-[#F1F0E8] mb-4">{t.common.footer.about}</h3>
+            <p className="text-[rgba(241,240,232,0.60)]">
               {t.common.footer.description}
             </p>
           </motion.div>
@@ -75,10 +75,10 @@ const Footer = () => {
                 whileTap={{ scale: 0.9 }}
                 className="
                   p-3 rounded-xl
-                  bg-white/5 border border-white/10
-                  text-gray-400 hover:text-mint-400
-                  hover:border-mint-400/30 hover:bg-mint-400/5
-                  active:bg-mint-400/10
+                  bg-[#F1F0E8]/8 border border-[#ADC4CE]/20
+                  text-[rgba(241,240,232,0.60)] hover:text-[#F1F0E8]
+                  hover:border-[#ADC4CE]/50 hover:bg-[#ADC4CE]/15
+                  active:bg-[#ADC4CE]/20
                   transition-colors duration-300
                   touch-manipulation select-none
                   cursor-pointer
@@ -90,7 +90,7 @@ const Footer = () => {
           </motion.div>
 
           {/* Divider */}
-          <div className="w-full max-w-xs h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+          <div className="w-full max-w-xs h-px bg-gradient-to-r from-transparent via-[#ADC4CE]/25 to-transparent" />
 
           {/* Copyright */}
           <motion.div
@@ -100,7 +100,7 @@ const Footer = () => {
             transition={{ delay: 0.2 }}
             className="text-center"
           >
-            <p className="text-gray-500 text-sm">
+            <p className="text-[rgba(241,240,232,0.40)] text-sm">
               {t.common.footer.copyright.replace('{year}', currentYear)}
             </p>
           </motion.div>

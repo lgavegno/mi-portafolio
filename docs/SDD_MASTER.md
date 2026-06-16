@@ -83,9 +83,10 @@
 | **FEATURE-01** | i18n Routing | URL-based locale (ADR-006..011), ES default at `/`, EN at `/en` | ✅ Done | `docs/specs/FEATURE-01_I18N_ROUTING/` | [tasks](./specs/FEATURE-01_I18N_ROUTING/tasks.md) |
 | **FEATURE-02** | SEO Meta Tags | Dynamic meta tags, og:image, hreflang, canonical | ✅ Done | `docs/specs/FEATURE-02_SEO_METATAGS/` | [spec](./specs/FEATURE-02_SEO_METATAGS/spec.md) · [plan](./specs/FEATURE-02_SEO_METATAGS/plan.md) |
 | **FEATURE-03** | AEO Schema | Schema.org JSON-LD, structured data for AI engines | ✅ Done | `docs/specs/FEATURE-03_AEO_SCHEMA/` | [spec](./specs/FEATURE-03_AEO_SCHEMA/spec.md) · [plan](./specs/FEATURE-03_AEO_SCHEMA/plan.md) · [tasks](./specs/FEATURE-03_AEO_SCHEMA/tasks.md) |
-| **FEATURE-04** | Hero Animation | Hero banner, ParticleBackground, WireframeGeometry, design system | 🔄 In Progress | `docs/specs/FEATURE-04_HERO_ANIMATION/` | [spec](./specs/FEATURE-04_HERO_ANIMATION/spec.md) · [plan](./specs/FEATURE-04_HERO_ANIMATION/plan.md) · [tasks](./specs/FEATURE-04_HERO_ANIMATION/tasks.md) · [design-tokens](./specs/FEATURE-04_HERO_ANIMATION/design-tokens.md) |
+| **FEATURE-04** | Hero Animation | Hero banner, ParticleBackground, WireframeGeometry, design system | ✅ Done | `docs/specs/FEATURE-04_HERO_ANIMATION/` | [spec](./specs/FEATURE-04_HERO_ANIMATION/spec.md) · [plan](./specs/FEATURE-04_HERO_ANIMATION/plan.md) · [tasks](./specs/FEATURE-04_HERO_ANIMATION/tasks.md) · [design-tokens](./specs/FEATURE-04_HERO_ANIMATION/design-tokens.md) |
 | **FEATURE-05** | Project Mgmt | Projects data schema, categories, assets, Works component | ✅ Done | `docs/specs/FEATURE-05_PROJECT_MANAGEMENT/` | [spec](./specs/FEATURE-05_PROJECT_MANAGEMENT/spec.md) · [plan](./specs/FEATURE-05_PROJECT_MANAGEMENT/plan.md) · [tasks](./specs/FEATURE-05_PROJECT_MANAGEMENT/tasks.md) |
-| **FEATURE-06** | Partners Agencias | Landing page para agencias — propuesta de valor, testimonios, CTA | 🔄 In Progress | `docs/specs/FEATURE-06-PARTNERS_AGENCIAS/` | [spec](./specs/FEATURE-06-PARTNERS_AGENCIAS/spec.md) · [plan](./specs/FEATURE-06-PARTNERS_AGENCIAS/plan.md) · [tasks](./specs/FEATURE-06-PARTNERS_AGENCIAS/tasks.md) |
+| **FEATURE-06** | Partners Agencias | Landing page para agencias — propuesta de valor, testimonios, CTA | ✅ Done | `docs/specs/FEATURE-06-PARTNERS_AGENCIAS/` | [spec](./specs/FEATURE-06-PARTNERS_AGENCIAS/spec.md) · [plan](./specs/FEATURE-06-PARTNERS_AGENCIAS/plan.md) · [tasks](./specs/FEATURE-06-PARTNERS_AGENCIAS/tasks.md) |
+| **EPIC-07** | Rebrand Visual 2026 | Migración dark→light mode, paleta pastel B2B, rediseño agencias | ✅ Done | `docs/specs/EPIC-rebrand-2026/` | [spec](./specs/EPIC-rebrand-2026/spec.md) · [ADR-012](./adr/ADR-012.md) |
 | **UI Kit** | Components | Button, Header, Footer, Skeleton (shared globals) | ✅ Done | `src/components/` | [src](../src/components/) |
 | **Config** | Config | Framer Motion variants, animation presets, tokens | ✅ Done | `src/config/` | [motionConfig](../src/config/motionConfig.js) |
 
@@ -165,6 +166,7 @@
 | **[ADR-009](./adr/ADR-009.md)** | Schema JSON-LD Global Sin Geolocalización Restrictiva | ✅ Accepted | docs/adr/ |
 | **[ADR-010](./adr/ADR-010.md)** | No External i18n Library (plain JS) | ✅ Accepted | docs/adr/ |
 | **[ADR-011](./adr/ADR-011.md)** | URL as Single Source of Truth (Locale) | ✅ Accepted | docs/adr/ |
+| **[ADR-012](./adr/ADR-012.md)** | Rebrand Visual 2026 — Migración a Light Mode | ✅ Accepted | docs/adr/ |
 
 ---
 
@@ -292,6 +294,6 @@ docs/
     └── SEQ-04_code_splitting.puml
 ```
 
-**Last updated:** 2026-06-15 (Auditoría exhaustiva: FEATURE-03 marcado Done, FEATURE-06 registrado, ADR-008/009 agregados, duplicate row eliminada)
+**Last updated:** 2026-06-16 (Epic rebrand-2026 completada, ADR-012 agregado, FEATURE-04 y FEATURE-06 marcados Done, EPIC-07 registrado)
 **Next review:** After FEATURE-04 completion (Hero Animation — T-12 a T-16 pendientes)
 

@@ -130,21 +130,21 @@ const Contact = () => {
 
   const inputClasses = `
     w-full px-4 py-3 pl-12
-    bg-white/5 backdrop-blur-sm
-    border border-white/10 rounded-xl
-    text-white placeholder-gray-500
-    focus:outline-none focus:ring-2 focus:ring-cobalt-400/50 focus:border-cobalt-400/50
+    bg-[#F1F0E8]/8 backdrop-blur-sm
+    border border-[#ADC4CE]/25 rounded-xl
+    text-[#F1F0E8] placeholder-[rgba(241,240,232,0.35)]
+    focus:outline-none focus:ring-2 focus:ring-[#ADC4CE]/50 focus:border-[#ADC4CE]/50
     active:scale-[0.99] active:bg-white/8
     transition-all duration-200
     touch-manipulation
   `
 
   return (
-    <section className="w-full relative overflow-hidden bg-gradient-to-b from-slate-900 to-slate-950 py-24">
+    <section className="w-full relative overflow-hidden bg-gradient-to-b from-[#2C3340] to-[#1a1f28] py-24">
       {/* Background effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -right-32 w-96 h-96 bg-cobalt-500/10 rounded-full filter blur-[128px]" />
-        <div className="absolute bottom-1/4 -left-32 w-96 h-96 bg-mint-400/5 rounded-full filter blur-[128px]" />
+        <div className="absolute top-1/4 -right-32 w-96 h-96 bg-[#ADC4CE]/8 rounded-full filter blur-[128px]" />
+        <div className="absolute bottom-1/4 -left-32 w-96 h-96 bg-[#96B6C5]/5 rounded-full filter blur-[128px]" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-2xl relative z-10">
@@ -156,14 +156,14 @@ const Contact = () => {
         >
           {/* Header */}
           <motion.div variants={fadeInUp} className="text-center mb-12">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cobalt-500/10 border border-cobalt-500/20 text-cobalt-400 text-sm font-medium mb-6">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#ADC4CE]/15 border border-[#ADC4CE]/30 text-[#ADC4CE] text-sm font-medium mb-6">
               <FiMail className="w-4 h-4" />
               {t.contact.badge}
             </span>
-            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+            <h2 className="text-4xl sm:text-5xl font-bold text-[#F1F0E8] mb-4">
               {t.contact.title}
             </h2>
-            <p className="text-gray-400 text-xl max-w-2xl mx-auto">
+            <p className="text-[rgba(241,240,232,0.65)] text-xl max-w-2xl mx-auto">
               {t.contact.description}
             </p>
           </motion.div>
@@ -171,7 +171,7 @@ const Contact = () => {
           {/* Form */}
           <motion.div
             variants={fadeInUp}
-            className="glass-card p-8"
+            className="glass-card bg-[#F1F0E8]/5 border border-[#ADC4CE]/15 p-8"
           >
             <form aria-label="Formulario de contacto"
               onSubmit={(e) => {
@@ -183,11 +183,11 @@ const Contact = () => {
             >
               {/* Name field */}
               <div className="relative">
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                <label htmlFor="name" className="block text-sm font-medium text-[rgba(241,240,232,0.75)] mb-2">
                   {t.contact.form.labels.name}
                 </label>
                 <div className="relative">
-                  <FiUser className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5" />
+                  <FiUser className="absolute left-4 top-1/2 -translate-y-1/2 text-[rgba(241,240,232,0.35)] w-5 h-5" />
                   <input
                     type="text"
                     id="name"
@@ -205,11 +205,11 @@ const Contact = () => {
 
               {/* Email field */}
               <div className="relative">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-[rgba(241,240,232,0.75)] mb-2">
                   {t.contact.form.labels.email}
                 </label>
                 <div className="relative">
-                  <FiMail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5" />
+                  <FiMail className="absolute left-4 top-1/2 -translate-y-1/2 text-[rgba(241,240,232,0.35)] w-5 h-5" />
                   <input
                     type="email"
                     id="email"
@@ -227,11 +227,11 @@ const Contact = () => {
 
               {/* Project type field */}
               <div className="relative">
-                <label htmlFor="projectType" className="block text-sm font-medium text-gray-300 mb-2">
+                <label htmlFor="projectType" className="block text-sm font-medium text-[rgba(241,240,232,0.75)] mb-2">
                   {t.contact.form.labels.projectType}
                 </label>
                 <div className="relative">
-                  <FiBriefcase className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5 pointer-events-none z-10" />
+                  <FiBriefcase className="absolute left-4 top-1/2 -translate-y-1/2 text-[rgba(241,240,232,0.35)] w-5 h-5 pointer-events-none z-10" />
                   <select
                     id="projectType"
                     name="projectType"
@@ -241,9 +241,9 @@ const Contact = () => {
                     className={`${inputClasses} appearance-none cursor-pointer`}
                     required
                   >
-                    <option value="" disabled className="bg-slate-900">{t.contact.form.placeholders.projectType}</option>
+                    <option value="" disabled className="bg-[#2C3340]">{t.contact.form.placeholders.projectType}</option>
                     {t.contact.form.projectTypes.map((type) => (
-                      <option key={type} value={type} className="bg-slate-900">{type}</option>
+                      <option key={type} value={type} className="bg-[#2C3340]">{type}</option>
                     ))}
                   </select>
                 </div>
@@ -251,11 +251,11 @@ const Contact = () => {
 
               {/* Message field */}
               <div className="relative">
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                <label htmlFor="message" className="block text-sm font-medium text-[rgba(241,240,232,0.75)] mb-2">
                   {t.contact.form.labels.message}
                 </label>
                 <div className="relative">
-                  <FiMessageSquare className="absolute left-4 top-4 text-gray-500 w-5 h-5" />
+                  <FiMessageSquare className="absolute left-4 top-4 text-[rgba(241,240,232,0.35)] w-5 h-5" />
                   <textarea
                     id="message"
                     name="message"
@@ -322,7 +322,7 @@ const Contact = () => {
                   {status === FORM_STATUS.SUCCESS && t.contact.buttons.success}
                   {(status === FORM_STATUS.IDLE || status === FORM_STATUS.ERROR) && !isSubmitting && t.contact.buttons.submit}
                 </Button>
-                <p className="flex items-center justify-center gap-1.5 text-xs text-gray-500">
+                <p className="flex items-center justify-center gap-1.5 text-xs text-[rgba(241,240,232,0.40)]">
                   <FiClock className="w-3.5 h-3.5" />
                   {t.contact.messages.responseTime}
                 </p>
