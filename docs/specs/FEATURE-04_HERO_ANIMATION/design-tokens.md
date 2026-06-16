@@ -2,6 +2,12 @@
 
 **Última actualización:** 10 de Abril de 2026
 
+
+> ⚠️ **NOTA (2026-06-16):** Esta paleta fue reemplazada por el Rebrand Visual 2026
+> (EPIC-07, ADR-012). Los tokens cobalt/mint/cyan-institutional documentados aquí
+> son históricos. La paleta activa está en `tailwind.config.js` y `ADR-012.md`.
+> Este documento se mantiene como referencia del diseño original del hero animation.
+
 ---
 
 ## 1. Paleta de Colores
