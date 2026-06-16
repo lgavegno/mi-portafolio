@@ -7,6 +7,26 @@ Historial de cambios del proyecto Ongevag Portfolio. Formato: [Keep a Changelog]
 
 ---
 
+## [3.0.0] — 2026-06-16
+
+### Added
+- FEATURE-06: página /agencias y /en/agencies (partners y agencias)
+- FEATURE-06: stagger animation en ProjectCard al hacer scroll
+
+### Fixed
+- Rutas /es/* fantasma en sitemap (SEO crítico — Googlebot recibía 404s)
+- 14 tests fallando en Contact.test.jsx (causa raíz: projectType ausente en validateForm)
+- CVE HIGH dompurify@3.4.8 — actualizado
+- Eliminados 3 assets .webp sin referencias (faroart2, generador2, omnistock2)
+
+### Security
+- vitest actualizado de 1.6.1 a 4.1.9 — resuelve CVE CVSS 9.8
+
+### Chores
+- Eliminado MEMORY.md no autorizado generado por Claude Code
+- Actualizado .claudeignore para prevenir regeneración
+- Documentación actualizada: CLAUDE.md, SDD_MASTER, BITACORA, AUDIT_2026-06-15
+
 ## [2.5.1] — 2026-06-15
 
 ### Fixed
