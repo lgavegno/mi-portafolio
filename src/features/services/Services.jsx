@@ -119,14 +119,14 @@ const Services = () => {
   };
 
   return (
-    <section id="que-hago" className="w-full relative overflow-hidden bg-gradient-to-b from-slate-800 to-slate-900 text-[#2C3340] py-32 md:py-40 lg:py-48">
+    <section id="que-hago" className="w-full relative overflow-hidden bg-gradient-to-b from-[#2C3340] to-[#1a1f28] text-[#F1F0E8] py-32 md:py-40 lg:py-48">
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
       {/* Background effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-cobalt-500/10 rounded-full filter blur-[128px]" />
-        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-mint-400/5 rounded-full filter blur-[128px]" />
+        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-[#ADC4CE]/5 rounded-full filter blur-[128px]" />
+        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-[#96B6C5]/3 rounded-full filter blur-[128px]" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -147,7 +147,7 @@ const Services = () => {
           </motion.span>
           <motion.h2
             variants={fadeInUp}
-            className="text-4xl sm:text-5xl font-bold text-[#2C3340]"
+            className="text-4xl sm:text-5xl font-bold text-[#F1F0E8]"
           >
             {t.services.title}
           </motion.h2>
@@ -226,7 +226,7 @@ const Services = () => {
                 touch-manipulation select-none
                 ${index === currentIndex
                   ? 'w-8 bg-cobalt-400'
-                  : 'bg-white/20 hover:bg-white/40 active:bg-white/60'
+                  : 'bg-[#F1F0E8]/20 hover:bg-[#F1F0E8]/40 active:bg-[#F1F0E8]/60'
                 }
               `}
               aria-label={`${t.services.carousel.serviceIndicator} ${index + 1}`}
@@ -234,8 +234,8 @@ const Services = () => {
           ))}
         </div>
 
-        <div className="border-t border-slate-700/60 pt-6 mt-8 text-center">
-          <span className="text-[#4B5563]">
+        <div className="border-t border-[#ADC4CE]/30 pt-6 mt-8 text-center">
+          <span className="text-[#ADC4CE]">
             {locale === 'en' ? 'Are you from an agency? ' : '¿Sos de una agencia? '}
           </span>
           <a
