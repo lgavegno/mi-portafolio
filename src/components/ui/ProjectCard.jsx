@@ -24,6 +24,12 @@ const ProjectCard = ({
   const prefersReducedMotion = useReducedMotion();
   const navigate = useNavigate();
 
+  const safeIndex = Number.isFinite(Number(index)) ? Number(index) : 0;
+  const safeTransition = {
+    delay: safeIndex * 0.15,
+    ...(springConfig?.snappy ?? { type: 'spring', stiffness: 280, damping: 25 }),
+  };
+
   const statusConfig = {
     'in-progress': {
       label: 'En desarrollo',
