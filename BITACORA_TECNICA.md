@@ -5,6 +5,40 @@
 
 ---
 
+## 2026-06-16 — Epic Rebrand Visual 2026 (epic/rebrand-2026)
+
+**Objetivo:** Migración completa de dark mode a light mode con paleta pastel
+B2B orientada a agencias de diseño.
+
+**Commits de la epic:**
+- `37ecd0b` feat(rebrand): light mode migration — paleta ColorHunt pastel
+- `2a8d4a5` fix(rebrand): resolve CRÍTICOS contrast audit
+
+**Archivos modificados:** 25 archivos en total
+
+**Cambios principales:**
+- `tailwind.config.js`: reemplazo completo de paleta cobalt/mint/cyan → steel-blue/mist-blue/sand/cream/navy
+- `MainLayout.jsx`: bg-slate-950 → bg-[#F1F0E8]
+- `HeroBanner.jsx`: dark bg + cyan particles → sand bg, eliminado ParticleBackground
+- `Header.jsx`: full dark mode → light mode con navy CTA
+- `About.jsx`: bg-slate-950 → bg-[#F1F0E8], cards migradas
+- `Footer.jsx`: bg-slate-950 → bg-[#2C3340] (dark intencional)
+- `Contact.jsx`: from-slate-900 → from-[#2C3340] (dark intencional)
+- `Services.jsx`: from-slate-800 → from-[#2C3340] (dark intencional)
+- `AgenciasHero/ParaQuien/Colaboracion/Proceso/FAQ/CTAFinal`: rediseño
+  completo con arquitectura de secciones alternadas claro/oscuro
+- `BlogPreview/BlogComponents/BlogPostDetail`: textos invisibles corregidos
+- `SkillsGrid/WireframeGeometry/Button/ProjectCard`: colores migrados
+
+**Decisiones registradas:** ADR-008
+
+**Deuda técnica activa post-epic:**
+- DT-08-01: Works.jsx sin migrar (bg-obsidian)
+- DT-08-02: ProjectDetail.jsx sin migrar (bg-obsidian)
+- DT-08-03: Issues MEDIO del audit de contraste pendientes
+
+**Tests:** 71/71 ✅ | Build: ✅ 5.76s
+
 ## 2026-06-15 — Cierre PR Auditoría
 
 **Tipo:** Cierre de reparación post-auditoría
