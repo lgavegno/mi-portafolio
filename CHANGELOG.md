@@ -5,6 +5,37 @@ Historial de cambios del proyecto Ongevag Portfolio. Formato: [Keep a Changelog]
 ---
 ## [Unreleased]
 
+## [3.2.0] — 2026-06-17
+ 
+### Added
+- FEATURE-08: componente `SectionDivider` con variantes `wave`, `bowl` y `overlap` (SVG inline, `preserveAspectRatio="none"`)
+- Separadores en home: wave (hero→about), bowl (about→skills), wave (skills→services)
+- Separadores en /agencias y /en/agencies: wave (hero→paraQuien), bowl (proceso→faq), overlap (faq→cta)
+- Círculos decorativos Swiss editorial en hero (composición SVG estilo B2B premium, `position: absolute bottom-16 right-0`)
+- WireframeGeometry movido a AgenciasHero (ES y EN) como elemento visual de la página de agencias
+- `SectionDivider`: soporte `prefers-reduced-motion` — fallback a `<hr>` simple cuando está activo
+- Clave i18n `techStackBadge` en `works.js` ES ('Tecnologías') y EN ('Technologies')
+- Documentación FEATURE-08: `spec.md`, `plan.md`, `tasks.md` en `docs/specs/FEATURE-08-SECTION-DIVIDERS/`
+- `SDD_MASTER.md`: FEATURE-08 registrada, tabla de deuda técnica, sección paleta y i18n
+### Changed
+- `HeroBanner.jsx`: WireframeGeometry eliminado, stats pills con `bg-[#2C3340]/8`, badge navy+cream, círculos `bottom-16`
+- `TechnicalTicker.jsx`: `bg-obsidian` → `bg-[#2C3340]`, texto forzado a `#ffffff` con `style` inline (Tailwind no procesaba `cyan-institutional` eliminado)
+- `LangSwitcher.jsx`: texto ES/EN → banderas emoji 🇪🇸🇺🇸, estado activo navy con `scale-105`
+- `About.jsx`: cards IA+Trayectoria con borde navy, shadow neon, animación Framer Motion x±50; párrafos bio `font-medium text-[#2C3340]`
+- `SkillsGrid.jsx`: badge "Tecnologías" hardcodeado → `{t.works.techStackBadge}`, punto pulsante `bg-[#2C3340]`
+- `AgenciasColaboracion.jsx`: párrafos beneficio `text-[#96B6C5] font-medium` → `text-[#2C3340] font-semibold`
+- Tipografía desktop /agencias — prefijo `lg:` en 6 componentes (mobile sin cambios): `text-sm`→`lg:text-base`, `text-base`→`lg:text-lg`, `text-lg`→`lg:text-xl`
+- `index.html`: fuentes DM Sans + Syne → Inter (400/500/600) + Space Grotesk (400/500/600/700); eliminado `class="dark"` residual
+- `tailwind.config.js`: `fontFamily.sans` → Inter, `fontFamily.display` → Space Grotesk
+- `caniuse-lite` actualizado a 1.0.30001799
+- `SDD_MASTER.md`: Phase 2 marcada completa, FEATURE-08 registrada, deuda técnica consolidada
+### Removed
+- `src/components/ParticleBackground.jsx` — sin importadores activos, reemplazado por composición SVG estática
+### Tech Debt
+- DT-09-01: 20 vulnerabilidades npm (path-to-regexp HIGH en runtime vía react-router) — sprint separado
+- DT-09-02: referencias residuales `mint-400`, `cyan-institutional`, `cobalt-500` en ~14 archivos
+
+
 ---
 
 ## [3.1.0] — 2026-06-16

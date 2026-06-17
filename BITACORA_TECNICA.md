@@ -674,3 +674,62 @@ Archivos a revisar: `ParticleBackground.jsx`, `HeroBanner.jsx`, `motionConfig.js
 
 ### Próximo paso
 Fase D: QA manual (T-12 checklist visual, T-13 Lighthouse, T-14 smoke mobile) — requiere browser
+
+## 2026-06-17 — FEATURE-08: Section Dividers & Visual Polish
+ 
+**Tipo:** Feature visual — componente UI presentacional + polish general
+**Branch:** feature/08-section-dividers
+**Release:** v3.2.0
+**Fases completadas:** A (componente) + B (agencias) + C (home) + D (QA + docs)
+ 
+### Decisión: SVG inline vs alternativas CSS
+ 
+| Técnica | Descartada por |
+|---------|----------------|
+| `clip-path` CSS | No interpola colores — requiere bg del elemento hijo |
+| `border-radius` asimétrico | Solo curvas simples, no ondas complejas |
+| SVG inline ✅ | Control total del path, interpola cualquier color |
+ 
+### Reglas de implementación SVG dividers
+ 
+```
+preserveAspectRatio="none"  → MANDATORIO para escalar al viewport
+lineHeight: 0               → elimina gap de 4-5px del inline SVG
+display: 'block'            → refuerza eliminación del gap
+backgroundColor: fromColor  → evita flash de color si SVG demora
+```
+ 
+### Lección: colores eliminados de Tailwind
+ 
+Clases como `text-cyan-institutional/60`, `bg-mint-400`, `bg-obsidian` generan
+CSS vacío cuando el color es eliminado de `tailwind.config.js`. El className
+existe en el JSX pero Tailwind no emite la regla CSS. Solución: usar hex inline
+`style={{ color: '#ffffff' }}` o agregar el color a la config.
+ 
+### Patrón wave/bowl/overlap
+ 
+| Variante | Path SVG | Posición en página | Efecto |
+|----------|----------|--------------------|--------|
+| `wave` | Bézier cúbica `C` | Apertura, primera transición | Entrada fluida |
+| `bowl` | Cuadrática `Q` invertida | Sección media | Respiro visual |
+| `overlap` | Wave + card absoluta | Antes de CTA final | Máximo impacto |
+ 
+### Composición círculos Swiss editorial (hero)
+ 
+Reemplaza WireframeGeometry en el hero principal. Filosofía: marca gráfica
+sistémica (un círculo dominante + satélites + uno cortado por el borde), no
+decoración random. Referencia visual: Stripe, consultorias premium B2B, diseño
+suizo editorial. Posicionado en `bottom-16 right-0` para no solapar TechnicalTicker.
+ 
+### Restricción activa
+ 
+Sin separador entre Works y secciones adyacentes hasta resolver DT-08-01.
+`Works.jsx` usa `bg-obsidian` — color fuera de paleta rebrand 2026.
+ 
+### Stats tracking
+ 
+- Build: 244KB main bundle (stable)
+- Tests: 71/71 passing (sin regresiones)
+- Archivos modificados: 30
+- Archivos nuevos: 4 (SectionDivider + 3 docs)
+- Archivos eliminados: 1 (ParticleBackground)

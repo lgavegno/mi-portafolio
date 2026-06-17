@@ -10,7 +10,7 @@
 | docs | Documentación | docs: actualizar CLAUDE.md con nuevas rutas |
 | style | Cambio visual sin lógica | style: ajustar espaciado en hero mobile |
 | refactor | Reestructura sin cambio funcional | refactor: extraer hook useContactForm |
-| perf | Mejora de performance | perf: diferir carga de NeuralNetworkBackground |
+| perf | Mejora de performance | perf: lazy load de WireframeGeometry en agencias
 | chore | Tareas de mantenimiento | chore: actualizar dependencias |
 
 ## Flujo de branches
@@ -187,3 +187,41 @@ import Button from '../../components/ui/Button'
 - [ADR-002: JavaScript puro sin TypeScript](src/docs/adr/ADR-002.md)
 - [ADR-003: EmailJS para formulario de contacto](src/docs/adr/ADR-003.md)
 - [ADR-004: Arquitectura feature-based (DDD Light)](src/docs/adr/ADR-004.md)
+
+## Sistema de separadores de sección (SectionDivider)
+ 
+Al agregar nuevas secciones con color de fondo diferente al anterior, usar
+`SectionDivider` entre ellas:
+ 
+```jsx
+import SectionDivider from '../components/ui/SectionDivider'
+ 
+<SeccionA />  {/* bg: #EEE0C9 */}
+<SectionDivider variant="wave" fromColor="#EEE0C9" toColor="#F1F0E8" />
+<SeccionB />  {/* bg: #F1F0E8 */}
+```
+ 
+**Variantes disponibles:** `wave` | `bowl` | `overlap`
+**Props requeridas:** `fromColor` y `toColor` deben ser el hex exacto del bg de cada sección.
+**Regla:** no usar separador si `fromColor === toColor` (mismo color no necesita transición).
+**Restricción activa:** no agregar separadores en secciones con `bg-obsidian` hasta resolver DT-08-01.
+ 
+Ver spec completa: `docs/specs/FEATURE-08-SECTION-DIVIDERS/spec.md`
+ 
+---
+ 
+## Paleta de colores (Rebrand 2026 — ADR-012)
+ 
+Toda clase de color nueva debe usar tokens de la paleta rebrand:
+ 
+| Token | HEX | Tailwind class |
+|-------|-----|----------------|
+| cream | #F1F0E8 | `bg-[#F1F0E8]` |
+| sand | #EEE0C9 | `bg-[#EEE0C9]` |
+| mist-blue | #ADC4CE | `bg-[#ADC4CE]` |
+| steel-blue | #96B6C5 | `bg-[#96B6C5]` |
+| navy | #2C3340 | `bg-[#2C3340]` |
+| slate text | #4B5563 | `text-[#4B5563]` |
+ 
+**Nunca usar:** `mint-400`, `cyan-institutional`, `cobalt-500`, `bg-obsidian`
+(eliminados en ADR-012 — Tailwind no emite CSS para estos tokens).
