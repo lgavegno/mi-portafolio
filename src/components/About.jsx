@@ -230,8 +230,14 @@ const About = () => {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                                     {/* AI Block */}
                                     <motion.div
-                                        variants={fadeInUp}
-                                        className="p-8 rounded-xl bg-white border border-[#96B6C5] relative overflow-hidden group"
+                                        variants={{
+                                            hidden: { opacity: 0, x: -50 },
+                                            visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
+                                        }}
+                                        initial="hidden"
+                                        whileInView="visible"
+                                        viewport={{ once: true }}
+                                        className="p-8 rounded-xl bg-white border border-[#2C3340] relative overflow-hidden group shadow-[0_0_0_1px_#2C3340,0_4px_24px_rgba(44,51,64,0.18)] transition-shadow duration-300 hover:shadow-[0_0_0_2px_#2C3340,0_8px_32px_rgba(44,51,64,0.28)]"
                                     >
                                         <div className="absolute top-0 right-0 w-32 h-32 bg-[#ADC4CE]/20 blur-2xl rounded-full -translate-y-1/2 translate-x-1/2 group-hover:bg-[#ADC4CE]/30 transition-colors" />
 
@@ -245,8 +251,14 @@ const About = () => {
 
                                     {/* Trayectoria Block */}
                                     <motion.div
-                                        variants={fadeInUp}
-                                        className="p-8 rounded-xl bg-white border border-[#ADC4CE] hover:border-[#96B6C5] transition-colors"
+                                        variants={{
+                                            hidden: { opacity: 0, x: 50 },
+                                            visible: { opacity: 1, x: 0, transition: { duration: 0.5, delay: 0.1 } }
+                                        }}
+                                        initial="hidden"
+                                        whileInView="visible"
+                                        viewport={{ once: true }}
+                                        className="p-8 rounded-xl bg-white border border-[#2C3340] relative overflow-hidden shadow-[0_0_0_1px_#2C3340,0_4px_24px_rgba(44,51,64,0.18)] transition-shadow duration-300 hover:shadow-[0_0_0_2px_#2C3340,0_8px_32px_rgba(44,51,64,0.28)]"
                                     >
                                         <div className="flex items-center gap-3 mb-4">
                                             <div className="w-10 h-10 rounded-lg bg-[#ADC4CE]/30 flex items-center justify-center text-[#2C3340]">

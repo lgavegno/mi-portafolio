@@ -79,7 +79,7 @@ const HeroBanner = () => {
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, ease: "easeOut" }}
-                      className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ADC4CE]/30 border border-[#96B6C5]/40 text-[#2C3340] text-xs font-medium tracking-widest uppercase"
+                      className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#2C3340] border border-[#2C3340] text-[#F1F0E8] text-xs font-medium tracking-widest uppercase"
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-[#96B6C5] animate-pulse" />
                       {t.hero.badge}
@@ -163,15 +163,15 @@ const HeroBanner = () => {
                   {/* Stats */}
                   <motion.div
                     variants={fadeInUp}
-                    className="flex gap-8 pt-7 border-t border-[#ADC4CE]/40"
+                    className="flex gap-8 pt-7 border-t border-[#2C3340]/20"
                   >
-                    <div>
-                      <div className="font-display text-xl font-bold text-[#2C3340]">4+</div>
-                      <div className="text-[11px] text-[#96B6C5] uppercase tracking-widest mt-0.5">{t.hero.stats.projectsLabel}</div>
+                    <div className="flex flex-col items-center bg-[#2C3340]/8 border border-[#2C3340]/15 rounded-xl px-5 py-3">
+                      <div className="font-display text-3xl font-bold text-[#2C3340]">4+</div>
+                      <div className="text-xs text-[#2C3340]/60 uppercase tracking-widest mt-0.5 font-medium">{t.hero.stats.projectsLabel}</div>
                     </div>
-                    <div>
-                      <div className="font-display text-xl font-bold text-[#2C3340]">PyME</div>
-                      <div className="text-[11px] text-[#96B6C5] uppercase tracking-widest mt-0.5">{t.hero.stats.focus}</div>
+                    <div className="flex flex-col items-center bg-[#2C3340]/8 border border-[#2C3340]/15 rounded-xl px-5 py-3">
+                      <div className="font-display text-3xl font-bold text-[#2C3340]">PyME</div>
+                      <div className="text-xs text-[#2C3340]/60 uppercase tracking-widest mt-0.5 font-medium">{t.hero.stats.focus}</div>
                     </div>
                   </motion.div>
                 </div>

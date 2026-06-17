@@ -41,23 +41,27 @@ const LangSwitcher = () => {
     <div className="flex items-center gap-1">
       <button
         onClick={() => handleNavigate('es')}
-        className={`px-3 py-2 rounded text-sm font-medium transition-colors ${
+        className={`px-2 py-1.5 rounded-lg text-lg transition-all duration-200 ${
           !isEN
-            ? 'bg-cyan-500/20 text-cyan-300'
-            : 'text-gray-300 hover:text-white hover:bg-white/5'
+            ? 'bg-[#2C3340] shadow-sm scale-105'
+            : 'opacity-50 hover:opacity-80 hover:bg-[#2C3340]/10'
         }`}
+        title="Español"
+        aria-label="Cambiar a Español"
       >
-        ES
+        🇪🇸
       </button>
       <button
         onClick={() => handleNavigate('en')}
-        className={`px-3 py-2 rounded text-sm font-medium transition-colors ${
+        className={`px-2 py-1.5 rounded-lg text-lg transition-all duration-200 ${
           isEN
-            ? 'bg-cyan-500/20 text-cyan-300'
-            : 'text-gray-300 hover:text-white hover:bg-white/5'
+            ? 'bg-[#2C3340] shadow-sm scale-105'
+            : 'opacity-50 hover:opacity-80 hover:bg-[#2C3340]/10'
         }`}
+        title="English"
+        aria-label="Switch to English"
       >
-        EN
+        🇺🇸
       </button>
     </div>
   );
