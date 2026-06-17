@@ -1,11 +1,14 @@
+import { motion } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
 import { useLocale } from '../hooks/useLocale'
+import { pageTransition } from '../config/motionConfig'
 import AgenciasHero from '../features/agencias/AgenciasHero'
 import AgenciasParaQuien from '../features/agencias/AgenciasParaQuien'
 import AgenciasColaboracion from '../features/agencias/AgenciasColaboracion'
 import AgenciasProceso from '../features/agencias/AgenciasProceso'
 import AgenciasFAQ from '../features/agencias/AgenciasFAQ'
 import AgenciasCTAFinal from '../features/agencias/AgenciasCTAFinal'
+import SectionDivider from '../components/ui/SectionDivider'
 
 export default function AgenciesPageEN() {
   const { t } = useLocale()
@@ -22,11 +25,21 @@ export default function AgenciesPageEN() {
         <meta property="og:description" content={meta.ogDescription} />
         <meta property="og:url" content={meta.ogUrl} />
       </Helmet>
-      <AgenciasHero />
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.05 }}
+        variants={pageTransition}
+      >
+        <AgenciasHero />
+      </motion.div>
+      <SectionDivider variant="wave" fromColor="#2C3340" toColor="#EEE0C9" />
       <AgenciasParaQuien />
       <AgenciasColaboracion />
       <AgenciasProceso />
+      <SectionDivider variant="bowl" fromColor="#96B6C5" toColor="#EEE0C9" />
       <AgenciasFAQ />
+      <SectionDivider variant="overlap" fromColor="#EEE0C9" toColor="#2C3340" overlapLabel="Let's talk" />
       <AgenciasCTAFinal />
     </>
   )

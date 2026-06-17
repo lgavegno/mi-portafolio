@@ -34,7 +34,7 @@ export default function AgenciasCTAFinal() {
           </motion.h2>
 
           <motion.p
-            className="font-dm-sans text-[rgba(241,240,232,0.65)] text-base leading-relaxed mb-8"
+            className="font-dm-sans text-[rgba(241,240,232,0.65)] text-base lg:text-lg leading-relaxed mb-8"
             variants={fadeInUp}
           >
             {s.cuerpo}

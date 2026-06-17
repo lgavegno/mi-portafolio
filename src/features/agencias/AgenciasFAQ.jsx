@@ -42,7 +42,7 @@ export default function AgenciasFAQ() {
                   className="w-full text-left py-5 flex items-center justify-between gap-4"
                   aria-expanded={openIndex === i}
                 >
-                  <span className="font-syne font-semibold text-[#2C3340] text-base">
+                  <span className="font-syne font-semibold text-[#2C3340] text-base lg:text-lg">
                     {item.pregunta}
                   </span>
                   <FiChevronDown
@@ -56,7 +56,7 @@ export default function AgenciasFAQ() {
                 <AnimatePresence initial={false}>
                   {openIndex === i && (
                     <motion.p
-                      className="font-dm-sans text-[#4B5563] text-sm leading-relaxed pb-5"
+                      className="font-dm-sans text-[#4B5563] text-sm lg:text-base leading-relaxed pb-5"
                       initial={{ opacity: 0, y: -4 }}
                       animate={{ opacity: 1, y: 0, transition: durationConfig.normal }}
                       exit={{ opacity: 0, y: -4, transition: durationConfig.fast }}

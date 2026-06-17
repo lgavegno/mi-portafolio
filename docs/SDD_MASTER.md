@@ -12,18 +12,21 @@
 **Stakeholders:**
 - Leandro Gavegno (propietario, freelance)
 - Clientes PyMEs potenciales (audiencia)
+- Agencias de marketing / estudios creativos (audiencia B2B — FEATURE-06)
 - Recruiters / auditores técnicos (evaluación de skills)
 
 **Alcance:**
 - ✅ Secciones estáticas: hero, about, skills, services, works, contact
 - ✅ Blog: posts estáticos con navegación
 - ✅ Formulario de contacto con EmailJS
+- ✅ Landing page B2B para agencias (/agencias, /en/agencies)
 - ❌ No incluye: backend, CMS, sistema de usuarios, ecommerce integrado
 
 **Objetivos de negocio:**
 1. Showcase de skills técnicos (React, Vite, arquitectura, performance)
 2. Lead generation: captar clientes vía formulario de contacto
 3. Credibilidad técnica: excelente performance (LCP, CLS, FID)
+4. Captación B2B: agencias de marketing como partner técnico
 
 ---
 
@@ -44,14 +47,15 @@
         │                  │                  │
     ┌───▼────┐       ┌────▼───┐        ┌───▼────┐
     │ Layout │       │ Feature │       │  Page  │
-    │ (2)    │       │ (6)     │       │ (3)    │
+    │ (2)    │       │ (6)     │       │ (5)    │
     └────────┘       └────┬────┘       └────────┘
                            │
         ┌──────────────────┼──────────────────┐
         │                  │                  │
     ┌───▼─────────────────────────────────────▼───┐
     │      Components (UI Kit Global)              │
-    │  Button, Header, Footer, Skeleton, etc.     │
+    │  Button, Header, Footer, SectionDivider,    │
+    │  Skeleton, LangSwitcher, TechnicalTicker    │
     └───────────────────────────────────────────────┘
                            │
                 ┌──────────▼──────────┐
@@ -79,16 +83,17 @@
 
 | ID | Feature | Responsabilidad | Estado | Location | Links |
 |----|---------|-----------------|--------|----------|-------|
-| **FEATURE-00** | Project Setup | Sistema overview, architecture, PRD, audit, codebase map | ✅ Active | `docs/specs/FEATURE-00_PROJECT_SETUP/` | [spec](./specs/FEATURE-00_PROJECT_SETUP/mod-00_overview.md) |
+| **FEATURE-00** | Project Setup | Sistema overview, architecture, PRD, audit, codebase map | ✅ Done | `docs/specs/FEATURE-00_PROJECT_SETUP/` | [spec](./specs/FEATURE-00_PROJECT_SETUP/mod-00_overview.md) |
 | **FEATURE-01** | i18n Routing | URL-based locale (ADR-006..011), ES default at `/`, EN at `/en` | ✅ Done | `docs/specs/FEATURE-01_I18N_ROUTING/` | [tasks](./specs/FEATURE-01_I18N_ROUTING/tasks.md) |
 | **FEATURE-02** | SEO Meta Tags | Dynamic meta tags, og:image, hreflang, canonical | ✅ Done | `docs/specs/FEATURE-02_SEO_METATAGS/` | [spec](./specs/FEATURE-02_SEO_METATAGS/spec.md) · [plan](./specs/FEATURE-02_SEO_METATAGS/plan.md) |
 | **FEATURE-03** | AEO Schema | Schema.org JSON-LD, structured data for AI engines | ✅ Done | `docs/specs/FEATURE-03_AEO_SCHEMA/` | [spec](./specs/FEATURE-03_AEO_SCHEMA/spec.md) · [plan](./specs/FEATURE-03_AEO_SCHEMA/plan.md) · [tasks](./specs/FEATURE-03_AEO_SCHEMA/tasks.md) |
-| **FEATURE-04** | Hero Animation | Hero banner, ParticleBackground, WireframeGeometry, design system | ✅ Done | `docs/specs/FEATURE-04_HERO_ANIMATION/` | [spec](./specs/FEATURE-04_HERO_ANIMATION/spec.md) · [plan](./specs/FEATURE-04_HERO_ANIMATION/plan.md) · [tasks](./specs/FEATURE-04_HERO_ANIMATION/tasks.md) · [design-tokens](./specs/FEATURE-04_HERO_ANIMATION/design-tokens.md) |
+| **FEATURE-04** | Hero Animation | Hero banner, WireframeGeometry, design system | ✅ Done | `docs/specs/FEATURE-04_HERO_ANIMATION/` | [spec](./specs/FEATURE-04_HERO_ANIMATION/spec.md) · [plan](./specs/FEATURE-04_HERO_ANIMATION/plan.md) · [tasks](./specs/FEATURE-04_HERO_ANIMATION/tasks.md) |
 | **FEATURE-05** | Project Mgmt | Projects data schema, categories, assets, Works component | ✅ Done | `docs/specs/FEATURE-05_PROJECT_MANAGEMENT/` | [spec](./specs/FEATURE-05_PROJECT_MANAGEMENT/spec.md) · [plan](./specs/FEATURE-05_PROJECT_MANAGEMENT/plan.md) · [tasks](./specs/FEATURE-05_PROJECT_MANAGEMENT/tasks.md) |
-| **FEATURE-06** | Partners Agencias | Landing page para agencias — propuesta de valor, testimonios, CTA | ✅ Done | `docs/specs/FEATURE-06-PARTNERS_AGENCIAS/` | [spec](./specs/FEATURE-06-PARTNERS_AGENCIAS/spec.md) · [plan](./specs/FEATURE-06-PARTNERS_AGENCIAS/plan.md) · [tasks](./specs/FEATURE-06-PARTNERS_AGENCIAS/tasks.md) |
-| **EPIC-07** | Rebrand Visual 2026 | Migración dark→light mode, paleta pastel B2B, rediseño agencias | ✅ Done | `docs/specs/EPIC-rebrand-2026/` | [spec](./specs/EPIC-rebrand-2026/spec.md) · [ADR-012](./adr/ADR-012.md) |
-| **UI Kit** | Components | Button, Header, Footer, Skeleton (shared globals) | ✅ Done | `src/components/` | [src](../src/components/) |
-| **Config** | Config | Framer Motion variants, animation presets, tokens | ✅ Done | `src/config/` | [motionConfig](../src/config/motionConfig.js) |
+| **FEATURE-06** | Partners Agencias | Landing page para agencias — propuesta de valor, CTA | ✅ Done | `docs/specs/FEATURE-06-PARTNERS_AGENCIAS/` | [spec](./specs/FEATURE-06-PARTNERS_AGENCIAS/spec.md) · [plan](./specs/FEATURE-06-PARTNERS_AGENCIAS/plan.md) · [tasks](./specs/FEATURE-06-PARTNERS_AGENCIAS/tasks.md) |
+| **EPIC-07** | Rebrand Visual 2026 | Migración dark→light mode, paleta pastel B2B | ✅ Done | `docs/specs/FEATURE-07-REBRAND_2026/` | [spec](./specs/FEATURE-07-REBRAND_2026/spec.md) · [ADR-012](./adr/ADR-012.md) |
+| **FEATURE-08** | Section Dividers & Visual Polish | SVG dividers entre secciones, polish hero, tipografía, UI | 🔄 In Progress | `docs/specs/FEATURE-08-SECTION-DIVIDERS/` | [spec](./specs/FEATURE-08-SECTION-DIVIDERS/spec.md) · [plan](./specs/FEATURE-08-SECTION-DIVIDERS/plan.md) · [tasks](./specs/FEATURE-08-SECTION-DIVIDERS/tasks.md) |
+| **UI Kit** | Components | Button, Header, Footer, SectionDivider, Skeleton (shared globals) | ✅ Active | `src/components/` | [src](../src/components/) |
+| **Config** | Config | Framer Motion variants, animation presets, tokens | ✅ Active | `src/config/` | [motionConfig](../src/config/motionConfig.js) |
 
 ---
 
@@ -96,8 +101,8 @@
 
 ### Phase 1: Foundation & SDD Consolidation (COMPLETED ✅)
 - ✅ Auditoría SDD completa (9 ADRs, 43 archivos analizados)
-- ✅ Documentación de decisiones (ADR-001 a ADR-011)
-- ✅ Generación de SDD ecosystem (14 archivos)
+- ✅ Documentación de decisiones (ADR-001 a ADR-012)
+- ✅ Generación de SDD ecosystem (14+ archivos)
 - ✅ Migración de archivos: src/docs/ → docs/specs/FEATURE-XX/
 - ✅ Actualización de CLAUDE.md + SDD_MASTER.md
 - ✅ Consolidación de ADRs en docs/adr/ (fuente única de verdad)
@@ -106,27 +111,24 @@
 
 ---
 
-### Phase 2: Testing & Quality (IN PROGRESS 🔄)
-- ⏳ Vitest + React Testing Library setup
-- ⏳ UC-01 (Contact Form): tests end-to-end
-- ⏳ Coverage target: 70% (Contact, Blog, Utils)
-- ⏳ ADR-005: Testing strategy
+### Phase 2: Rebrand & Visual System (COMPLETED ✅)
+- ✅ EPIC-07: Migración dark mode → light mode (paleta pastel B2B)
+- ✅ FEATURE-08: SectionDivider component (wave/bowl/overlap)
+- ✅ FEATURE-08: Polish visual hero, tipografía, LangSwitcher, TechnicalTicker
+- ✅ Tests: 71/71 passing mantenidos
+- ✅ Bundle: 244KB (optimizado con lazy loading)
 
-**Milestone:** >70% test coverage, UC-01 passing
-
-**Tentative duration:** 2 weeks
+**Milestone:** Sitio visualmente diferenciado para audiencia B2B de agencias
 
 ---
 
-### Phase 3: Documentation Completeness (PLANNED 📅)
-- ⏳ MOD-01 (Hero Feature) individual documentation
+### Phase 3: Testing & Quality (IN PROGRESS 🔄)
+- ⏳ Vitest + React Testing Library — expandir cobertura
+- ⏳ Coverage target: 70% (Contact, Blog, Utils)
 - ⏳ UC-02, UC-03, UC-04 implementation
 - ⏳ Performance audit (Core Web Vitals analysis)
-- ⏳ SEQ diagrams for each UC
 
-**Milestone:** All modules documented, all UC/SEQ complete
-
-**Tentative duration:** 2-3 weeks
+**Milestone:** >70% test coverage, todos los UC pasando
 
 ---
 
@@ -135,21 +137,13 @@
 - ⏳ Code splitting analysis (UC-04)
 - ⏳ Lighthouse audit report
 - ⏳ Mobile performance testing
+- ⏳ Resolución DT-08-01/02 (Works, ProjectDetail — bg-obsidian)
 
 **Milestone:** Lighthouse score >90
 
 ---
 
 ## 5. Tech Decisions Log
-
-### Accepted Decisions (ADRs)
-
-| ADR | Título | Contexto | Consecuencias | Revisión |
-|-----|--------|----------|---------------|----------|
-| **[ADR-001](./adr/ADR-001.md)** | Vite como build tool | SPA rápido, sin SSR | HMR <100ms, builds ~1s, ESM only | Si se requiere SSR → Next.js |
-| **[ADR-002](./adr/ADR-002.md)** | JavaScript puro (sin TypeScript) | Decisión arquitectónica deliberada | Menor overhead, setup simple, menos boilerplate | Si team crece >3 devs → considerar TS |
-| **[ADR-003](./adr/ADR-003.md)** | EmailJS para contacto | Sin backend necesario | Funciona desde browser, credenciales en .env | Si volumen >1000 emails/mes → backend |
-| **[ADR-004](./adr/ADR-004.md)** | Feature-based architecture (DDD Light) | Escalabilidad y mantenibilidad | Desacoplamiento, onboarding fácil, cierta duplicación | Si >40 features → considerar monorepo |
 
 ### All Decisions (Centralized in docs/adr/)
 
@@ -159,9 +153,9 @@
 | **[ADR-002](./adr/ADR-002.md)** | JavaScript puro (sin TypeScript) | ✅ Accepted | docs/adr/ |
 | **[ADR-003](./adr/ADR-003.md)** | EmailJS para contacto | ✅ Accepted | docs/adr/ |
 | **[ADR-004](./adr/ADR-004.md)** | Feature-based architecture (DDD Light) | ✅ Accepted | docs/adr/ |
-| **[ADR-005](./adr/ADR-005.md)** | Testing Framework: Vitest + React Testing Library | ✅ Proposed (Phase 2) | docs/adr/ |
+| **[ADR-005](./adr/ADR-005.md)** | Testing Framework: Vitest + React Testing Library | ✅ Accepted | docs/adr/ |
 | **[ADR-006](./adr/ADR-006.md)** | URL-Based i18n Over Client-Side Toggle | ✅ Accepted | docs/adr/ |
-| **[ADR-007](./adr/ADR-007.md)** | Spanish as Default Canonical Locale (revised 2026-06-08) | ✅ Accepted | docs/adr/ |
+| **[ADR-007](./adr/ADR-007.md)** | Spanish as Default Canonical Locale | ✅ Accepted | docs/adr/ |
 | **[ADR-008](./adr/ADR-008.md)** | PNG Estático como og:image | ✅ Accepted | docs/adr/ |
 | **[ADR-009](./adr/ADR-009.md)** | Schema JSON-LD Global Sin Geolocalización Restrictiva | ✅ Accepted | docs/adr/ |
 | **[ADR-010](./adr/ADR-010.md)** | No External i18n Library (plain JS) | ✅ Accepted | docs/adr/ |
@@ -170,24 +164,15 @@
 
 ---
 
-## 6. Open Questions
+## 6. Deuda Técnica Activa
 
-1. **Coverage Target:** ¿70% es suficiente para portfolio, o aspirar a 85%?
-   - *Recomendación:* 70% (cobertura crítica: Contact, Blog, utils)
-   - *Impacto:* Tiempo de implementación +1 semana por cada 10%
-
-2. **Performance Baseline:** ¿Cuál es el target de Lighthouse?
-   - *Actual:* No medido (TODO: audit en Phase 4)
-   - *Recomendación:* >90 (indicador de expertise senior)
-
-3. **Roadmap de Features:** ¿Agregar más features (testimonios, podcasts) o profundizar documentación?
-   - *Recomendación:* Profundizar documentación + testing primero
-   - *Razón:* Portfolio es showcase de **proceso**, no de feature count
-
-4. **CI/CD:** ¿Agregar GitHub Actions para tests + coverage reporting?
-   - *Actual:* Vercel solo hace build
-   - *Recomendación:* Agregar en Phase 3
-   - *Impacto:* +30 minutos setup
+| ID | Descripción | Prioridad | Feature origen |
+|----|-------------|-----------|----------------|
+| DT-08-01 | Works.jsx — ProjectCard con bg-obsidian, pendiente migración rebrand | MEDIO | EPIC-07 |
+| DT-08-02 | ProjectDetail.jsx — página completa bg-obsidian, pendiente migración | MEDIO | EPIC-07 |
+| DT-08-03 | Issues contraste WCAG AA — #96B6C5 como texto falla AA | BAJO | EPIC-07 |
+| DT-09-01 | npm audit — 20 vulnerabilidades (path-to-regexp HIGH en runtime) | ALTO | — |
+| DT-09-02 | mint-400, cyan-institutional, cobalt-500 en ~14 archivos residuales | BAJO | EPIC-07 |
 
 ---
 
@@ -195,53 +180,66 @@
 
 | Archivo | Responsabilidad |
 |---------|-----------------|
-| `src/App.jsx` | Root routing (React Router setup) |
+| `src/App.jsx` | Root routing + HomeSections composition |
 | `src/main.jsx` | Entry point (React 19 setup) |
 | `src/features/contact/Contact.jsx` | **CRÍTICO:** Contact form (sin backend) |
-| `src/features/hero/HeroBanner.jsx` | **CRÍTICO:** Hero principal |
+| `src/features/hero/HeroBanner.jsx` | **CRÍTICO:** Hero principal — ver scrollToContact guardrail |
+| `src/components/ui/SectionDivider.jsx` | **CRÍTICO:** SVG dividers — preserveAspectRatio="none" mandatorio |
+| `src/context/LocaleProvider.jsx` | **CRÍTICO:** i18n core — cambios rompen toda la app |
 | `src/config/motionConfig.js` | **CRÍTICO:** Variantes Framer Motion |
-| `vite.config.js` | **CRÍTICO:** Build optimization |
-| `package.json` | Dependencias (React 19, Framer, Vite) |
-| `CLAUDE.md` | Contexto para AI |
-| `CONTRIBUTING.md` | Flujo de trabajo |
+| `tailwind.config.js` | **CRÍTICO:** Paleta rebrand 2026 (ADR-012) |
 | `vercel.json` | SPA routing rewrites |
+| `CLAUDE.md` | Contexto para AI — leer antes de cualquier cambio |
 
 ---
 
-## 8. Metrics & Checkpoints
+## 8. Paleta de Colores (Rebrand 2026 — ADR-012)
 
-| Métrica | Baseline | Target | Status |
-|---------|----------|--------|--------|
-| Test Coverage | 0% | 70% | ⏳ Phase 2 |
-| Lighthouse Score | — | >90 | ⏳ Phase 4 |
-| Build Time (dev) | ~1s | <1s | ✅ Already met |
-| HMR Time | <100ms | <100ms | ✅ Already met |
-| Bundle Size (main) | — | <100kb | ⏳ Measure Phase 2 |
-| Core Web Vitals | — | Good | ⏳ Phase 4 |
+| Token | HEX | Uso principal |
+|-------|-----|---------------|
+| cream | #F1F0E8 | Fondo general, textos sobre dark |
+| sand | #EEE0C9 | Hero, fondos cálidos |
+| mist-blue | #ADC4CE | Acentos claros, badges, SkillsGrid bg |
+| steel-blue | #96B6C5 | Acentos secundarios, bordes |
+| navy | #2C3340 | Dark intencional, botones CTA, ticker |
+| navy-deep | #1a1f28 | Gradientes oscuros (Services, Contact) |
+| slate | #4B5563 | Texto secundario sobre fondos claros |
+
+**Eliminados:** cobalt-500, mint-400, cyan-institutional, obsidian, slate-950
 
 ---
 
-## 9. Useful Commands
+## 9. i18n Architecture
+
+- `/` → ES por defecto (canónico) | `/en` → EN completo
+- `LocaleProvider` + `useLocale()` — **nunca** importar locale files directamente
+- `t` es objeto plano: acceso `t.modulo.clave` (NO función)
+- Claves nuevas en FEATURE-08: `t.works.techStackBadge` (ES: 'Tecnologías' / EN: 'Technologies')
+- Switcher: banderas emoji 🇪🇸🇺🇸 vía `LangSwitcher.jsx` — path-aware
+
+---
+
+## 10. Metrics & Checkpoints
+
+| Métrica | Baseline | Actual | Target | Status |
+|---------|----------|--------|--------|--------|
+| Test Coverage | 0% | 71 tests | 70% | 🔄 Phase 3 |
+| Lighthouse Score | — | — | >90 | ⏳ Phase 4 |
+| Bundle Size (main) | 363KB | 244KB | <250KB | ✅ Met |
+| Build Time | ~1s | ~5s | <10s | ✅ Met |
+| Core Web Vitals | — | — | Good | ⏳ Phase 4 |
+
+---
+
+## 11. Useful Commands
 
 ```bash
-# Development
-npm run dev                # Start Vite dev server (HMR enabled)
-npm run build              # Production build (generates dist/)
-npm run preview            # Preview built version locally
-npm run lint               # ESLint analysis
-
-# Testing (por agregar en Phase 2)
-npm run test               # Run test suite
-npm run test:coverage      # Coverage report
-
-# Makefile aliases (por agregar)
-make dev                   # npm run dev
-make build                 # npm run build
-make test                  # npm run test
-make lint                  # npm run lint
+npm run dev                # Start Vite dev server (HMR enabled) — puerto 5173
+npm run build              # Production build (genera dist/ + sitemap + brotli)
+npm run lint               # ESLint — 0 errores esperados, 2 warnings en DataVisualization
+npm run test -- --run      # Tests sin modo watch — 71/71 esperados
+npm install <pkg> --legacy-peer-deps  # SIEMPRE usar este flag — conflicto react-helmet-async
 ```
-
----
 
 ---
 
@@ -249,51 +247,26 @@ make lint                  # npm run lint
 
 ```
 docs/
-├── SDD_MASTER.md              ← This file: central index
-├── MOD-00_overview.md         ← System vision (FEATURE-00)
-├── adr/                       ← Architecture Decision Records (9 ADRs)
-│   ├── ADR-001.md through ADR-011.md
-│   └── (ADR-008, ADR-009 reserved)
+├── SDD_MASTER.md              ← Este archivo: índice central
+├── adr/                       ← Architecture Decision Records
+│   └── ADR-001.md .. ADR-012.md
 ├── specs/
-│   ├── _templates/            ← Blueprints: spec/plan/tasks templates
+│   ├── _templates/            ← Plantillas: spec/plan/tasks
 │   ├── FEATURE-00_PROJECT_SETUP/
-│   │   ├── mod-00_overview.md
-│   │   └── prd.md
 │   ├── FEATURE-01_I18N_ROUTING/
-│   │   ├── spec.md
-│   │   ├── plan.md
-│   │   └── tasks.md
 │   ├── FEATURE-02_SEO_METATAGS/
-│   │   ├── mod-02_seo-metatags.md
-│   │   ├── spec.md
-│   │   ├── plan.md
-│   │   └── tasks.md
-│   ├── FEATURE-03_AEO_SCHEMA/      ← ✅ Done
-│   │   ├── mod-03_aeo-schema.md
-│   │   ├── spec.md
-│   │   ├── plan.md
-│   │   └── tasks.md
+│   ├── FEATURE-03_AEO_SCHEMA/
 │   ├── FEATURE-04_HERO_ANIMATION/
-│   │   ├── spec.md              ← Fuente canónica (consolidado 2026-06-05)
-│   │   ├── plan.md              ← Plan de implementación (2026-06-13)
-│   │   ├── tasks.md             ← Desglose de tareas T-01..T-16 (2026-06-13)
-│   │   ├── design-tokens.md     ← Paleta, tipografía, animaciones
-│   │   └── mod-04_hero-animation.md  ← Legacy (referencia; no editar)
-│   └── FEATURE-05_PROJECT_MANAGEMENT/
-│       ├── spec.md              ← Spec retroactiva (2026-06-13)
-│       ├── plan.md              ← Plan de implementación (2026-06-13)
-│       ├── tasks.md             ← Desglose de tareas T-01..T-11 (2026-06-13)
-│       └── mod-05_project-management.md  ← Legacy (referencia; no editar)
-└── use-cases/                 ← Behavior contracts
+│   ├── FEATURE-05_PROJECT_MANAGEMENT/
+│   ├── FEATURE-06-PARTNERS_AGENCIAS/
+│   ├── FEATURE-07-REBRAND_2026/   ← spec.md con mejoras post-cierre
+│   └── FEATURE-08-SECTION-DIVIDERS/  ← spec.md · plan.md · tasks.md
+└── use-cases/
     ├── UC-01_contact_form_submission.md
     ├── UC-02_blog_navigation.md
     ├── UC-03_project_detail_view.md
-    ├── UC-04_performance_code_splitting.md
-    ├── SEQ-01_contact_form.puml
-    ├── SEQ-02_blog_navigation.puml
-    └── SEQ-04_code_splitting.puml
+    └── UC-04_performance_code_splitting.md
 ```
 
-**Last updated:** 2026-06-16 (Epic rebrand-2026 completada, ADR-012 agregado, FEATURE-04 y FEATURE-06 marcados Done, EPIC-07 registrado)
-**Next review:** After FEATURE-04 completion (Hero Animation — T-12 a T-16 pendientes)
-
+**Last updated:** 2026-06-17 — FEATURE-08 Section Dividers & Visual Polish
+**Next review:** Phase 3 kickoff — testing coverage expansion

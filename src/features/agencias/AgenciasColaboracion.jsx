@@ -23,7 +23,7 @@ export default function AgenciasColaboracion() {
           </motion.h2>
 
           <motion.p
-            className="font-dm-sans text-[#4B5563] text-base leading-relaxed mb-12 max-w-2xl"
+            className="font-dm-sans text-[#4B5563] text-base lg:text-lg leading-relaxed mb-12 max-w-2xl"
             variants={fadeInUp}
           >
             {s.intro}
@@ -35,7 +35,7 @@ export default function AgenciasColaboracion() {
           >
             {s.modelos.map((modelo, i) => (
               <motion.div key={i} variants={fadeInUp}>
-                <h3 className="font-syne font-bold text-[#2C3340] text-lg mb-6">
+                <h3 className="font-syne font-bold text-[#2C3340] text-lg lg:text-xl mb-6">
                   {modelo.tipo}
                 </h3>
 
@@ -43,14 +43,15 @@ export default function AgenciasColaboracion() {
                   {modelo.pasos.map((paso, j) => (
                     <li
                       key={j}
-                      className={`border-l-2 pl-4 font-dm-sans text-[#4B5563] text-sm leading-relaxed ${['border-[#96B6C5]', 'border-[#ADC4CE]', 'border-[#EEE0C9]'][i] ?? 'border-[#96B6C5]'}`}
+                      className={`border-l-2 pl-4 font-dm-sans text-[#4B5563] text-sm lg:text-base leading-relaxed ${['border-[#96B6C5]', 'border-[#ADC4CE]', 'border-[#EEE0C9]'][i] ?? 'border-[#96B6C5]'}`}
                     >
                       {paso}
                     </li>
                   ))}
                 </ol>
 
-                <p className="font-dm-sans text-[#96B6C5] text-sm font-medium leading-relaxed">
+                <p className="font-dm-sans text-[#2C3340] text-sm lg:text-base font-semibold leading-relaxed"
+>
                   {modelo.resultado}
                 </p>
               </motion.div>
