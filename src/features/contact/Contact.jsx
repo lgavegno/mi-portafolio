@@ -130,11 +130,11 @@ const Contact = () => {
 
   const inputClasses = `
     w-full px-4 py-3 pl-12
-    bg-[#F1F0E8]/8 backdrop-blur-sm
+    bg-[#2C3340]/40 backdrop-blur-sm
     border border-[#ADC4CE]/25 rounded-xl
-    text-[#F1F0E8] placeholder-[rgba(241,240,232,0.35)]
+    text-[#F1F0E8] placeholder-[rgba(241,240,232,0.50)]
     focus:outline-none focus:ring-2 focus:ring-[#ADC4CE]/50 focus:border-[#ADC4CE]/50
-    active:scale-[0.99] active:bg-white/8
+    active:scale-[0.99] active:bg-[#2C3340]/50
     transition-all duration-200
     touch-manipulation
   `
@@ -171,7 +171,7 @@ const Contact = () => {
           {/* Form */}
           <motion.div
             variants={fadeInUp}
-            className="glass-card bg-[#F1F0E8]/5 border border-[#ADC4CE]/15 p-8"
+            className="glass-card bg-[#F1F0E8]/10 border border-[#ADC4CE]/40 p-8"
           >
             <form aria-label="Formulario de contacto"
               onSubmit={(e) => {

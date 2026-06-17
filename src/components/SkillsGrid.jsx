@@ -96,7 +96,7 @@ const SkillCard = ({ skill }) => {
 const SkillsGrid = ({ className = '' }) => {
     const { t } = useLocale();
     return (
-        <section className={`w-full relative overflow-hidden py-24 md:py-32 lg:py-40 ${className}`}>
+        <section className={`w-full relative overflow-hidden pt-24 md:pt-32 lg:pt-40 pb-16 md:pb-24 ${className}`}>
             {/* Background effects */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-1/4 -left-32 w-96 h-96 bg-[#ADC4CE]/10 rounded-full filter blur-[128px]" />

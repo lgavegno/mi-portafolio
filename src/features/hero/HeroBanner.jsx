@@ -193,15 +193,15 @@ const HeroBanner = () => {
           xmlns="http://www.w3.org/2000/svg"
         >
           {/* Dominant large circle */}
-          <circle cx="380" cy="380" r="220" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.55)" strokeWidth="2"/>
+          <circle cx="380" cy="380" r="220" fill="rgba(44,51,64,0.05)"    stroke="#96B6C5" strokeWidth="1.5"/>
           {/* Medium circle top-left of main */}
-          <circle cx="210" cy="290" r="110" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.45)" strokeWidth="2"/>
+          <circle cx="210" cy="290" r="110" fill="rgba(150,182,197,0.10)" stroke="#2C3340" strokeWidth="1.5"/>
           {/* Small circle top */}
-          <circle cx="310" cy="155" r="65" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.40)" strokeWidth="1.5"/>
+          <circle cx="310" cy="155" r="65"  fill="rgba(44,51,64,0.06)"    stroke="#2C3340" strokeWidth="1"/>
           {/* Tiny accent circle */}
-          <circle cx="175" cy="175" r="35" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5"/>
+          <circle cx="175" cy="175" r="35"  fill="rgba(150,182,197,0.12)" stroke="#96B6C5" strokeWidth="1"/>
           {/* Large circle cut by edge bottom-right */}
-          <circle cx="490" cy="490" r="150" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.30)" strokeWidth="2"/>
+          <circle cx="490" cy="490" r="150" fill="rgba(44,51,64,0.04)"    stroke="#96B6C5" strokeWidth="1.5"/>
         </svg>
       </div>
 

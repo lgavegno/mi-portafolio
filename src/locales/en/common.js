@@ -27,6 +27,6 @@ export default {
       linkedin: 'LinkedIn',
       email: 'Email',
     },
-    copyright: '© {year} Leandro Gavegno — Continuous learning in technology and analytics',
+    copyright: '© {year} Ongevag — Continuous learning in technology and analytics',
   },
 };

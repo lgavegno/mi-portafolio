@@ -108,6 +108,7 @@ export default function SectionDivider({
         display: 'block',
         position: 'relative',
         backgroundColor: fromColor,
+        marginBottom: -1,
       }}
     >
       {getContent()}
