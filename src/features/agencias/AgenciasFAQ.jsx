@@ -18,7 +18,7 @@ export default function AgenciasFAQ() {
   }
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#EEE0C9]">
+    <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 bg-[#EEE0C9]">
       <div className="max-w-3xl mx-auto">
         <motion.div
           variants={staggerContainer}

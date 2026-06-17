@@ -5,6 +5,30 @@
 
 ---
 
+## 2026-06-17 — Investigación bug visual SectionDivider bowl (mobile)
+
+**Síntoma:** línea horizontal visible debajo del bowl divider en algunos dispositivos móviles.
+
+**Contexto:** visible en emulación Moto G, no reproducible en desktop ni iPhone XR.
+
+**Hipótesis descartadas:**
+- cierre del path SVG
+- límite inferior del viewBox
+- extensión del relleno SVG (`height * 2`)
+- clipping del SVG
+
+**Pruebas realizadas:**
+- extensión del path a `${height * 2 + 1}`
+- validación en desktop y mobile
+
+**Resultado:**
+- el problema persistió aun modificando el SVG
+- la corrección efectiva fue cambiar `marginBottom: -1` por `marginBottom: -2`
+
+**Conclusión:** causa raíz asociada a gap sub-pixel/renderizado entre el divider y la sección siguiente en ciertos viewports Android. No modificar el path SVG para resolver este tipo de líneas; revisar primero márgenes y solapamiento entre secciones.
+
+---
+
 ## 2026-06-16 — Epic Rebrand Visual 2026 (epic/rebrand-2026)
 
 **Objetivo:** Migración completa de dark mode a light mode con paleta pastel
