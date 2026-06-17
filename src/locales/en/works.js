@@ -17,4 +17,5 @@ export default {
     viewNotion: 'Notion Documentation',
   },
   techStackSection: 'Tech Stack',
+  techStackBadge: 'Technologies',
 };

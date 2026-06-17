@@ -23,7 +23,7 @@ export default function AgenciasParaQuien() {
           </motion.h2>
 
           <motion.div
-            className="font-dm-sans text-[#4B5563] text-base leading-relaxed mb-10 max-w-2xl whitespace-pre-line"
+            className="font-dm-sans text-[#4B5563] text-base lg:text-lg leading-relaxed mb-10 max-w-2xl whitespace-pre-line"
             variants={fadeInUp}
           >
             {s.cuerpo}
@@ -33,7 +33,7 @@ export default function AgenciasParaQuien() {
             {s.perfiles.map((perfil, i) => (
               <motion.li
                 key={i}
-                className="border-t border-[rgba(150,182,197,0.35)] py-4 font-dm-sans text-[#4B5563] text-base"
+                className="border-t border-[rgba(150,182,197,0.35)] py-4 font-dm-sans text-[#4B5563] text-base lg:text-lg"
                 variants={fadeInUp}
               >
                 {perfil}
