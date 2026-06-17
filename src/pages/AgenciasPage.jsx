@@ -30,6 +30,7 @@ export default function AgenciasPage() {
         whileInView="visible"
         viewport={{ once: true, amount: 0.05 }}
         variants={pageTransition}
+        style={{ width: '100%' }}
       >
         <AgenciasHero />
       </motion.div>

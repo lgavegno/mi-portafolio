@@ -5,6 +5,10 @@ Historial de cambios del proyecto Ongevag Portfolio. Formato: [Keep a Changelog]
 ---
 ## [Unreleased]
 
+### Fixed
+- SectionDivider (bowl): línea visible de 1px en algunos dispositivos Android/mobile (ej. Moto G) eliminada ajustando `marginBottom` de `-1` a `-2`
+- Investigación confirmó que el problema no provenía del path SVG, viewBox ni cierre del shape, sino de un gap de renderizado/sub-pixel entre el divider y la sección siguiente en determinados breakpoints móviles
+
 ## [3.2.1] — 2026-06-17
 
 ### Fixed

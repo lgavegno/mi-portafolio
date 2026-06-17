@@ -31,6 +31,8 @@ export default function SectionDivider({
     preserveAspectRatio: 'none',
     viewBox: `0 0 1440 ${height}`,
     width: '100%',
+    height: height,
+    overflow: 'hidden',
     style: { display: 'block' },
   };
 
@@ -46,7 +48,7 @@ export default function SectionDivider({
   const bowlContent = (
     <svg {...svgProps}>
       <path
-        d={`M0,0 Q720,${height * 2} 1440,0 L1440,${height} L0,${height} Z`}
+        d={`M0,${height} Q720,${-height} 1440,${height} L1440,${height * 2 + 1} L0,${height * 2 + 1} Z`}
         fill={toColor}
       />
     </svg>
@@ -108,7 +110,7 @@ export default function SectionDivider({
         display: 'block',
         position: 'relative',
         backgroundColor: fromColor,
-        marginBottom: -1,
+        marginBottom: -2,
       }}
     >
       {getContent()}

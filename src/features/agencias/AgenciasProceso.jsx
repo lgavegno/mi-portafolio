@@ -7,7 +7,7 @@ export default function AgenciasProceso() {
   const s = locale === 'en' ? t.agencies.proceso : t.agencias.proceso
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#96B6C5]">
+    <section className="pt-16 pb-24 px-4 sm:px-6 lg:px-8 bg-[#96B6C5]">
       <div className="max-w-6xl mx-auto">
         <motion.div
           variants={staggerContainer}
