@@ -5,7 +5,21 @@ Historial de cambios del proyecto Ongevag Portfolio. Formato: [Keep a Changelog]
 ---
 ## [Unreleased]
 
+## [3.2.1] — 2026-06-17
+
+### Fixed
+- Contact: contraste insuficiente en inputs — bg oscurecido, placeholder opacidad aumentada, card glass más visible
+- HeroBanner: círculos decorativos SVG migrados a colores navy/steel-blue, visibles en light mode
+- SkillsGrid: línea recta visible en mobile entre sección y wave divider — corregida
+- Footer: copyright reemplaza nombre personal por "Ongevag" en ES y EN
+
 ## [3.2.0] — 2026-06-17
+
+### Fixed
+- Contact: contraste insuficiente en inputs — bg oscurecido (`/8→/15` navy), placeholder opacidad aumentada (`0.35→0.50`), card glass más visible (`/5→/10`, borde `/15→/40`)
+- HeroBanner: círculos decorativos SVG con colores navy/steel-blue — visibles en light mode (reemplazado blanco transparente)
+- SkillsGrid: línea recta visible en mobile entre sección y wave divider — eliminada con `pb-16 md:pb-24` + `marginBottom: -1` en SectionDivider
+- Footer: copyright reemplaza "Leandro Gavegno" por "Ongevag" en ES y EN
  
 ### Added
 - FEATURE-08: componente `SectionDivider` con variantes `wave`, `bowl` y `overlap` (SVG inline, `preserveAspectRatio="none"`)

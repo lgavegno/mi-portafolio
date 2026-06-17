@@ -1,5 +1,5 @@
 # CLAUDE.md — Portfolio ONGEVAG
-**Current Phase:** feature/08-section-dividers — 🔄 In Progress (docs + commit pendiente)
+**Current Phase:** fix/visual-contrast-polish — ✅ Done → pendiente merge a main como v3.2.1
 **Last Updated:** 2026-06-17
 
 ## Propósito
