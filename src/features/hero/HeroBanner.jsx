@@ -12,8 +12,6 @@ import { useLocale } from '../../hooks/useLocale';
 
 import TechnicalTicker from '../../components/TechnicalTicker';
 
-// Lazy loading del componente pesado 3D
-const WireframeGeometry = React.lazy(() => import('../../components/WireframeGeometry'));
 
 const buttonVariants = {
   idle: { scale: 1 },
@@ -178,30 +176,33 @@ const HeroBanner = () => {
               </div>
             </motion.div>
 
-            {/* Right Column - 3D Wireframe with Frame */}
-            <motion.div
-              variants={fadeInUp}
-              className="hidden lg:flex items-center justify-center h-full min-h-[400px] max-h-[500px] p-8"
-            >
-              {/* Wireframe float animation */}
-              <motion.div
-                className="relative"
-                animate={{
-                  y: [0, -12, 0],
-                }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                <React.Suspense fallback={<div className="w-64 h-64" />}>
-                  <WireframeGeometry />
-                </React.Suspense>
-              </motion.div>
-            </motion.div>
           </motion.div>
         </div>
+      </div>
+
+      {/* Swiss editorial circles — decorative, bottom-right */}
+      <div
+        className="absolute bottom-16 right-0 pointer-events-none select-none hidden lg:block"
+        aria-hidden="true"
+      >
+        <svg
+          width="520"
+          height="520"
+          viewBox="0 0 520 520"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {/* Dominant large circle */}
+          <circle cx="380" cy="380" r="220" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.55)" strokeWidth="2"/>
+          {/* Medium circle top-left of main */}
+          <circle cx="210" cy="290" r="110" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.45)" strokeWidth="2"/>
+          {/* Small circle top */}
+          <circle cx="310" cy="155" r="65" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.40)" strokeWidth="1.5"/>
+          {/* Tiny accent circle */}
+          <circle cx="175" cy="175" r="35" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5"/>
+          {/* Large circle cut by edge bottom-right */}
+          <circle cx="490" cy="490" r="150" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.30)" strokeWidth="2"/>
+        </svg>
       </div>
 
       {/* Technical Ticker at base */}
