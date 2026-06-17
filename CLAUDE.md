@@ -1,6 +1,6 @@
 # CLAUDE.md — Portfolio ONGEVAG
-**Current Phase:** epic/rebrand-2026 — ✅ Done | Próximo: Issues ALTO/MEDIO audit contraste
-**Last Updated:** 2026-06-16
+**Current Phase:** feature/08-section-dividers — 🔄 In Progress (docs + commit pendiente)
+**Last Updated:** 2026-06-17
 
 ## Propósito
 Portfolio SPA React 19 + Vite (feature-based DDD Light) para captar clientes PyMEs.
@@ -19,7 +19,7 @@ npm run test      # Tests (Vitest + React Testing Library)
 ## Estructura
 ```
 src/
-├── components/     # UI Kit global (Header, Footer, About, SkillsGrid, etc.)
+├── components/     # UI Kit global (Header, Footer, About, SkillsGrid, SectionDivider, etc.)
 ├── context/        # LocaleProvider, LocaleContext
 ├── features/       # Módulos (hero, blog, contact, services, works)
 ├── hooks/          # useLocale, useVibrate
@@ -40,7 +40,7 @@ VITE_EMAILJS_PUBLIC_KEY=...    # Public key (required)
 ```
 
 ## Architecture: Feature-Based (DDD Light)
-- **components/** — UI Kit (Button, Header, Footer, etc.) — reusable, agnostic
+- **components/** — UI Kit (Button, Header, Footer, SectionDivider, etc.) — reusable, agnostic
 - **features/** — Business modules (hero, blog, contact, services, works, analytics) — self-contained
 - **layouts/, pages/, config/** — Page composition, routing, global animation config
 - **Zero global state** — React hooks + local state only
@@ -61,7 +61,8 @@ VITE_EMAILJS_PUBLIC_KEY=...    # Public key (required)
 | FEATURE-04_HERO_ANIMATION | ✅ Done | `docs/specs/FEATURE-04_HERO_ANIMATION/` | spec · plan · tasks |
 | FEATURE-05_PROJECT_MANAGEMENT | ✅ Done | `docs/specs/FEATURE-05_PROJECT_MANAGEMENT/` | spec.md · plan.md · tasks.md |
 | FEATURE-06_PARTNERS_AGENCIAS | ✅ Done | `docs/specs/FEATURE-06-PARTNERS_AGENCIAS/` | spec.md · plan.md · tasks.md |
-| EPIC-07_REBRAND_2026 | ✅ Done | `docs/specs/EPIC-rebrand-2026/` | spec.md · ADR-012 |
+| EPIC-07_REBRAND_2026 | ✅ Done | `docs/specs/FEATURE-07-REBRAND_2026/` | spec.md · ADR-012 |
+| FEATURE-08_SECTION_DIVIDERS | 🔄 In Progress | `docs/specs/FEATURE-08-SECTION-DIVIDERS/` | spec.md · plan.md · tasks.md |
 
 ## ADRs Documented
 ADR-001 (Vite) | ADR-002 (JS no TS) | ADR-003 (EmailJS) | ADR-004 (Feature-based) | ADR-005 (Vitest) | ADR-006 (URL i18n) | ADR-007 (ES default) | ADR-008 (og:image PNG) | ADR-009 (JSON-LD global) | ADR-010 (No i18n lib) | ADR-011 (URL source of truth) | ADR-012 (Rebrand Visual 2026)
@@ -74,12 +75,12 @@ ADR-001 (Vite) | ADR-002 (JS no TS) | ADR-003 (EmailJS) | ADR-004 (Feature-based
 - Switcher ES|EN path-aware en Header — cambia TODO sin excepciones
 - Deuda: LocaleProvider como objeto plano — si se requiere `t('clave')` → refactorizar
 
-## Performance (actualizado 2026-06-15)
-- Bundle principal: 233KB (era 363KB) — reducción 35% con lazy() en 4 páginas
+## Performance (actualizado 2026-06-17)
+- Bundle principal: 244KB — incluye SectionDivider (+1.5KB sobre v3.1.0)
 - Code splitting: BlogIndex, BlogLayout, BlogPostDetail, ProjectDetail → lazy
-- Seguridad: dompurify@3.4.9, react-router-dom@7.17.0 — CVEs parcheados
-- ESLint: 0 errores (jsx-uses-vars rule agregada, vitest globals configurados)
-- Tests: 71/71 passing (UC-01 Contact Form — suite completa)
+- Seguridad: dompurify@3.4.9, react-router-dom@7.17.0, caniuse-lite@1.0.30001799
+- ESLint: 0 errores, 2 warnings preexistentes en DataVisualization.jsx (no bloqueantes)
+- Tests: 71/71 passing
 
 ## Critical Files — Don't Break
 | File | Reason |
@@ -91,12 +92,23 @@ ADR-001 (Vite) | ADR-002 (JS no TS) | ADR-003 (EmailJS) | ADR-004 (Feature-based
 | `public/og-image.svg` | Social sharing (1200x630) |
 | `tailwind.config.js` | Paleta rebrand 2026: cream/sand/mist-blue/steel-blue/navy (ver ADR-012) |
 | `src/components/Button.jsx` | Renderiza `<Spinner>` SVG (no texto) cuando `loading=true` — assertions de tests deben usar `querySelector('svg')`, no `textContent` |
+| `src/components/ui/SectionDivider.jsx` | SVG inline dividers — `preserveAspectRatio="none"` es mandatorio; cambiar paths SVG o `fromColor`/`toColor` rompe transiciones visuales entre secciones |
+
+## Deuda Técnica Activa
+| ID | Descripción | Prioridad |
+|----|-------------|-----------|
+| DT-08-01 | Works.jsx — ProjectCard sin migrar a light mode (bg-obsidian) | MEDIO |
+| DT-08-02 | ProjectDetail.jsx — página completa sin migrar | MEDIO |
+| DT-08-03 | Issues contraste audit WCAG AA pendientes (#96B6C5 como texto) | BAJO |
+| DT-09-01 | npm audit — 20 vulnerabilidades (path-to-regexp HIGH en runtime vía react-router) | ALTO |
 
 ## Key Doc Map
 - `docs/SDD_MASTER.md` — Central index + module registry
 - `docs/MOD-00_overview.md` — System vision
 - `docs/use-cases/` — UC-01 Contact, UC-02 Blog, UC-03 Projects, UC-04 Performance
 - `docs/adr/` — All architecture decisions (ADR-001 a ADR-012)
+- `docs/specs/FEATURE-07-REBRAND_2026/spec.md` — Spec + mejoras post-cierre (tipografía + separadores)
+- `docs/specs/FEATURE-08-SECTION-DIVIDERS/` — plan.md · tasks.md
 
 ## Deployment
 **Platform:** Vercel | **Trigger:** Push to `main` / `develop` | **Build:** ~30s

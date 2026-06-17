@@ -112,29 +112,33 @@ const WireframeGeometry = () => {
                         opacity="0.4"
                     />
 
-                    {/* Orbital rings */}
-                    <ellipse
-                        cx="100"
-                        cy="100"
-                        rx="60"
-                        ry="30"
-                        fill="none"
+                    {/* Coordinate cross — design-oriented */}
+                    <line
+                        x1="100" y1="55"
+                        x2="100" y2="145"
                         stroke="#96B6C5"
                         strokeWidth="0.8"
-                        opacity="0.3"
-                        transform="rotate(45 100 100)"
+                        strokeDasharray="4 3"
+                        opacity="0.5"
                     />
-                    <ellipse
-                        cx="100"
-                        cy="100"
-                        rx="60"
-                        ry="30"
-                        fill="none"
+                    <line
+                        x1="55" y1="100"
+                        x2="145" y2="100"
                         stroke="#96B6C5"
                         strokeWidth="0.8"
-                        opacity="0.3"
-                        transform="rotate(-45 100 100)"
+                        strokeDasharray="4 3"
+                        opacity="0.5"
                     />
+
+                    {/* Corner tick marks */}
+                    <line x1="55" y1="55" x2="65" y2="55" stroke="#96B6C5" strokeWidth="1" opacity="0.4" />
+                    <line x1="55" y1="55" x2="55" y2="65" stroke="#96B6C5" strokeWidth="1" opacity="0.4" />
+                    <line x1="145" y1="55" x2="135" y2="55" stroke="#96B6C5" strokeWidth="1" opacity="0.4" />
+                    <line x1="145" y1="55" x2="145" y2="65" stroke="#96B6C5" strokeWidth="1" opacity="0.4" />
+                    <line x1="55" y1="145" x2="65" y2="145" stroke="#96B6C5" strokeWidth="1" opacity="0.4" />
+                    <line x1="55" y1="145" x2="55" y2="135" stroke="#96B6C5" strokeWidth="1" opacity="0.4" />
+                    <line x1="145" y1="145" x2="135" y2="145" stroke="#96B6C5" strokeWidth="1" opacity="0.4" />
+                    <line x1="145" y1="145" x2="145" y2="135" stroke="#96B6C5" strokeWidth="1" opacity="0.4" />
                 </svg>
             </motion.div>
         </div>

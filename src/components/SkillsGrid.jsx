@@ -112,16 +112,10 @@ const SkillsGrid = ({ className = '' }) => {
                 >
                     {/* Header */}
                     <motion.div variants={fadeInUp} className="text-center mb-12">
-                        <span className="
-              inline-flex items-center gap-2
-              px-4 py-2 rounded-full
-              bg-[#ADC4CE]/20
-              border border-[#96B6C5]/40
-              backdrop-blur-sm
-              text-[#2C3340]/70 text-sm font-medium mb-6
-            ">
-                            <span className="w-2 h-2 rounded-full bg-mint-400 animate-pulse" />
-                            Tecnologías
+                        <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#2C3340]/10 border border-[#2C3340]/30 text-[#2C3340] text-sm font-medium mb-6"
+>
+                        <span className="w-2 h-2 rounded-full bg-[#2C3340] animate-pulse"></span>
+                            {t.works.techStackBadge}
                         </span>
                         <h2 className="text-4xl sm:text-5xl font-bold text-[#2C3340] mb-4">
                             {t.works.techStackSection}

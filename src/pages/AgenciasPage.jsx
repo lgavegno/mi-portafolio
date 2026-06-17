@@ -8,6 +8,7 @@ import AgenciasColaboracion from '../features/agencias/AgenciasColaboracion'
 import AgenciasProceso from '../features/agencias/AgenciasProceso'
 import AgenciasFAQ from '../features/agencias/AgenciasFAQ'
 import AgenciasCTAFinal from '../features/agencias/AgenciasCTAFinal'
+import SectionDivider from '../components/ui/SectionDivider'
 
 export default function AgenciasPage() {
   const { t } = useLocale()
@@ -32,10 +33,13 @@ export default function AgenciasPage() {
       >
         <AgenciasHero />
       </motion.div>
+      <SectionDivider variant="wave" fromColor="#2C3340" toColor="#EEE0C9" />
       <AgenciasParaQuien />
       <AgenciasColaboracion />
       <AgenciasProceso />
+      <SectionDivider variant="bowl" fromColor="#96B6C5" toColor="#EEE0C9" />
       <AgenciasFAQ />
+      <SectionDivider variant="overlap" fromColor="#EEE0C9" toColor="#2C3340" overlapLabel="¿Hablamos?" />
       <AgenciasCTAFinal />
     </>
   )

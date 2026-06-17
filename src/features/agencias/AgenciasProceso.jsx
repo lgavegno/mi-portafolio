@@ -41,10 +41,10 @@ export default function AgenciasProceso() {
                 <p className="font-mono text-xs text-[rgba(44,51,64,0.5)] tracking-widest mb-3">
                   {paso.numero}
                 </p>
-                <h3 className="font-syne font-bold text-[#2C3340] text-lg mb-2">
+                <h3 className="font-syne font-bold text-[#2C3340] text-lg lg:text-xl mb-2">
                   {paso.titulo}
                 </h3>
-                <p className="font-dm-sans text-[rgba(44,51,64,0.75)] text-sm leading-relaxed">
+                <p className="font-dm-sans text-[rgba(44,51,64,0.75)] text-sm lg:text-base leading-relaxed">
                   {paso.descripcion}
                 </p>
               </motion.div>

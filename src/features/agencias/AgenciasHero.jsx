@@ -1,6 +1,9 @@
+import React from 'react'
 import { FiMail } from 'react-icons/fi'
 import { useLocale } from '../../hooks/useLocale'
 import { trackEvent } from '../../utils/trackEvent'
+
+const WireframeGeometry = React.lazy(() => import('../../components/WireframeGeometry'))
 
 
 const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL
@@ -20,7 +23,7 @@ export default function AgenciasHero() {
   return (
     <section className="pt-28 pb-16 px-4 sm:px-6 lg:px-8 bg-[#2C3340]">
       <div className="max-w-6xl mx-auto">
-        <div className="">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div className="max-w-2xl">
             <h1 className="font-syne font-bold text-[#F1F0E8] text-4xl sm:text-5xl lg:text-6xl leading-tight mb-6">
               {headline.map((line, i) => (
@@ -31,7 +34,7 @@ export default function AgenciasHero() {
               ))}
             </h1>
 
-            <p className="font-dm-sans text-[rgba(241,240,232,0.65)] text-lg leading-relaxed mb-8 max-w-xl">
+            <p className="font-dm-sans text-[rgba(241,240,232,0.65)] text-lg lg:text-xl leading-relaxed mb-8 max-w-xl">
               {h.subheadline}
             </p>
 
@@ -53,7 +56,14 @@ export default function AgenciasHero() {
             </div>
           </div>
 
-
+          {/* Right Column - WireframeGeometry */}
+          <div className="hidden lg:flex items-center justify-center h-full min-h-[400px] max-h-[500px] p-8">
+            <div className="relative">
+              <React.Suspense fallback={<div className="w-64 h-64" />}>
+                <WireframeGeometry />
+              </React.Suspense>
+            </div>
+          </div>
         </div>
       </div>
     </section>
