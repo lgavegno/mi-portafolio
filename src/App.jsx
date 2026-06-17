@@ -8,6 +8,7 @@ import { LocaleProvider } from './context/LocaleProvider'
 import { SkeletonPage } from './components/ui/Skeleton'
 import { pageTransition } from './config/motionConfig'
 import HeroBanner from './features/hero/HeroBanner'
+import SectionDivider from './components/ui/SectionDivider'
 const About = lazy(() => import('./components/About'))
 const BlogLayout = lazy(() => import('./layouts/BlogLayout'))
 const BlogIndex = lazy(() => import('./pages/BlogIndex'))
@@ -38,15 +39,15 @@ const HomeSections = () => (
     <AnimatedSection id="hero">
       <HeroBanner />
     </AnimatedSection>
-
+    <SectionDivider variant="wave" fromColor="#EEE0C9" toColor="#F1F0E8" />
     <AnimatedSection id="sobre-mi">
       <About />
     </AnimatedSection>
-
+    <SectionDivider variant="bowl" fromColor="#F1F0E8" toColor="#ADC4CE" height={80} />
     <AnimatedSection id="skills">
-      <SkillsGrid />
+      <SkillsGrid className="bg-[#ADC4CE]" />
     </AnimatedSection>
-
+    <SectionDivider variant="wave" fromColor="#ADC4CE" toColor="#2C3340" />
     <AnimatedSection id="servicios">
       <Services />
     </AnimatedSection>

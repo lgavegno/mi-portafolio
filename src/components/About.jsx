@@ -52,7 +52,7 @@ const About = () => {
                                     {t.about.headingPrefix} <span className="text-[#96B6C5]">{t.about.headingHighlight}</span>
                                 </h2>
 
-                                <div className="space-y-6 text-[#4B5563] text-lg leading-relaxed whitespace-pre-line">
+                                <div className="space-y-6 text-[#2C3340] text-lg leading-relaxed whitespace-pre-line font-medium">
                                     <p>
                                         {t.about.p1}
                                     </p>

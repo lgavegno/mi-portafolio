@@ -62,8 +62,8 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: ['DM Sans', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        display: ['Syne', 'Inter', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['Space Grotesk', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'Fira Code', 'Consolas', 'monospace'],
       },
       letterSpacing: {
