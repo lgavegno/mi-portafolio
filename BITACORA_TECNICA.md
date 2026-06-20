@@ -5,6 +5,50 @@
 
 ---
 
+## 2026-06-20 — WhatsAppFloat: Pulse Glow & Visual Enhancement
+
+**Objetivo:** Mejorar WhatsAppFloat con pulse animation + glow neon sutil para incrementar visual appeal y engagement sin impactar performance.
+
+**Contexto:** Post-implementación inicial de botón flotante B2B; necesidad de agregar "vida" visual para destacar CTA y mejorar perceived interactivity.
+
+**Mejoras visuales implementadas:**
+
+1. **Pulse Animation** — Framer Motion scale [1, 1.05, 1] con 2.5s infinite loop
+   - Respeta prefers-reduced-motion: desactiva al detectar preferencia
+   - No interfiere con entrada inicial (delay 2.5s mantenido)
+   - Transition easeInOut para movimiento natural
+
+2. **Neon Glow Effect** — Dual boxShadow layers
+   - Base glow (reposo): WhatsApp green #25D366 (rgba 0.4) + steel-blue rebrand (rgba 0.2, per ADR-012) + shadow negro
+   - Hover glow (intensificado): intensidad aumentada (0.6 green, 0.35 steel-blue) + shadow reforzado
+   - Transition: smooth 200ms en hover, 2.5s en reposo
+   - Colores: respetan paleta cream/sand/mist-blue/steel-blue/navy (rebrand 2026)
+
+3. **Implementation Details**
+   - Ubicación: `src/components/WhatsAppFloat.jsx` (motion.a con scale animate + style boxShadow)
+   - State management: isHovering para diferenciar glow base/hover
+   - CSS-in-JS: inline style para boxShadow (evita Tailwind limitations con arrays de sombras)
+   - Framer Motion: variants evitadas (simplificar test compatibility)
+
+**Performance Considerations:**
+- Build size: 247.31 kB < 250KB límite ✅
+- Animación GPU-accelerated (scale + boxShadow animables)
+- No layout shifts: fixed positioning, z-50 intacto
+- Lighthouse: LCP/CLS/TBT sin cambios verificados
+
+**Archivos modificados:**
+- `src/components/WhatsAppFloat.jsx` — agregado isHovering state, pulse scale animate, baseShadow/hoverShadow style
+
+**Testing:**
+- npm run lint: 0 errores (2 pre-existentes en DataVisualization.jsx)
+- npm run test: 71/71 tests passing (sin regresiones)
+- npm run build: ✓ exitoso, assets comprimidos
+- Browser: animación visible, glow en hover/focus, prefers-reduced-motion respetado
+
+**Resultado:** ✅ Botón flotante con "vida" visual premium. Pulse sutil (1.05x scale) + glow dinámico mantiene diseño B2B elegante sin sobrecargar interfaz. CTA ahora más noticeable sin flashiness.
+
+---
+
 ## 2026-06-17 — Investigación bug visual SectionDivider bowl (mobile)
 
 **Síntoma:** línea horizontal visible debajo del bowl divider en algunos dispositivos móviles.
