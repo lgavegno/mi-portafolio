@@ -75,12 +75,13 @@ ADR-001 (Vite) | ADR-002 (JS no TS) | ADR-003 (EmailJS) | ADR-004 (Feature-based
 - Switcher ES|EN path-aware en Header — cambia TODO sin excepciones
 - Deuda: LocaleProvider como objeto plano — si se requiere `t('clave')` → refactorizar
 
-## Performance (actualizado 2026-06-17)
-- Bundle principal: 244KB — incluye SectionDivider (+1.5KB sobre v3.1.0)
-- Code splitting: BlogIndex, BlogLayout, BlogPostDetail, ProjectDetail → lazy
-- Seguridad: dompurify@3.4.9, react-router-dom@7.17.0, caniuse-lite@1.0.30001799
-- ESLint: 0 errores, 2 warnings preexistentes en DataVisualization.jsx (no bloqueantes)
-- Tests: 71/71 passing
+## Performance (Lighthouse 2026-06-18)
+| Contexto | Performance | SEO | Best Practices | Accessibility |
+|----------|-------------|-----|----------------|---------------|
+| Desktop incógnito | 98 | 100 | 100 | 94 |
+| Mobile Slow 4G incógnito | 61 | 100 | 100 | 94 |
+
+**Métricas desktop:** FCP 0.6s · LCP 1.1s · TBT 0ms · CLS 0 · SI 1.0s
 
 ## Critical Files — Don't Break
 | File | Reason |

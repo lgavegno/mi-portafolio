@@ -5,6 +5,17 @@ Historial de cambios del proyecto Ongevag Portfolio. Formato: [Keep a Changelog]
 ---
 ## [Unreleased]
 
+### Added
+- Botón flotante WhatsApp (`WhatsAppFloat.jsx`) — conversación directa sin fricción para PyMEs/agencias
+  - Posición: fixed bottom-6 right-6, z-50
+  - Animación entrada: Framer Motion suave 2.5s post-LCP, respeta `prefers-reduced-motion`
+  - **Pulse glow animation:** scale [1, 1.05, 1] 2.5s infinite + neon boxShadow dual-layer (base + hover intensificado)
+  - Colores glow: WhatsApp green #25D366 + steel-blue rebrand (ADR-012) per paleta 2026
+  - Tooltip accesible: copy B2B premium diferenciado (ES/EN)
+  - Mensaje prellenado: establece contexto profesional + pregunta abierta para conversión
+  - Número: +54 9 3492 66-5453 (Leandro Gavegno)
+  - i18n: claves en `common.js` (whatsapp.tooltip, whatsapp.prefilledMessage)
+
 ### Fixed
 - SectionDivider (bowl): línea visible de 1px en algunos dispositivos Android/mobile (ej. Moto G) eliminada ajustando `marginBottom` de `-1` a `-2`
 - Investigación confirmó que el problema no provenía del path SVG, viewBox ni cierre del shape, sino de un gap de renderizado/sub-pixel entre el divider y la sección siguiente en determinados breakpoints móviles

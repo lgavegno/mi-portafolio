@@ -18,6 +18,12 @@ export default {
 
   agenciasNav: 'Para agencias',
 
+  // WhatsApp Float Button
+  whatsapp: {
+    tooltip: '¿Listo para escalar tu proyecto? Chatea directo conmigo 💬',
+    prefilledMessage: '¡Hola Leandro! Vi tu portfolio y me interesa tu perfil para un proyecto. ¿Podemos agendar una breve llamada esta semana?',
+  },
+
   // Footer
   footer: {
     about: 'Sobre mí',

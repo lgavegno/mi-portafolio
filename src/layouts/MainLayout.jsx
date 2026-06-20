@@ -5,6 +5,7 @@ import { useLocation, Outlet } from 'react-router-dom'
 import { Header, Footer } from '../components'
 import PageTransition from '../components/ui/PageTransition'
 import BackToTop from '../components/ui/BackToTop'
+import WhatsAppFloat from '../components/WhatsAppFloat'
 
 
 const MainLayout = () => {
@@ -63,6 +64,7 @@ const MainLayout = () => {
       </motion.div>
 
       <BackToTop />
+      <WhatsAppFloat />
     </div>
   )
 }
