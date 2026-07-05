@@ -14,7 +14,7 @@
 | T-02 | ADR-013 + ADR-014 | ✅ Completo |
 | T-03 | Locale files PT (8 archivos) | ✅ Completo |
 | T-04 | Data files PT (projects + blog) | ✅ Completo |
-| T-05 | LocaleProvider.jsx — agregar "pt" | ⬜ Pendiente |
+| T-05 | LocaleProvider.jsx — agregar "pt" | ✅ Completo |
 | T-06 | App.jsx — rutas /pt | ⬜ Pendiente |
 | T-07 | LangSwitcher.jsx — selector 3 idiomas | ⬜ Pendiente |
 | T-08 | Grep/visual validation | ⬜ Pendiente |
@@ -83,7 +83,7 @@ node -e "const es=require('./src/data/projects.es.js'); const pt=require('./src/
 
 ## Phase C: Integración de arquitectura
 
-- [ ] T-05 Modificar `src/context/LocaleProvider.jsx`
+- [x] T-05 Modificar `src/context/LocaleProvider.jsx`
   - Importar los 8 archivos `pt/*.js`
   - Agregar entrada `pt: { common: commonPt, hero: heroPt, ... }` al objeto `localeFiles`
 
@@ -92,6 +92,13 @@ node -e "const es=require('./src/data/projects.es.js'); const pt=require('./src/
 npm run lint
 npm run test  # nuevo test: LocaleProvider locale="pt" → t.common definido
 ```
+
+### Log de ejecución T-05
+
+- 2026-07-05 — `LocaleProvider.jsx` importa `src/locales/pt/*.js` y agrega entrada `pt` a `localeFiles`.
+- 2026-07-05 — Agregado test `useLocale` para `LocaleProvider locale="pt"` con `t.common`, `t.hero` y `t.contact` definidos.
+- 2026-07-05 — `npm run lint`: 0 errores, 2 warnings preexistentes en `src/components/DataVisualization.jsx`.
+- 2026-07-05 — `npm run test`: 3 archivos passed, 72 tests passed.
 
 - [ ] T-06 Modificar `src/App.jsx`
   - `LocaleLayout`: agregar detección `location.pathname.startsWith('/pt')` → `locale = 'pt'`

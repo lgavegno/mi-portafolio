@@ -19,10 +19,20 @@ import aboutEs from '../locales/es/about.js';
 import blogEs from '../locales/es/blog.js';
 import { agencias } from '../locales/es/agencias.js';
 
+import commonPt from '../locales/pt/common.js';
+import heroPt from '../locales/pt/hero.js';
+import servicesPt from '../locales/pt/services.js';
+import worksPt from '../locales/pt/works.js';
+import contactPt from '../locales/pt/contact.js';
+import aboutPt from '../locales/pt/about.js';
+import blogPt from '../locales/pt/blog.js';
+import { agencies as agenciesPt } from '../locales/pt/agencies.js';
+
 export const LocaleProvider = ({ locale, children }) => {
   const localeFiles = {
     en: { common: commonEn, hero: heroEn, services: servicesEn, works: worksEn, contact: contactEn, about: aboutEn, blog: blogEn, agencies },
     es: { common: commonEs, hero: heroEs, services: servicesEs, works: worksEs, contact: contactEs, about: aboutEs, blog: blogEs, agencias },
+    pt: { common: commonPt, hero: heroPt, services: servicesPt, works: worksPt, contact: contactPt, about: aboutPt, blog: blogPt, agencies: agenciesPt },
   };
 
   const t = localeFiles[locale];
