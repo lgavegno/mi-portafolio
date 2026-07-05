@@ -15,7 +15,7 @@
 | T-03 | Locale files PT (8 archivos) | ✅ Completo |
 | T-04 | Data files PT (projects + blog) | ✅ Completo |
 | T-05 | LocaleProvider.jsx — agregar "pt" | ✅ Completo |
-| T-06 | App.jsx — rutas /pt | ⬜ Pendiente |
+| T-06 | App.jsx — rutas /pt | ✅ Completo |
 | T-07 | LangSwitcher.jsx — selector 3 idiomas | ⬜ Pendiente |
 | T-08 | Grep/visual validation | ⬜ Pendiente |
 | T-09 | Definition of Done | ⬜ Pendiente |
@@ -100,7 +100,7 @@ npm run test  # nuevo test: LocaleProvider locale="pt" → t.common definido
 - 2026-07-05 — `npm run lint`: 0 errores, 2 warnings preexistentes en `src/components/DataVisualization.jsx`.
 - 2026-07-05 — `npm run test`: 3 archivos passed, 72 tests passed.
 
-- [ ] T-06 Modificar `src/App.jsx`
+- [x] T-06 Modificar `src/App.jsx`
   - `LocaleLayout`: agregar detección `location.pathname.startsWith('/pt')` → `locale = 'pt'`
   - Agregar rama `<Route path="/pt">` espejo de `/en`, con página de agencias PT si corresponde
 
@@ -110,6 +110,14 @@ npm run dev
 # Navegar a /pt, /pt/blog, /pt/blog/:slug, /pt/proyecto/:id, /pt/agencias
 # Zero errores de consola
 ```
+
+### Log de ejecución T-06
+
+- 2026-07-05 — `App.jsx` detecta `/pt` y agrega rama de rutas `/pt` con `/pt/agencias`.
+- 2026-07-05 — Primer smoke con dev server: `/pt`, `/pt/blog`, `/pt/blog/google-sheets-backend-serverless`, `/pt/proyecto/omnistock` sin errores; `/pt/agencias` falló con `TypeError: Cannot read properties of undefined (reading 'hero')`.
+- 2026-07-05 — Ajustados componentes compartidos de agencias para usar `t.agencies` en locales no-ES (`en` y `pt`).
+- 2026-07-05 — Segundo smoke con dev server: `/pt`, `/pt/blog`, `/pt/blog/google-sheets-backend-serverless`, `/pt/proyecto/omnistock`, `/pt/agencias` con `errorCount: 0`.
+- 2026-07-05 — `npm run lint`: 0 errores, 2 warnings preexistentes en `src/components/DataVisualization.jsx`.
 
 - [ ] T-07 Modificar `src/components/ui/LangSwitcher.jsx`
   - Generalizar mapas de segmentos (`SEGMENT_*_TO_*`) a estructura indexada por par de locales

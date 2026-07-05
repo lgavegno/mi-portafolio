@@ -4,7 +4,7 @@ import { staggerContainer, fadeInUp, viewportConfig } from '../../config/motionC
 
 export default function AgenciasParaQuien() {
   const { t, locale } = useLocale()
-  const s = locale === 'en' ? t.agencies.paraQuien : t.agencias.paraQuien
+  const s = locale === 'es' ? t.agencias.paraQuien : t.agencies.paraQuien
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#EEE0C9]">

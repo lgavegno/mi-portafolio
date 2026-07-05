@@ -7,7 +7,7 @@ import { staggerContainer, fadeInUp, viewportConfig, durationConfig } from '../.
 
 export default function AgenciasFAQ() {
   const { t, locale } = useLocale()
-  const s = locale === 'en' ? t.agencies.faq : t.agencias.faq
+  const s = locale === 'es' ? t.agencias.faq : t.agencies.faq
   const [openIndex, setOpenIndex] = useState(null)
 
   const handleToggle = (i) => {
