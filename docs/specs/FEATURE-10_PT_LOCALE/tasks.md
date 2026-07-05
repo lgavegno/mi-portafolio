@@ -12,8 +12,8 @@
 |------|-------------|--------|
 | T-01 | Resolver Open Question: segmento PT "agencias" | ✅ Completo |
 | T-02 | ADR-013 + ADR-014 | ✅ Completo |
-| T-03 | Locale files PT (8 archivos) | ⬜ Pendiente |
-| T-04 | Data files PT (projects + blog) | ⬜ Pendiente |
+| T-03 | Locale files PT (8 archivos) | ✅ Completo |
+| T-04 | Data files PT (projects + blog) | ✅ Completo |
 | T-05 | LocaleProvider.jsx — agregar "pt" | ⬜ Pendiente |
 | T-06 | App.jsx — rutas /pt | ⬜ Pendiente |
 | T-07 | LangSwitcher.jsx — selector 3 idiomas | ⬜ Pendiente |
@@ -41,16 +41,16 @@
 
 **⚠️ Todo archivo de esta fase lleva comentario `// TODO(leo): revisar traducción PT` hasta aprobación.**
 
-- [ ] T-03 [P] Crear `src/locales/pt/common.js` — espejo de keys de `es/common.js`
-- [ ] T-03 [P] Crear `src/locales/pt/hero.js`
-- [ ] T-03 [P] Crear `src/locales/pt/services.js`
-- [ ] T-03 [P] Crear `src/locales/pt/works.js`
-- [ ] T-03 [P] Crear `src/locales/pt/contact.js`
-- [ ] T-03 [P] Crear `src/locales/pt/about.js`
-- [ ] T-03 [P] Crear `src/locales/pt/blog.js`
-- [ ] T-03 [P] Crear `src/locales/pt/agencies.js` (nombre de archivo según resolución de T-01)
-- [ ] T-04 Crear `src/data/projects.pt.js` — mismos slugs que `projects.es.js`, campos descriptivos traducidos
-- [ ] T-04 Crear `src/features/blog/data/blogData.pt.js` — traducción completa de posts existentes, mismos slugs
+- [x] T-03 [P] Crear `src/locales/pt/common.js` — espejo de keys de `es/common.js`
+- [x] T-03 [P] Crear `src/locales/pt/hero.js`
+- [x] T-03 [P] Crear `src/locales/pt/services.js`
+- [x] T-03 [P] Crear `src/locales/pt/works.js`
+- [x] T-03 [P] Crear `src/locales/pt/contact.js`
+- [x] T-03 [P] Crear `src/locales/pt/about.js`
+- [x] T-03 [P] Crear `src/locales/pt/blog.js`
+- [x] T-03 [P] Crear `src/locales/pt/agencies.js` (nombre de archivo según resolución de T-01)
+- [x] T-04 Crear `src/data/projects.pt.js` — mismos slugs que `projects.es.js`, campos descriptivos traducidos
+- [x] T-04 Crear `src/features/blog/data/blogData.pt.js` — traducción completa de posts existentes, mismos slugs
 
 **Verificación T-03**:
 ```bash
@@ -70,6 +70,14 @@ node -e "const es=require('./src/data/projects.es.js'); const pt=require('./src/
 ```
 
 **Checkpoint**: Commit del contenido PT como borrador antes de tocar `LocaleProvider.jsx`.
+
+### Log de ejecución
+
+- 2026-07-05 — T-03 completada: creados 8 locale files PT con marcador `TODO(leo)`.
+- 2026-07-05 — Verificación T-03: diff estructural oficial devolvió `common true`, `hero true`, `services true`, `works true`, `contact true`, `about true`, `blog true`; chequeo adicional `agencies true`.
+- 2026-07-05 — T-04 completada: creados `src/data/projects.pt.js` y `src/features/blog/data/blogData.pt.js` con marcador `TODO(leo)`.
+- 2026-07-05 — Verificación T-04: snippet oficial de projects falló en Node por imports `.webp`; verificación equivalente por ids devolvió `true`. Blog slugs ES/PT devolvió `true`.
+- 2026-07-05 — `npm run lint`: 0 errores, 2 warnings preexistentes en `src/components/DataVisualization.jsx`.
 
 ---
 
