@@ -16,7 +16,7 @@
 | T-04 | Data files PT (projects + blog) | ✅ Completo |
 | T-05 | LocaleProvider.jsx — agregar "pt" | ✅ Completo |
 | T-06 | App.jsx — rutas /pt | ✅ Completo |
-| T-07 | LangSwitcher.jsx — selector 3 idiomas | ⬜ Pendiente |
+| T-07 | LangSwitcher.jsx — selector 3 idiomas | ✅ Completo |
 | T-08 | Grep/visual validation | ⬜ Pendiente |
 | T-09 | Definition of Done | ⬜ Pendiente |
 
@@ -119,7 +119,7 @@ npm run dev
 - 2026-07-05 — Segundo smoke con dev server: `/pt`, `/pt/blog`, `/pt/blog/google-sheets-backend-serverless`, `/pt/proyecto/omnistock`, `/pt/agencias` con `errorCount: 0`.
 - 2026-07-05 — `npm run lint`: 0 errores, 2 warnings preexistentes en `src/components/DataVisualization.jsx`.
 
-- [ ] T-07 Modificar `src/components/ui/LangSwitcher.jsx`
+- [x] T-07 Modificar `src/components/ui/LangSwitcher.jsx`
   - Generalizar mapas de segmentos (`SEGMENT_*_TO_*`) a estructura indexada por par de locales
   - Agregar tercer botón/bandera para PT
   - Lógica de detección de locale actual desde pathname: `es | en | pt`
@@ -131,6 +131,18 @@ ES → EN, ES → PT, EN → ES, EN → PT, PT → ES, PT → EN
 ```
 
 **Checkpoint**: Las transiciones ES↔EN existentes NO deben regresar — validar antes de agregar PT como parte del mismo PR.
+
+### Log de ejecución T-07
+
+- 2026-07-05 — Checkpoint pre-cambio ES↔EN con LangSwitcher existente: 10 transiciones ejecutadas, 0 errores de consola; home ES→EN devolvía `/en/` (trailing slash preexistente), las demás coincidían exactas.
+- 2026-07-05 — `LangSwitcher.jsx` generalizado a `LOCALE_PREFIX`, `LOCALIZED_SEGMENTS` y detección `es | en | pt`.
+- 2026-07-05 — Agregado tercer estado PT con botón `🇧🇷` y `aria-label="Mudar para Português"`.
+- 2026-07-05 — `npm run lint`: 0 errores, 2 warnings preexistentes en `src/components/DataVisualization.jsx`.
+- 2026-07-05 — Matriz home: ES→EN `/en`, ES→PT `/pt`, EN→ES `/`, EN→PT `/pt`, PT→ES `/`, PT→EN `/en`; todos con `errorCount: 0` (EN→ES requirió reintento aislado por `buttonCount: 0` puntual en la primera corrida).
+- 2026-07-05 — Matriz blog index: 6/6 transiciones correctas, `errorCount: 0`.
+- 2026-07-05 — Matriz blog detail (`google-sheets-backend-serverless`): 6/6 transiciones correctas, `errorCount: 0`.
+- 2026-07-05 — Matriz project detail (`omnistock`): 6/6 transiciones correctas, `errorCount: 0`.
+- 2026-07-05 — Matriz agencias: ES `/agencias`, EN `/en/agencies`, PT `/pt/agencias`; 6/6 transiciones correctas, `errorCount: 0`.
 
 ---
 
