@@ -8,6 +8,10 @@ import BlogCard from './BlogCard';
 import { useLocale } from '../../../hooks/useLocale';
 import { blogPosts as blogPostsEs } from '../data/blogData.es';
 import { blogPosts as blogPostsEn } from '../data/blogData.en';
+import { blogPosts as blogPostsPt } from '../data/blogData.pt';
+
+const PREVIEW_POSTS_BY_LOCALE = { es: blogPostsEs, en: blogPostsEn, pt: blogPostsPt };
+const BLOG_INDEX_PATH_BY_LOCALE = { es: '/blog', en: '/en/blog', pt: '/pt/blog' };
 
 const BlogPreview = ({
   limit = 3,
@@ -16,7 +20,8 @@ const BlogPreview = ({
   className = ''
 }) => {
   const { locale, t } = useLocale();
-  const posts = (locale === 'en' ? blogPostsEn : blogPostsEs).slice(0, limit);
+  const posts = (PREVIEW_POSTS_BY_LOCALE[locale] || blogPostsEs).slice(0, limit);
+  const blogIndexPath = BLOG_INDEX_PATH_BY_LOCALE[locale] || '/blog';
 
   if (variant === 'compact') {
     return (
@@ -37,7 +42,7 @@ const BlogPreview = ({
               {t.blog.preview.latestArticles}
             </h3>
             <Link
-              to={locale === 'en' ? '/en/blog' : '/blog'}
+              to={blogIndexPath}
               className="text-xs text-cyan-institutional hover:text-cyan-institutional/80 flex items-center gap-1"
             >
               {t.blog.preview.seeAll}
@@ -83,7 +88,7 @@ const BlogPreview = ({
               </h2>
             </div>
             <Link
-              to={locale === 'en' ? '/en/blog' : '/blog'}
+              to={blogIndexPath}
               className="
                 hidden sm:flex items-center gap-2
                 px-5 py-2.5 rounded-xl

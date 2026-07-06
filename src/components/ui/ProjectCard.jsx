@@ -4,7 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { springConfig } from '../../config/motionConfig';
 import { useVibrate } from '../../hooks/useVibrate';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
+import { useLocale } from '../../hooks/useLocale';
 import ProgressBar from './ProgressBar';
+
+const PROJECT_PATH_BY_LOCALE = { es: '/proyecto', en: '/en/proyecto', pt: '/pt/proyecto' };
 
 const ProjectCard = ({
   id, // Asegúrate de recibir el id
@@ -23,18 +26,19 @@ const ProjectCard = ({
   const vibrate = useVibrate(10);
   const prefersReducedMotion = useReducedMotion();
   const navigate = useNavigate();
+  const { t, locale } = useLocale();
 
   const statusConfig = {
     'in-progress': {
-      label: 'En desarrollo',
+      label: t.works.status['in-progress'],
       color: 'bg-amber-400/20 text-amber-400 border-amber-400/30'
     },
     'completed': {
-      label: 'Completado',
+      label: t.works.status.completed,
       color: 'bg-mint-400/20 text-mint-400 border-mint-400/30'
     },
     'planning': {
-      label: 'Planificación',
+      label: t.works.status.planning,
       color: 'bg-cobalt-400/20 text-cobalt-400 border-cobalt-400/30'
     }
   };
@@ -51,7 +55,8 @@ const ProjectCard = ({
     if (link) {
       window.open(link, '_blank', 'noopener,noreferrer');
     } else if (id) {
-      navigate(`/proyecto/${id}`);
+      const basePath = PROJECT_PATH_BY_LOCALE[locale] || '/proyecto';
+      navigate(`${basePath}/${id}`);
     }
   };
 

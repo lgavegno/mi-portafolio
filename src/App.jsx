@@ -21,6 +21,7 @@ const Contact = lazy(() => import('./features/contact/Contact'))
 const SkillsGrid = lazy(() => import('./components/SkillsGrid'))
 const AgenciasPage = lazy(() => import('./pages/AgenciasPage'))
 const AgenciesPageEN = lazy(() => import('./pages/AgenciesPageEN'))
+const AgenciasPagePT = lazy(() => import('./pages/AgenciasPagePT'))
 
 const AnimatedSection = ({ children, id }) => (
   <motion.div
@@ -115,7 +116,7 @@ function App() {
               <Route path="/pt" element={<MainLayout />}>
                 <Route index element={<HomeSections />} />
                 <Route path="proyecto/:id" element={<ProjectDetail />} />
-                <Route path="agencias" element={<AgenciesPageEN />} />
+                <Route path="agencias" element={<AgenciasPagePT />} />
                 <Route path="blog" element={<BlogLayout />}>
                   <Route index element={<BlogIndex />} />
                   <Route path=":slug" element={<BlogPostDetail />} />

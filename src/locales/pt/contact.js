@@ -2,7 +2,7 @@
 export default {
   badge: 'Contato',
   title: 'Vamos conversar?',
-  description: 'Se você precisa de ajuda com análise de dados ou automação de processos, vou gostar de conversar com você.',
+  description: 'Se você precisa de ajuda com análise de dados ou automação de processos, ficarei feliz em conversar com você.',
   form: {
     labels: {
       name: 'Nome',

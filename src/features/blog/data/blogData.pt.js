@@ -159,15 +159,21 @@ Google Sheets    Gmail
       </div>
 
       <h2>O ciclo de vida da análise</h2>
+      <p>Um fluxo de trabalho profissional não é linear, mas segue etapas rigorosas para garantir a integridade do insight:</p>
       <ol>
-        <li><strong>Limpeza</strong>: tratamento de nulos, tipos incorretos e registros corrompidos.</li>
-        <li><strong>EDA</strong>: visualização inicial e detecção de padrões.</li>
-        <li><strong>Feature Engineering</strong>: transformação de dados crus em variáveis úteis para o negócio.</li>
+        <li><strong>Limpeza (Cleaning)</strong>: 60% do tempo. Tratamento de valores nulos (<code>fillna</code>, <code>dropna</code>) e correção de tipos de dados que frequentemente chegam corrompidos da fonte.</li>
+        <li><strong>EDA (Análise Exploratória de Dados)</strong>: visualização preliminar e detecção de padrões por meio de histogramas e diagramas de dispersão.</li>
+        <li><strong>Feature Engineering</strong>: transformar dados brutos em variáveis com significado para o negócio.</li>
         <li><strong>Modelagem</strong>: aplicação de algoritmos estatísticos ou de Machine Learning.</li>
       </ol>
 
       <h2>KPIs críticos para o negócio</h2>
-      <p>Líderes de negócio não consomem código, consomem métricas. Foque em ROI, taxa de conversão e churn rate para traduzir dados em dinheiro, eficiência ou risco.</p>
+      <p>No fim do dia, os líderes de negócio não consomem código, consomem métricas. Seu trabalho é traduzir bits em dinheiro ou eficiência. Concentre-se em calcular:</p>
+      <ul>
+        <li><strong>ROI (Retorno sobre o Investimento)</strong>: (Lucro Líquido / Custo) * 100. A métrica rainha.</li>
+        <li><strong>Taxa de Conversão</strong>: percentual de usuários que realizam uma ação desejada. Vital para produto.</li>
+        <li><strong>Churn Rate</strong>: taxa de cancelamento de clientes. Em modelos SaaS, reduzir o churn é mais rentável do que adquirir novos usuários.</li>
+      </ul>
 
       <hr class="my-8 border-slate-200 dark:border-slate-800" />
 
@@ -245,7 +251,8 @@ Google Sheets    Gmail
 
       <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-6 my-6">
         <h4 class="font-bold text-slate-900 dark:text-white mb-4">Pro Tip</h4>
-        <p class="text-slate-700 dark:text-slate-300">Antes de abrir Matplotlib, Seaborn ou Tableau, pergunte: <strong>"O que eu quero que a outra pessoa veja?"</strong>.</p>
+        <p class="text-slate-700 dark:text-slate-300">Antes de abrir Matplotlib, Seaborn ou Tableau, pergunte-se: <strong>"O que eu quero que a outra pessoa veja?"</strong>.</p>
+        <p class="mt-4 text-slate-700 dark:text-slate-300">Se a resposta não estiver clara, nenhum gráfico vai salvar você. O propósito de visualizar é reduzir a carga cognitiva de quem lê, para que possa tomar uma decisão rapidamente.</p>
       </div>
     `
   },
@@ -335,58 +342,150 @@ Google Sheets    Gmail
     slug: 'statistics-guide-data-analyst',
     content: `
       <h2>Como usar este guia</h2>
-      <p>Organizado em 7 blocos temáticos. Cada conceito traz o que é, quando usar, um exemplo real e como aparece em entrevistas. Estude 5 conceitos por sessão: leia, feche e explique em voz alta.</p>
+      <p>Organizado em 7 blocos temáticos. Cada conceito tem quatro seções: o que é, quando usar, um exemplo real e como aparece em entrevistas. Estude 5 conceitos por sessão — leia, feche o material, explique em voz alta.</p>
       <p><em>Todos os conceitos marcados com ⚡ foram aplicados diretamente na análise de retenção do FitNess App.</em></p>
 
       <h2>Bloco 1 — Exploração de Dados (EDA)</h2>
+
       <h3>Média</h3>
-      <p>Soma de todos os valores dividida pela quantidade de valores. Use quando quiser resumir dados numéricos em um valor representativo.</p>
+      <p>A soma de todos os valores dividida pela quantidade de valores. O 'centro' dos dados. Use quando quiser resumir um conjunto de dados numéricos em um único valor representativo.</p>
+      <p><strong>Exemplo real:</strong> Seu ticket médio de cliente é R$ 4.200. Essa é a média de todos os tickets do mês.</p>
+
       <h3>Mediana</h3>
-      <p>Valor central de um conjunto ordenado. É mais robusta que a média quando existem outliers.</p>
+      <p>O valor central de um conjunto ordenado. Metade dos dados está acima, a outra metade abaixo. Mais robusta que a média quando há outliers.</p>
+      <p><strong>Exemplo real:</strong> 9 funcionários ganham R$ 100 mil e 1 ganha R$ 1 milhão — a média é R$ 190 mil, mas a mediana é R$ 100 mil. A mediana reflete melhor a realidade.</p>
+
       <h3>Moda</h3>
-      <p>Valor que aparece com mais frequência. Útil para dados categóricos.</p>
-      <h3>Variância e desvio padrão</h3>
-      <p>Medem quão dispersos estão os dados ao redor da média. Alta dispersão indica comportamento mais imprevisível.</p>
-      <h3>Outliers ⚡</h3>
-      <p>Valores que diferem significativamente do restante. No FitNess App foram detectados 10.432 registros ruidosos de 11.600 totais, reduzindo o dataset a 1.168 registros válidos.</p>
+      <p>O valor que aparece com mais frequência. Útil para dados categóricos.</p>
+      <p><strong>Exemplo real:</strong> O plano de assinatura mais escolhido pelos usuários é o mensal. Essa é a moda.</p>
 
-      <h2>Bloco 2 — Forma da distribuição</h2>
-      <p>Distribuição normal, curtose e assimetria ajudam a entender se os dados são equilibrados, têm caudas pesadas ou exigem segmentação antes de tirar conclusões.</p>
+      <h3>Variância e Desvio Padrão</h3>
+      <p>Medem o quanto os dados estão dispersos ao redor da média. Alto desvio indica dados dispersos, comportamento imprevisível.</p>
+      <p><strong>Exemplo real:</strong> Tempo médio no app: 30 min, desvio: 2 min → usuários muito consistentes. Desvio de 15 min → comportamento muito variável.</p>
 
-      <h2>Bloco 3 — Relações entre variáveis</h2>
+      <h3>Amplitude</h3>
+      <p>Diferença entre o valor máximo e o mínimo. Primeira visão rápida da dispersão.</p>
+
+      <h3>Percentis e Quartis</h3>
+      <p>Dividem os dados ordenados em 100 partes iguais (percentis) ou 4 partes iguais (Q1=25%, Q2=50%, Q3=75%).</p>
+      <p><strong>Exemplo real:</strong> Se o gasto no percentil 90 é R$ 500, 90% dos clientes gastam menos que R$ 500. Útil para identificar clientes de alto valor.</p>
+
+      <h3>Histograma</h3>
+      <p>Gráfico de barras que mostra a distribuição de frequências de uma variável numérica contínua. Primeira ferramenta de EDA.</p>
+
+      <h3>Boxplot (Diagrama de Caixa e Bigodes)</h3>
+      <p>Visualização que mostra mediana, Q1, Q3 e outliers em um único gráfico. Ideal para comparar distribuições entre grupos.</p>
+
+      <h3>Outliers (Valores Atípicos) ⚡</h3>
+      <p>Valores que diferem significativamente do restante. Na análise do FitNess App foram detectados 10.432 registros com ruído de 11.600 totais — 89% de outliers que invalidavam o dataset original. A auditoria de integridade reduziu o dataset a 1.168 registros válidos.</p>
+
+      <h2>Bloco 2 — Forma da Distribuição</h2>
+
+      <h3>Distribuição Normal</h3>
+      <p>Distribuição simétrica em forma de sino. 68% dos dados caem dentro de ±1 desvio, 95% dentro de ±2, 99,7% dentro de ±3. Base de 80% dos testes estatísticos.</p>
+
+      <h3>Curtose: Leptocúrtica</h3>
+      <p>Distribuição com pico alto e caudas pesadas. Comportamento típico com eventos extremos ocasionais.</p>
+
+      <h3>Curtose: Mesocúrtica</h3>
+      <p>A distribuição normal padrão. Comportamento equilibrado e previsível.</p>
+
+      <h3>Curtose: Platicúrtica</h3>
+      <p>Distribuição achatada. Dados muito dispersos sem um valor típico claro — é preciso segmentar antes de tirar conclusões.</p>
+
+      <h3>Assimetria Positiva e Negativa</h3>
+      <p>Positiva: cauda longa à direita (poucos valores muito altos). Negativa: cauda à esquerda. A renda dos usuários costuma ter assimetria positiva — a maioria ganha pouco, poucos ganham muito. Use mediana em vez de média.</p>
+
+      <h2>Bloco 3 — Relações Entre Variáveis</h2>
+
       <h3>Correlação de Pearson</h3>
-      <p>Mede força e direção da relação linear entre duas variáveis numéricas, indo de -1 a +1.</p>
-      <h3>Regressão logística ⚡</h3>
-      <p>Prediz a probabilidade de um evento binário. No FitNess App foi usada conceitualmente para identificar perfis de risco de churn.</p>
+      <p>Mede a força e a direção da relação linear entre duas variáveis numéricas. Vai de -1 a +1.</p>
+      <p><strong>Exemplo real:</strong> r=0,85 entre horas de exercício e retenção de usuários. Mais exercício, menos abandono.</p>
+
+      <h3>Diagrama de Dispersão</h3>
+      <p>Gráfico que mostra a relação entre duas variáveis numéricas. Sempre visualize antes de calcular a correlação.</p>
+
+      <h3>Regressão Linear</h3>
+      <p>Modela a relação entre uma variável dependente (Y) e uma ou mais variáveis independentes (X). Para prever valores numéricos.</p>
+
+      <h3>Regressão Logística ⚡</h3>
+      <p>Prediz a probabilidade de ocorrência de um evento binário (Sim/Não). No FitNess App foi usada conceitualmente para identificar perfis de risco de churn (abandono = 1, retenção = 0).</p>
+
       <h3>Qui-quadrado</h3>
-      <p>Teste para variáveis categóricas, avaliando associação entre categorias.</p>
+      <p>Teste para variáveis categóricas. Avalia se existe associação entre duas categorias. Exemplo: o gênero influencia o plano escolhido?</p>
 
-      <h2>Bloco 4 — Comparação de grupos</h2>
-      <p>T-test, ANOVA, hipótese nula, hipótese alternativa, p-valor e intervalos de confiança ajudam a decidir se uma diferença observada é real ou casual.</p>
-      <p>Na análise de retenção, HIIT e Força foram validados como drivers de retenção com p &lt; 0,05.</p>
+      <h2>Bloco 4 — Comparação de Grupos</h2>
 
-      <h2>Bloco 5 — Amostragem e inferência</h2>
-      <p>No FitNess App, o dataset original tinha 11.600 registros, mas apenas 1.168 eram válidos. A análise foi feita sobre essa amostra após auditoria ETL.</p>
-      <p>O Teorema Central do Limite, amostragem aleatória e amostragem estratificada ajudam a sustentar conclusões estatísticas.</p>
+      <h3>Teste T de Student</h3>
+      <p>Compara se a média de uma variável numérica é significativamente diferente entre dois grupos.</p>
 
-      <h2>Bloco 6 — Processo de análise</h2>
-      <h3>EDA ⚡</h3>
-      <p>Primeira fase de qualquer análise: exploração do dataset bruto, detecção de inconsistências e identificação de padrões.</p>
-      <h3>ETL ⚡</h3>
-      <p>Extração do CSV bruto, detecção de registros inconsistentes, limpeza e consolidação de registros válidos.</p>
-      <h3>Normalização e padronização ⚡</h3>
-      <p>Antes de K-Means, variáveis foram padronizadas com z-score para evitar que uma escala dominasse o clustering.</p>
+      <h3>ANOVA</h3>
+      <p>Estende o teste T para três ou mais grupos. Detecta se pelo menos um grupo é significativamente diferente.</p>
 
-      <h2>Bloco 7 — Machine Learning básico</h2>
+      <h3>Hipótese Nula (H₀) e Alternativa (H₁) ⚡</h3>
+      <p>H₀: não há diferença real. H₁: há diferença. No FitNess App: H₀ = as atividades HIIT e Força não retêm mais usuários. H₁ = retêm sim. Os dados rejeitaram H₀ com p &lt; 0,05.</p>
+
+      <h3>P-valor e Nível de Significância ⚡</h3>
+      <p>O p-valor é a probabilidade de observar seus dados se H₀ fosse verdadeira. Padrão: p &lt; 0,05. Na análise de retenção, validou-se estatisticamente que HIIT e Força são drivers de retenção com p &lt; 0,05.</p>
+
+      <h3>Intervalo de Confiança</h3>
+      <p>Faixa de valores dentro da qual cai o parâmetro populacional verdadeiro com certa probabilidade (geralmente 95%). Não diga apenas "a média é X" — diga "a média é X com IC95% [min, max]".</p>
+
+      <h2>Bloco 5 — Amostragem e Inferência</h2>
+
+      <h3>População vs. Amostra ⚡</h3>
+      <p>No FitNess App, o dataset original tinha 11.600 registros, mas apenas 1.168 eram válidos (10%). A análise foi feita sobre essa amostra representativa após a auditoria ETL.</p>
+
+      <h3>Teorema Central do Limite (TCL)</h3>
+      <p>Com amostras de tamanho n≥30, a distribuição das médias segue uma distribuição normal independentemente da distribuição original. Justifica usar testes normais com dados não normais.</p>
+
+      <h3>Amostragem Aleatória e Estratificada</h3>
+      <p>Estratificada: você divide em grupos e amostra proporcionalmente. Útil quando quer representar subgrupos importantes (por idade, plano, região).</p>
+
+      <h2>Bloco 6 — Processo de Análise</h2>
+
+      <h3>EDA (Análise Exploratória de Dados) ⚡</h3>
+      <p>Primeira fase de qualquer análise. No FitNess App: exploração do dataset bruto, detecção de inconsistências (89% de registros corrompidos), análise da distribuição de atividades e sessões por usuário.</p>
+
+      <h3>ETL (Extrair, Transformar, Carregar) ⚡</h3>
+      <p>No FitNess App: extração do CSV bruto → detecção de 10.432 registros inconsistentes → limpeza e consolidação de 1.168 registros válidos → análise das métricas DAU/MAU e Sticky Factor.</p>
+
+      <h3>Auditoria de Integridade Referencial ⚡</h3>
+      <p>Verificação sistemática de que os dados cumprem regras de consistência: IDs únicos, faixas válidas, relações entre campos. No FitNess App foi aplicada a 11.600 registros e constatou-se que 89% tinham dados corrompidos ou inconsistentes.</p>
+
+      <h3>Valores Nulos e Limpeza de Dados ⚡</h3>
+      <p>No FitNess App, nulos e valores fora da faixa foram a principal causa dos 10.432 registros descartados. A regra: nunca imputar quando o nulo tem significado de negócio.</p>
+
+      <h3>Normalização e Padronização ⚡</h3>
+      <p>Antes do K-Means, as variáveis foram padronizadas (frequência de uso, tipo de atividade, dias ativos) com z-score para que nenhuma variável dominasse o clustering pela sua escala.</p>
+
+      <h2>Bloco 7 — Machine Learning Básico</h2>
+
       <h3>K-Means Clustering ⚡</h3>
-      <p>Algoritmo que agrupa dados em k clusters minimizando distância ao centroide. No FitNess App, segmentou usuários em alta retenção, risco médio e alto risco de abandono.</p>
-      <h3>Método do cotovelo ⚡</h3>
-      <p>Técnica para escolher o número ótimo de clusters. No FitNess App, o cotovelo apareceu em k=3.</p>
-      <h3>Tipos de análise ⚡</h3>
-      <p>O projeto cobriu análise descritiva, diagnóstica, preditiva e prescritiva: do churn inicial de 65% até recomendações de onboarding para reduzir abandono.</p>
+      <p>Algoritmo que agrupa dados em k clusters minimizando a distância ao centroide. No FitNess App foi aplicado a 1.168 usuários válidos para segmentar perfis de risco de churn. Foram identificados três perfis: alta retenção (HIIT/Força), risco médio e alto risco de abandono.</p>
 
-      <h2>Conceitos adicionais do FitNess App</h2>
-      <p><strong>Sticky Factor (DAU/MAU)</strong> mede engajamento real. <strong>Churn Rate</strong> mede abandono. <strong>Falha de ativação no Dia 0</strong> identifica o momento crítico em que o usuário novo não experimenta valor.</p>
+      <h3>Método do Cotovelo ⚡</h3>
+      <p>Técnica para escolher o número ótimo de clusters k. No FitNess App, a inércia foi plotada para k=2 a k=6 e o cotovelo apareceu em k=3, justificando matematicamente os três segmentos.</p>
+
+      <h3>Coeficiente de Variação</h3>
+      <p>Desvio padrão dividido pela média. Permite comparar a variabilidade entre conjuntos com escalas diferentes.</p>
+
+      <h3>Tipos de Análise: Descritiva, Diagnóstica, Preditiva, Prescritiva ⚡</h3>
+      <p>A análise do FitNess App cobriu os 4 níveis: <strong>Descritiva</strong> (o churn é de 65%), <strong>Diagnóstica</strong> (a causa é a falha de ativação no Dia 0 e a baixa frequência de HIIT/Força), <strong>Preditiva</strong> (usuários sem atividade de HIIT nas primeiras 2 semanas têm 80% de probabilidade de abandono), <strong>Prescritiva</strong> (programa de onboarding do Dia 0 com sessão guiada de HIIT).</p>
+
+      <h2>Conceitos adicionais da análise do FitNess App</h2>
+
+      <h3>Sticky Factor (DAU/MAU) ⚡</h3>
+      <p>Métrica que mede o engajamento real do app: usuários ativos diários dividido por usuários ativos mensais. Um Sticky Factor de 20% significa que o usuário médio usa o app 6 dias por mês. No FitNess App foi usada para identificar usuários "sticky" (alta frequência) como referência do comportamento desejado.</p>
+
+      <h3>Churn Rate ⚡</h3>
+      <p>Percentual de usuários que abandonam o serviço em um período. No FitNess App: churn inicial de 65%, com objetivo de reduzi-lo para 45% por meio de segmentação e estratégias de ativação antecipada.</p>
+
+      <h3>Falha de Ativação (Dia 0) ⚡</h3>
+      <p>Conceito de product analytics: o momento crítico em que o novo usuário não experimenta o valor do produto. No FitNess App detectou-se que usuários sem sessão guiada no primeiro dia tinham 3 vezes mais probabilidade de abandono do que os que tiveram.</p>
+
+      <h3>DAU / MAU (Usuários Ativos Diários / Mensais)</h3>
+      <p>Métricas padrão de engajamento em produtos digitais. DAU: usuários ativos únicos em um dia. MAU: usuários ativos únicos em um mês. A relação DAU/MAU define o Sticky Factor.</p>
 
       <h2>Tabela de decisão rápida</h2>
       <table>

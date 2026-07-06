@@ -21,7 +21,7 @@ export const agencies = {
   colaboracion: {
     titulo: "Como colaboro com agências",
     intro:
-      "Integro-me como parceiro técnico nos bastidores. Trabalho junto a agências, estúdios e profissionais independentes que precisam transformar designs e estratégias em sites funcionais, mantendo eles a relação com seus clientes.",
+      "Integro-me como parceiro técnico nos bastidores. Trabalho junto a agências, estúdios e profissionais independentes que precisam transformar designs e estratégias em sites funcionais, enquanto eles mantêm a relação com seus clientes.",
     modelos: [
       {
         tipo: "Agência de Branding",

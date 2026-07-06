@@ -6,6 +6,10 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FiClock, FiArrowRight, FiCalendar } from 'react-icons/fi';
 import { useVibrate } from '../../../hooks/useVibrate';
+import { useLocale } from '../../../hooks/useLocale';
+
+const BLOG_INDEX_PATH_BY_LOCALE = { es: '/blog', en: '/en/blog', pt: '/pt/blog' };
+const DATE_LOCALE_BY_LOCALE = { es: 'es-ES', en: 'en-US', pt: 'pt-BR' };
 
 const BlogCard = ({
   title,
@@ -18,6 +22,8 @@ const BlogCard = ({
   variant = 'default' // 'default' | 'compact' | 'featured'
 }) => {
   const vibrate = useVibrate(10);
+  const { t, locale } = useLocale();
+  const blogIndexPath = BLOG_INDEX_PATH_BY_LOCALE[locale] || '/blog';
 
   const handleClick = () => {
     vibrate();
@@ -27,7 +33,7 @@ const BlogCard = ({
   // Formatear fecha
   const formatDate = (dateString) => {
     const options = { day: 'numeric', month: 'short', year: 'numeric' };
-    return new Date(dateString).toLocaleDateString('es-ES', options);
+    return new Date(dateString).toLocaleDateString(DATE_LOCALE_BY_LOCALE[locale] || 'es-ES', options);
   };
 
   // Placeholder de gradiente dinámico (Monocromático Cyan/Obsidian)
@@ -96,11 +102,11 @@ const BlogCard = ({
         <div className="mt-auto flex items-center justify-between pt-4 border-t border-cyan-institutional/10">
           <span className="flex items-center gap-1.5 text-xs text-gray-500 font-medium">
             <FiClock className="w-3.5 h-3.5 text-gray-500" />
-            {readTime} min de lectura
+            {readTime} {t.blog.minRead}
           </span>
 
-          <span className="flex items-center gap-2 text-xs font-mono font-semibold text-cyan-institutional opacity-80 group-hover:opacity-100 transition-opacity">
-            LEER_ARTÍCULO
+          <span className="flex items-center gap-2 text-xs font-mono font-semibold text-cyan-institutional opacity-80 group-hover:opacity-100 transition-opacity uppercase">
+            {t.blog.readFullStory}
             <motion.span
               animate={{ x: [0, 4, 0] }}
               transition={{ repeat: Infinity, duration: 1.5, repeatDelay: 1 }}
@@ -115,7 +121,7 @@ const BlogCard = ({
 
   if (variant === 'compact') {
     return (
-      <Link to={`/blog/${slug}`} className="block w-full" onClick={handleClick}>
+      <Link to={`${blogIndexPath}/${slug}`} className="block w-full" onClick={handleClick}>
         <motion.article
           variants={scrollReveal}
           initial="hidden"
@@ -166,7 +172,7 @@ const BlogCard = ({
   }
 
   return (
-    <Link to={`/blog/${slug}`} className="block h-full" onClick={handleClick}>
+    <Link to={`${blogIndexPath}/${slug}`} className="block h-full" onClick={handleClick}>
       <motion.article
         variants={scrollReveal}
         initial="hidden"

@@ -14,6 +14,11 @@ export default {
     description: 'Escribime y te aviso cuando publique contenido nuevo.',
     cta: 'Contactarme →',
     mostRead: 'Lo más leído',
+    mostReadItems: [
+      { title: 'Optimización de queries SQL en entornos productivos', category: 'Performance' },
+      { title: 'Migrando mi blog a Next.js y Tailwind CSS', category: 'Frontend' },
+      { title: 'Guía definitiva de Airflow 2.0', category: 'Data Engineering' },
+    ],
   },
   // PostGrid
   postGrid: {
