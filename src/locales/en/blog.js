@@ -14,6 +14,11 @@ export default {
     description: 'Message me and I\'ll let you know when I publish new content.',
     cta: 'Contact me →',
     mostRead: 'Most Read',
+    mostReadItems: [
+      { title: 'Optimizing SQL queries in production environments', category: 'Performance' },
+      { title: 'Migrating my blog to Next.js and Tailwind CSS', category: 'Frontend' },
+      { title: 'The definitive guide to Airflow 2.0', category: 'Data Engineering' },
+    ],
   },
   // PostGrid
   postGrid: {
@@ -43,7 +48,7 @@ export default {
     latestArticles: 'Latest Articles',
     seeAll: 'See All',
     seeAllArticles: 'See All Articles',
-    heading: 'Sharing Knowledge',
-    subheading: 'Technical articles on development, architecture and systems optimization.',
+    heading: 'Real problems, not made-up exercises',
+    subheading: 'Every article comes from a real challenge I faced working with real clients — how I solved it, what worked, and what didn\'t.',
   },
 };

@@ -14,12 +14,15 @@ const Header = ({ isOpen, setIsOpen }) => {
   const location = useLocation();
   const { t, locale } = useLocale();
 
+  const localeHomePath = locale === 'es' ? '/' : `/${locale}`;
+  const AGENCIAS_HREF_BY_LOCALE = { es: '/agencias', en: '/en/agencies', pt: '/pt/agencias' };
+
   const navLinks = [
     { label: t.common.nav.inicio,   id: 'inicio'    },
     { label: t.common.nav.about,    id: 'sobre-mi'  },
     { label: t.common.nav.projects, id: 'proyectos' },
     { label: t.common.nav.services, id: 'que-hago'  },
-    { label: t.common.agenciasNav,  href: locale === 'en' ? '/en/agencies' : '/agencias' },
+    { label: t.common.agenciasNav,  href: AGENCIAS_HREF_BY_LOCALE[locale] || '/agencias' },
     { label: t.common.nav.blog,     id: 'blog'      },
   ];
 
@@ -33,7 +36,7 @@ const Header = ({ isOpen, setIsOpen }) => {
   }, []);
 
   const handleNavClick = (e, targetId) => {
-    if (location.pathname === '/') {
+    if (location.pathname === localeHomePath) {
       e.preventDefault();
       vibrate();
       setIsOpen(false);
@@ -70,7 +73,7 @@ const Header = ({ isOpen, setIsOpen }) => {
         <nav className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link
-            to="/"
+            to={localeHomePath}
             onClick={(e) => handleNavClick(e, 'hero')}
             className="font-bold text-xl md:text-2xl text-[#2C3340] flex items-center gap-2 cursor-pointer"
           >
@@ -115,7 +118,7 @@ const Header = ({ isOpen, setIsOpen }) => {
             {navLinks.map((link, index) => (
               <Link
                 key={link.id ?? link.href}
-                to={link.href ?? '/'}
+                to={link.href ?? localeHomePath}
                 state={link.id ? { scrollTo: link.id } : undefined}
                 onClick={link.href
                   ? () => { vibrate(); setIsOpen(false); }
@@ -142,7 +145,7 @@ const Header = ({ isOpen, setIsOpen }) => {
 
             {/* CTA Button */}
             <Link
-              to="/"
+              to={localeHomePath}
               state={{ scrollTo: 'contacto' }}
               onClick={(e) => handleNavClick(e, 'contacto')}
             >
@@ -194,7 +197,7 @@ const Header = ({ isOpen, setIsOpen }) => {
                 {navLinks.map((link, index) => (
                   <Link
                     key={link.id ?? link.href}
-                    to={link.href ?? '/'}
+                    to={link.href ?? localeHomePath}
                     state={link.id ? { scrollTo: link.id } : undefined}
                     onClick={link.href
                       ? () => { vibrate(); setIsOpen(false); }
@@ -222,7 +225,7 @@ const Header = ({ isOpen, setIsOpen }) => {
                 </motion.div>
 
                 <Link
-                  to="/"
+                  to={localeHomePath}
                   state={{ scrollTo: 'contacto' }}
                   onClick={(e) => handleNavClick(e, 'contacto')}
                   className="block mt-4"

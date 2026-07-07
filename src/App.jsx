@@ -21,6 +21,7 @@ const Contact = lazy(() => import('./features/contact/Contact'))
 const SkillsGrid = lazy(() => import('./components/SkillsGrid'))
 const AgenciasPage = lazy(() => import('./pages/AgenciasPage'))
 const AgenciesPageEN = lazy(() => import('./pages/AgenciesPageEN'))
+const AgenciasPagePT = lazy(() => import('./pages/AgenciasPagePT'))
 
 const AnimatedSection = ({ children, id }) => (
   <motion.div
@@ -70,7 +71,11 @@ const HomeSections = () => (
 
 const LocaleLayout = () => {
   const location = useLocation();
-  const locale = location.pathname.startsWith('/en') ? 'en' : 'es';
+  const locale = location.pathname.startsWith('/pt')
+    ? 'pt'
+    : location.pathname.startsWith('/en')
+      ? 'en'
+      : 'es';
 
   return (
     <LocaleProvider locale={locale}>
@@ -102,6 +107,16 @@ function App() {
                 <Route index element={<HomeSections />} />
                 <Route path="proyecto/:id" element={<ProjectDetail />} />
                 <Route path="agencies" element={<AgenciesPageEN />} />
+                <Route path="blog" element={<BlogLayout />}>
+                  <Route index element={<BlogIndex />} />
+                  <Route path=":slug" element={<BlogPostDetail />} />
+                </Route>
+              </Route>
+
+              <Route path="/pt" element={<MainLayout />}>
+                <Route index element={<HomeSections />} />
+                <Route path="proyecto/:id" element={<ProjectDetail />} />
+                <Route path="agencias" element={<AgenciasPagePT />} />
                 <Route path="blog" element={<BlogLayout />}>
                   <Route index element={<BlogIndex />} />
                   <Route path=":slug" element={<BlogPostDetail />} />

@@ -2,14 +2,19 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { featuredProjects } from '../data/projects';
+import { featuredProjects as projectsEs } from '../data/projects.es';
+import { featuredProjects as projectsEn } from '../data/projects.en';
+import { featuredProjects as projectsPt } from '../data/projects.pt';
 import { fadeInUp, staggerContainer } from '../config/motionConfig';
 import { useLocale } from '../hooks/useLocale';
+
+const PROJECTS_BY_LOCALE = { es: projectsEs, en: projectsEn, pt: projectsPt };
 
 const ProjectDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { t } = useLocale();
+    const { t, locale } = useLocale();
+    const featuredProjects = PROJECTS_BY_LOCALE[locale] || projectsEs;
 
     const project = featuredProjects.find((p) => p.id === id);
 

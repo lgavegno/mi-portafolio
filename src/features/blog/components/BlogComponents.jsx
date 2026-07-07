@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { FiCalendar, FiClock, FiArrowRight } from 'react-icons/fi';
 import { useLocale } from '../../../hooks/useLocale';
 
+const BLOG_INDEX_PATH_BY_LOCALE = { es: '/blog', en: '/en/blog', pt: '/pt/blog' };
+
 export const CategoryFilter = ({ categories, selectedCategory, onSelectCategory }) => {
     return (
         <div className="flex items-center gap-4 mb-12 overflow-x-auto pb-4 custom-scrollbar">
@@ -23,11 +25,12 @@ export const CategoryFilter = ({ categories, selectedCategory, onSelectCategory 
 };
 
 export const FeaturedPost = ({ post }) => {
-    const { t } = useLocale();
+    const { t, locale } = useLocale();
+    const blogIndexPath = BLOG_INDEX_PATH_BY_LOCALE[locale] || '/blog';
     if (!post) return null;
     return (
         <div className="lg:col-span-8 group cursor-pointer">
-            <Link to={`/blog/${post.slug}`}>
+            <Link to={`${blogIndexPath}/${post.slug}`}>
                 <div className="relative overflow-hidden rounded-2xl aspect-video lg:aspect-[16/9] mb-6">
                     <img
                         alt={post.title}
@@ -70,16 +73,17 @@ export const FeaturedPost = ({ post }) => {
 };
 
 export const Sidebar = () => {
-    const { t } = useLocale();
+    const { t, locale } = useLocale();
+    const localeHomePath = locale === 'es' ? '' : `/${locale}`;
     return (
         <aside className="lg:col-span-4 space-y-12">
             <div className="p-8 rounded-2xl bg-[#EEE0C9] border border-[#ADC4CE]/30">
-                <h3 className="text-xl font-bold mb-4">{t.blog.sidebar.title}</h3>
+                <h3 className="text-xl font-bold mb-4 text-[#2C3340]">{t.blog.sidebar.title}</h3>
                 <p className="text-slate-600 text-sm mb-6">
                     {t.blog.sidebar.description}
                 </p>
                 <a
-                    href="/#contacto"
+                    href={`${localeHomePath}/#contacto`}
                     className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold py-2 rounded-lg transition-colors"
                 >
                     {t.blog.sidebar.cta}
@@ -91,28 +95,15 @@ export const Sidebar = () => {
                     {t.blog.sidebar.mostRead}
                 </h3>
                 <div className="space-y-6">
-                    {/* Dummy data for now as per template */}
-                    <div className="flex gap-4 group cursor-pointer">
-                        <span className="text-3xl font-bold text-[#ADC4CE]">01</span>
-                        <div>
-                            <h4 className="font-bold group-hover:text-primary transition-colors line-clamp-2">Optimización de queries SQL en entornos productivos</h4>
-                            <span className="text-xs text-slate-500 uppercase">Performance</span>
+                    {t.blog.sidebar.mostReadItems.map((item, index) => (
+                        <div key={item.title} className="flex gap-4 group cursor-pointer">
+                            <span className="text-3xl font-bold text-[#ADC4CE]">{String(index + 1).padStart(2, '0')}</span>
+                            <div>
+                                <h4 className="font-bold group-hover:text-primary transition-colors line-clamp-2">{item.title}</h4>
+                                <span className="text-xs text-slate-500 uppercase">{item.category}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div className="flex gap-4 group cursor-pointer">
-                        <span className="text-3xl font-bold text-[#ADC4CE]">02</span>
-                        <div>
-                            <h4 className="font-bold group-hover:text-primary transition-colors line-clamp-2">Migrando mi blog a Next.js y Tailwind CSS</h4>
-                            <span className="text-xs text-slate-500 uppercase">Frontend</span>
-                        </div>
-                    </div>
-                    <div className="flex gap-4 group cursor-pointer">
-                        <span className="text-3xl font-bold text-[#ADC4CE]">03</span>
-                        <div>
-                            <h4 className="font-bold group-hover:text-primary transition-colors line-clamp-2">Guía definitiva de Airflow 2.0</h4>
-                            <span className="text-xs text-slate-500 uppercase">Data Engineering</span>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         </aside>
@@ -120,17 +111,18 @@ export const Sidebar = () => {
 };
 
 export const PostGrid = ({ posts }) => {
-    const { t } = useLocale();
+    const { t, locale } = useLocale();
+    const blogIndexPath = BLOG_INDEX_PATH_BY_LOCALE[locale] || '/blog';
     return (
         <section className="mb-12">
             <div className="flex justify-between items-center mb-8">
-                <h2 className="text-2xl lg:text-3xl font-bold">{t.blog.postGrid.heading}</h2>
+                <h2 className="text-2xl lg:text-3xl font-bold text-[#2C3340]">{t.blog.postGrid.heading}</h2>
                 <div className="h-[1px] flex-grow mx-8 bg-slate-200"></div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {posts.map((post) => (
                     <article key={post.id} className="flex flex-col h-full group">
-                        <Link to={`/blog/${post.slug}`} className="flex flex-col h-full">
+                        <Link to={`${blogIndexPath}/${post.slug}`} className="flex flex-col h-full">
                             <div className="relative aspect-[16/10] rounded-xl overflow-hidden mb-4">
                                 <img
                                     alt={post.title}
@@ -149,7 +141,7 @@ export const PostGrid = ({ posts }) => {
                                     <span>•</span>
                                     <span>{post.readTime} {t.blog.minRead}</span>
                                 </div>
-                                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors leading-tight">
+                                <h3 className="text-xl font-bold mb-3 text-[#2C3340] group-hover:text-[#7A9EAF] transition-colors leading-tight">
                                     {post.title}
                                 </h3>
                                 <p className="text-slate-600 text-lg line-clamp-3 mb-4">

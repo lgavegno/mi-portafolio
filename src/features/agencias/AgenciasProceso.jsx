@@ -4,7 +4,7 @@ import { staggerContainer, fadeInUp, viewportConfig } from '../../config/motionC
 
 export default function AgenciasProceso() {
   const { t, locale } = useLocale()
-  const s = locale === 'en' ? t.agencies.proceso : t.agencias.proceso
+  const s = locale === 'es' ? t.agencias.proceso : t.agencies.proceso
 
   return (
     <section className="pt-16 pb-24 px-4 sm:px-6 lg:px-8 bg-[#96B6C5]">

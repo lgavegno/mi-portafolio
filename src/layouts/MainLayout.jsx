@@ -30,7 +30,7 @@ const MainLayout = () => {
           element.scrollIntoView({ behavior: 'smooth' });
         }, 100);
       }
-    } else if (location.pathname === '/') {
+    } else {
       window.scrollTo(0, 0);
     }
   }, [location]);

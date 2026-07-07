@@ -14,6 +14,11 @@ export default {
     description: 'Escribime y te aviso cuando publique contenido nuevo.',
     cta: 'Contactarme →',
     mostRead: 'Lo más leído',
+    mostReadItems: [
+      { title: 'Optimización de queries SQL en entornos productivos', category: 'Performance' },
+      { title: 'Migrando mi blog a Next.js y Tailwind CSS', category: 'Frontend' },
+      { title: 'Guía definitiva de Airflow 2.0', category: 'Data Engineering' },
+    ],
   },
   // PostGrid
   postGrid: {
@@ -43,7 +48,7 @@ export default {
     latestArticles: 'Últimos artículos',
     seeAll: 'Ver todos',
     seeAllArticles: 'Ver todos los artículos',
-    heading: 'Compartiendo conocimiento',
-    subheading: 'Artículos técnicos sobre desarrollo, arquitectura y optimización de sistemas.',
+    heading: 'Problemas reales, no ejercicios inventados',
+    subheading: 'Cada artículo nace de un desafío que enfrenté trabajando con clientes reales — cómo lo resolví, qué funcionó y qué no.',
   },
 };

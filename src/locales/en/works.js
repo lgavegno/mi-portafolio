@@ -18,4 +18,9 @@ export default {
   },
   techStackSection: 'Tech Stack',
   techStackBadge: 'Technologies',
+  status: {
+    'in-progress': 'In progress',
+    completed: 'Completed',
+    planning: 'Planning',
+  },
 };

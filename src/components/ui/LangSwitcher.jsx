@@ -1,37 +1,75 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
-// Segmentos de ruta que difieren entre ES y EN
-const SEGMENT_ES_TO_EN = { agencias: 'agencies' };
-const SEGMENT_EN_TO_ES = { agencies: 'agencias' };
+const LOCALE_PREFIX = {
+  es: '',
+  en: '/en',
+  pt: '/pt',
+};
 
-const translateSegments = (pathname, map) =>
-  pathname.split('/').map(seg => map[seg] ?? seg).join('/');
+const LOCALIZED_SEGMENTS = {
+  agencias: {
+    es: 'agencias',
+    en: 'agencies',
+    pt: 'agencias',
+  },
+};
+
+const LOCALES = [
+  { id: 'es', label: '🇪🇸', title: 'Español', ariaLabel: 'Cambiar a Español' },
+  { id: 'en', label: '🇺🇸', title: 'English', ariaLabel: 'Switch to English' },
+  { id: 'pt', label: '🇧🇷', title: 'Português', ariaLabel: 'Mudar para Português' },
+];
+
+const getLocaleFromPathname = (pathname) => {
+  if (pathname === '/en' || pathname.startsWith('/en/')) return 'en';
+  if (pathname === '/pt' || pathname.startsWith('/pt/')) return 'pt';
+  return 'es';
+};
+
+const stripLocalePrefix = (pathname, locale) => {
+  const prefix = LOCALE_PREFIX[locale];
+  if (!prefix) return pathname;
+
+  const stripped = pathname.slice(prefix.length);
+  return stripped === '' ? '/' : stripped;
+};
+
+const translateSegments = (pathname, sourceLocale, targetLocale) =>
+  pathname
+    .split('/')
+    .map((segment) => {
+      const segmentGroup = Object.values(LOCALIZED_SEGMENTS).find(
+        (localized) => localized[sourceLocale] === segment
+      );
+
+      return segmentGroup?.[targetLocale] ?? segment;
+    })
+    .join('/');
+
+const buildLocalizedPath = (pathname, sourceLocale, targetLocale) => {
+  const unprefixedPath = stripLocalePrefix(pathname, sourceLocale);
+  const translatedPath = translateSegments(unprefixedPath, sourceLocale, targetLocale);
+  const prefix = LOCALE_PREFIX[targetLocale];
+
+  if (translatedPath === '/') {
+    return prefix || '/';
+  }
+
+  return `${prefix}${translatedPath}`;
+};
 
 const LangSwitcher = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const isEN = location.pathname.startsWith('/en');
+  const currentLocale = getLocaleFromPathname(location.pathname);
 
   const handleNavigate = (targetLocale) => {
-    let newPathname = location.pathname;
-
-    if (targetLocale === 'en') {
-      // Navegar a EN: prepend /en si no existe, luego traducir segmentos
-      if (!newPathname.startsWith('/en')) {
-        newPathname = '/en' + newPathname;
-      }
-      newPathname = translateSegments(newPathname, SEGMENT_ES_TO_EN);
-    } else {
-      // Navegar a ES: strip /en si existe, luego traducir segmentos
-      if (newPathname.startsWith('/en')) {
-        newPathname = newPathname.slice(3);
-        if (!newPathname.startsWith('/')) {
-          newPathname = '/' + newPathname;
-        }
-      }
-      newPathname = translateSegments(newPathname, SEGMENT_EN_TO_ES);
+    if (targetLocale === currentLocale) {
+      return;
     }
+
+    const newPathname = buildLocalizedPath(location.pathname, currentLocale, targetLocale);
 
     window.scrollTo(0, 0);
     navigate(newPathname + location.search + location.hash);
@@ -39,30 +77,25 @@ const LangSwitcher = () => {
 
   return (
     <div className="flex items-center gap-1">
-      <button
-        onClick={() => handleNavigate('es')}
-        className={`px-2 py-1.5 rounded-lg text-lg transition-all duration-200 ${
-          !isEN
-            ? 'bg-[#2C3340] shadow-sm scale-105'
-            : 'opacity-50 hover:opacity-80 hover:bg-[#2C3340]/10'
-        }`}
-        title="Español"
-        aria-label="Cambiar a Español"
-      >
-        🇪🇸
-      </button>
-      <button
-        onClick={() => handleNavigate('en')}
-        className={`px-2 py-1.5 rounded-lg text-lg transition-all duration-200 ${
-          isEN
-            ? 'bg-[#2C3340] shadow-sm scale-105'
-            : 'opacity-50 hover:opacity-80 hover:bg-[#2C3340]/10'
-        }`}
-        title="English"
-        aria-label="Switch to English"
-      >
-        🇺🇸
-      </button>
+      {LOCALES.map((locale) => {
+        const isActive = locale.id === currentLocale;
+
+        return (
+          <button
+            key={locale.id}
+            onClick={() => handleNavigate(locale.id)}
+            className={`px-2 py-1.5 rounded-lg text-lg transition-all duration-200 ${
+              isActive
+                ? 'bg-[#2C3340] shadow-sm scale-105'
+                : 'opacity-50 hover:opacity-80 hover:bg-[#2C3340]/10'
+            }`}
+            title={locale.title}
+            aria-label={locale.ariaLabel}
+          >
+            {locale.label}
+          </button>
+        );
+      })}
     </div>
   );
 };

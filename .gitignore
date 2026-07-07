@@ -32,3 +32,5 @@ coverage
 *.sln
 *.sw?
 lh-desktop.json
+.vercel
+.env*

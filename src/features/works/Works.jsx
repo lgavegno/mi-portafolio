@@ -4,12 +4,15 @@ import { FiExternalLink, FiGithub, FiFolder } from 'react-icons/fi';
 import { fadeInUp, staggerContainer } from '../../config/motionConfig';
 import { allProjects as projectsEN } from '../../data/projects.en';
 import { allProjects as projectsES } from '../../data/projects.es';
+import { allProjects as projectsPT } from '../../data/projects.pt';
 import { useLocale } from '../../hooks/useLocale';
 import ProjectCard from '../../components/ui/ProjectCard';
 
+const PROJECTS_BY_LOCALE = { es: projectsES, en: projectsEN, pt: projectsPT };
+
 const Works = () => {
   const { t, locale } = useLocale();
-  const projects = locale === 'es' ? projectsES : projectsEN;
+  const projects = PROJECTS_BY_LOCALE[locale] || projectsES;
 
   return (
     <section className="w-full relative overflow-hidden bg-obsidian py-24">

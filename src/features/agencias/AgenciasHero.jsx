@@ -12,7 +12,7 @@ const MAILTO_URL = `mailto:${CONTACT_EMAIL}?subject=${SUBJECT}`
 
 export default function AgenciasHero() {
   const { t, locale } = useLocale()
-  const h = locale === 'en' ? t.agencies.hero : t.agencias.hero
+  const h = locale === 'es' ? t.agencias.hero : t.agencies.hero
 
   const handleEmailClick = () => {
     trackEvent('agency_cta_email', { position: 'hero' })

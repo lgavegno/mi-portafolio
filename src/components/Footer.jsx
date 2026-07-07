@@ -17,20 +17,21 @@ const Footer = () => {
   const vibrateLight = useVibrate(5)
   const location = useLocation()
   const navigate = useNavigate()
-  const { t } = useLocale()
+  const { t, locale } = useLocale()
+  const localeHomePath = locale === 'es' ? '/' : `/${locale}`
 
   const handleLinkClick = (e, link) => {
     vibrateLight()
 
     if (link.label === 'Email') {
       e.preventDefault()
-      if (location.pathname === '/') {
+      if (location.pathname === localeHomePath) {
         const element = document.getElementById('contacto')
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' })
         }
       } else {
-        navigate('/', { state: { scrollTo: 'contacto' } })
+        navigate(localeHomePath, { state: { scrollTo: 'contacto' } })
       }
     }
   }

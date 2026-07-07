@@ -3,14 +3,21 @@ import { useParams, Link } from 'react-router-dom';
 import { FiArrowLeft, FiClock, FiCalendar, FiHeart } from 'react-icons/fi';
 import { MdLightbulb } from 'react-icons/md';
 import DOMPurify from 'dompurify';
-import { blogPosts } from '../features/blog/data/blogData.es';
+import { blogPosts as blogPostsEs } from '../features/blog/data/blogData.es';
+import { blogPosts as blogPostsEn } from '../features/blog/data/blogData.en';
+import { blogPosts as blogPostsPt } from '../features/blog/data/blogData.pt';
 import ShareButton from '../components/ui/ShareButton';
 import BlogMetaTags from '../components/BlogMetaTags';
 import { useLocale } from '../hooks/useLocale';
 
+const POSTS_BY_LOCALE = { es: blogPostsEs, en: blogPostsEn, pt: blogPostsPt };
+const BLOG_INDEX_PATH_BY_LOCALE = { es: '/blog', en: '/en/blog', pt: '/pt/blog' };
+
 const BlogPostDetail = () => {
     const { slug } = useParams();
-    const { t } = useLocale();
+    const { t, locale } = useLocale();
+    const blogPosts = POSTS_BY_LOCALE[locale] || blogPostsEs;
+    const blogIndexPath = BLOG_INDEX_PATH_BY_LOCALE[locale] || '/blog';
     const post = blogPosts.find(p => p.slug === slug);
     const relatedPosts = blogPosts.filter(p => p.slug !== slug).slice(0, 3);
 
@@ -28,7 +35,7 @@ const BlogPostDetail = () => {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center text-[#2C3340]">
                 <h2 className="text-2xl font-bold mb-4">{t.blog.detail.notFound}</h2>
-                <Link to="/blog" className="text-primary hover:text-blue-400 flex items-center gap-2">
+                <Link to={blogIndexPath} className="text-primary hover:text-blue-400 flex items-center gap-2">
                     <FiArrowLeft /> {t.blog.detail.backToBlog}
                 </Link>
             </div>
@@ -39,10 +46,10 @@ const BlogPostDetail = () => {
     const sanitizedContent = DOMPurify.sanitize(post.content, purifyConfig);
 
     const categoryColors = {
-        'Data Engineering': 'bg-purple-500/20 text-purple-300 border-purple-400/30',
-        'Backend': 'bg-primary/20 text-blue-300 border-blue-400/30',
-        'Performance': 'bg-amber-500/20 text-amber-300 border-amber-400/30',
-        'Frontend': 'bg-green-400/20 text-green-300 border-green-400/30',
+        'Data Engineering': 'bg-purple-100 text-purple-700 border-purple-300',
+        'Backend': 'bg-blue-100 text-blue-700 border-blue-300',
+        'Performance': 'bg-amber-100 text-amber-700 border-amber-300',
+        'Frontend': 'bg-green-100 text-green-700 border-green-300',
     };
 
     const categoryColor = categoryColors[post.category] || categoryColors['Frontend'];
@@ -60,7 +67,7 @@ const BlogPostDetail = () => {
             {/* Header / Hero del Post */}
             <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
                 <Link
-                    to="/blog"
+                    to={blogIndexPath}
                     className="inline-flex items-center gap-2 text-slate-500 hover:text-primary transition-colors mb-8 group font-medium"
                 >
                     <FiArrowLeft className="group-hover:-translate-x-1 transition-transform" />
@@ -117,7 +124,7 @@ const BlogPostDetail = () => {
                         </button>
                         <div className="scale-75 origin-top">
                             <ShareButton
-                                url={`https://ongevag.com/blog/${post.slug}`}
+                                url={`https://ongevag.com${blogIndexPath}/${post.slug}`}
                                 title={post.title}
                                 description={post.excerpt}
                             />
@@ -179,7 +186,7 @@ const BlogPostDetail = () => {
                             {t.blog.detail.sharePrompt}
                         </span>
                         <ShareButton
-                            url={`https://www.ongevag.com/blog/${post.slug}`}
+                            url={`https://www.ongevag.com${blogIndexPath}/${post.slug}`}
                             title={post.title}
                             description={post.excerpt}
                         />
@@ -193,7 +200,7 @@ const BlogPostDetail = () => {
                         <h3 className="font-bold text-lg mb-2">{t.blog.detail.contactTitle}</h3>
                         <p className="text-slate-400 text-sm mb-4">{t.blog.detail.contactDescription}</p>
                         <a
-                            href="/#contacto"
+                            href={`${locale === 'es' ? '' : `/${locale}`}/#contacto`}
                             className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-blue-600 transition-colors font-bold py-2 rounded-lg text-sm text-white"
                         >
                             {t.blog.detail.contactCta}
@@ -207,7 +214,7 @@ const BlogPostDetail = () => {
                         </h3>
                         <div className="space-y-6">
                             {relatedPosts.map(p => (
-                                <Link key={p.id} to={`/blog/${p.slug}`} className="group flex gap-4">
+                                <Link key={p.id} to={`${blogIndexPath}/${p.slug}`} className="group flex gap-4">
                                     <div className="w-20 h-20 min-h-[80px] rounded-lg bg-slate-200 overflow-hidden flex-shrink-0">
                                         {p.image ? (
                                             <img
@@ -225,7 +232,7 @@ const BlogPostDetail = () => {
                                         <h4 className="text-sm font-bold text-slate-900 group-hover:text-primary transition-colors line-clamp-2">
                                             {p.title}
                                         </h4>
-                                        <span className="text-xs text-slate-500 mt-1 block">{p.readTime} min read</span>
+                                        <span className="text-xs text-slate-500 mt-1 block">{p.readTime} {t.blog.minRead}</span>
                                     </div>
                                 </Link>
                             ))}
