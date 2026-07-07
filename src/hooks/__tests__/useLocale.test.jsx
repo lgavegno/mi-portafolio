@@ -31,6 +31,15 @@ describe('useLocale', () => {
     expect(result.current.t.contact).toBeDefined()
   })
 
+  it('resolves locale "pt" and returns t object', () => {
+    const { result } = renderHook(() => useLocale(), { wrapper: wrapper('pt') })
+    expect(result.current.locale).toBe('pt')
+    expect(result.current.t).toBeDefined()
+    expect(result.current.t.common).toBeDefined()
+    expect(result.current.t.hero).toBeDefined()
+    expect(result.current.t.contact).toBeDefined()
+  })
+
   it('en and es t objects have different string values', () => {
     const { result: en } = renderHook(() => useLocale(), { wrapper: wrapper('en') })
     const { result: es } = renderHook(() => useLocale(), { wrapper: wrapper('es') })

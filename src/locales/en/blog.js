@@ -14,6 +14,11 @@ export default {
     description: 'Message me and I\'ll let you know when I publish new content.',
     cta: 'Contact me →',
     mostRead: 'Most Read',
+    mostReadItems: [
+      { title: 'Optimizing SQL queries in production environments', category: 'Performance' },
+      { title: 'Migrating my blog to Next.js and Tailwind CSS', category: 'Frontend' },
+      { title: 'The definitive guide to Airflow 2.0', category: 'Data Engineering' },
+    ],
   },
   // PostGrid
   postGrid: {

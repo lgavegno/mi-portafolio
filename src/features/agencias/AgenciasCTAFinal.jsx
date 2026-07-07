@@ -10,7 +10,7 @@ const MAILTO_URL = `mailto:${CONTACT_EMAIL}?subject=${SUBJECT}`
 
 export default function AgenciasCTAFinal() {
   const { t, locale } = useLocale()
-  const s = locale === 'en' ? t.agencies.ctaFinal : t.agencias.ctaFinal
+  const s = locale === 'es' ? t.agencias.ctaFinal : t.agencies.ctaFinal
 
   const handleClick = () => {
     trackEvent('agency_cta_email', { position: 'final' })

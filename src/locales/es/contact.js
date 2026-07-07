@@ -31,6 +31,6 @@ export default {
     successTitle: '¡Mensaje enviado con éxito!',
     successDescription: 'Te responderé lo antes posible.',
     errorDefault: 'Error al enviar el mensaje. Por favor, intenta de nuevo.',
-    responseTime: 'Tiempo de respuesta: < 24hs (Horario ART)',
+    responseTime: 'Tiempo de respuesta: < 24hs (Horario de Argentina)',
   },
 };

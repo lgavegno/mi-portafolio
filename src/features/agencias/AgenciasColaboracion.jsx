@@ -4,7 +4,7 @@ import { staggerContainer, fadeInUp, viewportConfig } from '../../config/motionC
 
 export default function AgenciasColaboracion() {
   const { t, locale } = useLocale()
-  const s = locale === 'en' ? t.agencies.colaboracion : t.agencias.colaboracion
+  const s = locale === 'es' ? t.agencias.colaboracion : t.agencies.colaboracion
 
   return (
     <section id="colaboracion" className="py-16 px-4 sm:px-6 lg:px-8 bg-[#F1F0E8]">
