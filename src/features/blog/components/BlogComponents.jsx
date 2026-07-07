@@ -78,7 +78,7 @@ export const Sidebar = () => {
     return (
         <aside className="lg:col-span-4 space-y-12">
             <div className="p-8 rounded-2xl bg-[#EEE0C9] border border-[#ADC4CE]/30">
-                <h3 className="text-xl font-bold mb-4">{t.blog.sidebar.title}</h3>
+                <h3 className="text-xl font-bold mb-4 text-[#2C3340]">{t.blog.sidebar.title}</h3>
                 <p className="text-slate-600 text-sm mb-6">
                     {t.blog.sidebar.description}
                 </p>
@@ -116,7 +116,7 @@ export const PostGrid = ({ posts }) => {
     return (
         <section className="mb-12">
             <div className="flex justify-between items-center mb-8">
-                <h2 className="text-2xl lg:text-3xl font-bold">{t.blog.postGrid.heading}</h2>
+                <h2 className="text-2xl lg:text-3xl font-bold text-[#2C3340]">{t.blog.postGrid.heading}</h2>
                 <div className="h-[1px] flex-grow mx-8 bg-slate-200"></div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -141,7 +141,7 @@ export const PostGrid = ({ posts }) => {
                                     <span>•</span>
                                     <span>{post.readTime} {t.blog.minRead}</span>
                                 </div>
-                                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors leading-tight">
+                                <h3 className="text-xl font-bold mb-3 text-[#2C3340] group-hover:text-[#7A9EAF] transition-colors leading-tight">
                                     {post.title}
                                 </h3>
                                 <p className="text-slate-600 text-lg line-clamp-3 mb-4">

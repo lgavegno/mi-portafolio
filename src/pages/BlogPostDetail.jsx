@@ -46,10 +46,10 @@ const BlogPostDetail = () => {
     const sanitizedContent = DOMPurify.sanitize(post.content, purifyConfig);
 
     const categoryColors = {
-        'Data Engineering': 'bg-purple-500/20 text-purple-300 border-purple-400/30',
-        'Backend': 'bg-primary/20 text-blue-300 border-blue-400/30',
-        'Performance': 'bg-amber-500/20 text-amber-300 border-amber-400/30',
-        'Frontend': 'bg-green-400/20 text-green-300 border-green-400/30',
+        'Data Engineering': 'bg-purple-100 text-purple-700 border-purple-300',
+        'Backend': 'bg-blue-100 text-blue-700 border-blue-300',
+        'Performance': 'bg-amber-100 text-amber-700 border-amber-300',
+        'Frontend': 'bg-green-100 text-green-700 border-green-300',
     };
 
     const categoryColor = categoryColors[post.category] || categoryColors['Frontend'];
