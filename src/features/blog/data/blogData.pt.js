@@ -1,8 +1,50 @@
-// TODO(leo): revisar traducción PT — generado por IA, no validado
 // src/features/blog/data/blogData.pt.js
 // Dados de posts do blog (Português)
 
 export const blogPosts = [
+  {
+    id: 'como-conectamos-excel-con-un-erp',
+    title: 'Como transformamos uma planilha de Excel em uma ferramenta conectada a um ERP',
+    excerpt: 'Como conectamos uma planilha de Excel ao sistema de gestão de uma empresa sem mudar o fluxo de trabalho da equipe de vendas — e os problemas técnicos que resolvemos no caminho.',
+    category: 'Automação',
+    readTime: 7,
+    date: '2026-07-07',
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80',
+    tags: ['Excel', 'ERP', 'VBA', 'Automação', 'API', 'Integrações'],
+    featured: false,
+    slug: 'como-conectamos-excel-con-un-erp',
+    content: `
+<h2>O problema: dois sistemas que não se comunicavam</h2>
+<p>Uma equipe de vendas trabalhava todos os dias com uma planilha de Excel para montar pedidos. Era a ferramenta que conheciam, a que sempre usaram e a que não queriam abandonar. O problema era que o estoque real e as informações oficiais de cada produto viviam em outro lugar: um sistema ERP separado, sem nenhuma conexão com essa planilha.</p>
+<p>Cada vendedor precisava lançar o pedido no Excel e, em paralelo, consultar manualmente o ERP para saber se o produto ainda tinha estoque disponível. Esse trabalho duplicado gerava perda de tempo, erros de lançamento e — o pior dos casos — pedidos confirmados com quantidades que já não existiam.</p>
+
+<h2>A restrição que definiu tudo: não mexer no fluxo de trabalho</h2>
+<p>A solução mais óbvia seria substituir a planilha por um aplicativo novo. Mas isso significava treinar uma equipe inteira em uma ferramenta desconhecida, com toda a resistência e o tempo de adoção que isso implica. A decisão foi a oposta: manter a planilha de Excel exatamente como a conheciam, mas conectá-la ao sistema de gestão por trás, de forma transparente.</p>
+
+<h2>A arquitetura da solução</h2>
+<p>Foi desenvolvida uma integração por meio de macros de VBA que consulta periodicamente as informações de cada produto no sistema externo e atualiza automaticamente o estoque disponível dentro da própria planilha. O vendedor continua vendo uma linha do Excel — só que agora essa linha tem dados em tempo real.</p>
+<p>O sistema externo impunha um limite de consultas por unidade de tempo, então a sincronização não podia simplesmente pedir todo o catálogo de uma vez. Foi desenhada uma estratégia de execução controlada — lotes espaçados no tempo — para atualizar o catálogo completo sem gerar bloqueios nem ultrapassar esse limite.</p>
+
+<h2>O desafio mais interessante: quantidades que mudam no meio do lançamento</h2>
+<p>Durante o lançamento de um pedido, o vendedor testa diferentes quantidades antes de confirmar. Se cada mudança de quantidade recalculasse o estoque disponível descontando sobre o último valor calculado, algumas correções sucessivas acabariam arrastrando erros acumulados — o estoque exibido deixava de refletir a realidade.</p>
+<p>A solução foi conceitualmente simples, mas fundamental: armazenar internamente uma cópia do estoque original obtido no momento da sincronização e sempre usar esse valor base — nunca o resultado de um cálculo anterior — para recalcular o disponível a cada mudança de quantidade. Zero erros acumulativos, não importa quantas vezes o vendedor ajustasse o pedido.</p>
+<p>A isso se somou uma atualização automática e periódica da sincronização, para minimizar o risco de trabalhar com informação desatualizada, sem que o usuário precisasse fazer nada manualmente.</p>
+
+<h2>Resultados</h2>
+<ul>
+  <li>Eliminação das consultas manuais ao sistema de gestão durante a venda.</li>
+  <li>Redução significativa de erros provocados por diferenças de estoque.</li>
+  <li>Maior velocidade na confecção de pedidos.</li>
+  <li>Zero curva de aprendizado: a equipe continuou usando a mesma planilha, agora com indicadores visuais de estoque e cálculos automáticos.</li>
+  <li>Integração transparente entre Excel e o sistema de gestão, sem substituir processos existentes.</li>
+</ul>
+
+<h2>O que levo desse projeto</h2>
+<p>As automações mais eficazes são as que respeitam o fluxo de trabalho do usuário em vez de obrigá-lo a aprender uma ferramenta nova. As limitações de desempenho ou de consumo de serviços externos precisam ser consideradas desde o desenho da integração, não como um remendo posterior. E quando há cálculos derivados de dados sincronizados, vale sempre manter um valor base imutável — isso evita erros acumulativos muito difíceis de detectar depois.</p>
+<p>Uma boa integração não só conecta sistemas: também melhora a confiabilidade da informação e reduz o trabalho operacional diário de quem a utiliza.</p>
+<p>Você tem um processo manual parecido — uma planilha, um sistema legado, um fluxo que "funciona mas não está conectado"? Vamos conversar sobre como automatizá-lo sem que sua equipe precise mudar a forma como trabalha.</p>
+`
+  },
   {
     id: 'google-sheets-backend-serverless',
     title: 'Como configurei o Google Sheets como backend serverless',
