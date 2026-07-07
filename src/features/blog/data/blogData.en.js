@@ -2,6 +2,50 @@
 // Blog posts data (English)
 
 export const blogPosts = [
+  // TODO(leo): revisar traducción
+  {
+    id: 'como-conectamos-excel-con-un-erp',
+    title: 'How We Turned an Excel Spreadsheet into a Tool Connected to an ERP',
+    excerpt: 'How we connected an Excel spreadsheet to a company\'s management system without changing the sales team\'s workflow — and the technical problems we solved along the way.',
+    category: 'Automation',
+    readTime: 7,
+    date: '2026-07-07',
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80',
+    tags: ['Excel', 'ERP', 'VBA', 'Automation', 'API', 'Integrations'],
+    featured: false,
+    slug: 'como-conectamos-excel-con-un-erp',
+    content: `
+<h2>The problem: two systems that didn't talk to each other</h2>
+<p>A sales team worked every day with an Excel spreadsheet to build orders. It was the tool they knew, the one they'd always used, and the one they didn't want to give up. The problem was that real stock levels and official product data lived somewhere else: a separate ERP system, with no connection to that spreadsheet.</p>
+<p>Every salesperson had to enter the order in Excel and, in parallel, manually check the ERP to see if the product still had stock available. That double work caused wasted time, data-entry errors and — the worst case — confirmed orders for quantities that no longer existed.</p>
+
+<h2>The constraint that shaped everything: don't touch the workflow</h2>
+<p>The obvious solution would have been to replace the spreadsheet with a new application. But that meant training an entire team on an unfamiliar tool, with all the resistance and adoption time that implies. The decision went the other way: keep the Excel spreadsheet exactly as they knew it, but connect it to the management system behind the scenes, transparently.</p>
+
+<h2>The architecture of the solution</h2>
+<p>An integration was built using VBA macros that periodically query each product's information from the external system and automatically update the available stock inside the spreadsheet itself. The salesperson still sees an Excel row — it just now holds real-time data.</p>
+<p>The external system enforced a rate limit on queries, so the sync couldn't simply request the entire catalog at once. A controlled execution strategy — batches spaced over time — was designed to update the full catalog without triggering blocks or exceeding that limit.</p>
+
+<h2>The most interesting challenge: quantities changing mid-order</h2>
+<p>While building an order, the salesperson tries out different quantities before confirming. If every quantity change recalculated available stock by subtracting from the last computed value, a couple of successive corrections would end up dragging accumulated errors — the displayed stock no longer reflected reality.</p>
+<p>The fix was conceptually simple but key: internally store a copy of the original stock obtained at sync time, and always use that base value — never the result of a previous calculation — to recompute availability on every quantity change. Zero accumulated errors, no matter how many times the salesperson adjusted the order.</p>
+<p>On top of that, an automatic, periodic sync refresh was added to minimize the risk of working with stale information, with no manual action required from the user.</p>
+
+<h2>Results</h2>
+<ul>
+  <li>Eliminated manual lookups in the management system during the sale.</li>
+  <li>Significant reduction in errors caused by stock discrepancies.</li>
+  <li>Faster order creation.</li>
+  <li>Zero learning curve: the team kept using the same spreadsheet, now with visual stock indicators and automatic calculations.</li>
+  <li>Transparent integration between Excel and the management system, with no need to replace existing processes.</li>
+</ul>
+
+<h2>What I took away from this project</h2>
+<p>The most effective automations are the ones that respect the user's existing workflow instead of forcing them to learn a new tool. Performance limits or external service quotas need to be considered from the integration's design phase, not patched in afterward. And whenever there are calculations derived from synced data, it's worth keeping an immutable base value — it prevents accumulated errors that are very hard to catch later.</p>
+<p>A good integration doesn't just connect systems: it also improves the reliability of information and reduces the day-to-day operational load for the team using it.</p>
+<p>Do you have a similar manual process — a spreadsheet, a legacy system, a workflow that "works but isn't connected"? Let's talk about how to automate it without your team having to change the way they work.</p>
+`
+  },
   {
     id: 'google-sheets-backend-serverless',
     title: 'How I Set Up Google Sheets as a Serverless Backend',

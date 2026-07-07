@@ -48,7 +48,7 @@ export default {
     latestArticles: 'Latest Articles',
     seeAll: 'See All',
     seeAllArticles: 'See All Articles',
-    heading: 'Sharing Knowledge',
-    subheading: 'Technical articles on development, architecture and systems optimization.',
+    heading: 'Real problems, not made-up exercises',
+    subheading: 'Every article comes from a real challenge I faced working with real clients — how I solved it, what worked, and what didn\'t.',
   },
 };
