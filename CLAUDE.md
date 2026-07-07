@@ -1,6 +1,6 @@
 # CLAUDE.md — Portfolio ONGEVAG
 **Current Phase:** fix/visual-contrast-polish — ✅ Done → pendiente merge a main como v3.2.1
-**Last Updated:** 2026-06-17
+**Last Updated:** 2026-07-07
 
 ## Propósito
 Portfolio SPA React 19 + Vite (feature-based DDD Light) para captar clientes PyMEs.
@@ -63,7 +63,7 @@ VITE_EMAILJS_PUBLIC_KEY=...    # Public key (required)
 | FEATURE-06_PARTNERS_AGENCIAS | ✅ Done | `docs/specs/FEATURE-06-PARTNERS_AGENCIAS/` | spec.md · plan.md · tasks.md |
 | EPIC-07_REBRAND_2026 | ✅ Done | `docs/specs/FEATURE-07-REBRAND_2026/` | spec.md · ADR-012 |
 | FEATURE-08_SECTION_DIVIDERS | 🔄 In Progress | `docs/specs/FEATURE-08-SECTION-DIVIDERS/` | spec.md · plan.md · tasks.md |
-| FEATURE-10_PT_LOCALE | 📝 Draft | `docs/specs/FEATURE-10_PT_LOCALE/` | spec.md · plan.md · tasks.md |
+| FEATURE-10_PT_LOCALE | ✅ Done | `docs/specs/FEATURE-10_PT_LOCALE/` | spec.md · plan.md · tasks.md |
 
 ## ADRs Documented
 ADR-001 (Vite) | ADR-002 (JS no TS) | ADR-003 (EmailJS) | ADR-004 (Feature-based) | ADR-005 (Vitest) | ADR-006 (URL i18n) | ADR-007 (ES default) | ADR-008 (og:image PNG) | ADR-009 (JSON-LD global) | ADR-010 (No i18n lib) | ADR-011 (URL source of truth) | ADR-012 (Rebrand Visual 2026)
