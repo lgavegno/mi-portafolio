@@ -49,7 +49,7 @@ export default {
     latestArticles: 'Últimos artigos',
     seeAll: 'Ver todos',
     seeAllArticles: 'Ver todos os artigos',
-    heading: 'Compartilhando conhecimento',
-    subheading: 'Artigos técnicos sobre desenvolvimento, arquitetura e otimização de sistemas.',
+    heading: 'Problemas reais, não exercícios inventados',
+    subheading: 'Cada artigo nasce de um desafio real que enfrentei trabalhando com clientes reais — como resolvi, o que funcionou e o que não funcionou.',
   },
 };
