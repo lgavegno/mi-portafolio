@@ -58,7 +58,7 @@ Google Sheets    Gmail
   // Notificar por email
   MailApp.sendEmail({
     to: 'tu@email.com',
-    subject: 'Nueva cotización — ' + data.name,
+    subject: 'Novo orçamento — ' + data.name,
     body: formatEmail(data)
   });
 
@@ -89,7 +89,7 @@ Google Sheets    Gmail
 <p>O sistema está em produção há várias semanas sem incidentes. O custo de infraestrutura é <strong>$0/mês</strong>, rodando no tier gratuito do Google. O tempo de resposta do webhook fica entre 800ms e 2 segundos.</p>
 <p>O aprendizado mais valioso foi entender que nem sempre é preciso uma arquitetura complexa. Às vezes, a solução mais simples e barata é a correta.</p>
 
-<h2>Quando usar este enfoque e quando não usar</h2>
+<h2>Quando usar esta abordagem e quando não usar</h2>
 <p>Esse padrão funciona bem para formulários de contato, geradores de orçamento, registro de leads ou qualquer caso de baixo volume que não precise de autenticação nem relações complexas entre dados.</p>
 <p>Não use se você precisa de queries complexas, transações, autenticação de usuários ou mais de 1000 operações diárias. Nesses casos, um backend real com PostgreSQL é a decisão certa.</p>
 `
@@ -331,7 +331,7 @@ Google Sheets    Gmail
   },
   {
     id: 'guia-estadistica-data-analyst',
-    title: 'Guia de Estatística para Data Analyst',
+    title: 'Guia de Estatística para Analista de Dados',
     excerpt: '45 conceitos com exemplos reais — tudo o que usei na análise do FitNess App',
     category: 'Data Science',
     readTime: 15,

@@ -10,7 +10,7 @@ export const agencies = {
   paraQuien: {
     titulo: "Sua agência vende sites, mas não os produz?",
     cuerpo:
-      "Se você tem clientes que pedem presença digital, mas sua equipe está focada em estratégia, branding ou marketing — podemos trabalhar juntos.\n\nNão compito com você. Não entro em contato com seus clientes. Não tenho agenda própria. Sou o braço técnico que executa o que você desenhou ou vendeu.",
+      "Se você tem clientes que pedem presença digital, mas sua equipe está focada em estratégia, branding ou marketing — podemos trabalhar juntos.\n\nNão sou seu concorrente. Não entro em contato com seus clientes. Não tenho agenda própria. Sou o braço técnico que executa o que você desenhou ou vendeu.",
     perfiles: [
       "Agências de marketing digital que vendem design e desenvolvimento como pacote",
       "Estúdios de branding que precisam de implementação técnica de seus designs",

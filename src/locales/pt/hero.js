@@ -11,6 +11,6 @@ export default {
     projectsCount: '4+',
     projectsLabel: 'Projetos',
     focusLabel: 'PME',
-    focus: 'Foco',
+    focus: 'Foco em PMEs',
   },
 };
