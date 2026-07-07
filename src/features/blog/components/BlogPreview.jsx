@@ -20,7 +20,9 @@ const BlogPreview = ({
   className = ''
 }) => {
   const { locale, t } = useLocale();
-  const posts = (PREVIEW_POSTS_BY_LOCALE[locale] || blogPostsEs).slice(0, limit);
+  const posts = [...(PREVIEW_POSTS_BY_LOCALE[locale] || blogPostsEs)]
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, limit);
   const blogIndexPath = BLOG_INDEX_PATH_BY_LOCALE[locale] || '/blog';
 
   if (variant === 'compact') {

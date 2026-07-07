@@ -14,7 +14,9 @@ const BlogIndex = () => {
     const { locale, t } = useLocale();
 
     // 2-3. locale-conditional data (variables comunes, no hooks)
-    const blogPosts = POSTS_BY_LOCALE[locale] || blogPostsEs;
+    const blogPosts = [...(POSTS_BY_LOCALE[locale] || blogPostsEs)].sort(
+        (a, b) => new Date(b.date) - new Date(a.date)
+    );
     const categories = CATEGORIES_BY_LOCALE[locale] || categoriesEs;
 
     // 4. useState — antes de cualquier early return
