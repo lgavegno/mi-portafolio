@@ -16,6 +16,7 @@ const BlogPostDetail = lazy(() => import('./pages/BlogPostDetail'))
 const ProjectDetail = lazy(() => import('./pages/ProjectDetail'))
 const Services = lazy(() => import('./features/services/Services'))
 const Works = lazy(() => import('./features/works/Works'))
+const TechExperience = lazy(() => import('./features/experience/TechExperience'))
 const BlogPreview = lazy(() => import('./features/blog/components/BlogPreview'))
 const Contact = lazy(() => import('./features/contact/Contact'))
 const SkillsGrid = lazy(() => import('./components/SkillsGrid'))
@@ -55,6 +56,10 @@ const HomeSections = () => (
 
     <AnimatedSection id="proyectos">
       <Works />
+    </AnimatedSection>
+
+    <AnimatedSection id="experiencia-tecnica">
+      <TechExperience />
     </AnimatedSection>
 
     <AnimatedSection id="blog">
