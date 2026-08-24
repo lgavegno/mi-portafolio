@@ -47,7 +47,7 @@ Portfolio profesional que valida la capacidad técnica de Leandro Gavegno como d
 | **Blog Preview** | `/` (sección) | Preview de últimos 3 posts en home | ✅ Producción |
 | **Blog Index** | `/blog` | Listado completo de posts con filtrado por categoría, mobile optimizado | ✅ v2.4.0 |
 | **Detalle Post** | `/blog/:slug` | Vista completa con ShareButton mobile, código responsive, tablas con scroll | ✅ v2.4.0 |
-| **Contacto** | `/` (sección) | Formulario sin backend (EmailJS → lgavegno@gmail.com) | ✅ Producción |
+| **Contacto** | `/` (sección) | Formulario sin backend (EmailJS → [contacto vía formulario]) | ✅ Producción |
 | **Favicon** | `public/favicon.svg` | Ícono personalizado Ongevag en navegador | ✅ v2.4.0 |
 | **Social Sharing** | og:image | Meta tags para previews en redes sociales | ✅ v2.4.0 |
 
@@ -210,7 +210,7 @@ VITE_EMAILJS_PUBLIC_KEY=...        # API key pública EmailJS
 
 ## 13. Contacto & Escalación
 
-**Owner:** Leandro Gavegno (lgavegno@gmail.com)
+**Owner:** Leandro Gavegno
 **Brand:** Ongevag (Rafaela, Santa Fe, Argentina)
 **Repo:** https://github.com/lgavegno/mi-portafolio
 **Deployment:** Vercel (auto CI/CD desde main/develop)

@@ -115,7 +115,7 @@
 - ✅ EPIC-07: Migración dark mode → light mode (paleta pastel B2B)
 - ✅ FEATURE-08: SectionDivider component (wave/bowl/overlap)
 - ✅ FEATURE-08: Polish visual hero, tipografía, LangSwitcher, TechnicalTicker
-- ✅ Tests: 71/71 passing mantenidos
+- ✅ Tests: 72/72 passing mantenidos
 - ✅ Bundle: 244KB (optimizado con lazy loading)
 
 **Milestone:** Sitio visualmente diferenciado para audiencia B2B de agencias
@@ -171,7 +171,7 @@
 | DT-08-01 | Works.jsx — ProjectCard con bg-obsidian, pendiente migración rebrand | MEDIO | EPIC-07 |
 | DT-08-02 | ProjectDetail.jsx — página completa bg-obsidian, pendiente migración | MEDIO | EPIC-07 |
 | DT-08-03 | Issues contraste WCAG AA — #96B6C5 como texto falla AA | BAJO | EPIC-07 |
-| DT-09-01 | npm audit — 20 vulnerabilidades (path-to-regexp HIGH en runtime) | ALTO | — |
+| DT-09-01 | ✅ RESUELTO — npm audit: 26 vulnerabilidades → 0 (ver AUDIT_2026-08-24) | — | — |
 | DT-09-02 | mint-400, cyan-institutional, cobalt-500 en ~14 archivos residuales | BAJO | EPIC-07 |
 
 ---
@@ -237,7 +237,7 @@
 npm run dev                # Start Vite dev server (HMR enabled) — puerto 5173
 npm run build              # Production build (genera dist/ + sitemap + brotli)
 npm run lint               # ESLint — 0 errores esperados, 2 warnings en DataVisualization
-npm run test -- --run      # Tests sin modo watch — 71/71 esperados
+npm run test -- --run      # Tests sin modo watch — 72/72 esperados
 npm install <pkg> --legacy-peer-deps  # SIEMPRE usar este flag — conflicto react-helmet-async
 ```
 
