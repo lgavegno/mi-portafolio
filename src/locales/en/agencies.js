@@ -133,6 +133,8 @@ export const agencies = {
       "White-label web development for marketing and branding agencies. I build the sites you sell, with custom design, performance and SEO baked in.",
     canonical: "https://www.ongevag.com/en/agencies",
     hrefLangES: "https://www.ongevag.com/agencias",
+    hrefLangEN: "https://www.ongevag.com/en/agencies",
+    hrefLangPT: "https://www.ongevag.com/pt/agencias",
     ogTitle: "Technical partner for agencies — ONGEVAG",
     ogDescription:
       "White-label web development for agencies that need a trusted developer to outsource their web projects.",

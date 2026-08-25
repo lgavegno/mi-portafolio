@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="en">
+<html lang="es" class="es">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -8,7 +8,6 @@
     <meta name="description" content="Soluciones web y IA para PyMEs argentinas. Desarrollamos landing pages, tiendas online, sistemas internos y automatización con tecnología moderna." />
     <meta name="keywords" content="web development, AI solutions, PyME tools, full-stack developer, React, Tauri, next.js" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-    <link rel="canonical" href="https://www.ongevag.com" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -17,8 +16,6 @@
     <meta property="og:image" content="https://www.ongevag.com/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:url" content="https://www.ongevag.com" />
     <meta property="og:site_name" content="Ongevag" />
 
     <!-- Twitter Card -->
@@ -27,10 +24,15 @@
     <meta name="twitter:description" content="Soluciones web y IA para PyMEs argentinas. Desarrollamos landing pages, tiendas online, sistemas internos y automatización." />
     <meta name="twitter:image" content="https://www.ongevag.com/og-image.png" />
 
-    <!-- hreflang Alternates -->
-    <link rel="alternate" hreflang="en" href="https://www.ongevag.com" />
-    <link rel="alternate" hreflang="es" href="https://www.ongevag.com/es" />
-    <link rel="alternate" hreflang="x-default" href="https://www.ongevag.com" />
+    <!--
+      canonical, hreflang (es/en/pt/x-default), og:url y og:locale se generan
+      dinámicamente vía Helmet según la ruta y el locale real: DefaultMetaTags.jsx
+      en home (/, /en, /pt), BlogMetaTags.jsx / ProjectDetail.jsx /
+      AgenciasPage.jsx / AgenciesPageEN.jsx / AgenciasPagePT.jsx en el resto.
+      No van fijos acá porque react-helmet-async solo agrega tags, no elimina
+      los que ya estaban en index.html — tenerlos también acá producía
+      duplicados (dos canonical, dos og:url, etc.) en cada página no-home.
+    -->
 
     <title>Ongevag — Desarrollo Web & IA para PyMEs</title>
 
@@ -60,7 +62,7 @@
       "jobTitle": "Front-End Developer & Web Consultant",
       "url": "https://www.ongevag.com",
       "email": "ongevag@gmail.com",
-      "knowsLanguage": ["en", "es"],
+      "knowsLanguage": ["es", "en", "pt"],
       "areaServed": "Worldwide",
       "worksFor": {
         "@id": "https://www.ongevag.com/#organization"
@@ -81,7 +83,7 @@
         "@id": "https://www.ongevag.com/#person"
       },
       "areaServed": "Worldwide",
-      "availableLanguage": ["English", "Spanish"],
+      "availableLanguage": ["Spanish", "English", "Portuguese"],
       "serviceType": [
         "Web Development",
         "Desktop Application Development",
