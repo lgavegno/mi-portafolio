@@ -91,8 +91,8 @@
 | **FEATURE-05** | Project Mgmt | Projects data schema, categories, assets, Works component | ✅ Done | `docs/specs/FEATURE-05_PROJECT_MANAGEMENT/` | [spec](./specs/FEATURE-05_PROJECT_MANAGEMENT/spec.md) · [plan](./specs/FEATURE-05_PROJECT_MANAGEMENT/plan.md) · [tasks](./specs/FEATURE-05_PROJECT_MANAGEMENT/tasks.md) |
 | **FEATURE-06** | Partners Agencias | Landing page para agencias — propuesta de valor, CTA | ✅ Done | `docs/specs/FEATURE-06-PARTNERS_AGENCIAS/` | [spec](./specs/FEATURE-06-PARTNERS_AGENCIAS/spec.md) · [plan](./specs/FEATURE-06-PARTNERS_AGENCIAS/plan.md) · [tasks](./specs/FEATURE-06-PARTNERS_AGENCIAS/tasks.md) |
 | **EPIC-07** | Rebrand Visual 2026 | Migración dark→light mode, paleta pastel B2B | ✅ Done | `docs/specs/FEATURE-07-REBRAND_2026/` | [spec](./specs/FEATURE-07-REBRAND_2026/spec.md) · [ADR-012](./adr/ADR-012.md) |
-| **FEATURE-08** | Section Dividers & Visual Polish | SVG dividers entre secciones, polish hero, tipografía, UI | 🔄 In Progress | `docs/specs/FEATURE-08-SECTION-DIVIDERS/` | [spec](./specs/FEATURE-08-SECTION-DIVIDERS/spec.md) · [plan](./specs/FEATURE-08-SECTION-DIVIDERS/plan.md) · [tasks](./specs/FEATURE-08-SECTION-DIVIDERS/tasks.md) |
-| **FEATURE-09** | Blog Post — Integración Excel + ERP | Caso de estudio técnico sobre sincronización Excel↔ERP; pendiente traducción EN/PT (TODO(leo)) | 📝 Draft | `docs/specs/FEATURE-09_BLOG_POST_EXCEL_ERP/` | [spec](./specs/FEATURE-09_BLOG_POST_EXCEL_ERP/spec.md) |
+| **FEATURE-08** | Section Dividers & Visual Polish | SVG dividers entre secciones, polish hero, tipografía, UI | ✅ Done | `docs/specs/FEATURE-08-SECTION-DIVIDERS/` | [spec](./specs/FEATURE-08-SECTION-DIVIDERS/spec.md) · [plan](./specs/FEATURE-08-SECTION-DIVIDERS/plan.md) · [tasks](./specs/FEATURE-08-SECTION-DIVIDERS/tasks.md) |
+| **FEATURE-09** | Blog Post — Integración Excel + ERP | Caso de estudio técnico sobre sincronización Excel↔ERP; publicado ES/EN/PT, pendiente QA de cierre (revisión visual + Lighthouse + ortografía) | 🔄 In Progress | `docs/specs/FEATURE-09_BLOG_POST_EXCEL_ERP/` | [spec](./specs/FEATURE-09_BLOG_POST_EXCEL_ERP/spec.md) |
 | **FEATURE-10** | Localización Portugués | Tercer locale del sitio (PT), patrón reutilizado por FEATURE-11 | ✅ Done | `docs/specs/FEATURE-10_PT_LOCALE/` | [spec](./specs/FEATURE-10_PT_LOCALE/spec.md) |
 | **FEATURE-11** | Tech Experience | Sección de case studies técnicos anonimizados (Odoo/ERP/ETL), i18n ES/EN/PT | ✅ Done | `docs/specs/FEATURE-11_TECH_EXPERIENCE/` | [spec](./specs/FEATURE-11_TECH_EXPERIENCE/spec.md) |
 | **UI Kit** | Components | Button, Header, Footer, SectionDivider, Skeleton (shared globals) | ✅ Active | `src/components/` | [src](../src/components/) |
@@ -263,7 +263,10 @@ docs/
 │   ├── FEATURE-05_PROJECT_MANAGEMENT/
 │   ├── FEATURE-06-PARTNERS_AGENCIAS/
 │   ├── FEATURE-07-REBRAND_2026/   ← spec.md con mejoras post-cierre
-│   └── FEATURE-08-SECTION-DIVIDERS/  ← spec.md · plan.md · tasks.md
+│   ├── FEATURE-08-SECTION-DIVIDERS/  ← spec.md · plan.md · tasks.md
+│   ├── FEATURE-09_BLOG_POST_EXCEL_ERP/  ← spec.md · plan.md · tasks.md
+│   ├── FEATURE-10_PT_LOCALE/          ← spec.md · plan.md · tasks.md
+│   └── FEATURE-11_TECH_EXPERIENCE/    ← spec.md
 └── use-cases/
     ├── UC-01_contact_form_submission.md
     ├── UC-02_blog_navigation.md
@@ -271,5 +274,5 @@ docs/
     └── UC-04_performance_code_splitting.md
 ```
 
-**Last updated:** 2026-06-17 — FEATURE-08 Section Dividers & Visual Polish
+**Last updated:** 2026-08-24 — FEATURE-11 Tech Experience + v3.3.0/v3.4.0 audit
 **Next review:** Phase 3 kickoff — testing coverage expansion

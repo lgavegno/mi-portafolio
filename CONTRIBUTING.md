@@ -68,16 +68,15 @@ git push origin main
 
 ## Cómo agregar un proyecto al portfolio
 
-1. Abrir `src/data/projects.js`
-2. Agregar objeto respetando el esquema documentado en `src/docs/MOD-01-PROJECTS.md`
-3. Campos obligatorios: `id`, `title`, `description`, `category`, `tags`, `status`, `progress`, `featured`
-4. Si tiene imágenes: crear carpeta `src/assets/projects/[id]/` con `screenshot-1.webp` y `screenshot-2.webp` (800px ancho, formato WebP)
-5. Actualizar `CHANGELOG.md` con entrada bajo la versión correspondiente
-6. Commit: `content: agregar proyecto [nombre]`
+1. Abrir `src/data/projects.es.js`, `src/data/projects.en.js` y `src/data/projects.pt.js` (un objeto por locale, mismo `id`)
+2. Agregar objeto respetando el esquema documentado en `docs/specs/FEATURE-05_PROJECT_MANAGEMENT/mod-05_project-management.md`
+3. Si tiene imágenes: crear carpeta `src/assets/projects/[id]/` con `screenshot-1.webp` y `screenshot-2.webp` (800px ancho, formato WebP)
+4. Actualizar `CHANGELOG.md` con entrada bajo la versión correspondiente
+5. Commit: `content: agregar proyecto [nombre]`
 
 ## Cómo agregar un post al blog
 
-1. Abrir `src/features/blog/data/blogData.js`
+1. Abrir `src/features/blog/data/blogData.es.js`, `blogData.en.js` y `blogData.pt.js` (un objeto por locale, mismo `slug`)
 2. Agregar objeto siguiendo la estructura existente
 3. El contenido es HTML inline (no Markdown) — ver posts existentes como ejemplo
 4. Commit: `content: agregar post [título]`
@@ -87,12 +86,12 @@ git push origin main
 ### Stack & Arquitectura
 
 - **React 19 + Vite:** Functional components únicamente — NO class components
-- **Arquitectura:** Feature-Based Architecture (ver [ADR-004](src/docs/adr/ADR-004.md))
+- **Arquitectura:** Feature-Based Architecture (ver [ADR-004](docs/adr/ADR-004.md))
   - `src/components/ui/` → UI Kit global, agnóstico al negocio
   - `src/features/` → Módulos autocontenidos con lógica, estado y vista
   - `src/layouts/` → Composición de páginas
   - `src/pages/` → Rutas y puntos de entrada
-- **JavaScript puro:** Sin TypeScript (ver [ADR-002](src/docs/adr/ADR-002.md)). ESLint valida la calidad del código.
+- **JavaScript puro:** Sin TypeScript (ver [ADR-002](docs/adr/ADR-002.md)). ESLint valida la calidad del código.
 
 ### Estilos & CSS
 
@@ -175,18 +174,18 @@ import Button from '../../components/ui/Button'
 | Archivo | Propósito | Actualizar cuando... |
 |---------|-----------|---------------------|
 | `CLAUDE.md` | Contexto del proyecto | Cambia stack, arquitectura o convenciones |
-| `src/docs/PRD.md` | Requisitos del producto | Se agrega/elimina una feature |
-| `src/docs/adr/` | Decisiones de arquitectura | Se toma una decisión técnica relevante |
-| `src/docs/DESIGN_TOKENS.md` | Sistema de diseño | Se agregan colores o animaciones |
+| `docs/specs/FEATURE-00_PROJECT_SETUP/prd.md` | Requisitos del producto | Se agrega/elimina una feature |
+| `docs/adr/` | Decisiones de arquitectura | Se toma una decisión técnica relevante |
+| `docs/adr/ADR-012.md` | Sistema de diseño (paleta rebrand 2026) | Se agregan colores o animaciones |
 | `CHANGELOG.md` | Historial de versiones | Cualquier cambio visible al usuario |
-| `src/docs/MOD-*.md` | Spec de módulos | Se modifica un módulo documentado |
+| `docs/specs/*/mod-*.md` | Spec de módulos | Se modifica un módulo documentado |
 
 ## Referencias
 
-- [ADR-001: Vite como build tool](src/docs/adr/ADR-001.md)
-- [ADR-002: JavaScript puro sin TypeScript](src/docs/adr/ADR-002.md)
-- [ADR-003: EmailJS para formulario de contacto](src/docs/adr/ADR-003.md)
-- [ADR-004: Arquitectura feature-based (DDD Light)](src/docs/adr/ADR-004.md)
+- [ADR-001: Vite como build tool](docs/adr/ADR-001.md)
+- [ADR-002: JavaScript puro sin TypeScript](docs/adr/ADR-002.md)
+- [ADR-003: EmailJS para formulario de contacto](docs/adr/ADR-003.md)
+- [ADR-004: Arquitectura feature-based (DDD Light)](docs/adr/ADR-004.md)
 
 ## Sistema de separadores de sección (SectionDivider)
  
@@ -223,5 +222,7 @@ Toda clase de color nueva debe usar tokens de la paleta rebrand:
 | navy | #2C3340 | `bg-[#2C3340]` |
 | slate text | #4B5563 | `text-[#4B5563]` |
  
-**Nunca usar:** `mint-400`, `cyan-institutional`, `cobalt-500`, `bg-obsidian`
-(eliminados en ADR-012 — Tailwind no emite CSS para estos tokens).
+**No usar en código nuevo:** `mint-400`, `cyan-institutional`, `cobalt-500`, `bg-obsidian`
+(tokens de la paleta pre-rebrand, reemplazados por ADR-012). Siguen presentes como deuda
+técnica activa en `BlogCard.jsx`, `Works.jsx` y `ProjectDetail.jsx` — ver DT-08-01/DT-08-02
+en `CLAUDE.md`. No agregar nuevos usos; migrar los existentes solo al resolver esa deuda.

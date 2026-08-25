@@ -6,9 +6,23 @@
 
 **Created**: 2026-06-05
 
-**Status**: Draft — Awaiting Approval
+**Status**: Done — Implemented and merged to main (see tasks.md Task Execution Log)
 
 **Scope**: Bilingual architecture (EN default at `/`, ES at `/es`). Foundation layer for all SEO/AEO work. No UI feature can proceed without this.
+
+---
+
+## Nota de actualización (2026-08-25)
+
+El esquema de rutas descrito en este documento (EN canónico en `/`, ES en `/es`) fue la decisión **original**, revertida antes del primer merge a main. El esquema real, vigente desde entonces:
+
+| Locale | Prefijo URL | Rol | ADR |
+|--------|-------------|-----|-----|
+| `es` | `/` | Canónico (default) | ADR-007 (revisado 2026-06-08) |
+| `en` | `/en` | Variante internacional | ADR-007 |
+| `pt` | `/pt` | Tercer locale (lusófono) | ADR-013 (2026-07-05), FEATURE-10_PT_LOCALE |
+
+El resto de este documento (User Stories, FRs, SCs) conserva la redacción original "EN en `/`, ES en `/es`" como registro histórico de la decisión de diseño inicial — invertir cada mención sería reescribir el spec. Para el comportamiento real de rutas y el motivo del cambio, ver `ADR-007.md`, `ADR-013.md` y el log "fix/blog-locale-strings — Post-merge fixes" en `tasks.md`. PT no está cubierto por este spec — ver `FEATURE-10_PT_LOCALE/spec.md`.
 
 ---
 

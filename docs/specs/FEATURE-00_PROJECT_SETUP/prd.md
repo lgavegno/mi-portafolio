@@ -7,6 +7,17 @@
 
 ---
 
+## 0. Nota de actualización (2026-08-25)
+
+Este PRD documenta el estado del proyecto en su versión 2.1 (Abril 2026) y **no fue reescrito** en las siguientes iteraciones. Desde entonces el proyecto avanzó significativamente; para el estado actual del stack y la estructura, ver `CLAUDE.md` (raíz del repo). Cambios relevantes no reflejados abajo:
+
+- **i18n real:** contenido separado por locale (`projects.en/es/pt.js`, `blogData.en/es/pt.js`) vía `LocaleProvider` — ver FEATURE-01_I18N_ROUTING y ADR-006/007/013 (ES en `/`, EN en `/en`, PT en `/pt`).
+- **Tests automatizados:** hay suite Vitest + React Testing Library activa (`src/__tests__`, `src/hooks/__tests__`, `src/features/contact/__tests__`, `src/features/experience/__tests__`). La afirmación "sin tests automatizados" de la sección 6 ya no aplica.
+- **Features agregadas post-2.1:** `features/agencias` (partners/agencias), `features/analytics`, `features/experience` (tech experience) — no listadas en la sección 4/5 de este documento.
+- **Rebrand visual 2026 (EPIC-07 / ADR-012):** paleta y Hero descriptos en las secciones 4 y 9 (particle system, geometría 3D) fueron reemplazados; ver ADR-012.
+
+---
+
 ## 1. Propósito del producto
 
 Portfolio profesional que valida la capacidad técnica de Leandro Gavegno como desarrollador freelance, atrayendo clientes PyMEs que buscan servicios de desarrollo web, automatización con IA y tiendas online.
@@ -90,7 +101,7 @@ Portfolio profesional que valida la capacidad técnica de Leandro Gavegno como d
 | **Sin CMS** | Contenido hardcodeado en JS (projects.js, blogData.js) | Requiere commit Git para cambios de contenido (blogs, proyectos) |
 | **Sin TypeScript** | Scope acotado; overhead no justificado vs benefit (ver ADR-002) | Desarrollo más rápido, menos boilerplate; menor type safety |
 | **Deploy Vercel free tier** | SPA pura, sin SSR | No hay renderizado server-side; todo en cliente |
-| **Sin tests automatizados** | Deuda técnica conocida | Riesgo de regresiones en cambios visuales; no hay CI testing |
+| ~~Sin tests automatizados~~ | Superado — ver nota de actualización (§0) | Hay suite Vitest activa (Contact, useLocale, experience) |
 | **Sin auth/autenticación** | No hay secciones protegidas | Portfolio es 100% público |
 
 ---

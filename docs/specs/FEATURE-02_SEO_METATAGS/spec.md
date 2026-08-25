@@ -4,7 +4,7 @@
 
 **Created**: 2026-06-08
 
-**Status**: Draft → Ready for Approval
+**Status**: ✅ Approved — Implemented (see mod-02_seo-metatags.md)
 
 **Spec Source**: `docs/specs/FEATURE-02_SEO_METATAGS/mod-02_seo-metatags.md`
 

@@ -35,3 +35,4 @@ lh-desktop.json
 .vercel
 .env*
 secrets-report.json
+_to_delete/
