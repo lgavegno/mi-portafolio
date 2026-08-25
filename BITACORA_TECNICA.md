@@ -5,6 +5,40 @@
 
 ---
 
+## 2026-08-24 — Release v3.4.0: Auditoría de confidencialidad pre-público
+
+**Objetivo:** Última verificación antes de hacer público el repositorio.
+
+- Auditoría de confidencialidad sobre 56 archivos `.md`: email personal redactado (últimas 2 ocurrencias, en `AUDIT_2026-06-15.md` y `AUDIT_2026-08-24.md`)
+- Eliminado `src/data/projects.js` — código muerto (DT-05-02), superado hace tiempo por `projects.{es,en,pt}.js`, exponía una URL de subdominio no productivo
+- Verificado: build limpio, 72/72 tests passing
+
+## 2026-08-24 — Release v3.3.0: Tech Experience + auditoría de seguridad
+
+**Objetivo:** Cerrar sprint con FEATURE-11 (Tech Experience) y saneamiento de dependencias antes del release.
+
+- **Auditoría de seguridad:** `npm audit` 26 → 0 vulnerabilidades (react-router-dom, dompurify, sharp actualizados). DT-09-01 cerrado — la vulnerabilidad estaba mal atribuida a react-router, en realidad era `path-to-regexp` dev-only. Email personal removido de `docs/specs/FEATURE-00_PROJECT_SETUP/prd.md`. Conteo de tests corregido: 71/71 → 72/72
+- **FEATURE-11 (Tech Experience):** nueva sección `TechExperience.jsx` con i18n completo ES/EN/PT (`locales/{es,en,pt}/experience.js`), integrada en `App.jsx` y `LocaleProvider.jsx`
+- Documentación: `docs/specs/FEATURE-11_TECH_EXPERIENCE/spec.md`, gaps de FEATURE-09/FEATURE-10 completados en las tablas de módulos
+
+## 2026-07-07 — FEATURE-09: Blog post Excel-ERP + reframe de blog preview
+
+**Objetivo:** Publicar caso de estudio de integración Excel-ERP y ajustar el copy del blog preview (ES/EN/PT).
+
+- Nuevo post agregado a `blogData.es.js`, `blogData.en.js` y `blogData.pt.js`
+- Copy del blog preview reformulado (problemas reales en vez de ejercicios inventados)
+- Documentación: `spec.md`, `plan.md`, `tasks.md` en `docs/specs/FEATURE-09_BLOG_POST_EXCEL_ERP/`
+- QA de cierre (revisión visual + Lighthouse + ortografía) queda pendiente — status real "In Progress", no "Done"
+
+## 2026-07-05/07 — FEATURE-10: Locale PT (Português)
+
+**Objetivo:** Agregar Portugués como tercer idioma completo del sitio.
+
+- Nuevo locale `pt/` con todos los módulos (`common`, `hero`, `services`, `works`, `contact`, `about`, `blog`, `agencies`) y registro en `LocaleProvider.jsx`
+- Nueva rama de rutas `/pt/*` (incluye `AgenciasPagePT.jsx`) y switcher de idioma de dos vías a tres vías (ES/EN/PT)
+- Fixes de acompañamiento: scroll-to-top en cambio de ruta, contraste de headings/badges en light theme, orden de posts del blog por fecha descendente, 5 correcciones de traducción PT (revisión CA-009)
+- Documentación: `spec.md`, `plan.md`, `tasks.md` en `docs/specs/FEATURE-10_PT_LOCALE/`, ADRs de locale PT
+
 ## 2026-06-20 — WhatsAppFloat: Pulse Glow & Visual Enhancement
 
 **Objetivo:** Mejorar WhatsAppFloat con pulse animation + glow neon sutil para incrementar visual appeal y engagement sin impactar performance.
