@@ -33,7 +33,7 @@ _Sin cambios pendientes de release._
 ### Fixed
 - Conteo de tests corregido: 71/71 → 72/72
 
-## [3.2.1] — 2026-06-17
+## [3.2.1] — 2026-06-20
 
 ### Added
 - Botón flotante WhatsApp (`WhatsAppFloat.jsx`) — conversación directa sin fricción para PyMEs/agencias
