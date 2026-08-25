@@ -12,6 +12,12 @@ Establish URL-based bilingual routing for the Ongevag portfolio SPA. English is 
 
 ---
 
+## Nota de actualización (2026-08-25)
+
+Este plan describe la decisión original (EN canónico en `/`, ES en `/es`), revertida antes del merge a main: **ES es el locale canónico en `/`, EN vive en `/en`** (ADR-007, revisado 2026-06-08). Un tercer locale, PT en `/pt`, se agregó después vía FEATURE-10_PT_LOCALE / ADR-013 (2026-07-05) y no está cubierto por este plan. El resto del documento conserva la redacción original "EN en `/` / ES en `/es`" como registro de la arquitectura tal como fue planeada; ver `spec.md` (nota equivalente) y el "Task Execution Log" en `tasks.md` para lo que se implementó realmente.
+
+---
+
 ## Technical Context
 
 **Language/Version**: JavaScript (ES2022) — no TypeScript per ADR-002
