@@ -20,7 +20,10 @@ export default function AgenciasPage() {
         <title>{meta.title}</title>
         <meta name="description" content={meta.description} />
         <link rel="canonical" href={meta.canonical} />
+        <link rel="alternate" hrefLang="es" href={meta.hrefLangES} />
         <link rel="alternate" hrefLang="en" href={meta.hrefLangEN} />
+        <link rel="alternate" hrefLang="pt" href={meta.hrefLangPT} />
+        <link rel="alternate" hrefLang="x-default" href={meta.hrefLangES} />
         <meta property="og:title" content={meta.ogTitle} />
         <meta property="og:description" content={meta.ogDescription} />
         <meta property="og:url" content={meta.ogUrl} />

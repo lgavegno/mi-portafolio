@@ -132,7 +132,9 @@ export const agencias = {
     description:
       "Desarrollo web white-label para agencias de marketing y branding. Construyo los sitios que vos vendés, con diseño custom, performance y SEO desde el código.",
     canonical: "https://www.ongevag.com/agencias",
+    hrefLangES: "https://www.ongevag.com/agencias",
     hrefLangEN: "https://www.ongevag.com/en/agencies",
+    hrefLangPT: "https://www.ongevag.com/pt/agencias",
     ogTitle: "Partner técnico para agencias — ONGEVAG",
     ogDescription:
       "Desarrollo web white-label para agencias que necesitan un desarrollador de confianza para tercerizar sus proyectos web.",
