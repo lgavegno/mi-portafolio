@@ -1,8 +1,12 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useLocale } from '../hooks/useLocale';
 
 const truncateText = (text, maxLen) =>
   text && text.length > maxLen ? text.slice(0, maxLen - 3) + '...' : text;
+
+const LOCALE_PREFIX = { es: '', en: '/en', pt: '/pt' };
+const OG_LOCALE = { es: 'es_ES', en: 'en_US', pt: 'pt_BR' };
 
 const BlogMetaTags = ({
   title,
@@ -12,8 +16,9 @@ const BlogMetaTags = ({
   publishDate,
   author = 'Leandro Gavegno'
 }) => {
+  const { locale } = useLocale();
   const baseUrl = 'https://www.ongevag.com';
-  const canonicalUrl = `${baseUrl}/en/blog/${slug}`;
+  const canonicalUrl = `${baseUrl}${LOCALE_PREFIX[locale] ?? ''}/blog/${slug}`;
   const fallbackImage = `${baseUrl}/og-image.png`;
   const fullImageUrl = imageUrl?.startsWith('http') ? imageUrl : fallbackImage;
   const truncatedDescription = truncateText(description, 155);
@@ -33,7 +38,7 @@ const BlogMetaTags = ({
       <meta property="og:image" content={fullImageUrl} />
       <meta property="og:image:alt" content={title} />
       <meta property="og:url" content={canonicalUrl} />
-      <meta property="og:locale" content="en_US" />
+      <meta property="og:locale" content={OG_LOCALE[locale] ?? OG_LOCALE.es} />
       <meta property="og:site_name" content="Ongevag" />
 
       {/* Twitter Card */}
@@ -42,9 +47,11 @@ const BlogMetaTags = ({
       <meta name="twitter:description" content={truncatedDescription} />
       <meta name="twitter:image" content={fullImageUrl} />
 
-      {/* hreflang Bidireccional */}
-      <link rel="alternate" hreflang="en" href={canonicalUrl} />
-      <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+      {/* hreflang: mismo slug publicado en las 3 locales, ES es canonical/x-default */}
+      <link rel="alternate" hreflang="es" href={`${baseUrl}/blog/${slug}`} />
+      <link rel="alternate" hreflang="en" href={`${baseUrl}/en/blog/${slug}`} />
+      <link rel="alternate" hreflang="pt" href={`${baseUrl}/pt/blog/${slug}`} />
+      <link rel="alternate" hreflang="x-default" href={`${baseUrl}/blog/${slug}`} />
 
       {/* Article-Specific */}
       {publishDate && (
