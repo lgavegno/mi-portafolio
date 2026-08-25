@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="en">
+<html lang="es" class="es">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -17,7 +17,7 @@
     <meta property="og:image" content="https://www.ongevag.com/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content="es_ES" />
     <meta property="og:url" content="https://www.ongevag.com" />
     <meta property="og:site_name" content="Ongevag" />
 
@@ -27,9 +27,16 @@
     <meta name="twitter:description" content="Soluciones web y IA para PyMEs argentinas. Desarrollamos landing pages, tiendas online, sistemas internos y automatización." />
     <meta name="twitter:image" content="https://www.ongevag.com/og-image.png" />
 
-    <!-- hreflang Alternates -->
-    <link rel="alternate" hreflang="en" href="https://www.ongevag.com" />
-    <link rel="alternate" hreflang="es" href="https://www.ongevag.com/es" />
+    <!--
+      hreflang Alternates: fallback estático para crawlers sin JS (esta SPA no
+      tiene SSR/prerendering — index.html es el mismo archivo para todas las
+      rutas). Rutas específicas (posts, proyectos, agencias) sobreescriben esto
+      client-side vía Helmet: ver BlogMetaTags.jsx, ProjectDetail.jsx,
+      AgenciasPage.jsx/AgenciesPageEN.jsx/AgenciasPagePT.jsx.
+    -->
+    <link rel="alternate" hreflang="es" href="https://www.ongevag.com" />
+    <link rel="alternate" hreflang="en" href="https://www.ongevag.com/en" />
+    <link rel="alternate" hreflang="pt" href="https://www.ongevag.com/pt" />
     <link rel="alternate" hreflang="x-default" href="https://www.ongevag.com" />
 
     <title>Ongevag — Desarrollo Web & IA para PyMEs</title>
@@ -60,7 +67,7 @@
       "jobTitle": "Front-End Developer & Web Consultant",
       "url": "https://www.ongevag.com",
       "email": "ongevag@gmail.com",
-      "knowsLanguage": ["en", "es"],
+      "knowsLanguage": ["es", "en", "pt"],
       "areaServed": "Worldwide",
       "worksFor": {
         "@id": "https://www.ongevag.com/#organization"
@@ -81,7 +88,7 @@
         "@id": "https://www.ongevag.com/#person"
       },
       "areaServed": "Worldwide",
-      "availableLanguage": ["English", "Spanish"],
+      "availableLanguage": ["Spanish", "English", "Portuguese"],
       "serviceType": [
         "Web Development",
         "Desktop Application Development",
