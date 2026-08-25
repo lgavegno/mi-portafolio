@@ -5,6 +5,36 @@ Historial de cambios del proyecto Ongevag Portfolio. Formato: [Keep a Changelog]
 ---
 ## [Unreleased]
 
+_Sin cambios pendientes de release._
+
+## [3.4.0] — 2026-08-24
+
+### Removed
+- `src/data/projects.js` — código muerto (DT-05-02), superado por `projects.{es,en,pt}.js`, exponía una URL de subdominio no productivo
+
+### Security
+- Auditoría de confidencialidad completa sobre 56 archivos `.md`: email personal redactado en `docs/AUDIT_2026-06-15.md` y `docs/AUDIT_2026-08-24.md` (últimas ocurrencias en el repo)
+
+### Chores
+- Verificado: build limpio, 72/72 tests pasando
+
+## [3.3.0] — 2026-08-24
+
+### Added
+- FEATURE-11: sección Tech Experience (`TechExperience.jsx`) — ES/EN/PT, `locales/{es,en,pt}/experience.js`
+- `docs/specs/FEATURE-11_TECH_EXPERIENCE/spec.md`
+
+### Security
+- npm audit: 26 → 0 vulnerabilidades (react-router-dom, dompurify, sharp actualizados)
+- DT-09-01 cerrado — vulnerabilidad estaba mal atribuida a react-router, en realidad era path-to-regexp dev-only
+- Email personal removido de `docs/specs/FEATURE-00_PROJECT_SETUP/prd.md`
+- `docs/AUDIT_2026-08-24.md` agregado con el audit trail completo
+
+### Fixed
+- Conteo de tests corregido: 71/71 → 72/72
+
+## [3.2.1] — 2026-06-17
+
 ### Added
 - Botón flotante WhatsApp (`WhatsAppFloat.jsx`) — conversación directa sin fricción para PyMEs/agencias
   - Posición: fixed bottom-6 right-6, z-50
@@ -17,16 +47,12 @@ Historial de cambios del proyecto Ongevag Portfolio. Formato: [Keep a Changelog]
   - i18n: claves en `common.js` (whatsapp.tooltip, whatsapp.prefilledMessage)
 
 ### Fixed
-- SectionDivider (bowl): línea visible de 1px en algunos dispositivos Android/mobile (ej. Moto G) eliminada ajustando `marginBottom` de `-1` a `-2`
-- Investigación confirmó que el problema no provenía del path SVG, viewBox ni cierre del shape, sino de un gap de renderizado/sub-pixel entre el divider y la sección siguiente en determinados breakpoints móviles
-
-## [3.2.1] — 2026-06-17
-
-### Fixed
 - Contact: contraste insuficiente en inputs — bg oscurecido, placeholder opacidad aumentada, card glass más visible
 - HeroBanner: círculos decorativos SVG migrados a colores navy/steel-blue, visibles en light mode
 - SkillsGrid: línea recta visible en mobile entre sección y wave divider — corregida
 - Footer: copyright reemplaza nombre personal por "Ongevag" en ES y EN
+- SectionDivider (bowl): línea visible de 1px en algunos dispositivos Android/mobile (ej. Moto G) eliminada ajustando `marginBottom` de `-1` a `-2`
+- Investigación confirmó que el problema no provenía del path SVG, viewBox ni cierre del shape, sino de un gap de renderizado/sub-pixel entre el divider y la sección siguiente en determinados breakpoints móviles
 
 ## [3.2.0] — 2026-06-17
 
