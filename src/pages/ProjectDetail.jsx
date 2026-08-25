@@ -38,7 +38,10 @@ const ProjectDetail = () => {
         text && text.length > maxLen ? text.slice(0, maxLen - 3) + '...' : text;
 
     const description = project.shortDescription || project.description;
-    const pageUrl = `https://www.ongevag.com/proyecto/${project.id}`;
+    const LOCALE_PREFIX = { es: '', en: '/en', pt: '/pt' };
+    const OG_LOCALE = { es: 'es_ES', en: 'en_US', pt: 'pt_BR' };
+    const baseUrl = 'https://www.ongevag.com';
+    const pageUrl = `${baseUrl}${LOCALE_PREFIX[locale] ?? ''}/proyecto/${project.id}`;
 
     const appCategory = project.category === 'tools' || project.stack?.includes('Tauri')
         ? 'DesktopApplication'
@@ -60,7 +63,6 @@ const ProjectDetail = () => {
             priceCurrency: 'USD',
         },
     };
-    const pageUrlEs = `https://www.ongevag.com/es/proyecto/${project.id}`;
     const fallbackImage = 'https://www.ongevag.com/og-image.png';
     const ogImage = typeof project.image === 'string' && project.image.startsWith('http')
         ? project.image
@@ -77,11 +79,12 @@ const ProjectDetail = () => {
             <meta property="og:image" content={ogImage} />
             <meta property="og:url" content={pageUrl} />
             <meta property="og:type" content="article" />
-            <meta property="og:locale" content="en_US" />
+            <meta property="og:locale" content={OG_LOCALE[locale] ?? OG_LOCALE.es} />
 
-            <link rel="alternate" hreflang="en" href={pageUrl} />
-            <link rel="alternate" hreflang="es" href={pageUrlEs} />
-            <link rel="alternate" hreflang="x-default" href={pageUrl} />
+            <link rel="alternate" hreflang="es" href={`${baseUrl}/proyecto/${project.id}`} />
+            <link rel="alternate" hreflang="en" href={`${baseUrl}/en/proyecto/${project.id}`} />
+            <link rel="alternate" hreflang="pt" href={`${baseUrl}/pt/proyecto/${project.id}`} />
+            <link rel="alternate" hreflang="x-default" href={`${baseUrl}/proyecto/${project.id}`} />
 
             <link rel="canonical" href={pageUrl} />
             <script type="application/ld+json">{JSON.stringify(softwareAppSchema)}</script>
