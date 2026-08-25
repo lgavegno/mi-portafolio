@@ -92,6 +92,7 @@
 | **FEATURE-06** | Partners Agencias | Landing page para agencias — propuesta de valor, CTA | ✅ Done | `docs/specs/FEATURE-06-PARTNERS_AGENCIAS/` | [spec](./specs/FEATURE-06-PARTNERS_AGENCIAS/spec.md) · [plan](./specs/FEATURE-06-PARTNERS_AGENCIAS/plan.md) · [tasks](./specs/FEATURE-06-PARTNERS_AGENCIAS/tasks.md) |
 | **EPIC-07** | Rebrand Visual 2026 | Migración dark→light mode, paleta pastel B2B | ✅ Done | `docs/specs/FEATURE-07-REBRAND_2026/` | [spec](./specs/FEATURE-07-REBRAND_2026/spec.md) · [ADR-012](./adr/ADR-012.md) |
 | **FEATURE-08** | Section Dividers & Visual Polish | SVG dividers entre secciones, polish hero, tipografía, UI | 🔄 In Progress | `docs/specs/FEATURE-08-SECTION-DIVIDERS/` | [spec](./specs/FEATURE-08-SECTION-DIVIDERS/spec.md) · [plan](./specs/FEATURE-08-SECTION-DIVIDERS/plan.md) · [tasks](./specs/FEATURE-08-SECTION-DIVIDERS/tasks.md) |
+| **FEATURE-11** | Tech Experience | Sección de case studies técnicos anonimizados (Odoo/ERP/ETL), i18n ES/EN/PT | ✅ Done | `docs/specs/FEATURE-11_TECH_EXPERIENCE/` | [spec](./specs/FEATURE-11_TECH_EXPERIENCE/spec.md) |
 | **UI Kit** | Components | Button, Header, Footer, SectionDivider, Skeleton (shared globals) | ✅ Active | `src/components/` | [src](../src/components/) |
 | **Config** | Config | Framer Motion variants, animation presets, tokens | ✅ Active | `src/config/` | [motionConfig](../src/config/motionConfig.js) |
 
