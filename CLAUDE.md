@@ -64,6 +64,7 @@ VITE_EMAILJS_PUBLIC_KEY=...    # Public key (required)
 | EPIC-07_REBRAND_2026 | ✅ Done | `docs/specs/FEATURE-07-REBRAND_2026/` | spec.md · ADR-012 |
 | FEATURE-08_SECTION_DIVIDERS | 🔄 In Progress | `docs/specs/FEATURE-08-SECTION-DIVIDERS/` | spec.md · plan.md · tasks.md |
 | FEATURE-10_PT_LOCALE | ✅ Done | `docs/specs/FEATURE-10_PT_LOCALE/` | spec.md · plan.md · tasks.md |
+| FEATURE-11_TECH_EXPERIENCE | ✅ Done | `docs/specs/FEATURE-11_TECH_EXPERIENCE/` | spec.md |
 
 ## ADRs Documented
 ADR-001 (Vite) | ADR-002 (JS no TS) | ADR-003 (EmailJS) | ADR-004 (Feature-based) | ADR-005 (Vitest) | ADR-006 (URL i18n) | ADR-007 (ES default) | ADR-008 (og:image PNG) | ADR-009 (JSON-LD global) | ADR-010 (No i18n lib) | ADR-011 (URL source of truth) | ADR-012 (Rebrand Visual 2026)
@@ -102,7 +103,7 @@ ADR-001 (Vite) | ADR-002 (JS no TS) | ADR-003 (EmailJS) | ADR-004 (Feature-based
 | DT-08-01 | Works.jsx — ProjectCard sin migrar a light mode (bg-obsidian) | MEDIO |
 | DT-08-02 | ProjectDetail.jsx — página completa sin migrar | MEDIO |
 | DT-08-03 | Issues contraste audit WCAG AA pendientes (#96B6C5 como texto) | BAJO |
-| DT-09-01 | npm audit — 20 vulnerabilidades (path-to-regexp HIGH en runtime vía react-router) | ALTO |
+| DT-09-01 | ✅ RESUELTO — npm audit: 26 vulnerabilidades → 0. path-to-regexp era dev-only (eslint/MCP SDK), no runtime. react-router-dom y dompurify actualizados sin breaking changes | — |
 
 ## Key Doc Map
 - `docs/SDD_MASTER.md` — Central index + module registry

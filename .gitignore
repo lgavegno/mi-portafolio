@@ -34,3 +34,4 @@ coverage
 lh-desktop.json
 .vercel
 .env*
+secrets-report.json
