@@ -63,6 +63,7 @@ VITE_EMAILJS_PUBLIC_KEY=...    # Public key (required)
 | FEATURE-06_PARTNERS_AGENCIAS | ✅ Done | `docs/specs/FEATURE-06-PARTNERS_AGENCIAS/` | spec.md · plan.md · tasks.md |
 | EPIC-07_REBRAND_2026 | ✅ Done | `docs/specs/FEATURE-07-REBRAND_2026/` | spec.md · ADR-012 |
 | FEATURE-08_SECTION_DIVIDERS | 🔄 In Progress | `docs/specs/FEATURE-08-SECTION-DIVIDERS/` | spec.md · plan.md · tasks.md |
+| FEATURE-09_BLOG_POST_EXCEL_ERP | 📝 Draft | `docs/specs/FEATURE-09_BLOG_POST_EXCEL_ERP/` | spec.md · plan.md · tasks.md |
 | FEATURE-10_PT_LOCALE | ✅ Done | `docs/specs/FEATURE-10_PT_LOCALE/` | spec.md · plan.md · tasks.md |
 | FEATURE-11_TECH_EXPERIENCE | ✅ Done | `docs/specs/FEATURE-11_TECH_EXPERIENCE/` | spec.md |
 
