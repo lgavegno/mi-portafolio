@@ -44,11 +44,6 @@ Para una inmersión técnica profunda, consultar [ARCHITECTURE.md](./ARCHITECTUR
 
 Implementaciones destacadas que demuestran capacidades técnicas avanzadas:
 
-### 🎮 3D Hero Section & Performance
-- **Integración 3D Ligera:** Geometrías abstractas renderizadas de forma eficiente.
-- **Mobile First Strategy:** Carga condicional de recursos pesados. En móviles se prioriza video optimizado, reservando el 3D interactivo para desktop.
-- **Lazy Loading:** Code-splitting a nivel de ruta y componente para mantener el TBT bajo.
-
 ### 📝 Sistema de Blog Markdown-Driven
 - **Arquitectura sin Backend:** Blog completo generado estáticamente a partir de archivos locales.
 - **Navegación Fluida:** Transiciones de página suaves y persistencia de estado de scroll.
@@ -58,11 +53,6 @@ Implementaciones destacadas que demuestran capacidades técnicas avanzadas:
 - **Zero CLS (Cumulative Layout Shift):** Dimensionamiento estricto de contenedores multimedia para evitar saltos de contenido.
 - **Accesibilidad:** Uso de HTML semántico y atributos ARIA donde es necesario.
 - **Micro-interacciones:** Feedback táctil y visual en cada interacción del usuario (Hover, Focus, Active).
-
-### 📊 Data-Driven Decision Support
-- **Pipeline de Saneamiento:** Auditoría integral de datos con Python (Pandas/Numpy) para eliminar inconsistencias en bases de datos relacionales.
-- **Machine Learning en Producción:** Implementación de modelos de clustering para segmentación de usuarios y predicción de retención.
-- **Integración de Insights:** Visualizaciones avanzadas integradas en la arquitectura React para soporte de decisiones estratégicas.
 
 ## 🚀 Instalación y Desarrollo
 
