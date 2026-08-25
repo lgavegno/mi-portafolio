@@ -8,7 +8,6 @@
     <meta name="description" content="Soluciones web y IA para PyMEs argentinas. Desarrollamos landing pages, tiendas online, sistemas internos y automatización con tecnología moderna." />
     <meta name="keywords" content="web development, AI solutions, PyME tools, full-stack developer, React, Tauri, next.js" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-    <link rel="canonical" href="https://www.ongevag.com" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -17,8 +16,6 @@
     <meta property="og:image" content="https://www.ongevag.com/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:locale" content="es_ES" />
-    <meta property="og:url" content="https://www.ongevag.com" />
     <meta property="og:site_name" content="Ongevag" />
 
     <!-- Twitter Card -->
@@ -28,16 +25,14 @@
     <meta name="twitter:image" content="https://www.ongevag.com/og-image.png" />
 
     <!--
-      hreflang Alternates: fallback estático para crawlers sin JS (esta SPA no
-      tiene SSR/prerendering — index.html es el mismo archivo para todas las
-      rutas). Rutas específicas (posts, proyectos, agencias) sobreescriben esto
-      client-side vía Helmet: ver BlogMetaTags.jsx, ProjectDetail.jsx,
-      AgenciasPage.jsx/AgenciesPageEN.jsx/AgenciasPagePT.jsx.
+      canonical, hreflang (es/en/pt/x-default), og:url y og:locale se generan
+      dinámicamente vía Helmet según la ruta y el locale real: DefaultMetaTags.jsx
+      en home (/, /en, /pt), BlogMetaTags.jsx / ProjectDetail.jsx /
+      AgenciasPage.jsx / AgenciesPageEN.jsx / AgenciasPagePT.jsx en el resto.
+      No van fijos acá porque react-helmet-async solo agrega tags, no elimina
+      los que ya estaban en index.html — tenerlos también acá producía
+      duplicados (dos canonical, dos og:url, etc.) en cada página no-home.
     -->
-    <link rel="alternate" hreflang="es" href="https://www.ongevag.com" />
-    <link rel="alternate" hreflang="en" href="https://www.ongevag.com/en" />
-    <link rel="alternate" hreflang="pt" href="https://www.ongevag.com/pt" />
-    <link rel="alternate" hreflang="x-default" href="https://www.ongevag.com" />
 
     <title>Ongevag — Desarrollo Web & IA para PyMEs</title>
 
