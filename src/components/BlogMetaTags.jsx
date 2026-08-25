@@ -1,12 +1,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocale } from '../hooks/useLocale';
+import { LOCALE_PREFIX, OG_LOCALE, BASE_URL } from '../utils/seoLocale';
 
 const truncateText = (text, maxLen) =>
   text && text.length > maxLen ? text.slice(0, maxLen - 3) + '...' : text;
-
-const LOCALE_PREFIX = { es: '', en: '/en', pt: '/pt' };
-const OG_LOCALE = { es: 'es_ES', en: 'en_US', pt: 'pt_BR' };
 
 const BlogMetaTags = ({
   title,
@@ -17,9 +15,8 @@ const BlogMetaTags = ({
   author = 'Leandro Gavegno'
 }) => {
   const { locale } = useLocale();
-  const baseUrl = 'https://www.ongevag.com';
-  const canonicalUrl = `${baseUrl}${LOCALE_PREFIX[locale] ?? ''}/blog/${slug}`;
-  const fallbackImage = `${baseUrl}/og-image.png`;
+  const canonicalUrl = `${BASE_URL}${LOCALE_PREFIX[locale] ?? ''}/blog/${slug}`;
+  const fallbackImage = `${BASE_URL}/og-image.png`;
   const fullImageUrl = imageUrl?.startsWith('http') ? imageUrl : fallbackImage;
   const truncatedDescription = truncateText(description, 155);
 
@@ -48,10 +45,10 @@ const BlogMetaTags = ({
       <meta name="twitter:image" content={fullImageUrl} />
 
       {/* hreflang: mismo slug publicado en las 3 locales, ES es canonical/x-default */}
-      <link rel="alternate" hreflang="es" href={`${baseUrl}/blog/${slug}`} />
-      <link rel="alternate" hreflang="en" href={`${baseUrl}/en/blog/${slug}`} />
-      <link rel="alternate" hreflang="pt" href={`${baseUrl}/pt/blog/${slug}`} />
-      <link rel="alternate" hreflang="x-default" href={`${baseUrl}/blog/${slug}`} />
+      <link rel="alternate" hreflang="es" href={`${BASE_URL}/blog/${slug}`} />
+      <link rel="alternate" hreflang="en" href={`${BASE_URL}/en/blog/${slug}`} />
+      <link rel="alternate" hreflang="pt" href={`${BASE_URL}/pt/blog/${slug}`} />
+      <link rel="alternate" hreflang="x-default" href={`${BASE_URL}/blog/${slug}`} />
 
       {/* Article-Specific */}
       {publishDate && (
