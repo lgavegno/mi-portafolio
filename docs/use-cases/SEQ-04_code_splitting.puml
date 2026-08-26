@@ -16,7 +16,6 @@ participant "JavaScript\nEngine" as engine
 participant "App.jsx\n(Router)" as app
 participant "HeroBanner\n(Static)" as hero
 participant "Lazy components\n(About, Services, etc)" as lazy
-participant "Prefetch\nQueue" as prefetch
 
 autonumber
 
@@ -65,8 +64,9 @@ group Page Load Phase
   hero -> hero: Render Skills section
 
   note right of browser
-    **LCP Achieved ~1.8s**
+    **LCP Achieved ~1.1s**
     (Hero visible + interactive)
+    (estimación inicial ~1.8s, confirmado\npor auditoría real en 1.1s — Lighthouse\nDesktop, 2026-06-18)
   end note
 
   hero --> app: Hero rendered
@@ -87,49 +87,30 @@ group Page Load Phase
   deactivate app
 end
 
-== Optimizations Running ==
-group Post-Load Optimizations
-  note right of prefetch
-    After 3s idle (user reading hero):
-    Prefetch Blog chunks for faster /blog nav
-  end note
-
-  prefetch -> prefetch: setTimeout(3000, () => {\n  import('./pages/BlogIndex')\n})
-  prefetch -> prefetch: BlogIndex.js loaded\nin background (async)
-end
-
 == Navigation: Home → /blog ==
 group Route Transition
   browser -> app: User clicks "Blog" link
   app -> app: React Router intercepts\n(no full page reload)
 
-  note right of prefetch
-    BlogIndex chunk already loaded
-    (from prefetch step)
-  end note
-
-  app -> lazy: Render BlogIndex\n(instantly, no wait)
+  app -> lazy: Render BlogIndex\n(React.lazy — loads chunk on demand)
   activate lazy
-  lazy -> lazy: Fetch blogData.js\n(already in memory)
+  lazy -> lazy: Load BlogIndex.js chunk\n(Suspense shows Skeleton)
+  lazy -> lazy: Fetch blogData.js\n(locale-aware import)
   lazy -> lazy: Render blog index cards
   lazy --> app: BlogIndex ready
   deactivate lazy
-
-  note right of browser
-    **Navigation time: <100ms**
-    (Chunk already prefetched)
-  end note
 end
 
 == Performance Metrics ==
 group Final Metrics
   note right of browser
-    ✓ LCP: 1.8s (target: <2.5s)
-    ✓ FID: <50ms (target: <100ms)
+    Lighthouse 2026-06-18 (Desktop, incógnito) — ver CLAUDE.md:
+    ✓ LCP: 1.1s (target: <2.5s)
+    ✓ TBT: 0ms
     ✓ CLS: 0 (target: 0)
-    ✓ Bundle (Brotli): ~110kb (target: <150kb)
-    ✓ Prefetch: Non-blocking
-    ✓ Lighthouse: ~92/100
+    ✓ FCP: 0.6s · SI: 1.0s
+    ✓ Lighthouse Performance: 98/100 (Mobile Slow 4G: 61/100)
+    ⚠ Bundle size (Brotli): no auditado / no documentado
   end note
 end
 

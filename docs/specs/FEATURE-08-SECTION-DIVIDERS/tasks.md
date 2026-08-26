@@ -9,20 +9,22 @@
 
 ## Estado General
 
+**Nota (2026-08-25):** Feature lanzada en v3.2.0 (release `d8ee30a`, merge `9841307` a develop) — tabla actualizada de "⏳ Pending" a Done/✅. `SectionDivider.jsx` confirmado integrado en Home (`src/App.jsx`) y en las 3 páginas de Agencias (ES, EN, PT — PT no estaba contemplada en T-04 al escribirse este plan, se sumó después con FEATURE-10_PT_LOCALE).
+
 | Task | Status | Effort Estimado | Effort Real | Blocker | Notes |
 |------|--------|-----------------|-------------|---------|-------|
-| T-01 | ⏳ Pending | 45min | — | — | SectionDivider.jsx no existe aún |
-| T-02 | ⏳ Pending | 15min | — | T-01 | — |
-| T-03 | ⏳ Pending | 20min | — | T-01 | — |
-| T-04 | ⏳ Pending | 10min | — | T-03 | — |
-| T-05 | ⏳ Pending | 30min | — | T-01 | SkillsGrid bg dinámico — verificar antes |
-| T-06 | ⏳ Pending | 20min | — | T-03, T-04, T-05 | — |
-| T-07 | ⏳ Pending | 5min | — | T-06 | — |
-| T-08 | ⏳ Pending | 5min | — | T-07 | — |
-| T-09 | ⏳ Pending | 10min | — | T-08 | — |
-| T-10 | ⏳ Pending | 10min | — | T-08 | — |
-| T-11 | ⏳ Pending | 5min | — | T-08 | — |
-| T-12 | ⏳ Pending | 5min | — | T-09, T-10, T-11 | — |
+| T-01 | ✅ Done | 45min | — | — | SectionDivider.jsx creado en src/components/ui/ |
+| T-02 | ✅ Done | 15min | — | T-01 | — |
+| T-03 | ✅ Done | 20min | — | T-01 | — |
+| T-04 | ✅ Done | 10min | — | T-03 | Replicado también en AgenciasPagePT.jsx (fuera de scope original) |
+| T-05 | ✅ Done | 30min | — | T-01 | SkillsGrid bg dinámico — verificado |
+| T-06 | ✅ Done | 20min | — | T-03, T-04, T-05 | — |
+| T-07 | ✅ Done | 5min | — | T-06 | — |
+| T-08 | ✅ Done | 5min | — | T-07 | — |
+| T-09 | ✅ Done | 10min | — | T-08 | CLAUDE.md tiene entrada en Critical Files |
+| T-10 | ✅ Done | 10min | — | T-08 | — |
+| T-11 | ✅ Done | 5min | — | T-08 | CHANGELOG.md tiene entrada bajo FEATURE-08 |
+| T-12 | ✅ Done | 5min | — | T-09, T-10, T-11 | Mergeado a develop y releasado como v3.2.0 |
 
 ---
 

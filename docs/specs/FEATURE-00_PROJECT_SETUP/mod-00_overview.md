@@ -7,6 +7,18 @@
 
 ---
 
+## 0. Nota de actualización (2026-08-25)
+
+Este documento describe el estado del sistema en su revisión de 2026-05-13 y no fue reescrito en iteraciones posteriores. Puntos ya no vigentes, corregidos aquí puntualmente:
+
+- El diagrama de rutas (§3) omite `/en`, `/pt` y `agencias` — el routing real vive en `src/App.jsx` (ver FEATURE-01_I18N_ROUTING).
+- El "Flujo 4" y la sección de Performance (§6) mencionan un prefetch de chunks del Blog tras 3s de idle — ese mecanismo **no existe** en el código (`grep -rn "prefetch" src/` no devuelve resultados); ver corrección más abajo.
+- Tests: hay suite Vitest activa (ya no "0% coverage", ver §6 Mantenibilidad).
+- Lighthouse: la auditoría de Phase 4 mencionada en §7 ya se realizó — ver `CLAUDE.md` (Desktop 98/100/100/94) y `docs/AUDIT_2026-06-15.md` / `docs/AUDIT_2026-08-24.md`.
+- Para el estado y stack actuales, `CLAUDE.md` (raíz del repo) es la fuente de verdad.
+
+---
+
 ## 1. Propósito (1 oración exacta)
 
 **Crear un portfolio SPA que showcase de skills en React, arquitectura, performance y UX — para captar clientes PyMEs.**
@@ -45,7 +57,8 @@ User Request (Browser)
         ▼
 ┌──────────────────────────────────────────────────────┐
 │              React Router (SPA)                       │
-│  Routes: / (home) | /blog | /blog/:slug | /proyecto/:id
+│  Routes (x3 locale prefixes: /, /en, /pt):            │
+│  index | proyecto/:id | agencias | blog | blog/:slug  │
 └──────────────────┬───────────────────────────────────┘
                    │
         ┌──────────┴──────────┐
@@ -147,7 +160,6 @@ On app load:
     → Load main bundle (App.jsx, Router, Layouts)
     → Render Hero immediately (HeroBanner static import)
     → Lazy-load other features (About, Services, Works, etc.)
-    → After 3s idle: prefetch Blog chunks
     → On /blog route: load BlogIndex chunk
     → Vite generates: vendor.js, ui.js, main.js
     → Brotli compresses all outputs
@@ -186,14 +198,13 @@ On app load:
 - ✅ Image optimization (vite-imagetools)
 - ✅ CSS code splitting (Tailwind)
 - ✅ Brotli compression (vite-plugin-compression)
-- ✅ Dynamic imports con strategic prefetch (Blog chunks)
 
 **Targets Core Web Vitals:**
 - LCP (Largest Contentful Paint): <2.5s
 - FID (First Input Delay): <100ms
 - CLS (Cumulative Layout Shift): 0 (no layout shift)
 
-**[INFERIDO — requiere validación]** Baseline de Lighthouse: desconocido (TODO: audit en Phase 4)
+Baseline de Lighthouse: ya auditado — ver `CLAUDE.md` (Desktop 98/100/100/94, Mobile Slow 4G 61/100/100/94, 2026-06-18).
 
 ---
 
@@ -234,7 +245,7 @@ On app load:
 - ✅ ADRs documentadas (decisiones justificadas)
 
 **Mejoras pendientes:**
-- ⚠️ Tests necesarios (0% coverage)
+- ✅ Tests: suite Vitest activa (Contact, useLocale, experience) — ya no 0% coverage
 - ⚠️ MOD-01 a MOD-06 documentación de features individuales
 - ⚠️ Contact.jsx requiere refactor de hooks
 

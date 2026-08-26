@@ -135,6 +135,7 @@ export const agencies = {
     canonical: "https://www.ongevag.com/pt/agencias",
     hrefLangES: "https://www.ongevag.com/agencias",
     hrefLangEN: "https://www.ongevag.com/en/agencies",
+    hrefLangPT: "https://www.ongevag.com/pt/agencias",
     ogTitle: "Parceiro técnico para agências — ONGEVAG",
     ogDescription:
       "Desenvolvimento web white-label para agências que precisam de um desenvolvedor confiável para terceirizar seus projetos web.",

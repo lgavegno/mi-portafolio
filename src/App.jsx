@@ -9,6 +9,7 @@ import { SkeletonPage } from './components/ui/Skeleton'
 import { pageTransition } from './config/motionConfig'
 import HeroBanner from './features/hero/HeroBanner'
 import SectionDivider from './components/ui/SectionDivider'
+import DefaultMetaTags from './components/DefaultMetaTags'
 const About = lazy(() => import('./components/About'))
 const BlogLayout = lazy(() => import('./layouts/BlogLayout'))
 const BlogIndex = lazy(() => import('./pages/BlogIndex'))
@@ -38,6 +39,7 @@ const AnimatedSection = ({ children, id }) => (
 
 const HomeSections = () => (
   <>
+    <DefaultMetaTags />
     <AnimatedSection id="hero">
       <HeroBanner />
     </AnimatedSection>

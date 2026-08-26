@@ -87,7 +87,7 @@ Step 5: Static imports render immediately
   ✓ HeroBanner: STATIC IMPORT (no lazy)
     → Renders hero, about, skills sections
     → Framer Motion triggers animations
-    → LCP achieved ~1.8s (hero visible)
+    → LCP achieved ~1.1s (hero visible) — estimación inicial ~1.8s, confirmado por auditoría real en 1.1s (Lighthouse Desktop, 2026-06-18)
 
 Step 6: Lazy-loaded components (async, non-blocking)
   ⊘ About: lazy(() => import(...))
@@ -97,40 +97,43 @@ Step 6: Lazy-loaded components (async, non-blocking)
   ⊘ Contact: lazy(() => import(...))
   └─ These load in background, Suspense shows Skeleton
 
-Step 7: Strategic prefetch (after 3s idle)
-  → App.useEffect() ejecuta setTimeout(prefetchBlog, 3000)
-  → Imports BlogIndex.js chunk dynamically
-  → No bloquea FID, mejora /blog navigation speed
-
 ═══════════════════════════════════════════════════════════
 NAVIGATION (Route change, e.g., / → /blog)
 ═══════════════════════════════════════════════════════════
 
 Step 1: User clicks "Blog" link
   → React Router intercepts (no full page reload)
-  → BlogIndex chunk already prefetched (Step 7 anterior)
-  → Component renders immediately
+  → BlogIndex chunk loads on demand (React.lazy)
+  → Component renders once resolved, Suspense shows Skeleton in the meantime
   → Framer Motion animates transition
-
-Step 2: Blog page fully interactive
-  → Time: <100ms additional (chunk already loaded)
-  → FID: <50ms
 ```
 
 ---
 
 ## 3. Key Metrics & Targets
 
-| Metric | Current (Est.) | Target | How to measure |
-|--------|---|--------|---------|
-| **LCP** (Largest Contentful Paint) | TBD | <2.5s | Lighthouse, Web Vitals |
-| **FID** (First Input Delay) | TBD | <100ms | Web Vitals, Dev Tools |
-| **CLS** (Cumulative Layout Shift) | 0 | 0 | Lighthouse |
-| **Total Bundle Size** | ~440kb | <300kb | `npm run build` output |
-| **Gzip Size** | ~110kb | <100kb | Check vendor.js gzip |
-| **Brotli Size (vendor)** | ~45kb | <40kb | .br files in dist/ |
-| **LCP Time (mobile 4G)** | TBD | <3.5s | DevTools throttling |
-| **Lighthouse Score** | TBD | >90 | lighthouse-ci |
+**Medido — Lighthouse 2026-06-18** (ver `CLAUDE.md`, `docs/AUDIT_2026-06-15.md`):
+
+| Metric | Desktop (incógnito) | Mobile Slow 4G (incógnito) | Target |
+|--------|---------------------|------------------------------|--------|
+| **Lighthouse Performance** | 98 | 61 | >90 |
+| **Lighthouse SEO** | 100 | 100 | — |
+| **Lighthouse Best Practices** | 100 | 100 | — |
+| **Lighthouse Accessibility** | 94 | 94 | — |
+| **FCP** (First Contentful Paint) | 0.6s | — | — |
+| **LCP** (Largest Contentful Paint) | 1.1s | — | <2.5s ✅ |
+| **TBT** (Total Blocking Time) | 0ms | — | — |
+| **CLS** (Cumulative Layout Shift) | 0 | — | 0 ✅ |
+| **SI** (Speed Index) | 1.0s | — | — |
+
+**No medido / no documentado** (no hay reporte de `npm run build` archivado en el repo — no inventar cifras):
+
+| Metric | Status | How to measure |
+|--------|--------|-----------------|
+| **Total Bundle Size (Brotli)** | No auditado | `npm run build` output |
+| **Vendor chunk size (Brotli)** | No auditado | `.br` files in `dist/` |
+| **FID / INP** | No reportado por Lighthouse en este audit (usa TBT como proxy) | Web Vitals, Dev Tools |
+| **Mobile LCP/FCP/CLS individuales** | No desglosados en el audit — solo el score compuesto | Lighthouse mobile run |
 
 ---
 
@@ -159,16 +162,6 @@ const Contact = lazy(() => import('./features/contact/Contact'))
 </Suspense>
 ```
 
-### Strategic prefetch
-```javascript
-useEffect(() => {
-  const timer = setTimeout(async () => {
-    await import('./pages/BlogIndex')  // Preload but don't render
-  }, 3000)
-  return () => clearTimeout(timer)
-}, [])
-```
-
 ### Vite manual chunks config
 ```javascript
 // vite.config.js
@@ -180,7 +173,7 @@ manualChunks: {
 
 ---
 
-## 5. Validación (Phase 4 tasks)
+## 5. Validación
 
 ### 5.1 Build size audit
 ```bash
@@ -218,32 +211,33 @@ npx lighthouse https://portfolio.vercel.app --preset=desktop --output-path=./aud
 | LCP >2.5s on mobile | Image optimization, reduce main.js | High | Low |
 | CLS > 0 | Fix layout shifts in components | High | Medium |
 | Vendor.js >45kb | Tree-shake unused React Icons | Medium | Medium |
-| No prefetch strategy | Implement route-based prefetch | Low | Low |
 | Slow TTI | Reduce React render time | Low | High |
 
----
-
-## 7. Definition of Done (Phase 4)
-
-- [ ] Lighthouse score >90 (desktop + mobile)
-- [ ] LCP <2.5s on 4G throttled
-- [ ] CLS = 0 (no layout shift)
-- [ ] Bundle size <300kb (Brotli)
-- [ ] Prefetch strategy working (no extra time on /blog nav)
-- [ ] All chunks loaded and rendering correctly
-- [ ] Audit report generated and documented
-- [ ] Performance monitoring integrated (optional)
+**Nota:** Un mecanismo de "prefetch estratégico" (precarga del chunk de Blog tras 3s de idle, vía `setTimeout` + `import()` dinámico) estuvo documentado aquí como parte del diseño pero **nunca se implementó** (`grep -rn "prefetch" src/` no devuelve resultados) — no está en el roadmap activo; queda como idea de backlog si el perfil de navegación lo justifica.
 
 ---
 
-## 8. Test Plan (Phase 4)
+## 7. Definition of Done
+
+- [x] Lighthouse score >90 desktop (98) — mobile Slow 4G queda en 61, por debajo del target (ver métricas §3)
+- [x] LCP <2.5s desktop (1.1s medido)
+- [x] CLS = 0 (no layout shift)
+- [ ] Bundle size <300kb (Brotli) — no auditado, sin reporte archivado
+- [x] All chunks loaded and rendering correctly
+- [x] Audit report generated and documented — ver `docs/AUDIT_2026-06-15.md`, `docs/AUDIT_2026-08-24.md`
+- [ ] Performance monitoring integrado (optional) — no implementado
+
+---
+
+## 8. Test Plan
+
+No hay tests de performance automatizados en el repo (`src/__tests__/performance.test.js` no existe). La suite Vitest actual cubre `Contact`, `useLocale` y `experience` — no bundle size ni code splitting. Sección de backlog, no implementada:
 
 ```javascript
-// src/__tests__/performance.test.js
+// Propuesto, no implementado
 test('Bundle sizes meet targets')
 test('Code splitting creates expected chunks')
 test('Lazy components load within SLA')
-test('Prefetch doesn\'t block FID')
 test('Brotli compression is applied')
 ```
 
@@ -254,7 +248,7 @@ test('Brotli compression is applied')
 **Related ADRs:**
 - [ADR-001: Vite build tool](../adr/ADR-001.md)
 
-**Status:** 🔄 Ready for Phase 4 (Performance audit)
+**Status:** ✅ Auditado — Lighthouse 2026-06-18 (ver §3). Bundle size (Brotli) queda sin auditar/documentar.
 
 ---
 

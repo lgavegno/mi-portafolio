@@ -7,6 +7,7 @@ import { featuredProjects as projectsEn } from '../data/projects.en';
 import { featuredProjects as projectsPt } from '../data/projects.pt';
 import { fadeInUp, staggerContainer } from '../config/motionConfig';
 import { useLocale } from '../hooks/useLocale';
+import { LOCALE_PREFIX, OG_LOCALE, BASE_URL } from '../utils/seoLocale';
 
 const PROJECTS_BY_LOCALE = { es: projectsEs, en: projectsEn, pt: projectsPt };
 
@@ -38,7 +39,7 @@ const ProjectDetail = () => {
         text && text.length > maxLen ? text.slice(0, maxLen - 3) + '...' : text;
 
     const description = project.shortDescription || project.description;
-    const pageUrl = `https://www.ongevag.com/proyecto/${project.id}`;
+    const pageUrl = `${BASE_URL}${LOCALE_PREFIX[locale] ?? ''}/proyecto/${project.id}`;
 
     const appCategory = project.category === 'tools' || project.stack?.includes('Tauri')
         ? 'DesktopApplication'
@@ -60,8 +61,7 @@ const ProjectDetail = () => {
             priceCurrency: 'USD',
         },
     };
-    const pageUrlEs = `https://www.ongevag.com/es/proyecto/${project.id}`;
-    const fallbackImage = 'https://www.ongevag.com/og-image.png';
+    const fallbackImage = `${BASE_URL}/og-image.png`;
     const ogImage = typeof project.image === 'string' && project.image.startsWith('http')
         ? project.image
         : fallbackImage;
@@ -77,11 +77,12 @@ const ProjectDetail = () => {
             <meta property="og:image" content={ogImage} />
             <meta property="og:url" content={pageUrl} />
             <meta property="og:type" content="article" />
-            <meta property="og:locale" content="en_US" />
+            <meta property="og:locale" content={OG_LOCALE[locale] ?? OG_LOCALE.es} />
 
-            <link rel="alternate" hreflang="en" href={pageUrl} />
-            <link rel="alternate" hreflang="es" href={pageUrlEs} />
-            <link rel="alternate" hreflang="x-default" href={pageUrl} />
+            <link rel="alternate" hreflang="es" href={`${BASE_URL}/proyecto/${project.id}`} />
+            <link rel="alternate" hreflang="en" href={`${BASE_URL}/en/proyecto/${project.id}`} />
+            <link rel="alternate" hreflang="pt" href={`${BASE_URL}/pt/proyecto/${project.id}`} />
+            <link rel="alternate" hreflang="x-default" href={`${BASE_URL}/proyecto/${project.id}`} />
 
             <link rel="canonical" href={pageUrl} />
             <script type="application/ld+json">{JSON.stringify(softwareAppSchema)}</script>
