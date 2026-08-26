@@ -249,4 +249,4 @@ test('Full flow: user fills form → sees success message → form resets')
 **Related ADRs:**
 - [ADR-003: EmailJS para contacto](../adr/ADR-003.md)
 
-**Status:** ⏳ Ready for Phase 2 testing implementation
+**Status:** ✅ Feature en producción — cobertura de tests pendiente de confirmar

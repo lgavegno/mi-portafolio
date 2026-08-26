@@ -1,6 +1,6 @@
 FEATURE-03: AEO Schema Implementation
 Spec Version: 1.0
-Status: Draft
+Status: Done
 Date: 2026-06-11
 Related ADRs: ADR-009
 Owner: Leandro Gavegno (ONGEVAG)
