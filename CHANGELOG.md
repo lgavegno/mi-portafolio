@@ -7,6 +7,17 @@ Historial de cambios del proyecto Ongevag Portfolio. Formato: [Keep a Changelog]
 
 _Sin cambios pendientes de release._
 
+## [3.5.0] — 2026-08-26
+
+### Added
+- `DefaultMetaTags.jsx` + `seoLocale.js` — canonical y hreflang dinámicos por ruta/locale, elimina tags duplicados
+- Sitemap regenerado con 45 URLs reales (incluye posts de blog y locale PT)
+- Hreflang completo en Agencias (ES/EN/PT)
+
+### Chores
+- Auditoría completa de consistencia de documentación (`chore/docs-consistency-audit`)
+- Verificado: build limpio, 558 módulos, sitemap con 45 URLs sin errores
+
 ## [3.4.0] — 2026-08-24
 
 ### Removed
