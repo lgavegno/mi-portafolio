@@ -5,6 +5,26 @@
 
 ---
 
+## 2026-10-21 — Actualización de dependencias y parche de vulnerabilidades
+
+**Objetivo:** Dejar dependencias al día sin romper build, estilos ni comportamiento (rama `feature/deps-security-update`).
+
+- **Patch/minor:** `npm update` + `npm audit fix` (sin `--force`): react/react-dom 19.3.1, tailwindcss 3.4.19, framer-motion 12.43.0, vite 6.4.5, vitest 4.1.12, dompurify, sharp, react-router-dom y otros. Vulnerabilidades 18 → 7
+- **Cambio visual aceptado:** Tailwind 3.4 habilita la escala de opacidad `/15`, que 3.3 ignoraba en silencio (Hero, TechExperience, Footer, Contact, ProjectCard). Verificado visualmente contra producción
+- **Majors de solo tests:** `@vitest/ui` 1.6.1 → 4.1.12 (alineado a vitest), `@testing-library/jest-dom` 6 → 7 y `jsdom` 23 → 30. Sin cambios de config; 72/72 tests
+- **Pendiente (7 vulns dev/build):** cadena `braces`/`chokidar`/`micromatch`/`fast-glob` + `postcss-selector-parser`/`postcss-nested`, todas bajo `tailwindcss` 3.x. `npm audit --omit=dev`: 0 vulnerabilidades en runtime
+
+**Deuda técnica — majors diferidos (no tocar sin sesión dedicada):**
+
+- DT-DEPS-01 · Tailwind 4 — riesgo ALTO: config pasa a CSS-first (`@theme`) y cambia el plugin de PostCSS; toca la paleta rebrand (ADR-012). Diferido por riesgo visual; es el único fix upstream de la cadena `braces`
+- DT-DEPS-02 · Vite 7/8 + @vitejs/plugin-react 6 — riesgo ALTO: cambian Node mínimo, target de navegadores y bundler; afecta chunks, compresión e imagetools. Diferido: se actualizan juntos y requieren QA de build/Lighthouse
+- DT-DEPS-03 · Framer Motion 13/14 — riesgo MEDIO: posibles cambios de API en las animaciones del Hero y `motionConfig.js`. Diferido: 12.43 sigue soportado y no hay vulnerabilidad asociada
+- DT-DEPS-04 · ESLint 10 + eslint-plugin-react-hooks 7 — riesgo MEDIO: reglas nuevas tipo React Compiler generan errores/warnings nuevos. Diferido: requiere limpiar código fuera del alcance de esta rama
+- DT-DEPS-05 · @emailjs/browser 5 — riesgo MEDIO: cambios de API en el formulario de contacto (flujo crítico de captación). Diferido hasta poder probar el envío real de punta a punta
+- DT-DEPS-06 · react-helmet-async 3 — riesgo ALTO: ya tiene conflicto de peers con React 19 (de ahí `--legacy-peer-deps`) y gobierna el SEO. Diferido hasta validar metatags/JSON-LD tras el cambio
+
+---
+
 ## 2026-08-24 — Release v3.4.0: Auditoría de confidencialidad pre-público
 
 **Objetivo:** Última verificación antes de hacer público el repositorio.
