@@ -7,6 +7,22 @@ Historial de cambios del proyecto Ongevag Portfolio. Formato: [Keep a Changelog]
 
 _Sin cambios pendientes de release._
 
+## [3.5.1] — 2026-10-21
+
+### Changed
+- Dependencias actualizadas (patch/minor): react/react-dom 19.3.1, tailwindcss 3.4.19, framer-motion 12.43.0, vite 6.4.5, vitest 4.1.12, entre otras
+- Majors de solo tests: `@vitest/ui` 4.1.12, `@testing-library/jest-dom` 7, `jsdom` 30 (los tests requieren Node >= 22.22.2)
+
+### Security
+- Vulnerabilidades 18 → 7, **0 en runtime** (`npm audit --omit=dev`). Las 7 restantes son dev/build bajo `tailwindcss` 3.x; el único fix upstream es Tailwind 4 (DT-DEPS-01)
+
+### Fixed
+- Tailwind 3.4 habilita las clases de opacidad `/15` que 3.3 ignoraba (Hero, TechExperience, Footer, Contact, ProjectCard): bordes y fondos que nunca se aplicaban ahora se renderizan
+
+### Chores
+- Majors diferidos registrados como deuda técnica en `BITACORA_TECNICA.md` (DT-DEPS-01 a DT-DEPS-06)
+- Versión de `package.json` sincronizada con el release (estaba en 0.0.0)
+
 ## [3.5.0] — 2026-08-26
 
 ### Added
