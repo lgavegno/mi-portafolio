@@ -12,6 +12,7 @@
 - **Patch/minor:** `npm update` + `npm audit fix` (sin `--force`): react/react-dom 19.3.1, tailwindcss 3.4.19, framer-motion 12.43.0, vite 6.4.5, vitest 4.1.12, dompurify, sharp, react-router-dom y otros. Vulnerabilidades 18 → 7
 - **Cambio visual aceptado:** Tailwind 3.4 habilita la escala de opacidad `/15`, que 3.3 ignoraba en silencio (Hero, TechExperience, Footer, Contact, ProjectCard). Verificado visualmente contra producción
 - **Majors de solo tests:** `@vitest/ui` 1.6.1 → 4.1.12 (alineado a vitest), `@testing-library/jest-dom` 6 → 7 y `jsdom` 23 → 30. Sin cambios de config; 72/72 tests
+- **Requisito de Node para tests:** Tests requieren Node >= 22.22.2 (jsdom 30). No se agrega `engines` en `package.json` porque Vercel lo usa para elegir la versión de Node del build
 - **Pendiente (7 vulns dev/build):** cadena `braces`/`chokidar`/`micromatch`/`fast-glob` + `postcss-selector-parser`/`postcss-nested`, todas bajo `tailwindcss` 3.x. `npm audit --omit=dev`: 0 vulnerabilidades en runtime
 
 **Deuda técnica — majors diferidos (no tocar sin sesión dedicada):**
