@@ -58,6 +58,7 @@ Implementaciones destacadas que demuestran capacidades técnicas avanzadas:
 
 ### Prerrequisitos
 - Node.js v18+
+- Tests requieren Node >= 22.22.2 (jsdom 30)
 
 ### Quick Start
 ```bash

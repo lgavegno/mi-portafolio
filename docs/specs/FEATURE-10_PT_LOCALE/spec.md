@@ -6,7 +6,7 @@
 
 **Created**: 2026-07-05
 
-**Status**: Draft — Awaiting Approval
+**Status**: Done
 
 **Scope**: Tercer locale completo del sitio (ES canónico en `/`, EN en `/en`, **PT en `/pt`**), extendiendo la arquitectura existente de FEATURE-01 (`LocaleProvider`, `useLocale()`, locale files planos). Incluye home, proyectos, agencias, blog y contact form.
 
