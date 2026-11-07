@@ -119,4 +119,14 @@ describe('SolutionCarousel', () => {
     fireEvent.click(screen.getByRole('button', { name: /Ver presentación de Odoo/ }));
     expect(onSwitchPath).toHaveBeenCalledWith('odoo');
   });
+
+  it('el contenedor es una región y el orden de foco es anterior → siguiente → WhatsApp', () => {
+    renderCarousel();
+    const region = screen.getByRole('region', { name: 'Odoo' });
+    expect(region).toHaveAttribute('aria-roledescription', 'presentación');
+    const controls = [...region.querySelectorAll('button[aria-label^="Capítulo"], a[data-ref]')].map(
+      (el) => el.dataset.ref ?? el.getAttribute('aria-label')
+    );
+    expect(controls.slice(-3)).toEqual(['Capítulo anterior', 'Capítulo siguiente', 'ODOO-S1']);
+  });
 });

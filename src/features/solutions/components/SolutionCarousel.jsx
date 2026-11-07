@@ -7,6 +7,7 @@ import { useReducedMotion } from '../../../hooks/useReducedMotion';
 import { springConfig } from '../../../config/motionConfig';
 import { formatTemplate } from '../utils/formatTemplate';
 import { resolveSwipe } from '../utils/swipe';
+import { useSolutionTracking } from '../hooks/useSolutionTracking';
 import ChapterNav from './ChapterNav';
 import CarouselProgress from './CarouselProgress';
 import WhatsAppCTA from './WhatsAppCTA';
@@ -17,12 +18,14 @@ const KEY_ACTIONS = { ArrowRight: 'next', ArrowLeft: 'prev', Home: 'first', End:
 
 /**
  * Carrusel por capítulos. Sin autoplay (FR-09). Solo se monta el slide activo (NFR-04).
- * Remontar con `key={path}` para volver al slide 1 al cambiar de camino.
+ * Remontar con `key` para volver al slide 1 (cambio de camino o nueva apertura desde una puerta).
  */
-export default function SolutionCarousel({ path, slides, headingLevel = 3, tracking, onSwitchPath }) {
+export default function SolutionCarousel({ path, slides, headingLevel = 3, entry = 'home', onSwitchPath }) {
   const { t } = useLocale();
   const c = t.solutions.carousel;
   const reduced = useReducedMotion();
+  // Dedupe de slide_view por montaje del carrusel (spec §9)
+  const tracking = useSolutionTracking(entry);
   const idBase = useId().replace(/:/g, '');
   const [{ index, direction }, setState] = useState({ index: 0, direction: 0 });
   const total = slides.length;
@@ -35,9 +38,10 @@ export default function SolutionCarousel({ path, slides, headingLevel = 3, track
     return clamped;
   };
 
+  const { trackSlideView } = tracking;
   useEffect(() => {
-    tracking?.trackSlideView(path, slide.ref);
-  }, [path, slide.ref, tracking]);
+    trackSlideView(path, slide.ref);
+  }, [path, slide.ref, trackSlideView]);
 
   const onKeyDown = (e) => {
     const action = KEY_ACTIONS[e.key];
@@ -71,15 +75,19 @@ export default function SolutionCarousel({ path, slides, headingLevel = 3, track
 
   return (
     <div
+      role="region"
       aria-roledescription={c.roleDescription}
       aria-label={t.solutions.section.switch[path]}
       onKeyDown={onKeyDown}
-      className="space-y-5"
+      className="space-y-5 lg:space-y-2 lg:flex-1 lg:min-h-0 lg:flex lg:flex-col"
     >
       <ChapterNav slides={slides} index={index} onSelect={goTo} path={path} idBase={idBase} label={c.chaptersLabel} />
       <CarouselProgress index={index} total={total} path={path} text={progressText} />
 
-      <div className="relative overflow-hidden rounded-2xl bg-[#F1F0E8] border border-[#2C3340]/10 shadow-sm">
+      {/* lg+: la tarjeta llena el alto disponible; flechas a los costados y WhatsApp fijo dentro de la tarjeta.
+          Mobile: flechas + WhatsApp en una fila debajo (como antes). Un solo juego de botones. */}
+      <div className="relative space-y-5 lg:space-y-0 lg:flex-1 lg:min-h-0">
+      <div className="relative overflow-hidden rounded-2xl bg-[#F1F0E8] border border-[#2C3340]/10 shadow-sm lg:h-full">
         <AnimatePresence mode="wait" initial={false} custom={direction}>
           <motion.div
             key={slide.id}
@@ -99,21 +107,41 @@ export default function SolutionCarousel({ path, slides, headingLevel = 3, track
             dragDirectionLock
             onDragEnd={onDragEnd}
             style={{ touchAction: 'pan-y' }}
-            className="p-5 sm:p-8 md:min-h-[30rem]"
+            className="p-5 sm:p-8 md:min-h-[30rem] lg:min-h-0 lg:h-full lg:overflow-y-auto lg:px-12 lg:pt-6 lg:pb-20"
           >
             <SlideRenderer slide={slide} path={path} headingLevel={headingLevel} onSwitchPath={onSwitchPath} tracking={tracking} />
           </motion.div>
         </AnimatePresence>
       </div>
 
-      <div className="flex items-center justify-between gap-3">
-        <button type="button" className={arrowBtn} onClick={() => goTo(index - 1)} disabled={index === 0} aria-label={c.prev}>
+      <div className="flex items-center justify-between gap-3 lg:contents">
+        {/* Orden DOM = orden de foco: anterior → siguiente → WhatsApp (lectura visual en desktop).
+            En mobile `order-*` los muestra como anterior · WhatsApp · siguiente. */}
+        <button
+          type="button"
+          className={`${arrowBtn} order-1 lg:absolute lg:z-10 lg:left-0 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 lg:w-12 lg:h-12 lg:shadow-md`}
+          onClick={() => goTo(index - 1)}
+          disabled={index === 0}
+          aria-label={c.prev}
+        >
           <FiChevronLeft aria-hidden="true" className="w-5 h-5" />
         </button>
-        <WhatsAppCTA path={path} refCode={slide.ref} onClick={tracking?.trackWhatsApp} />
-        <button type="button" className={arrowBtn} onClick={() => goTo(index + 1)} disabled={index === total - 1} aria-label={c.next}>
+        <button
+          type="button"
+          className={`${arrowBtn} order-3 lg:absolute lg:z-10 lg:right-0 lg:top-1/2 lg:translate-x-1/2 lg:-translate-y-1/2 lg:w-12 lg:h-12 lg:shadow-md`}
+          onClick={() => goTo(index + 1)}
+          disabled={index === total - 1}
+          aria-label={c.next}
+        >
           <FiChevronRight aria-hidden="true" className="w-5 h-5" />
         </button>
+        <WhatsAppCTA
+          path={path}
+          refCode={slide.ref}
+          onClick={tracking?.trackWhatsApp}
+          className={`order-2 lg:absolute lg:z-10 lg:bottom-4 lg:right-6 lg:shadow-md ${slide.type === 'contact' ? 'lg:hidden' : ''}`}
+        />
+      </div>
       </div>
     </div>
   );

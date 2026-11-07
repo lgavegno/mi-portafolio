@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { LocaleProvider } from '../../../context/LocaleProvider';
 import SolutionsSection from '../components/SolutionsSection';
 
@@ -20,12 +20,15 @@ describe('tracking GA4 de la sección (AC-15)', () => {
       </LocaleProvider>
     );
     const next = await screen.findByRole('button', { name: 'Capítulo siguiente' });
-    expect(events('solution_slide_view')).toEqual([{ path: 'odoo', slide: 'ODOO-S1', locale: 'es', entry: 'home' }]);
+    // Los eventos salen de un efecto: esperar a que React lo ejecute (bajo carga puede ir detrás del render)
+    await waitFor(() =>
+      expect(events('solution_slide_view')).toEqual([{ path: 'odoo', slide: 'ODOO-S1', locale: 'es', entry: 'home' }])
+    );
 
     fireEvent.click(next);
     fireEvent.click(screen.getByRole('button', { name: 'Capítulo anterior' }));
     fireEvent.click(next);
-    expect(events('solution_slide_view').map((e) => e.slide)).toEqual(['ODOO-S1', 'ODOO-S2']);
+    await waitFor(() => expect(events('solution_slide_view').map((e) => e.slide)).toEqual(['ODOO-S1', 'ODOO-S2']));
 
     const wa = document.querySelector('a[data-ref="ODOO-S2"]');
     wa.addEventListener('click', (e) => e.preventDefault());
@@ -57,5 +60,37 @@ describe('tracking GA4 de la sección (AC-15)', () => {
     expect(screen.getByRole('heading', { level: 2, name: 'Sistemas de gestión para tu empresa' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 3, name: /comercios y pymes/ })).toBeInTheDocument();
     expect(screen.getAllByText(/ONGEVAG no es partner oficial/).length).toBeGreaterThan(0);
+  });
+
+  it('volver a abrir la misma puerta vuelve al capítulo 1 (FR-02)', async () => {
+    const ui = (token) => (
+      <LocaleProvider locale="es">
+        <SolutionsSection path="dux" onPathChange={() => {}} focusToken={token} />
+      </LocaleProvider>
+    );
+    const { rerender } = render(ui(1));
+    const next = await screen.findByRole('button', { name: 'Capítulo siguiente' });
+    fireEvent.click(next);
+    fireEvent.click(screen.getByRole('button', { name: 'Capítulo siguiente' }));
+    expect(screen.getByText('Capítulo 3 de 5')).toBeInTheDocument();
+    rerender(ui(2));
+    expect(await screen.findByText('Capítulo 1 de 5')).toBeInTheDocument();
+  });
+
+  it('slide_view se dedupea por montaje: Odoo → Dux → Odoo reemite ODOO-S1', async () => {
+    const ui = (path) => (
+      <LocaleProvider locale="es">
+        <SolutionsSection path={path} onPathChange={() => {}} />
+      </LocaleProvider>
+    );
+    const { rerender } = render(ui('odoo'));
+    await screen.findByText('Capítulo 1 de 7');
+    rerender(ui('dux'));
+    await screen.findByText('Capítulo 1 de 5');
+    rerender(ui('odoo'));
+    await screen.findByText('Capítulo 1 de 7');
+    await waitFor(() =>
+      expect(events('solution_slide_view').map((e) => e.slide)).toEqual(['ODOO-S1', 'DUX-S1', 'ODOO-S1'])
+    );
   });
 });

@@ -15,7 +15,7 @@ export default function ChapterNav({ slides, index, onSelect, path, idBase, labe
       role="tablist"
       aria-label={label}
       data-chapter-nav
-      className="flex gap-2 overflow-x-auto pb-2 -mx-1 px-1 snap-x [scrollbar-width:thin]"
+      className="flex gap-2 overflow-x-auto pb-2 lg:pb-1 -mx-1 px-1 snap-x [scrollbar-width:thin]"
     >
       {slides.map((slide, i) => {
         const selected = i === index;
@@ -30,7 +30,7 @@ export default function ChapterNav({ slides, index, onSelect, path, idBase, labe
             aria-controls={`${idBase}-panel`}
             tabIndex={selected ? 0 : -1}
             onClick={() => onSelect(i)}
-            className={`snap-start shrink-0 min-h-[44px] px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap border transition-colors ${FOCUS_RING} ${
+            className={`snap-start shrink-0 min-h-[44px] px-4 lg:px-3 py-2 lg:py-1 rounded-full text-sm font-medium whitespace-nowrap border transition-colors ${FOCUS_RING} ${
               selected
                 ? `${accent.solid} border-transparent`
                 : 'bg-[#F1F0E8] text-[#2C3340] border-[#2C3340]/15 hover:border-[#2C3340]/40'
