@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaWhatsapp } from 'react-icons/fa';
 import { useLocale } from '../hooks/useLocale';
+import { WHATSAPP_NUMBER } from '../config/contact';
 
 const WhatsAppFloat = () => {
   const { t } = useLocale();
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
 
-  const phoneNumber = '5493492665453';
   const message = t.common.whatsapp.prefilledMessage;
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
   // Check if user prefers reduced motion
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
