@@ -7,7 +7,7 @@ YELLOW := \033[0;33m
 NC := \033[0m # No Color
 
 help:
-	@echo "$(BLUE)Ongevag Studio Portfolio — Makefile$(NC)"
+	@echo "$(BLUE)ONGEVAG Portfolio — Makefile$(NC)"
 	@echo ""
 	@echo "$(YELLOW)Development:$(NC)"
 	@echo "  make dev              Start Vite dev server (localhost:5173)"
@@ -159,7 +159,7 @@ performance-audit:
 
 info:
 	@echo "$(BLUE)Project Info:$(NC)"
-	@echo "  Name:      Ongevag Studio Portfolio"
+	@echo "  Name:      ONGEVAG Portfolio"
 	@echo "  Stack:     React 19 + Vite 6.3.5"
 	@echo "  Package:   npm (package.json)"
 	@echo "  Deploy:    Vercel"

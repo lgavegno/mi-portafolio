@@ -12,11 +12,16 @@ export default {
     },
     {
       title: 'Custom Management Software',
-      description: 'Internal tools for SMBs: inventory modules, quotes, reports, and workflows designed precisely for your business processes.',
+      description: 'Custom development for SMBs when no standard system fits: inventory modules, quotes, reports, and workflows designed around your business processes.',
     },
     {
       title: 'Data Automation & Analytics',
       description: 'Data pipelines, real-time KPI dashboards, and process automation to reduce operational errors and free up your team\'s time.',
+    },
+    {
+      title: 'Management Systems: Odoo & Dux',
+      description: 'I advise you on which platform fits and connect you with a specialized team that implements it: Odoo for growing companies, Dux for retail stores.',
+      links: [{ label: 'See Odoo', path: 'odoo' }, { label: 'See Dux', path: 'dux' }],
     },
   ],
   carousel: {

@@ -3,6 +3,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { FEATURES } from '../src/config/features.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -47,6 +48,10 @@ function url(loc, changefreq, priority) {
 function generateSitemap() {
   const blogSlugs = extractBlogSlugs();
 
+  const solutionPaths = FEATURES.solutions
+    ? ['/odoo', '/dux', '/en/odoo', '/en/dux', '/pt/odoo', '/pt/dux']
+    : [];
+
   const entries = [
     // Home — ES canonical (no prefix), EN (/en), PT (/pt)
     url('/', 'monthly', 0.9),
@@ -57,6 +62,9 @@ function generateSitemap() {
     url('/agencias', 'monthly', 0.9),
     url('/en/agencies', 'monthly', 0.9),
     url('/pt/agencias', 'monthly', 0.9),
+
+    // Sistemas de gestión (FEATURE-12) — solo con FEATURES.solutions activo
+    ...solutionPaths.map(p => url(p, 'monthly', 0.8)),
 
     // Blog lists — ES (/blog), EN (/en/blog), PT (/pt/blog)
     url('/blog', 'weekly', 0.8),
@@ -94,9 +102,9 @@ ${entries.join('\n\n')}
 
   const blogCount = blogSlugs.length;
   const projectCount = projectIds.length;
-  const total = 3 + 3 + 3 + blogCount * 3 + projectCount * 3;
+  const total = 3 + 3 + solutionPaths.length + 3 + blogCount * 3 + projectCount * 3;
   console.log(`✓ Sitemap generated: ${outputPath}`);
-  console.log(`✓ URLs included: ${total} (3 home + 3 agencies + 3 blog lists + ${blogCount * 3} posts + ${projectCount * 3} projects)`);
+  console.log(`✓ URLs included: ${total} (3 home + 3 agencies + ${solutionPaths.length} solutions + 3 blog lists + ${blogCount * 3} posts + ${projectCount * 3} projects)`);
 }
 
 try {

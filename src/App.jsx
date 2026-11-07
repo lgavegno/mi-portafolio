@@ -1,5 +1,5 @@
 // src/App.jsx
-import React, { lazy, Suspense } from 'react'
+import React, { lazy, Suspense, useState } from 'react'
 import { Analytics } from '@vercel/analytics/react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Routes, Route, Outlet, useLocation } from 'react-router-dom'
@@ -24,6 +24,8 @@ const SkillsGrid = lazy(() => import('./components/SkillsGrid'))
 const AgenciasPage = lazy(() => import('./pages/AgenciasPage'))
 const AgenciesPageEN = lazy(() => import('./pages/AgenciesPageEN'))
 const AgenciasPagePT = lazy(() => import('./pages/AgenciasPagePT'))
+const SolutionsPage = lazy(() => import('./pages/SolutionsPage'))
+const SolutionsSection = lazy(() => import('./features/solutions/components/SolutionsSection'))
 
 const AnimatedSection = ({ children, id }) => (
   <motion.div
@@ -37,12 +39,32 @@ const AnimatedSection = ({ children, id }) => (
   </motion.div>
 )
 
-const HomeSections = () => (
+const HomeSections = () => {
+  // FEATURE-12: camino abierto desde las puertas del hero (null = sección no montada)
+  const [solutionPath, setSolutionPath] = useState(null)
+  const [solutionFocus, setSolutionFocus] = useState(0)
+  const openSolution = (path) => {
+    setSolutionPath(path)
+    setSolutionFocus((n) => n + 1)
+  }
+
+  return (
   <>
     <DefaultMetaTags />
     <AnimatedSection id="hero">
-      <HeroBanner />
+      <HeroBanner onOpenSolution={openSolution} />
     </AnimatedSection>
+    {solutionPath && (
+      <Suspense fallback={<div className="bg-[#EEE0C9] min-h-[40rem]" />}>
+        <SolutionsSection
+          path={solutionPath}
+          onPathChange={setSolutionPath}
+          entry="home"
+          variant="home"
+          focusToken={solutionFocus}
+        />
+      </Suspense>
+    )}
     <SectionDivider variant="wave" fromColor="#EEE0C9" toColor="#F1F0E8" />
     <AnimatedSection id="sobre-mi">
       <About />
@@ -74,7 +96,8 @@ const HomeSections = () => (
       <Contact />
     </AnimatedSection>
   </>
-)
+  )
+}
 
 const LocaleLayout = () => {
   const location = useLocation();
@@ -104,6 +127,8 @@ function App() {
                 <Route index element={<HomeSections />} />
                 <Route path="proyecto/:id" element={<ProjectDetail />} />
                 <Route path="agencias" element={<AgenciasPage />} />
+                <Route path="odoo" element={<SolutionsPage path="odoo" />} />
+                <Route path="dux" element={<SolutionsPage path="dux" />} />
                 <Route path="blog" element={<BlogLayout />}>
                   <Route index element={<BlogIndex />} />
                   <Route path=":slug" element={<BlogPostDetail />} />
@@ -114,6 +139,8 @@ function App() {
                 <Route index element={<HomeSections />} />
                 <Route path="proyecto/:id" element={<ProjectDetail />} />
                 <Route path="agencies" element={<AgenciesPageEN />} />
+                <Route path="odoo" element={<SolutionsPage path="odoo" />} />
+                <Route path="dux" element={<SolutionsPage path="dux" />} />
                 <Route path="blog" element={<BlogLayout />}>
                   <Route index element={<BlogIndex />} />
                   <Route path=":slug" element={<BlogPostDetail />} />
@@ -124,6 +151,8 @@ function App() {
                 <Route index element={<HomeSections />} />
                 <Route path="proyecto/:id" element={<ProjectDetail />} />
                 <Route path="agencias" element={<AgenciasPagePT />} />
+                <Route path="odoo" element={<SolutionsPage path="odoo" />} />
+                <Route path="dux" element={<SolutionsPage path="dux" />} />
                 <Route path="blog" element={<BlogLayout />}>
                   <Route index element={<BlogIndex />} />
                   <Route path=":slug" element={<BlogPostDetail />} />

@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import { FiLayout, FiTool, FiCpu, FiMonitor, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
+import { FiLayout, FiTool, FiCpu, FiMonitor, FiChevronLeft, FiChevronRight, FiLayers } from 'react-icons/fi';
+import { LOCALE_PREFIX } from '../../utils/seoLocale';
+import { FEATURES } from '../../config/features';
 import { fadeInUp, staggerContainer } from '../../config/motionConfig';
 import { useVibrate } from '../../hooks/useVibrate';
 import { useLocale } from '../../hooks/useLocale';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
 import './Services3DCarousel.css';
 
 const faqSchema = {
@@ -60,25 +64,33 @@ const Services = () => {
   const carouselRef = useRef(null);
   const autoRotateInterval = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
+  // Pausa la rotación con foco de teclado adentro y con prefers-reduced-motion (a11y)
+  const [hasFocusWithin, setHasFocusWithin] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
+  const isPaused = isHovered || hasFocusWithin || prefersReducedMotion;
   const vibrateLight = useVibrate(5);
 
-  const iconArray = [FiMonitor, FiLayout, FiCpu, FiTool];
+  const iconArray = [FiMonitor, FiLayout, FiCpu, FiTool, FiLayers];
   const gradientArray = [
     "from-[#96B6C5] to-[#ADC4CE]",
     "from-[#ADC4CE] to-[#96B6C5]",
     "from-[#ADC4CE] to-[#96B6C5]",
-    "from-amber-400 to-orange-500"
+    "from-amber-400 to-orange-500",
+    "from-[#EEE0C9] to-[#ADC4CE]"
   ];
 
-  const services = t.services.services.map((service, index) => ({
-    ...service,
-    icon: iconArray[index],
-    gradient: gradientArray[index]
-  }));
+  const services = t.services.services
+    .map((service, index) => ({
+      ...service,
+      icon: iconArray[index],
+      gradient: gradientArray[index]
+    }))
+    // FEATURE-12: la tarjeta "Sistemas de gestión" (la que tiene links) depende de FEATURES.solutions
+    .filter((service) => FEATURES.solutions || !service.links);
 
   // Auto-rotate functionality
   useEffect(() => {
-    if (!isHovered) {
+    if (!isPaused) {
       autoRotateInterval.current = setInterval(() => {
         setCurrentIndex(prev => (prev + 1) % services.length);
       }, 3000);
@@ -89,7 +101,7 @@ const Services = () => {
         clearInterval(autoRotateInterval.current);
       }
     };
-  }, [isHovered, services.length]);
+  }, [isPaused, services.length]);
 
   const handlePrev = () => {
     vibrateLight();
@@ -158,15 +170,23 @@ const Services = () => {
           className="carousel-container"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
+          onFocus={() => setHasFocusWithin(true)}
+          onBlur={(e) => {
+            if (!e.currentTarget.contains(e.relatedTarget)) setHasFocusWithin(false);
+          }}
         >
           <div className="carousel-track" ref={carouselRef}>
             {services.map((service, index) => {
               const IconComponent = service.icon;
+              // Solo la tarjeta de frente es accesible: las de atrás no reciben foco ni se leen
+              const isFront = index === currentIndex;
               return (
                 <div
                   key={index}
                   className="carousel-card will-change-transform"
                   style={getCardStyle(index)}
+                  aria-hidden={!isFront}
+                  inert={!isFront}
                 >
                   <div className="carousel-card-inner" style={{ transformStyle: 'preserve-3d' }}>
                     {/* CARA FRONTAL */}
@@ -177,6 +197,19 @@ const Services = () => {
                         </div>
                         <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 text-[#2C3340]">{service.title}</h3>
                         <p className="text-[#2C3340]/80 md:text-xl mb-6">{service.description}</p>
+                        {service.links && (
+                          <div className="flex flex-wrap gap-3">
+                            {service.links.map((link) => (
+                              <Link
+                                key={link.path}
+                                to={`${LOCALE_PREFIX[locale] ?? ''}/${link.path}`}
+                                className="inline-flex items-center min-h-[44px] px-4 py-2 rounded-full bg-[#2C3340] text-[#F1F0E8] text-sm font-semibold hover:bg-[#1f2530] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F1F0E8]"
+                              >
+                                {link.label}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
 
                       </div>
                     </div>

@@ -94,6 +94,7 @@
 | **FEATURE-08** | Section Dividers & Visual Polish | SVG dividers entre secciones, polish hero, tipografía, UI | ✅ Done | `docs/specs/FEATURE-08-SECTION-DIVIDERS/` | [spec](./specs/FEATURE-08-SECTION-DIVIDERS/spec.md) · [plan](./specs/FEATURE-08-SECTION-DIVIDERS/plan.md) · [tasks](./specs/FEATURE-08-SECTION-DIVIDERS/tasks.md) |
 | **FEATURE-09** | Blog Post — Integración Excel + ERP | Caso de estudio técnico sobre sincronización Excel↔ERP; publicado ES/EN/PT, pendiente QA de cierre (revisión visual + Lighthouse + ortografía) | 🔄 In Progress | `docs/specs/FEATURE-09_BLOG_POST_EXCEL_ERP/` | [spec](./specs/FEATURE-09_BLOG_POST_EXCEL_ERP/spec.md) |
 | **FEATURE-10** | Localización Portugués | Tercer locale del sitio (PT), patrón reutilizado por FEATURE-11 | ✅ Done | `docs/specs/FEATURE-10_PT_LOCALE/` | [spec](./specs/FEATURE-10_PT_LOCALE/spec.md) |
+| **FEATURE-12** | Soluciones de gestión (Odoo / Dux) | Puertas en el hero, presentación por capítulos y páginas /odoo y /dux con atribución de leads por WhatsApp (ref) y GA4; interruptor `FEATURES.solutions` | ✅ Done (develop) | `docs/specs/FEATURE-12_ODOO_DUX_SOLUTIONS/` | [spec](./specs/FEATURE-12_ODOO_DUX_SOLUTIONS/spec.md) |
 | **FEATURE-11** | Tech Experience | Sección de case studies técnicos anonimizados (Odoo/ERP/ETL), i18n ES/EN/PT | ✅ Done | `docs/specs/FEATURE-11_TECH_EXPERIENCE/` | [spec](./specs/FEATURE-11_TECH_EXPERIENCE/spec.md) |
 | **UI Kit** | Components | Button, Header, Footer, SectionDivider, Skeleton (shared globals) | ✅ Active | `src/components/` | [src](../src/components/) |
 | **Config** | Config | Framer Motion variants, animation presets, tokens | ✅ Active | `src/config/` | [motionConfig](../src/config/motionConfig.js) |
@@ -186,7 +187,7 @@
 | `src/App.jsx` | Root routing + HomeSections composition |
 | `src/main.jsx` | Entry point (React 19 setup) |
 | `src/features/contact/Contact.jsx` | **CRÍTICO:** Contact form (sin backend) |
-| `src/features/hero/HeroBanner.jsx` | **CRÍTICO:** Hero principal — ver scrollToContact guardrail |
+| `src/features/hero/HeroBanner.jsx` | **CRÍTICO:** Hero principal — desde FEATURE-12 sin CTAs; acciones = puertas `SolutionDoors` (`scrollToContact` retirado 2026-11-07) |
 | `src/components/ui/SectionDivider.jsx` | **CRÍTICO:** SVG dividers — preserveAspectRatio="none" mandatorio |
 | `src/context/LocaleProvider.jsx` | **CRÍTICO:** i18n core — cambios rompen toda la app |
 | `src/config/motionConfig.js` | **CRÍTICO:** Variantes Framer Motion |

@@ -13,11 +13,16 @@ export default {
     },
     {
       title: 'Software de Gestão Sob Medida',
-      description: 'Ferramentas internas para PMEs: módulos de estoque, orçamentos, relatórios e fluxos de trabalho desenhados exatamente conforme os processos do negócio.',
+      description: 'Desenvolvimento próprio para PMEs quando nenhum sistema padrão se encaixa: módulos de estoque, orçamentos, relatórios e fluxos desenhados conforme os processos do negócio.',
     },
     {
       title: 'Automação & Análise de Dados',
       description: 'Pipelines de dados, dashboards com KPIs em tempo real e automação de processos manuais para reduzir erros operacionais e liberar tempo da sua equipe.',
+    },
+    {
+      title: 'Sistemas de Gestão: Odoo e Dux',
+      description: 'Eu te oriento sobre qual plataforma convém e te conecto com uma equipe especializada que a implementa: Odoo para empresas em crescimento, Dux para comércios.',
+      links: [{ label: 'Ver Odoo', path: 'odoo' }, { label: 'Ver Dux', path: 'dux' }],
     },
   ],
   carousel: {

@@ -54,7 +54,8 @@ vi.mock('framer-motion', async () => {
       'variants', 'initial', 'animate', 'exit', 'transition',
       'whileHover', 'whileTap', 'whileInView', 'whileDrag',
       'whileFeatureInView', 'whileFocus', 'whileGroup',
-      'viewport', 'layout', 'layoutId', 'drag', 'dragConstraints'
+      'viewport', 'layout', 'layoutId', 'drag', 'dragConstraints',
+      'dragElastic', 'dragMomentum', 'dragDirectionLock', 'onDragEnd', 'onDragStart', 'custom'
     ]
 
     return Object.keys(props).reduce((acc, key) => {
@@ -71,15 +72,11 @@ vi.mock('framer-motion', async () => {
   }
 
   return {
-    motion: {
-      div: createMotionComponent('div'),
-      h2: createMotionComponent('h2'),
-      p: createMotionComponent('p'),
-      section: createMotionComponent('section'),
-      span: createMotionComponent('span'),
-      button: createMotionComponent('button'),
-      form: createMotionComponent('form'),
-    },
+    // Proxy: cualquier motion.<tag> se renderiza como <tag> plano.
+    // Se cachea un componente por tag: crear uno nuevo en cada acceso remonta el árbol.
+    motion: new Proxy({}, {
+      get: (cache, tag) => (cache[tag] ??= createMotionComponent(tag)),
+    }),
     AnimatePresence: ({ children }) => children,
   }
 })

@@ -87,7 +87,7 @@
 - [ ] Sintaxis RFC 8259 válida.
 
 **Subtasks:**
-1. Crear objeto JSON para `Organization` (Ungévag Studio, logo URL, sameAs links sociales).
+1. Crear objeto JSON para `Organization` (ONGEVAG, logo URL, sameAs links sociales).
 2. Crear objeto JSON para `Person` (Leandro Gavegno, jobTitle, url, worksFor -> Organization).
 3. Crear objeto JSON para `ProfessionalService` (freelancer scope, areaServed).
 4. Insertar bloques `<script type="application/ld+json">` en `index.html` antes de `</head>`.

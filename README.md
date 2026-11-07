@@ -1,6 +1,6 @@
 # Portafolio de Ingeniería Frontend - Feature-Based Architecture
 
-> **Software & Data Studio**  
+> **ONGEVAG · Software & Data**  
 > Una implementación profesional de React 19 diseñada con una arquitectura escalable basada en Features (DDD Light).
 
 
