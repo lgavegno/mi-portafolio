@@ -5,6 +5,16 @@
 
 ---
 
+## 2026-11-07 — FEATURE-12: hero sin CTAs y retiro de `scrollToContact`
+
+**Objetivo:** Ordenar el hero al sumar las puertas Odoo/Dux (rama `feature/odoo-dux-solutions`).
+
+- **Decisión de Leo:** se eliminan "Ver proyectos", "Contactar" y las Stats del hero. El contacto queda cubierto por el WhatsApp flotante (en todas las páginas salvo `/odoo` y `/dux`) y la sección `#contacto`
+- **Guardrail retirado:** `scrollToContact` existía solo para el CTA "Contactar" (ver entradas 2026-06-09). Sin el botón, la función era código muerto; se eliminó junto a `scrollToProjects` y se actualizó CLAUDE.md §Critical Files y SDD_MASTER
+- **Mobile:** fuera el split `min-h-[75vh]` que dejaba el contenido comprimido abajo
+
+---
+
 ## 2026-10-21 — Actualización de dependencias y parche de vulnerabilidades
 
 **Objetivo:** Dejar dependencias al día sin romper build, estilos ni comportamiento (rama `feature/deps-security-update`).

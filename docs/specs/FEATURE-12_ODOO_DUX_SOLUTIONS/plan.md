@@ -32,7 +32,7 @@ La limpieza de marca va en un commit aparte.
 - **Conventional Commits**, un commit por task o grupo chico de tasks. Nunca `main`; PR a `develop`
   solo con autorización de Leo.
 - `npm install --legacy-peer-deps` si hiciera falta instalar algo (no se prevén dependencias nuevas).
-- Archivos críticos: `scrollToContact` intacto; `SectionDivider.jsx`, `vercel.json`,
+- Archivos críticos: `SectionDivider.jsx`, `vercel.json`,
   `ParticleBackground.jsx` sin cambios; `LocaleProvider` solo suma el módulo `solutions`.
 
 ---

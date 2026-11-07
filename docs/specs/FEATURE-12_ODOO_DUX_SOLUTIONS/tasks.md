@@ -30,12 +30,12 @@
 | T-16 | `SolutionDoors` + HeroBanner + HomeSections | ✅ Done |
 | T-17 | 5.ª tarjeta en Services | ✅ Done |
 | T-18 | Sitemap | ✅ Done |
-| T-19 | Meta por ruta post-build | 🔄 Parcial |
-| T-20 | Limpieza de marca | 🔄 Parcial |
+| T-19 | Meta por ruta post-build | 🔄 Parcial (falta verificar en Vercel) |
+| T-20 | Limpieza de marca | ✅ Done |
 | T-21 | Tests de integración | ✅ Done |
-| T-22 | Build/lint/test + bundle | ⏳ Pending |
-| T-23 | Lighthouse + QA manual | ⏳ Pending |
-| T-24 | Docs de cierre | ⏳ Pending |
+| T-22 | Build/lint/test + bundle | ✅ Done |
+| T-23 | Lighthouse + QA manual | ✅ Done |
+| T-24 | Docs de cierre | ✅ Done |
 | T-25 | PR a `develop` (con OK de Leo) | ⏳ Pending |
 
 ---
@@ -153,7 +153,7 @@
 - [ ] `SolutionDoors` (eager) entre CTA y Stats de `HeroBanner.jsx` (spec §3.2); link secundario con `HERO-*`.
 - [ ] `HeroBanner` acepta `onOpenSolution`; sin la prop, navega a `/odoo` o `/dux` del locale.
 - [ ] `HomeSections`: estado `solutionPath`, `Suspense` + sección lazy entre el hero y el divisor wave; scroll y foco al abrir.
-- [ ] `grep -n scrollToContact src/features/hero/HeroBanner.jsx` → definición + uso (AC-01).
+- [x] (rev. 1.1) Hero sin CTAs ni Stats; puertas como única acción (AC-01).
 - **Commit (T-15…T-16):** `feat(hero): franja de sistemas de gestión con puertas Odoo y Dux`
 
 ### T-17: Tarjeta en Services
@@ -252,6 +252,26 @@
 - 2026-11-07 — T-18 sitemap: 51 URLs (+6 de soluciones, `priority 0.8`).
 - 2026-11-07 — T-19 `scripts/generate-route-meta.js` corre después de `vite build` y genera `dist/{,en/,pt/}{odoo,dux}/index.html` con `lang`, title, description, og:title/description y twitter:* por locale (assets con rutas absolutas). **Falta** verificar en un preview deploy de Vercel que `/odoo` sirva ese HTML (requiere push). Imagen OG: fallback `/og-image.png`.
 - 2026-11-07 — T-20 sufijo de marca eliminado en `index.html` (JSON-LD válido), README, Makefile, `public/llms.txt`, `public/robots.txt`, ADR-009 (+ nota de enmienda), docs de FEATURE-03 y la clave `common.logo.tagline` (no se usaba). **Pendiente decisión de Leo**: 3 menciones de "Android Studio" (producto de Google) en posts del blog y "Creative Studio" (tipo de cliente) en `locales/en/agencies.js`; no son marca ONGEVAG.
+- 2026-11-07 — Rev. 1.1 del hero (pedido de Leo tras ver el preview): fuera "Ver proyectos", "Contactar", Stats y el split mobile `min-h-[75vh]`; `scrollToContact`/`scrollToProjects` eliminados y regla de CLAUDE.md actualizada. Puertas rediseñadas (producto en su propia línea, WhatsApp como ícono con `aria-label` y ref `HERO-*`). Claves `hero.cta`/`hero.stats` eliminadas de los 3 locales. 149/149 tests.
+- 2026-11-07 — Rev. 1.2: interruptor `FEATURES.solutions` (`src/config/features.js`). Modo soluciones: marca `sr-only` (h1 intacto), badge + puertas en la columna izquierda centradas en vertical (sin tapar las figuras; puertas en 1 columna en `lg`, 2 en `xl`), hero ajustado al contenido en mobile. Modo normal: marca visible, sin puertas ni tarjeta en Services. Tests de ambos modos. 152/152.
+- 2026-11-07 — Rev. 1.3: sección a pantalla completa en desktop (pedido de Leo: en MacBook 13" se cortaba y no se veían las flechas). Encabezado compacto, flechas a los costados de la tarjeta, WhatsApp dentro de la tarjeta. Un solo juego de botones (fila en mobile, `lg:contents` + posicionamiento absoluto en desktop). Mobile y menú global sin cambios. 152/152.
+- 2026-11-07 — Correcciones de la auditoría externa:
+  - **Alta** Services: tarjetas no frontales con `aria-hidden` + `inert` (los links Odoo/Dux de tarjetas ocultas ya no reciben foco); la rotación automática se pausa con foco de teclado y con `prefers-reduced-motion`.
+  - FR-02: el carrusel remonta con `key={path-focusToken}` → reabrir la misma puerta vuelve al capítulo 1.
+  - Dedupe de `solution_slide_view` por montaje del carrusel (el hook pasó de `SolutionsSection` a `SolutionCarousel`).
+  - Carrusel con `role="region"`; orden DOM/foco anterior → siguiente → WhatsApp (en mobile `order-*` mantiene la vista anterior · WhatsApp · siguiente). Capítulos y switch vuelven a 44 px en desktop.
+  - Puertas más bajas en mobile: sin fila "Ver presentación" (flecha junto al nombre) y menos padding. Estimado ~84 px a 375 px con frase en una línea; ~104 px a 320 px con frase en dos líneas (pendiente medir en QA).
+  - Route-meta: el HTML estático suma canonical, 4 hreflang, og:url y og:locale (`data-route-meta`); `SolutionsPage` los retira al montar para no duplicar los de Helmet.
+  - Test intermitente resuelto: las aserciones de GA4 esperaban antes de que corriera el efecto; ahora usan `waitFor`. 157/157 en 4 corridas seguidas.
+- 2026-11-07 — Rev. 1.4 (recomendaciones de la auditoría adoptadas): NFR-03 ≤ 5 KB; regla de marca como identidad histórica (se mantienen "Android Studio" y "Creative Studio"); sin frase de Odoo 19; `FEATURES.solutions = false` ⇒ `/odoo` y `/dux` redirigen a la home, sin entradas en sitemap ni HTML estático.
+- 2026-11-07 — **QA (T-22/T-23)** con `vite preview` local:
+  - Visual 1440×800: hero con bloque a la izquierda sin tapar figuras; sección a pantalla completa. Los 12 slides entran sin scroll interno (antes de los ajustes: 5 desbordaban hasta 159 px). 1280×720: 7 slides usan el scroll interno de la tarjeta (≤ 73 px), fallback aceptado.
+  - Mobile 375×812: sin scroll horizontal; puertas de 105 px (Dux) y 121 px (Odoo) — por encima del objetivo de 96 px; se mantiene por decisión de Leo de no tocar mobile.
+  - Bug encontrado y corregido: `ChapterNav` usaba `scrollIntoView` y cortaba el scroll suave al abrir una puerta. Ahora mueve solo la tira horizontal; el scroll de la sección espera a que el contenido cargue. Verificado con el panel visible (sección alineada bajo el menú).
+  - Lighthouse local (`vite preview` sin brotli, misma máquina, 2 corridas, `develop` vs rama): desktop perf 75/79 vs 67/86, LCP 1,5–1,6 s vs 1,5–1,7 s, CLS 0 en ambos; mobile perf 43/43 vs 37/45. **Sin regresión fuera del ruido.** A11y desktop 91 = 91; mobile 91 → 87 por secciones existentes que ahora entran antes en el análisis (contraste `#96B6C5`/link Faro Art = DT-08-03; indicadores de Services de 8 px, ahora 5 en vez de 4). `/odoo`: a11y 96, SEO 100.
+  - Corregido por Lighthouse: `aria-controls` de las puertas apuntaba a una sección aún no montada.
+  - Entrada final 88.092 B br (+4.149 B, dentro del NFR-03 rev. 1.4 ≤ 5 KB). 160/160 tests en 2 corridas.
+- 2026-11-07 — Pendiente fuera del QA: VoiceOver real y swipe en dispositivo físico (no disponibles en la sesión). Verificación de `dist/odoo/index.html` en Vercel tras el deploy de develop.
 
 ## Cifras no verificadas (para Leo)
 

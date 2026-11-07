@@ -95,7 +95,7 @@ de `{/* Stats */}`:
 ```
 Block 2
 ├── Description            (sin cambios)
-├── CTA Buttons            (sin cambios — scrollToProjects / scrollToContact intactos)
+├── CTA Buttons            (eliminado en rev. 1.1 — ver §3.2 nota)
 ├── <SolutionDoors />      ← NUEVO, envuelto en motion.div variants={fadeInUp}
 └── Stats                  (sin cambios)
 ```
@@ -104,6 +104,10 @@ Block 2
 - `SolutionDoors` es **eager** (texto + 2 íconos de `react-icons`, sin imágenes) para no agregar un salto de carga en el hero.
 - Mobile: puertas apiladas y compactas (cada una ≤ 96 px de alto). `≥ sm`: dos columnas dentro de `max-w-xl`.
 - `scrollToContact` y su uso no se tocan.
+- **Rev. 1.1 (2026-11-07, decisión de Leo):** se eliminan del hero los CTA "Ver proyectos" y "Contactar" (con `scrollToProjects`/`scrollToContact`) y el bloque Stats. El hero queda: badge → ONGEVAG → rol → descripción → `SolutionDoors`, igual en desktop y mobile (sin el split `min-h-[75vh]`). Las puertas son la única acción; el WhatsApp de cada puerta pasa a ícono con `aria-label`. Se actualiza la regla de archivos críticos en CLAUDE.md.
+- **Rev. 1.2 (2026-11-07, decisión de Leo):** interruptor `FEATURES.solutions` en `src/config/features.js`. Con `true`, el hero muestra el badge y las puertas en la columna izquierda (misma posición del hero original), centradas en vertical y sin superponer las figuras geométricas de la derecha; ONGEVAG, rol y descripción quedan con `sr-only` (el `<h1>` ONGEVAG se mantiene para SEO y lectores de pantalla). En mobile el hero se ajusta al contenido (`min-h-screen` solo en `lg`). Con `false`, el hero vuelve a mostrar la marca sin puertas y Services oculta la tarjeta de sistemas de gestión; las rutas `/odoo` y `/dux` siguen activas.
+- **Rev. 1.3 (2026-11-07, decisión de Leo):** en `lg+` la sección de soluciones ocupa la pantalla menos el menú (`h-[calc(100dvh-5rem)]`, mínimo 560 px). Encabezado compacto (título y bajada en una fila, switch a la derecha, sin badge), capítulos más finos, tarjeta que llena el alto con scroll interno si hace falta, flechas a los costados de la tarjeta centradas en vertical y WhatsApp fijo abajo a la derecha dentro de la tarjeta (oculto en los slides de contacto, que ya tienen su botón). Mobile sin cambios. Menú global sin cambios (opción A). Reemplaza NFR-09.
+- **Rev. 1.4 (2026-11-07, recomendaciones de la auditoría adoptadas por Leo):** NFR-03 pasa a ≤ 5 KB (condicionado a Lighthouse); regla de marca redefinida como identidad histórica (§11); frase de Odoo 19 descartada (Q8); con `FEATURES.solutions = false` la alianza se considera terminada: `/odoo` y `/dux` (todos los locales) redirigen a la home del idioma, y el build las quita del sitemap y no genera su HTML estático.
 
 ### 3.3 Ubicación de la sección en la home
 
@@ -408,6 +412,8 @@ Vía `src/utils/trackEvent.js` (ya existente; no-op si `gtag` no está).
 ## 11. Limpieza de marca
 
 Prohibida la palabra `S-t-u-d-i-o` (deletreada así en esta spec a propósito) en todo el repo.
+
+> **Rev. 1.4:** la prohibición se redefine como **identidad histórica de marca**: no se usa el nombre anterior de ONGEVAG ("Ongevag" + esa palabra) ni la palabra como parte de la marca o del contenido de esta feature. Usos genéricos legítimos ("Android Studio" en el blog, "Creative Studio" como tipo de cliente en agencias EN) se mantienen.
 Ocurrencias actuales detectadas:
 
 | Archivo | Ocurrencia | Acción propuesta |
@@ -457,7 +463,7 @@ El contenido nuevo tampoco la usa (incluido el nombre de la app de Odoo). Verifi
 |----|-----------|--------|
 | NFR-01 | LCP del hero no empeora | Desktop LCP ≤ 1,2 s; Lighthouse desktop Performance ≥ 95 y mobile ≥ baseline − 3 (mismas condiciones, incógnito) |
 | NFR-02 | CLS en carga | 0 en `/`, `/odoo`, `/dux` |
-| NFR-03 | Tamaño del chunk de entrada | Incremento ≤ 3 KB brotli (puertas + strings de `solutions.js`) |
+| NFR-03 | Tamaño del chunk de entrada | Incremento ≤ 5 KB brotli (rev. 1.4; antes 3 KB), condicionado a Lighthouse satisfactorio en T-23 |
 | NFR-04 | Carga diferida | Sección, páginas y `slides.{locale}.js` fuera del chunk de entrada; solo se monta el slide activo |
 | NFR-05 | Accesibilidad | WCAG 2.1 AA; Lighthouse Accessibility ≥ 95 en `/odoo` y `/dux`; foco visible en todos los controles |
 | NFR-06 | Headings | Home: `h1` ONGEVAG → `h2` sección → `h3` slide. Página: `h1` página → `h2` slide. Sin saltos |
@@ -485,7 +491,7 @@ El contenido nuevo tampoco la usa (incluido el nombre de la app de Odoo). Verifi
 | Q5 | El repo es **público**: commitear la presentación original publicaría datos, contactos y logos de clientes del partner. | `docs/reference/` en `.gitignore`; copia solo local. Specs sin nombre del partner ni datos del acuerdo. |
 | Q6 | ¿Precio de referencia de Odoo en S5? | No en v1 (cambia por región y plan). |
 | Q7 | Ya existe la tarjeta "Software de Gestión a Medida" en `Services`. ¿Convive con "Sistemas de gestión (Odoo / Dux)"? | Sí: una es desarrollo propio y la otra implementación de plataformas; se ajusta el copy para que no se pisen. |
-| Q8 | Frase opcional "Conozco Odoo desde adentro: participo en implementaciones reales de Odoo 19." | Incluir solo si Leo confirma que es exacta hoy. |
+| Q8 | Frase opcional "Conozco Odoo desde adentro: participo en implementaciones reales de Odoo 19." | **No se incluye** (rev. 1.4): falta respaldo documental y menciona una versión que caduca. |
 
 ---
 
@@ -515,7 +521,7 @@ activo, siguiendo el precedente de `blogData.{locale}.js`. No modifica ADR-010.
 ## 17. Criterios de aceptación
 
 **Hero y home**
-- [ ] AC-01 `SolutionDoors` está entre el bloque CTA y el bloque Stats de `HeroBanner.jsx`; `grep -n scrollToContact src/features/hero/HeroBanner.jsx` sigue mostrando definición y uso.
+- [ ] AC-01 (rev. 1.1) `SolutionDoors` va debajo de la descripción del hero y sus dos puertas son los únicos botones de `#inicio`; no quedan "Ver proyectos", "Contactar" ni Stats.
 - [ ] AC-02 Con `solutionPath = null`, el DOM de la home no contiene `#soluciones` y el build no incluye `slides.*.js` en el chunk de entrada.
 - [ ] AC-03 Clic en la puerta Dux → `#soluciones` visible con el switch en Dux, capítulo "Para quién es" activo y foco en el heading de la sección.
 
@@ -544,7 +550,7 @@ activo, siguiendo el precedente de `blogData.{locale}.js`. No modifica ADR-010.
 
 **Contenido y exclusiones**
 - [ ] AC-19 `contentExclusions.test.js` recorre `slides.*.js` y `locales/*/solutions.js` y no encuentra: nombre del partner, `Silver`, el WhatsApp del partner, su dominio, `odoocdn.com`, `+50`, `+10 años`, ni la lista de nombres de clientes/marcas del slide excluido.
-- [ ] AC-20 `git grep -nw` de la palabra prohibida → sin resultados.
+- [ ] AC-20 (rev. 1.4) Ninguna referencia al nombre anterior de la marca (`git grep -niE "ongevag[[:space:]]+<palabra>"` y variantes → sin resultados); la feature no usa la palabra.
 - [ ] AC-21 Toda cifra renderizada tiene `source.url` en `odoo.com` o `duxsoftware.com.ar` y `verifiedAt` (test).
 - [ ] AC-22 Ningún `src`/`href` de la feature apunta a dominios de terceros salvo `wa.me` y las URLs de fuente.
 
