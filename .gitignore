@@ -36,3 +36,6 @@ lh-desktop.json
 .env*
 secrets-report.json
 _to_delete/
+
+# Material de referencia privado (presentaciones de terceros, no publicar)
+docs/reference/
