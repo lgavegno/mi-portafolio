@@ -21,18 +21,18 @@
 | T-07 | `slides.en.js` / `slides.pt.js` | ✅ Done |
 | T-08 | Verificación de cifras | ✅ Done |
 | T-09 | Tests de exclusiones e integridad | ✅ Done |
-| T-10 | `WhatsAppCTA` + `useSolutionTracking` | ⏳ Pending |
-| T-11 | Carrusel, capítulos, progreso | ⏳ Pending |
-| T-12 | Slides + mockups | ⏳ Pending |
-| T-13 | `PathSwitch` + `SolutionsSection` | ⏳ Pending |
-| T-14 | `SolutionsPage` + rutas + SEO | ⏳ Pending |
-| T-15 | Ocultar `WhatsAppFloat` en páginas | ⏳ Pending |
-| T-16 | `SolutionDoors` + HeroBanner + HomeSections | ⏳ Pending |
-| T-17 | 5.ª tarjeta en Services | ⏳ Pending |
+| T-10 | `WhatsAppCTA` + `useSolutionTracking` | ✅ Done |
+| T-11 | Carrusel, capítulos, progreso | ✅ Done |
+| T-12 | Slides + mockups | ✅ Done |
+| T-13 | `PathSwitch` + `SolutionsSection` | ✅ Done |
+| T-14 | `SolutionsPage` + rutas + SEO | ✅ Done |
+| T-15 | Ocultar `WhatsAppFloat` en páginas | ✅ Done |
+| T-16 | `SolutionDoors` + HeroBanner + HomeSections | ✅ Done |
+| T-17 | 5.ª tarjeta en Services | ✅ Done |
 | T-18 | Sitemap | ⏳ Pending |
 | T-19 | Meta por ruta post-build | ⏳ Pending |
 | T-20 | Limpieza de marca | ⏳ Pending |
-| T-21 | Tests de integración | ⏳ Pending |
+| T-21 | Tests de integración | ✅ Done |
 | T-22 | Build/lint/test + bundle | ⏳ Pending |
 | T-23 | Lighthouse + QA manual | ⏳ Pending |
 | T-24 | Docs de cierre | ⏳ Pending |
@@ -245,6 +245,10 @@
 - 2026-11-07 — T-06/T-07 12 slides en ES/EN/PT (PT con marcador ADR-014). Frase opcional Q8 ("Conozco Odoo desde adentro…") **no incluida** hasta confirmación de Leo.
 - 2026-11-07 — T-08 Odoo verificado en `odoo.com/page/about-us`: 28 M usuarios ✅, 21.000+ partners ✅. Correcciones: apps de la comunidad 40.000+ → **50.000+**; "100.000+ desarrolladores" no figura (la página dice 2.000) → reemplazado por **50 aplicaciones principales** ✅. `duxsoftware.com.ar` responde 403 a lectura automática → cifras de Dux sin verificar (no se muestran).
 - 2026-11-07 — T-09 `contentExclusions.test.js` + `dataIntegrity.test.js`. Los términos sensibles del partner (nombre, contacto, clientes) viven en `docs/reference/forbidden-terms.json`, **ignorado por git**; el test los usa si el archivo existe. 118/118 tests.
+- 2026-11-07 — Fase C: componentes de `features/solutions` (carrusel, 9 tipos de slide, mockups Dux, switch, sección), `SolutionsPage` + 6 rutas, `WhatsAppFloat` oculto en `/odoo` y `/dux`, puertas en `HeroBanner` (entre CTA y Stats; `scrollToContact` intacto), estado en `HomeSections`, 5.ª tarjeta en Services (copy de "a medida" ajustado). El mock global de Framer Motion pasó a Proxy con caché por tag (sin caché remontaba inputs y rompía Contact).
+- 2026-11-07 — T-21 adelantada: 30 tests de integración (carrusel, puertas, tracking, páginas, LangSwitcher, flujo de la home). Suite total **148/148**.
+- 2026-11-07 — Build: `slides.{es,en,pt}` (~3,7 KB br c/u) y `SolutionsSection` (5,2 KB br) en chunks propios. **Entrada 88.311 B br (+4.368 B vs. baseline) → supera NFR-03 (≤ 3 KB)**: lo que entra son los strings de `solutions.js` y de la 5.ª tarjeta de Services en los 3 locales (LocaleProvider importa todo de entrada) + `SolutionDoors`. Ningún código del carrusel ni contenido de slides. Pendiente decisión de Leo.
+- 2026-11-07 — Preview: el servidor de desarrollo no levanta dentro de la herramienta de navegador de esta sesión (sin respuesta en :5173). Revisión visual queda para T-23.
 
 ## Cifras no verificadas (para Leo)
 
