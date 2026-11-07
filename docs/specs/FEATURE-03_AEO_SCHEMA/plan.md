@@ -35,7 +35,7 @@ Tasks:
 
 Tasks:
 *   **T-04: Implementación de Esquemas Estáticos en `index.html`**
-    *   Insertar JSON-LD para `Organization` (Ungévag Studio).
+    *   Insertar JSON-LD para `Organization` (ONGEVAG).
     *   Insertar JSON-LD para `Person` (Leandro Gavegno) con `areaServed: "Worldwide"`.
     *   Insertar JSON-LD para `ProfessionalService` definiendo la naturaleza freelancer global.
     *   *Nota:* Seguir estrictamente ADR-009 (sin LocalBusiness).

@@ -1,4 +1,4 @@
-# llms.txt — Ongevag Studio
+# llms.txt — ONGEVAG
 # Context file for AI language models and answer engines
 # https://www.ongevag.com
 
@@ -12,7 +12,7 @@ Role: Freelance Front-End Developer & Web Consultant
 Location: Rafaela, Santa Fe, Argentina
 Scope: Worldwide (remote-first, English and Spanish)
 
-Leandro Gavegno is a front-end developer specializing in performant, accessible, and conversion-focused web applications for small and medium-sized businesses (SMBs) globally. He operates under the brand "Ongevag Studio" and works fully remotely with international clients.
+Leandro Gavegno is a front-end developer specializing in performant, accessible, and conversion-focused web applications for small and medium-sized businesses (SMBs) globally. He operates under the brand "ONGEVAG" and works fully remotely with international clients.
 
 ---
 
