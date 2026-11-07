@@ -68,6 +68,10 @@ describe('Home — puertas del hero (AC-02, AC-03)', () => {
     renderAt('/');
     const door = await screen.findByRole('button', { name: /¿Tenés un comercio\?/ }, { timeout: 5000 });
     expect(document.getElementById('soluciones')).toBeNull();
+    // Hero sin CTAs ni stats: las puertas son las únicas acciones
+    const hero = document.getElementById('inicio');
+    expect(hero.querySelectorAll('button')).toHaveLength(2);
+    expect(hero.textContent).not.toMatch(/Ver proyectos|Contactar|Proyectos/);
     fireEvent.click(door);
     expect(await screen.findByRole('heading', { level: 2, name: 'Sistemas de gestión para tu empresa' }, { timeout: 5000 })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Dux', pressed: true })).toBeInTheDocument();

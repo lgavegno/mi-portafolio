@@ -17,7 +17,7 @@ export default {
       pitch: 'Toda a operação em uma plataforma.',
       cta: 'Ver apresentação',
     },
-    whatsapp: 'ou fale comigo pelo WhatsApp',
+    whatsappAria: 'Consultar pelo WhatsApp sobre o {product} (abre em uma nova aba)',
   },
   section: {
     badge: 'Sistemas de gestão',

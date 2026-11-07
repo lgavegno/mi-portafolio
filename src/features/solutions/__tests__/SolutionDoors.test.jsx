@@ -65,4 +65,10 @@ describe('SolutionDoors', () => {
       path: 'dux', slide: 'HERO-DUX', locale: 'es', entry: 'home',
     });
   });
+
+  it('el ícono de WhatsApp de cada puerta tiene etiqueta accesible', () => {
+    renderDoors({ onOpen: vi.fn() });
+    expect(screen.getByRole('link', { name: /Consultar por WhatsApp sobre Dux/ })).toHaveAttribute('data-ref', 'HERO-DUX');
+    expect(screen.getByRole('link', { name: /Consultar por WhatsApp sobre Odoo/ })).toHaveAttribute('data-ref', 'HERO-ODOO');
+  });
 });

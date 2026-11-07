@@ -16,7 +16,7 @@ export default {
       pitch: 'Your whole operation on one platform.',
       cta: 'See presentation',
     },
-    whatsapp: 'or message me on WhatsApp',
+    whatsappAria: 'Ask about {product} on WhatsApp (opens in a new tab)',
   },
   section: {
     badge: 'Management systems',
