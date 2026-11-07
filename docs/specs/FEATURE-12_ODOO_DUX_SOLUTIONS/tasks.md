@@ -29,9 +29,9 @@
 | T-15 | Ocultar `WhatsAppFloat` en páginas | ✅ Done |
 | T-16 | `SolutionDoors` + HeroBanner + HomeSections | ✅ Done |
 | T-17 | 5.ª tarjeta en Services | ✅ Done |
-| T-18 | Sitemap | ⏳ Pending |
-| T-19 | Meta por ruta post-build | ⏳ Pending |
-| T-20 | Limpieza de marca | ⏳ Pending |
+| T-18 | Sitemap | ✅ Done |
+| T-19 | Meta por ruta post-build | 🔄 Parcial |
+| T-20 | Limpieza de marca | 🔄 Parcial |
 | T-21 | Tests de integración | ✅ Done |
 | T-22 | Build/lint/test + bundle | ⏳ Pending |
 | T-23 | Lighthouse + QA manual | ⏳ Pending |
@@ -249,6 +249,9 @@
 - 2026-11-07 — T-21 adelantada: 30 tests de integración (carrusel, puertas, tracking, páginas, LangSwitcher, flujo de la home). Suite total **148/148**.
 - 2026-11-07 — Build: `slides.{es,en,pt}` (~3,7 KB br c/u) y `SolutionsSection` (5,2 KB br) en chunks propios. **Entrada 88.311 B br (+4.368 B vs. baseline) → supera NFR-03 (≤ 3 KB)**: lo que entra son los strings de `solutions.js` y de la 5.ª tarjeta de Services en los 3 locales (LocaleProvider importa todo de entrada) + `SolutionDoors`. Ningún código del carrusel ni contenido de slides. Pendiente decisión de Leo.
 - 2026-11-07 — Preview: el servidor de desarrollo no levanta dentro de la herramienta de navegador de esta sesión (sin respuesta en :5173). Revisión visual queda para T-23.
+- 2026-11-07 — T-18 sitemap: 51 URLs (+6 de soluciones, `priority 0.8`).
+- 2026-11-07 — T-19 `scripts/generate-route-meta.js` corre después de `vite build` y genera `dist/{,en/,pt/}{odoo,dux}/index.html` con `lang`, title, description, og:title/description y twitter:* por locale (assets con rutas absolutas). **Falta** verificar en un preview deploy de Vercel que `/odoo` sirva ese HTML (requiere push). Imagen OG: fallback `/og-image.png`.
+- 2026-11-07 — T-20 sufijo de marca eliminado en `index.html` (JSON-LD válido), README, Makefile, `public/llms.txt`, `public/robots.txt`, ADR-009 (+ nota de enmienda), docs de FEATURE-03 y la clave `common.logo.tagline` (no se usaba). **Pendiente decisión de Leo**: 3 menciones de "Android Studio" (producto de Google) en posts del blog y "Creative Studio" (tipo de cliente) en `locales/en/agencies.js`; no son marca ONGEVAG.
 
 ## Cifras no verificadas (para Leo)
 
