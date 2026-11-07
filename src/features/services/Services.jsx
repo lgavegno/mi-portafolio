@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import { FiLayout, FiTool, FiCpu, FiMonitor, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
+import { FiLayout, FiTool, FiCpu, FiMonitor, FiChevronLeft, FiChevronRight, FiLayers } from 'react-icons/fi';
+import { LOCALE_PREFIX } from '../../utils/seoLocale';
 import { fadeInUp, staggerContainer } from '../../config/motionConfig';
 import { useVibrate } from '../../hooks/useVibrate';
 import { useLocale } from '../../hooks/useLocale';
@@ -62,12 +64,13 @@ const Services = () => {
   const [isHovered, setIsHovered] = useState(false);
   const vibrateLight = useVibrate(5);
 
-  const iconArray = [FiMonitor, FiLayout, FiCpu, FiTool];
+  const iconArray = [FiMonitor, FiLayout, FiCpu, FiTool, FiLayers];
   const gradientArray = [
     "from-[#96B6C5] to-[#ADC4CE]",
     "from-[#ADC4CE] to-[#96B6C5]",
     "from-[#ADC4CE] to-[#96B6C5]",
-    "from-amber-400 to-orange-500"
+    "from-amber-400 to-orange-500",
+    "from-[#EEE0C9] to-[#ADC4CE]"
   ];
 
   const services = t.services.services.map((service, index) => ({
@@ -177,6 +180,19 @@ const Services = () => {
                         </div>
                         <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 text-[#2C3340]">{service.title}</h3>
                         <p className="text-[#2C3340]/80 md:text-xl mb-6">{service.description}</p>
+                        {service.links && (
+                          <div className="flex flex-wrap gap-3">
+                            {service.links.map((link) => (
+                              <Link
+                                key={link.path}
+                                to={`${LOCALE_PREFIX[locale] ?? ''}/${link.path}`}
+                                className="inline-flex items-center min-h-[44px] px-4 py-2 rounded-full bg-[#2C3340] text-[#F1F0E8] text-sm font-semibold hover:bg-[#1f2530] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F1F0E8]"
+                              >
+                                {link.label}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
 
                       </div>
                     </div>
