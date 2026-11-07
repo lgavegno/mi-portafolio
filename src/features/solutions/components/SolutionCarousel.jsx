@@ -85,6 +85,7 @@ export default function SolutionCarousel({ path, slides, headingLevel = 3, entry
       <CarouselProgress index={index} total={total} path={path} text={progressText} />
 
       {/* lg+: la tarjeta llena el alto disponible; flechas a los costados y WhatsApp fijo dentro de la tarjeta.
+          WhatsApp arriba a la derecha (los títulos ocupan como máx. max-w-3xl).
           Mobile: flechas + WhatsApp en una fila debajo (como antes). Un solo juego de botones. */}
       <div className="relative space-y-5 lg:space-y-0 lg:flex-1 lg:min-h-0">
       <div className="relative overflow-hidden rounded-2xl bg-[#F1F0E8] border border-[#2C3340]/10 shadow-sm lg:h-full">
@@ -107,7 +108,7 @@ export default function SolutionCarousel({ path, slides, headingLevel = 3, entry
             dragDirectionLock
             onDragEnd={onDragEnd}
             style={{ touchAction: 'pan-y' }}
-            className="p-5 sm:p-8 md:min-h-[30rem] lg:min-h-0 lg:h-full lg:overflow-y-auto lg:px-12 lg:pt-6 lg:pb-20"
+            className="p-5 sm:p-8 md:min-h-[30rem] lg:min-h-0 lg:h-full lg:overflow-y-auto [scrollbar-width:thin] lg:px-12 lg:pt-6 lg:pb-6"
           >
             <SlideRenderer slide={slide} path={path} headingLevel={headingLevel} onSwitchPath={onSwitchPath} tracking={tracking} />
           </motion.div>
@@ -139,7 +140,7 @@ export default function SolutionCarousel({ path, slides, headingLevel = 3, entry
           path={path}
           refCode={slide.ref}
           onClick={tracking?.trackWhatsApp}
-          className={`order-2 lg:absolute lg:z-10 lg:bottom-4 lg:right-6 lg:shadow-md ${slide.type === 'contact' ? 'lg:hidden' : ''}`}
+          className={`order-2 lg:absolute lg:z-10 lg:top-4 lg:right-6 lg:shadow-md ${slide.type === 'contact' ? 'lg:hidden' : ''}`}
         />
       </div>
       </div>

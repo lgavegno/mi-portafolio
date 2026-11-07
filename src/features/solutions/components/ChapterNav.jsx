@@ -4,14 +4,24 @@ import { ACCENT, FOCUS_RING } from './accent';
 /** Capítulos con nombre como tablist (WAI-ARIA APG, carrusel con pestañas). */
 export default function ChapterNav({ slides, index, onSelect, path, idBase, label }) {
   const activeRef = useRef(null);
+  const listRef = useRef(null);
   const accent = ACCENT[path];
 
+  // Mantener visible el capítulo activo moviendo SOLO la tira horizontal.
+  // (scrollIntoView movía también la página y cortaba el scroll suave al abrir una puerta.)
   useEffect(() => {
-    activeRef.current?.scrollIntoView?.({ block: 'nearest', inline: 'nearest' });
+    const list = listRef.current;
+    const tab = activeRef.current;
+    if (!list || !tab) return;
+    const left = tab.offsetLeft - list.offsetLeft;
+    const right = left + tab.offsetWidth;
+    if (left < list.scrollLeft) list.scrollLeft = left;
+    else if (right > list.scrollLeft + list.clientWidth) list.scrollLeft = right - list.clientWidth;
   }, [index]);
 
   return (
     <div
+      ref={listRef}
       role="tablist"
       aria-label={label}
       data-chapter-nav

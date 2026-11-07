@@ -10,7 +10,7 @@ export default function SlideFacts({ slide, path, level }) {
   const sources = [...new Map(facts.map((f) => [f.source.url, f.source])).values()];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 lg:space-y-4">
       <SlideHeader slide={slide} path={path} level={level} />
       {facts.length > 0 && (
         <div>

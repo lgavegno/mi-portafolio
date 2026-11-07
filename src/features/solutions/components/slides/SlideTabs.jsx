@@ -25,7 +25,7 @@ export default function SlideTabs({ slide, path, level }) {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 lg:space-y-4">
       <SlideHeader slide={slide} path={path} level={level} />
       <div data-inner-tabs role="tablist" aria-label={slide.kicker} onKeyDown={onKeyDown} className="flex flex-wrap gap-2">
         {tabs.map((tb, i) => (

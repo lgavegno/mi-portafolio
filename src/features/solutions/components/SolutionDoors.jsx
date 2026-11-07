@@ -48,7 +48,6 @@ export default function SolutionDoors({ onOpen, centered = false }) {
               <button
                 type="button"
                 onClick={() => open(path)}
-                aria-controls={onOpen ? 'soluciones' : undefined}
                 className={`group flex-1 min-w-0 text-left px-4 py-2.5 sm:py-3 rounded-l-lg ${FOCUS_RING}`}
               >
                 <span className="block text-xs text-[#4B5563]">{door.question}</span>

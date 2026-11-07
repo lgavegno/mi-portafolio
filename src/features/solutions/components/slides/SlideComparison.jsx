@@ -4,7 +4,7 @@ import { ACCENT } from '../accent';
 export default function SlideComparison({ slide, path, level }) {
   const [first, ...others] = slide.columns;
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 lg:space-y-4">
       <SlideHeader slide={slide} path={path} level={level} />
 
       {/* ≥ sm: tabla */}
@@ -12,20 +12,20 @@ export default function SlideComparison({ slide, path, level }) {
         <table className="w-full text-sm text-left">
           <thead>
             <tr className="bg-[#2C3340] text-[#F1F0E8]">
-              <td className="p-3" />
-              <th scope="col" className="p-3 font-display font-semibold">{first}</th>
+              <td className="p-3 lg:py-2" />
+              <th scope="col" className="p-3 lg:py-2 font-display font-semibold">{first}</th>
               {others.map((col) => (
-                <th key={col} scope="col" className="p-3 font-display font-semibold text-[#F1F0E8]/85">{col}</th>
+                <th key={col} scope="col" className="p-3 lg:py-2 font-display font-semibold text-[#F1F0E8]/85">{col}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {slide.rows.map((row) => (
               <tr key={row.criterion} className="border-t border-[#2C3340]/10 bg-white/70 align-top">
-                <th scope="row" className="p-3 font-semibold text-[#2C3340]">{row.criterion}</th>
+                <th scope="row" className="p-3 lg:py-2 font-semibold text-[#2C3340]">{row.criterion}</th>
                 <td className={`p-3 font-medium text-[#2C3340] ${ACCENT[path].soft}`}>{row.values[0]}</td>
                 {row.values.slice(1).map((v) => (
-                  <td key={v} className="p-3 text-[#4B5563]">{v}</td>
+                  <td key={v} className="p-3 lg:py-2 text-[#4B5563]">{v}</td>
                 ))}
               </tr>
             ))}

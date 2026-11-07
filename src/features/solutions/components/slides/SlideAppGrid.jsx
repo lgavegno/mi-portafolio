@@ -4,7 +4,7 @@ import { ACCENT } from '../accent';
 
 export default function SlideAppGrid({ slide, path, level }) {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 lg:space-y-4">
       <SlideHeader slide={slide} path={path} level={level} />
       <ul className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3">
         {slide.apps.map((app) => (

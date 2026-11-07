@@ -37,11 +37,18 @@ export default function SolutionsSection({ path, onPathChange, entry = 'home', v
 
   const ready = deck.locale === locale && deck.slides;
 
+  // Scroll + foco al abrir desde una puerta. Espera a que el contenido esté cargado:
+  // si el scroll suave arranca antes, el cambio de contenido lo corta a mitad de camino.
+  const handledToken = useRef(0);
   useEffect(() => {
-    if (!focusToken || variant !== 'home') return;
-    sectionRef.current?.scrollIntoView?.({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
-    headingRef.current?.focus({ preventScroll: true });
-  }, [focusToken, variant, reduced]);
+    if (!focusToken || variant !== 'home' || !ready || handledToken.current === focusToken) return;
+    const id = setTimeout(() => {
+      handledToken.current = focusToken;
+      sectionRef.current?.scrollIntoView?.({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+      headingRef.current?.focus({ preventScroll: true });
+    }, 0);
+    return () => clearTimeout(id);
+  }, [focusToken, variant, reduced, ready]);
 
   const isHome = variant === 'home';
   const headingId = 'soluciones-titulo';
