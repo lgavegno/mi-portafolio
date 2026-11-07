@@ -4,9 +4,11 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { FiLayout, FiTool, FiCpu, FiMonitor, FiChevronLeft, FiChevronRight, FiLayers } from 'react-icons/fi';
 import { LOCALE_PREFIX } from '../../utils/seoLocale';
+import { FEATURES } from '../../config/features';
 import { fadeInUp, staggerContainer } from '../../config/motionConfig';
 import { useVibrate } from '../../hooks/useVibrate';
 import { useLocale } from '../../hooks/useLocale';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
 import './Services3DCarousel.css';
 
 const faqSchema = {
@@ -62,6 +64,10 @@ const Services = () => {
   const carouselRef = useRef(null);
   const autoRotateInterval = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
+  // Pausa la rotación con foco de teclado adentro y con prefers-reduced-motion (a11y)
+  const [hasFocusWithin, setHasFocusWithin] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
+  const isPaused = isHovered || hasFocusWithin || prefersReducedMotion;
   const vibrateLight = useVibrate(5);
 
   const iconArray = [FiMonitor, FiLayout, FiCpu, FiTool, FiLayers];
@@ -73,15 +79,18 @@ const Services = () => {
     "from-[#EEE0C9] to-[#ADC4CE]"
   ];
 
-  const services = t.services.services.map((service, index) => ({
-    ...service,
-    icon: iconArray[index],
-    gradient: gradientArray[index]
-  }));
+  const services = t.services.services
+    .map((service, index) => ({
+      ...service,
+      icon: iconArray[index],
+      gradient: gradientArray[index]
+    }))
+    // FEATURE-12: la tarjeta "Sistemas de gestión" (la que tiene links) depende de FEATURES.solutions
+    .filter((service) => FEATURES.solutions || !service.links);
 
   // Auto-rotate functionality
   useEffect(() => {
-    if (!isHovered) {
+    if (!isPaused) {
       autoRotateInterval.current = setInterval(() => {
         setCurrentIndex(prev => (prev + 1) % services.length);
       }, 3000);
@@ -92,7 +101,7 @@ const Services = () => {
         clearInterval(autoRotateInterval.current);
       }
     };
-  }, [isHovered, services.length]);
+  }, [isPaused, services.length]);
 
   const handlePrev = () => {
     vibrateLight();
@@ -161,15 +170,23 @@ const Services = () => {
           className="carousel-container"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
+          onFocus={() => setHasFocusWithin(true)}
+          onBlur={(e) => {
+            if (!e.currentTarget.contains(e.relatedTarget)) setHasFocusWithin(false);
+          }}
         >
           <div className="carousel-track" ref={carouselRef}>
             {services.map((service, index) => {
               const IconComponent = service.icon;
+              // Solo la tarjeta de frente es accesible: las de atrás no reciben foco ni se leen
+              const isFront = index === currentIndex;
               return (
                 <div
                   key={index}
                   className="carousel-card will-change-transform"
                   style={getCardStyle(index)}
+                  aria-hidden={!isFront}
+                  inert={!isFront}
                 >
                   <div className="carousel-card-inner" style={{ transformStyle: 'preserve-3d' }}>
                     {/* CARA FRONTAL */}
