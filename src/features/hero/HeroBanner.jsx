@@ -11,6 +11,7 @@ import { fadeInUp, staggerContainer } from '../../config/motionConfig';
 import { useLocale } from '../../hooks/useLocale';
 
 import TechnicalTicker from '../../components/TechnicalTicker';
+import SolutionDoors from '../solutions/components/SolutionDoors';
 
 
 const buttonVariants = {
@@ -19,7 +20,8 @@ const buttonVariants = {
   tap: { scale: 0.97 },
 };
 
-const HeroBanner = () => {
+// onOpenSolution (opcional): abre la sección #soluciones en la home (FEATURE-12)
+const HeroBanner = ({ onOpenSolution }) => {
   const { t } = useLocale();
 
   const scrollToProjects = () => {
@@ -156,6 +158,11 @@ const HeroBanner = () => {
                     >
                       {t.hero.cta.contact}
                     </motion.button>
+                  </motion.div>
+
+                  {/* FEATURE-12 — Sistemas de gestión: puertas Odoo / Dux (spec §3.2) */}
+                  <motion.div variants={fadeInUp}>
+                    <SolutionDoors onOpen={onOpenSolution} />
                   </motion.div>
 
                   {/* Stats */}
