@@ -7,6 +7,26 @@ Historial de cambios del proyecto Ongevag Portfolio. Formato: [Keep a Changelog]
 
 _Sin cambios pendientes de release._
 
+## [3.6.0] — 2026-11-07
+
+### Added
+- **FEATURE-12 — Soluciones de gestión (Odoo / Dux):** puertas en el hero, presentación por capítulos (7 slides Odoo + 5 Dux) en ES/EN/PT y páginas compartibles `/odoo` y `/dux` (+ `/en`, `/pt`)
+- Atribución de leads: WhatsApp con `ref` por camino y slide (`ODOO-S1…S7`, `DUX-S1…S5`, `HERO-*`) y eventos GA4 `solution_door_click`, `solution_slide_view`, `solution_whatsapp_click`
+- Interruptor `FEATURES.solutions` (`src/config/features.js`) para apagar la feature: hero normal, sin tarjeta en Services y `/odoo`/`/dux` redirigidas a la home
+- HTML estático post-build (`scripts/generate-route-meta.js`) con title, description, OG, canonical y hreflang por ruta; 6 URLs nuevas en el sitemap
+- Tarjeta "Sistemas de gestión" en Services; ADR-015
+
+### Changed
+- Hero sin CTAs "Ver proyectos"/"Contactar" ni Stats; la marca queda como h1 `sr-only` (`scrollToContact` retirado)
+- Número de WhatsApp centralizado en `src/config/contact.js`
+
+### Fixed
+- Services: las tarjetas que no están de frente quedan inertes y la rotación se pausa con foco de teclado y `prefers-reduced-motion`
+
+### Chores
+- Eliminado el nombre de marca anterior de `index.html` (JSON-LD), README, Makefile, `llms.txt`, `robots.txt` y ADR-009
+- Mock global de Framer Motion en tests con caché por tag; 160 tests
+
 ## [3.5.1] — 2026-10-21
 
 ### Changed

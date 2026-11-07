@@ -13,7 +13,6 @@ export default {
   // Logo
   logo: {
     name: 'Ongevag',
-    tagline: 'Studio',
   },
 
   agenciasNav: 'Para agencias',

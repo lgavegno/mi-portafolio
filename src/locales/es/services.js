@@ -12,11 +12,16 @@ export default {
     },
     {
       title: 'Software de Gestión a Medida',
-      description: 'Herramientas internas para PyMEs: módulos de inventario, presupuestos, reportes y flujos de trabajo diseñados exactamente según los procesos del negocio.',
+      description: 'Desarrollo propio para PyMEs cuando ningún sistema estándar encaja: módulos de inventario, presupuestos, reportes y flujos diseñados según los procesos del negocio.',
     },
     {
       title: 'Automatización & Análisis de Datos',
       description: 'Pipelines de datos, dashboards con KPIs en tiempo real y automatización de procesos manuales para reducir errores operativos y liberar tiempo de tu equipo.',
+    },
+    {
+      title: 'Sistemas de Gestión: Odoo y Dux',
+      description: 'Te oriento sobre qué plataforma conviene y te conecto con un equipo especializado que la implementa: Odoo para empresas en crecimiento, Dux para comercios.',
+      links: [{ label: 'Ver Odoo', path: 'odoo' }, { label: 'Ver Dux', path: 'dux' }],
     },
   ],
   carousel: {

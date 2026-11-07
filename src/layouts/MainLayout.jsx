@@ -7,6 +7,10 @@ import PageTransition from '../components/ui/PageTransition'
 import BackToTop from '../components/ui/BackToTop'
 import WhatsAppFloat from '../components/WhatsAppFloat'
 
+// FEATURE-12: en las páginas de soluciones el botón flotante (sin ref) se oculta;
+// cada slide ya tiene su botón de WhatsApp con atribución.
+const SOLUTION_PAGE = /^(\/(en|pt))?\/(odoo|dux)\/?$/;
+
 
 const MainLayout = () => {
   const location = useLocation();
@@ -64,7 +68,7 @@ const MainLayout = () => {
       </motion.div>
 
       <BackToTop />
-      <WhatsAppFloat />
+      {!SOLUTION_PAGE.test(location.pathname) && <WhatsAppFloat />}
     </div>
   )
 }

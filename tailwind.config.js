@@ -59,7 +59,15 @@ module.exports = {
           lime: '#ADC4CE',
           purple: '#96B6C5',
           cyan: '#7A9EAF',
-        }
+        },
+        // FEATURE-12 — acentos por camino (solo puertas, pestaña/switch activo y viñetas)
+        odoo: {
+          DEFAULT: '#714B67', // texto y fondos con texto blanco: AA
+        },
+        dux: {
+          DEFAULT: '#0B8A80', // SOLO no-texto (bordes, viñetas, barras): 3:1 sobre crema
+          ink: '#08695F',     // texto de acento y fondos con texto blanco: AA
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],

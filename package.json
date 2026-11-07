@@ -1,12 +1,12 @@
 {
   "name": "mi-portafolio",
   "private": true,
-  "version": "3.5.1",
+  "version": "3.6.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "generate-sitemap": "node scripts/generate-sitemap.js",
-    "build": "node scripts/generate-sitemap.js && vite build",
+    "build": "node scripts/generate-sitemap.js && vite build && node scripts/generate-route-meta.js",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",
