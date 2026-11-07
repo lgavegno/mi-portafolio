@@ -16,11 +16,11 @@
 | T-02 | `config/contact.js` + `WhatsAppFloat` | ✅ Done |
 | T-03 | Tokens Tailwind + contraste | ✅ Done |
 | T-04 | Utils puras + tests | ✅ Done |
-| T-05 | Locales `solutions.js` + LocaleProvider | ⏳ Pending |
-| T-06 | `slides.es.js` | ⏳ Pending |
-| T-07 | `slides.en.js` / `slides.pt.js` | ⏳ Pending |
-| T-08 | Verificación de cifras | ⏳ Pending |
-| T-09 | Tests de exclusiones e integridad | ⏳ Pending |
+| T-05 | Locales `solutions.js` + LocaleProvider | ✅ Done |
+| T-06 | `slides.es.js` | ✅ Done |
+| T-07 | `slides.en.js` / `slides.pt.js` | ✅ Done |
+| T-08 | Verificación de cifras | ✅ Done |
+| T-09 | Tests de exclusiones e integridad | ✅ Done |
 | T-10 | `WhatsAppCTA` + `useSolutionTracking` | ⏳ Pending |
 | T-11 | Carrusel, capítulos, progreso | ⏳ Pending |
 | T-12 | Slides + mockups | ⏳ Pending |
@@ -241,7 +241,19 @@
   | Blanco sobre `dux` | 4,23 | ❌ texto normal → no se usa |
 
 - 2026-11-07 — T-04 utils `formatTemplate`, `whatsapp`, `swipe` + 11 tests. Fase A validada: lint 0 errores (2 warnings previos en `DataVisualization.jsx`), 83/83 tests, build OK; entrada 83.967 B (+24 B).
+- 2026-11-07 — T-05 `locales/{es,en,pt}/solutions.js` registrados en `LocaleProvider` (entrada +1,7 KB brotli: 85.730 B).
+- 2026-11-07 — T-06/T-07 12 slides en ES/EN/PT (PT con marcador ADR-014). Frase opcional Q8 ("Conozco Odoo desde adentro…") **no incluida** hasta confirmación de Leo.
+- 2026-11-07 — T-08 Odoo verificado en `odoo.com/page/about-us`: 28 M usuarios ✅, 21.000+ partners ✅. Correcciones: apps de la comunidad 40.000+ → **50.000+**; "100.000+ desarrolladores" no figura (la página dice 2.000) → reemplazado por **50 aplicaciones principales** ✅. `duxsoftware.com.ar` responde 403 a lectura automática → cifras de Dux sin verificar (no se muestran).
+- 2026-11-07 — T-09 `contentExclusions.test.js` + `dataIntegrity.test.js`. Los términos sensibles del partner (nombre, contacto, clientes) viven en `docs/reference/forbidden-terms.json`, **ignorado por git**; el test los usa si el archivo existe. 118/118 tests.
 
 ## Cifras no verificadas (para Leo)
 
-_(se completa en T-08)_
+Ocultas en el sitio (`verifiedAt: null`) hasta que se confirmen en el sitio oficial de Dux:
+
+| Slide | Cifra | Qué encontré |
+|-------|-------|--------------|
+| DUX-S1 | 2017 · creado en Córdoba | Nota de prensa (InfoNegocios): octubre de 2017, Córdoba. Otra base de datos dice 2015. |
+| DUX-S1 | 100 % en la nube | Sin fuente oficial accesible. |
+| DUX-S1 | 4 países (AR, CL, MX, UY) | Prensa menciona Uruguay, Panamá y México; **no encontré Chile**. |
+
+Para publicarlas: abrir duxsoftware.com.ar, confirmar el dato y cambiar `verifiedAt` a la fecha en los 3 `slides.*.js` (el test exige que coincidan).
