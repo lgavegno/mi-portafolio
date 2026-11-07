@@ -11,11 +11,11 @@
 
 | Task | Descripción | Estado |
 |------|-------------|--------|
-| T-00 | Baseline bundle + Lighthouse | ⏳ Pending |
-| T-01 | ADR-015 | ⏳ Pending |
-| T-02 | `config/contact.js` + `WhatsAppFloat` | ⏳ Pending |
-| T-03 | Tokens Tailwind + contraste | ⏳ Pending |
-| T-04 | Utils puras + tests | ⏳ Pending |
+| T-00 | Baseline bundle + Lighthouse | ✅ Done |
+| T-01 | ADR-015 | ✅ Done |
+| T-02 | `config/contact.js` + `WhatsAppFloat` | ✅ Done |
+| T-03 | Tokens Tailwind + contraste | ✅ Done |
+| T-04 | Utils puras + tests | ✅ Done |
 | T-05 | Locales `solutions.js` + LocaleProvider | ⏳ Pending |
 | T-06 | `slides.es.js` | ⏳ Pending |
 | T-07 | `slides.en.js` / `slides.pt.js` | ⏳ Pending |
@@ -227,6 +227,20 @@
 ## Log de ejecución
 
 - 2026-11-07 — Spec aprobada (defaults Q1–Q8). `docs/reference/` agregado a `.gitignore`; presentación original copiada ahí (no versionada).
+- 2026-11-07 — T-00 baseline: `index-*.js.br` 83.943 B · `index-*.css.br` 9.041 B · 72 tests en verde (3 archivos). Lighthouse: se toma el registrado en CLAUDE.md (2026-06-18: desktop 98 / mobile 61, A11y 94); la medición comparativa se hace en T-23 con el mismo método antes/después.
+- 2026-11-07 — T-01 ADR-015 creado. T-02 `src/config/contact.js`; `WhatsAppFloat` lo usa.
+- 2026-11-07 — T-03 tokens `odoo`, `dux`, `dux-ink`. Contraste (fórmula WCAG 2.1, script local):
+
+  | Par | Ratio | Resultado |
+  |-----|-------|-----------|
+  | `odoo` #714B67 sobre #EEE0C9 / #F1F0E8 | 5,56 / 6,32 | ✅ texto AA |
+  | Blanco sobre `odoo` | 7,23 | ✅ texto AA |
+  | `dux-ink` #08695F sobre #EEE0C9 / #F1F0E8 | 5,05 / 5,75 | ✅ texto AA |
+  | Blanco sobre `dux-ink` | 6,57 | ✅ texto AA |
+  | `dux` #0B8A80 sobre #EEE0C9 / #F1F0E8 | 3,25 / 3,70 | ✅ solo UI/no-texto (≥ 3:1) |
+  | Blanco sobre `dux` | 4,23 | ❌ texto normal → no se usa |
+
+- 2026-11-07 — T-04 utils `formatTemplate`, `whatsapp`, `swipe` + 11 tests. Fase A validada: lint 0 errores (2 warnings previos en `DataVisualization.jsx`), 83/83 tests, build OK; entrada 83.967 B (+24 B).
 
 ## Cifras no verificadas (para Leo)
 
