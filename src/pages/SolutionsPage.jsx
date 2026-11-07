@@ -1,9 +1,11 @@
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 import { useLocale } from '../hooks/useLocale';
 import { LOCALE_PREFIX, OG_LOCALE, BASE_URL } from '../utils/seoLocale';
 import SolutionsSection from '../features/solutions/components/SolutionsSection';
+import { FEATURES } from '../config/features';
 
 /** Página compartible /odoo y /dux (+ /en/*, /pt/*). Spec §5. */
 export default function SolutionsPage({ path }) {
@@ -12,6 +14,16 @@ export default function SolutionsPage({ path }) {
   const page = t.solutions.pages[path];
   const prefix = LOCALE_PREFIX[locale] ?? '';
   const url = (l, p = path) => `${BASE_URL}${LOCALE_PREFIX[l]}/${p}`;
+
+  // El HTML estático de /odoo y /dux (scripts/generate-route-meta.js) trae canonical/hreflang/og:url
+  // para crawlers sin JS. Con JS los pone Helmet: se retiran los estáticos para no duplicarlos.
+  useEffect(() => {
+    document.querySelectorAll('[data-route-meta]').forEach((node) => node.remove());
+  }, []);
+
+  // Con la alianza terminada (FEATURES.solutions = false) no se captan más leads:
+  // los links ya compartidos llevan a la home del mismo idioma.
+  if (!FEATURES.solutions) return <Navigate to={prefix || '/'} replace />;
 
   return (
     <>
