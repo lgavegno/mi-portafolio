@@ -7,6 +7,15 @@ Historial de cambios del proyecto Ongevag Portfolio. Formato: [Keep a Changelog]
 
 _Sin cambios pendientes de release._
 
+## [3.6.1] — 2026-11-08
+
+### Fixed
+- `/agencias` en mobile: la sección "Cómo colaboro" quedaba invisible y el resto dejaba espacios vacíos al scrollear. El revelado ya no exige un porcentaje del bloque en pantalla
+- `/agencias`: cada sección termina de aparecer en menos de 0,5 s (antes hasta 2,5 s)
+
+### Changed
+- La figura 3D del hero de `/agencias` solo se carga desde 1024 px
+
 ## [3.6.0] — 2026-11-07
 
 ### Added
