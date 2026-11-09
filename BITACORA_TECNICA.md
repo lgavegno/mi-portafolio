@@ -5,6 +5,19 @@
 
 ---
 
+## 2026-11-08 — Fix: `/agencias` en mobile con contenido invisible
+
+**Objetivo:** Corregir la carga lenta y los espacios vacíos al scrollear `/agencias` en celular (rama `fix/agencias-mobile-reveal`).
+
+- **Causa de los espacios vacíos:** `viewportConfig` usaba `amount: 0.3` con `margin: "-100px"`. Cada sección esperaba tener un porcentaje de su alto en pantalla; mientras tanto solo se veía el fondo. A 375×812, "Cómo colaboro" (bloque de ~1.280 px) quedaba con opacidad 0 de forma permanente
+- **Causa de la lentitud percibida:** no era la red (FCP ~0,8 s) sino `staggerContainer` + `fadeInUp`: entre 1,1 y 2,5 s por sección hasta verse completa
+- **Figura 3D:** `WireframeGeometry` se ocultaba con CSS en mobile, pero se descargaba y actualizaba estado en cada cuadro
+- **Solución:** `viewportConfig` con `amount: "some"` y margen solo inferior; variantes nuevas `revealContainer`/`revealItem` para `/agencias` (el contenedor no tiene opacidad propia); `WireframeGeometry` solo se monta desde 1024 px
+- **Resultado (build local, 375×812):** las 5 secciones se revelan al asomar y terminan en 0,12–0,46 s. `staggerContainer` y `fadeInUp` no cambian para el resto del sitio
+- **Regla:** no usar `amount` porcentual en `whileInView` sobre bloques altos
+
+---
+
 ## 2026-11-07 — FEATURE-12: hero sin CTAs y retiro de `scrollToContact`
 
 **Objetivo:** Ordenar el hero al sumar las puertas Odoo/Dux (rama `feature/odoo-dux-solutions`).

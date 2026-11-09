@@ -1,6 +1,6 @@
 # CLAUDE.md — Portfolio ONGEVAG
-**Current Phase:** FEATURE-12_ODOO_DUX_SOLUTIONS — ✅ Mergeada a develop (pendiente release a main)
-**Last Updated:** 2026-11-07
+**Current Phase:** v3.6.1 en producción — FEATURE-12_ODOO_DUX_SOLUTIONS ✅ (pendientes de negocio en tasks.md)
+**Last Updated:** 2026-11-08
 
 ## Propósito
 Portfolio SPA React 19 + Vite (feature-based DDD Light) para captar clientes PyMEs.
@@ -66,7 +66,7 @@ VITE_EMAILJS_PUBLIC_KEY=...    # Public key (required)
 | FEATURE-09_BLOG_POST_EXCEL_ERP | 🔄 In Progress (publicado ES/EN/PT, pendiente QA de cierre: revisión visual + Lighthouse + ortografía) | `docs/specs/FEATURE-09_BLOG_POST_EXCEL_ERP/` | spec.md · plan.md · tasks.md |
 | FEATURE-10_PT_LOCALE | ✅ Done | `docs/specs/FEATURE-10_PT_LOCALE/` | spec.md · plan.md · tasks.md |
 | FEATURE-11_TECH_EXPERIENCE | ✅ Done | `docs/specs/FEATURE-11_TECH_EXPERIENCE/` | spec.md |
-| FEATURE-12_ODOO_DUX_SOLUTIONS | ✅ Done (en develop; pendientes de negocio en tasks.md) | `docs/specs/FEATURE-12_ODOO_DUX_SOLUTIONS/` | spec.md · plan.md · tasks.md · ADR-015 |
+| FEATURE-12_ODOO_DUX_SOLUTIONS | ✅ Done (v3.6.0; pendientes de negocio en tasks.md) | `docs/specs/FEATURE-12_ODOO_DUX_SOLUTIONS/` | spec.md · plan.md · tasks.md · ADR-015 |
 
 ## ADRs Documented
 ADR-001 (Vite) | ADR-002 (JS no TS) | ADR-003 (EmailJS) | ADR-004 (Feature-based) | ADR-005 (Vitest) | ADR-006 (URL i18n) | ADR-007 (ES default) | ADR-008 (og:image PNG) | ADR-009 (JSON-LD global) | ADR-010 (No i18n lib) | ADR-011 (URL source of truth) | ADR-012 (Rebrand Visual 2026)
@@ -93,6 +93,7 @@ ADR-001 (Vite) | ADR-002 (JS no TS) | ADR-003 (EmailJS) | ADR-004 (Feature-based
 | `src/components/ParticleBackground.jsx` | Canvas animation; NO React.lazy — NOTA: eliminado de HeroBanner.jsx en rebrand (DT: reactivar si se vuelve a fondo oscuro) |
 | `src/config/features.js` | `FEATURES.solutions` prende/apaga Odoo/Dux. `false` = alianza terminada: hero con marca visible y sin puertas, Services sin la tarjeta, `/odoo` y `/dux` redirigen a la home, fuera del sitemap y sin HTML estático. No borrar el bloque de marca `sr-only` del hero: es el h1 de la home |
 | `SolutionDoors` (en `HeroBanner.jsx`) | Únicas acciones del hero desde FEATURE-12 (2026-11-07): puertas Odoo/Dux con ref `HERO-*`. Los CTA "Ver proyectos"/"Contactar" y `scrollToContact` se eliminaron a pedido de Leo (el contacto queda en el WhatsApp flotante y en `#contacto`) |
+| `viewportConfig` (en `src/config/motionConfig.js`) | Revelado de `/agencias`. Mantener `amount: "some"`: un `amount` porcentual deja bloques altos invisibles para siempre en mobile |
 | `src/context/LocaleProvider.jsx` | i18n core — cambios rompen toda la app |
 | `vercel.json` | SPA routing catch-all `/(.*) → index.html` |
 | `public/og-image.svg` | Social sharing (1200x630) |

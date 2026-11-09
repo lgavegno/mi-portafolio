@@ -30,13 +30,13 @@
 | T-16 | `SolutionDoors` + HeroBanner + HomeSections | ✅ Done |
 | T-17 | 5.ª tarjeta en Services | ✅ Done |
 | T-18 | Sitemap | ✅ Done |
-| T-19 | Meta por ruta post-build | 🔄 Parcial (falta verificar en Vercel) |
+| T-19 | Meta por ruta post-build | ✅ Done |
 | T-20 | Limpieza de marca | ✅ Done |
 | T-21 | Tests de integración | ✅ Done |
 | T-22 | Build/lint/test + bundle | ✅ Done |
 | T-23 | Lighthouse + QA manual | ✅ Done |
 | T-24 | Docs de cierre | ✅ Done |
-| T-25 | PR a `develop` (con OK de Leo) | ⏳ Pending |
+| T-25 | PR a `develop` (con OK de Leo) | ✅ Done (#4; release v3.6.0 a main en #5) |
 
 ---
 
@@ -272,6 +272,7 @@
   - Corregido por Lighthouse: `aria-controls` de las puertas apuntaba a una sección aún no montada.
   - Entrada final 88.092 B br (+4.149 B, dentro del NFR-03 rev. 1.4 ≤ 5 KB). 160/160 tests en 2 corridas.
 - 2026-11-07 — Pendiente fuera del QA: VoiceOver real y swipe en dispositivo físico (no disponibles en la sesión). Verificación de `dist/odoo/index.html` en Vercel tras el deploy de develop.
+- 2026-11-07 — Merge a develop (#4) y release **v3.6.0** a main (#5, tag `v3.6.0`); develop sincronizado. Producción verificada: `/odoo`, `/en/dux`, `/pt/odoo` sirven su HTML estático (title, OG, canonical, hreflang); sitemap con las 6 URLs; JSON-LD con `ONGEVAG`.
 
 ## Cifras no verificadas (para Leo)
 

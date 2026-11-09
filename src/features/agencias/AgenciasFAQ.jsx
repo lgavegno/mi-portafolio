@@ -3,7 +3,7 @@ import { FiChevronDown } from 'react-icons/fi'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLocale } from '../../hooks/useLocale'
 import { trackEvent } from '../../utils/trackEvent'
-import { staggerContainer, fadeInUp, viewportConfig, durationConfig } from '../../config/motionConfig'
+import { revealContainer, revealItem, viewportConfig, durationConfig } from '../../config/motionConfig'
 
 export default function AgenciasFAQ() {
   const { t, locale } = useLocale()
@@ -21,21 +21,21 @@ export default function AgenciasFAQ() {
     <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 bg-[#EEE0C9]">
       <div className="max-w-3xl mx-auto">
         <motion.div
-          variants={staggerContainer}
+          variants={revealContainer}
           initial="hidden"
           whileInView="visible"
           viewport={viewportConfig}
         >
           <motion.h2
             className="font-syne font-bold text-[#2C3340] text-3xl sm:text-4xl mb-10"
-            variants={fadeInUp}
+            variants={revealItem}
           >
             {s.titulo}
           </motion.h2>
 
-          <motion.div variants={staggerContainer}>
+          <motion.div variants={revealContainer}>
             {s.items.map((item, i) => (
-              <motion.div key={i} className="border-t border-[rgba(150,182,197,0.4)]" variants={fadeInUp}>
+              <motion.div key={i} className="border-t border-[rgba(150,182,197,0.4)]" variants={revealItem}>
                 <button
                   type="button"
                   onClick={() => handleToggle(i)}
