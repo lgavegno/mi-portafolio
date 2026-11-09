@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useLocale } from '../../hooks/useLocale'
-import { staggerContainer, fadeInUp, viewportConfig } from '../../config/motionConfig'
+import { revealContainer, revealItem, viewportConfig } from '../../config/motionConfig'
 
 export default function AgenciasProceso() {
   const { t, locale } = useLocale()
@@ -10,21 +10,21 @@ export default function AgenciasProceso() {
     <section className="pt-16 pb-24 px-4 sm:px-6 lg:px-8 bg-[#96B6C5]">
       <div className="max-w-6xl mx-auto">
         <motion.div
-          variants={staggerContainer}
+          variants={revealContainer}
           initial="hidden"
           whileInView="visible"
           viewport={viewportConfig}
         >
           <motion.h2
             className="font-syne font-bold text-[#2C3340] text-3xl sm:text-4xl mb-12"
-            variants={fadeInUp}
+            variants={revealItem}
           >
             {s.titulo}
           </motion.h2>
 
           <motion.div
             className="grid grid-cols-1 md:grid-cols-4 md:border-t md:border-[rgba(44,51,64,0.15)]"
-            variants={staggerContainer}
+            variants={revealContainer}
           >
             {s.pasos.map((paso, i) => (
               <motion.div
@@ -36,7 +36,7 @@ export default function AgenciasProceso() {
                   'md:border-r md:border-[rgba(44,51,64,0.15)]',
                   i === s.pasos.length - 1 ? 'md:border-r-0' : '',
                 ].join(' ')}
-                variants={fadeInUp}
+                variants={revealItem}
               >
                 <p className="font-mono text-xs text-[rgba(44,51,64,0.5)] tracking-widest mb-3">
                   {paso.numero}

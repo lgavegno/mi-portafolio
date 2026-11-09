@@ -2,7 +2,7 @@ import { FiMail } from 'react-icons/fi'
 import { motion } from 'framer-motion'
 import { useLocale } from '../../hooks/useLocale'
 import { trackEvent } from '../../utils/trackEvent'
-import { staggerContainer, fadeInUp, viewportConfig } from '../../config/motionConfig'
+import { revealContainer, revealItem, viewportConfig } from '../../config/motionConfig'
 
 const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL
 const SUBJECT = encodeURIComponent('Partner técnico — [nombre de agencia]')
@@ -21,26 +21,26 @@ export default function AgenciasCTAFinal() {
       <div className="max-w-3xl mx-auto">
         <motion.div
           className="bg-transparent rounded-xl px-8 py-12 text-center"
-          variants={staggerContainer}
+          variants={revealContainer}
           initial="hidden"
           whileInView="visible"
           viewport={viewportConfig}
         >
           <motion.h2
             className="font-syne font-bold text-[#F1F0E8] text-3xl sm:text-4xl mb-4"
-            variants={fadeInUp}
+            variants={revealItem}
           >
             {s.titulo}
           </motion.h2>
 
           <motion.p
             className="font-dm-sans text-[rgba(241,240,232,0.65)] text-base lg:text-lg leading-relaxed mb-8"
-            variants={fadeInUp}
+            variants={revealItem}
           >
             {s.cuerpo}
           </motion.p>
 
-          <motion.div variants={fadeInUp}>
+          <motion.div variants={revealItem}>
             <a
               href={MAILTO_URL}
               onClick={handleClick}

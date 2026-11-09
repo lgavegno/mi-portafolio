@@ -128,8 +128,22 @@ export const reducedMotionConfig = {
   exit: { opacity: 0, transition: { duration: 0.01 } }
 };
 
+// Revelado al scrollear en /agencias.
+// amount "some" + margen solo abajo: un porcentaje del elemento (amount: 0.3) deja bloques
+// altos invisibles para siempre en mobile, porque nunca llegan a ese porcentaje en pantalla.
 export const viewportConfig = {
   once: true,
-  margin: "-100px",
-  amount: 0.3
+  margin: "0px 0px -48px 0px",
+  amount: "some"
+};
+
+// Contenedor sin opacidad propia: el contenido no depende de que termine su animación.
+export const revealContainer = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.05 } }
+};
+
+export const revealItem = {
+  hidden: { opacity: 0, y: 12 },
+  visible: { opacity: 1, y: 0, transition: durationConfig.normal }
 };
