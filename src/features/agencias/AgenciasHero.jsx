@@ -9,9 +9,25 @@ const WireframeGeometry = React.lazy(() => import('../../components/WireframeGeo
 const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL
 const SUBJECT = encodeURIComponent('Partner técnico — [nombre de agencia]')
 const MAILTO_URL = `mailto:${CONTACT_EMAIL}?subject=${SUBJECT}`
+const DESKTOP_QUERY = '(min-width: 1024px)'
+
+// La figura 3D redibuja en cada cuadro: en mobile (donde no se muestra) no se carga ni se monta.
+function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = React.useState(() => window.matchMedia(DESKTOP_QUERY).matches)
+
+  React.useEffect(() => {
+    const query = window.matchMedia(DESKTOP_QUERY)
+    const onChange = (event) => setIsDesktop(event.matches)
+    query.addEventListener('change', onChange)
+    return () => query.removeEventListener('change', onChange)
+  }, [])
+
+  return isDesktop
+}
 
 export default function AgenciasHero() {
   const { t, locale } = useLocale()
+  const isDesktop = useIsDesktop()
   const h = locale === 'es' ? t.agencias.hero : t.agencies.hero
 
   const handleEmailClick = () => {
@@ -57,13 +73,15 @@ export default function AgenciasHero() {
           </div>
 
           {/* Right Column - WireframeGeometry */}
-          <div className="hidden lg:flex items-center justify-center h-full min-h-[400px] max-h-[500px] p-8">
-            <div className="relative">
-              <React.Suspense fallback={<div className="w-64 h-64" />}>
-                <WireframeGeometry />
-              </React.Suspense>
+          {isDesktop && (
+            <div className="flex items-center justify-center h-full min-h-[400px] max-h-[500px] p-8">
+              <div className="relative">
+                <React.Suspense fallback={<div className="w-64 h-64" />}>
+                  <WireframeGeometry />
+                </React.Suspense>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </section>

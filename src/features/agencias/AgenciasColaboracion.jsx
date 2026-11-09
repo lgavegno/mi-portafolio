@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useLocale } from '../../hooks/useLocale'
-import { staggerContainer, fadeInUp, viewportConfig } from '../../config/motionConfig'
+import { revealContainer, revealItem, viewportConfig } from '../../config/motionConfig'
 
 export default function AgenciasColaboracion() {
   const { t, locale } = useLocale()
@@ -10,31 +10,31 @@ export default function AgenciasColaboracion() {
     <section id="colaboracion" className="py-16 px-4 sm:px-6 lg:px-8 bg-[#F1F0E8]">
       <div className="max-w-6xl mx-auto">
         <motion.div
-          variants={staggerContainer}
+          variants={revealContainer}
           initial="hidden"
           whileInView="visible"
           viewport={viewportConfig}
         >
           <motion.h2
             className="font-syne font-bold text-[#2C3340] text-3xl sm:text-4xl mb-4"
-            variants={fadeInUp}
+            variants={revealItem}
           >
             {s.titulo}
           </motion.h2>
 
           <motion.p
             className="font-dm-sans text-[#4B5563] text-base lg:text-lg leading-relaxed mb-12 max-w-2xl"
-            variants={fadeInUp}
+            variants={revealItem}
           >
             {s.intro}
           </motion.p>
 
           <motion.div
             className="grid grid-cols-1 md:grid-cols-3 gap-8"
-            variants={staggerContainer}
+            variants={revealContainer}
           >
             {s.modelos.map((modelo, i) => (
-              <motion.div key={i} variants={fadeInUp}>
+              <motion.div key={i} variants={revealItem}>
                 <h3 className="font-syne font-bold text-[#2C3340] text-lg lg:text-xl mb-6">
                   {modelo.tipo}
                 </h3>
